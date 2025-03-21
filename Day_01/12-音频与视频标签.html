@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body
+        style="background-image:url('bg.jpg');
+        background-size: cover;
+        height: 200vh;
+        background-repeat:no-repeat;
+        background-position:center;
+        padding-top: 5%; padding-left: 2%">
+
+<h1>音频标签与视频标签</h1>
+<section>
+    <h2>音频标签audio</h2>
+        <p>使用audio标签插入任意音频。包括属性：</p>
+        <ul>
+            <li>src：音频文件路径</li>
+            <li>controls：显示音频控制器<b>（备注：在html5中，属性名和属性值一样的，可以简写，只保留一个属性名即可</b></li>
+            <li>autoplay：自动播放</li>
+            <li>loop：循环播放</li>
+            <li>muted：静音</li>
+            <li>preload：预加载</li>
+            <li>type：音频文件类型</li>
+        </ul>
+
+    <p>e.g.</p>
+    <audio src="songs.mp3" controls loop preload="auto"></audio>
+</section>
+
+<section>
+    <h2>视频标签video</h2>
+        <p>使用video标签插入任意视频。包括属性：</p>
+        <ul>
+            <li>src：视频文件路径</li>
+            <li>controls：显示视频控制器</li>
+            <li>autoplay：自动播放<b>（必须首先muted）</b></li>
+            <li>loop：循环播放</li>
+            <li>muted：静音</li>
+            <li>preload：预加载</li>
+            <li>poster：视频封面图</li>
+            <li>width：视频宽度</li>
+            <li>height：视频高度</li>
+        </ul>
+
+    <p>e.g.</p>
+    <video src="mclaren.mp4" controls loop preload="auto" autoplay muted></video>
+</section>
+
+
+</body>
+</html>
