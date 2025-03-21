@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="../MyDefault01.css">
+</head>
+<body>
+
+<h1>label标签 - 增大点击范围</h1>
+<p><b>作用：网页中某个标签的说明文本</b></p>
+<p>经验：用label标签绑定文字和表单控件的关系，增大表单控件的点击范围</p>
+
+<br>
+<p><b>增大点击范围 - 方法一</b></p>
+<p>label标签只包裹内容，不包裹表单控件</p>
+<p>设置label标签的for属性值和表单控件的id相同</p>
+
+性别：
+<input type="radio" name="gender" id = "male">
+<label for="male">男</label>
+<input type="radio" name="gender" id="female">
+<label for="female">女</label>
+
+<br>
+<p><b>增大点击范围 - 方法二</b></p>
+<p>使用label包裹文字和表单控件，不需要属性</p>
+<label>
+    <input type="radio" name = "gender">Unknown
+</label>
+
+<p><b>支持的表单控件：文本框，密码框，上传文件，单选框，多选框，下拉菜单，文本域等</b></p>
+</body>
+</html>

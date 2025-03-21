@@ -1,0 +1,9 @@
+body {
+    background-image:url('./Day_01_基础/bg.jpg');
+        background-size: cover;
+        /*height: fit-content;*/
+        height: 200vh;
+        background-repeat:no-repeat;
+        background-position:center;
+        padding-top: 5%; padding-left: 2%
+}

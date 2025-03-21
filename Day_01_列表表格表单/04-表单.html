@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body
+        style="background-image:url('../Day_01_基础/bg.jpg');
+        background-size: cover;
+        height: fit-content;
+        /*height: 150vh;*/
+        background-repeat:no-repeat;
+        background-position:center;
+        padding-top: 5%; padding-left: 2% ">
+
+<h1>表单form</h1>
+<p>作用：用于收集信息，例如登录注册，搜索等。单标签。</p>
+
+<section style="margin-top: 2%">
+    <p><b>input标签的基本使用</b></p>
+    <p>input标签type属性值不同，则功能不同</p>
+    <p>type = text：文本框（输入单行文本）</p>
+    <p>type = password：密码框</p>
+    <p>type = radio：单选框</p>
+    <p>type = checkbox：复选框</p>
+    <p>type = file：文件上传</p>
+
+    文本框：<input type="text">
+    <br><br>
+    密码框：<input type="password">
+    <br><br>
+    单选框：<input type="radio">
+    <br><br>
+    多选框：<input type="checkbox">
+    <br><br>
+    文件上传：<input type="file">
+</section>
+
+<section style="margin-top: 3%;">
+    <p><b>input占位文本（提示信息）使用"placeholder属性"</b></p>
+    文本框：<input type="text" placeholder="请输入用户名">
+    <br><br>
+    密码：<input type="password" placeholder="请输入密码">
+
+</section>
+
+<section style="margin-top: 3%;">
+    <p><b>单选框 - radio</b></p>
+    <p>name属性：控件分组，每组只能选一个</p>
+    <p>checked属性：默认选中</p>
+    <p>value属性：选中后提交的值</p>
+
+    性别：
+    <input type="radio" name="gender" checked>Male
+    <input type="radio" name="gender">Female
+    <input type="radio" name="gender">Unknown
+
+</section>
+
+<section style="margin-top: 3%;">
+    <p><b>上传文件 - file</b></p>
+    <p>默认情况下，文件上传表单控件只能上传一个文件，添加属性“multiple”可以实现文件多选功能。</p>
+    <p>文件上传：<input type="file" multiple></p>
+</section>
+
+<section style="margin-top: 3%;">
+    <p><b>多选框 - checkbox</b></p>
+    <p>默认选中：checked</p>
+    
+    
+    兴趣爱好：
+    <input type="checkbox">code
+    <input type="checkbox">code front end
+    <input type="checkbox" checked>CodeSprint40
+</section>
+
+</body>
+</html>

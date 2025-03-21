@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+</head>
+<body
+        style="background-image:url('../Day_01_基础/bg.jpg');
+        background-size: cover;
+        height: 100vh;
+        background-repeat:no-repeat;
+        background-position:center;
+        padding-top: 5%; padding-left: 2%">
+
+<h1>合并单元格</h1>
+<p>作用：将多个单元格合并成一个单元格，以合并同类信息</p>
+<p>可以跨行合并（合并上下几行），也可以跨列合并（合并左右几行）</p>
+<p>步骤：</p>
+<p>1. 选中需要合并的单元格</p>
+<p>2. 保留最左最上的单元格，添加属性（值表示需要合并的单元格数量）</p>
+<p>跨行合并，保留最上，添加rowspan</p>
+<p>跨列合并，保留最左，添加colspan</p>
+<p>3. 其他单元格添加属性hidden（删除其他单元格）</p>
+<p>不能跨结构合并，如thead和tbody</p>
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Chinese</th>
+        <th>Math</th>
+        <th>English</th>
+        <th>Overall</th>
+    </tr>
+    <tr>
+        <td>张三</td>
+        <td>90</td>
+        <td rowspan="2">80</td>
+        <td>70</td>
+        <td>240</td>
+    </tr>
+    <tr>
+        <td>李四</td>
+        <td>100</td>
+        <td hidden>80</td>
+        <td>90</td>
+        <td>270</td>
+    </tr>
+    <tr>
+        <td>总结</td>
+        <td colspan="4">全市第一</td>
+        <td hidden="hidden">全市第一</td>
+        <td hidden>全市第一</td>
+        <td hidden>全市第一</td>
+    </tr>
+</table>
+
+
+</body>
+</html>
