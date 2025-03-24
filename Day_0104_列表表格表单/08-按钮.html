@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link rel="stylesheet" href="../MyDefault01.css">
+</head>
+<body>
+
+<h1>按钮标签</h1>
+<p>标签：button，双标签，中间为提示文字。</p>
+<p>标签的<b>type</b>属性，值不同则功能不同：</p>
+<p>1. <b>submit</b>：提交表单，默认提交表单的第一个form（默认功能）</p>
+<p>2. <b>reset</b>：重置表单，清空表单的所有内容（恢复默认值）。<b>注意，要在form标签内部才可以！</b></p>
+<p>3. <b>button</b>：普通按钮，点击后无任何功能，一般配合JavaScript使用</p>
+
+<!--action属性：提交表单的地址-->
+<form action="">
+    用户名：<input type="text">
+    <br><br>
+    密码：<input type="password">
+    <br><br>
+
+    <!--若省略type属性，默认也是submit-->
+    <button type="submit">提交</button>
+    <button type="reset">重置</button>
+    <button type="button">普通按钮</button>
+</form>
+
+</body>
+</html>
