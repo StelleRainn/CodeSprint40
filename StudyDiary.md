@@ -2,6 +2,10 @@
 
 *此MarkDown用于记录自己的学习进度，也方便自己复习。*
 
+## Mar 24th
+- 「恢复」。
+- 上午：学习了button的基本用法，包括type属性的button、sumbit、reset值。
+
 ## Mar 23rd
 - 注意饮食，吃坏肚子导致状态不佳了。
 - 信息熵减。
