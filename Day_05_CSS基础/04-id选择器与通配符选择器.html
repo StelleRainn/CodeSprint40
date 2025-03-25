@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #red{
+        /*id选择器*/
+        color: red;
+        font-size: 20px;
+    }
+
+    * {
+        /*通配符选择器*/
+        color: darksalmon;
+    }
+
+    .highlight{
+        color: red;
+        font-weight: bold;
+    }
+</style>
+<body>
+
+<h1>ID选择器</h1>
+<p>一般配合JavaScript使用</p>
+<p>定义： #id名 { } </p>
+<p>使用： id = "id名"</p>
+<p>规则： 同一个id选择器在一个页面只能使用一次</p>
+<p>id选择器的优先级高于类选择器</p>
+<div id="red">example</div>
+
+<h1>通配符选择器</h1>
+<p>不需要调用</p>
+<p>通配符选择器： * { } </p>
+<p>通配符选择器的优先级最低</p>
+<p class="highlight">通配符选择器可以给所有标签设置样式，一般用于网页初期开发，清除标签的默认属性</p>
+</body>
+</html>

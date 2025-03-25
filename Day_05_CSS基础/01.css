@@ -1,0 +1,31 @@
+body{
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 33px;
+    color: #333333;
+}
+
+.source {
+    font-size: 14px;
+    color: #999;
+}
+
+.content {
+    text-indent: 2em;
+    font-size: 18px;
+    color: #333333;
+}
+
+.pic {
+    text-align: center;
+}
+
+.pic img {
+    width: 70%;
+    height: auto;
+}

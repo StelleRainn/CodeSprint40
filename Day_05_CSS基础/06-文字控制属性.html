@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+
+    <style>
+        .fontsize {
+            font-size: 20px;
+        }
+
+        .fontweight {
+            font-weight: 700;
+        }
+
+        .fontstyle{
+            font-style: normal;
+        }
+
+        .lineheight {
+            /*line-height: 2;*/
+            line-height: 32px;
+        }
+
+        .heightsp {
+            height: 100px;
+            background-color: darkgray;
+
+            line-height: 100px;
+        }
+
+        .fontfamily {
+            font-family: 楷体, serif;
+        }
+
+        .font {
+            font: italic bold 18px/2 楷体, serif  ;
+        }
+
+        .textindent {
+            text-indent: 2em;
+        }
+
+        .textalign {
+            text-align: center;
+        }
+
+        .textdecoration_none{
+            text-decoration: none;
+        }
+
+        .textdecoration_underline{
+            text-decoration: underline;
+        }
+
+        .textdecoration_line-through{
+            text-decoration: line-through;
+        }
+
+        .textdecoration_overline{
+            text-decoration: overline;
+        }
+
+        .color2 {
+            /*天依蓝*/
+            color: #66ccff;
+            /*可缩写为 #6cf*/
+        }
+
+        .color3 {
+            color: rgb(0, 255, 0 )
+        }
+
+        .color4 {
+            background-color: darkcyan;
+            color: rgba(0, 0, 0, 0.3)
+        }
+
+    </style>
+
+</head>
+<body>
+
+<h1>文字属性</h1>
+
+<p class="fontsize">
+    <b>font-size</b>：设置文字大小。属性值必须有单位，常用px。谷歌浏览器默认大小为16px。
+</p>
+
+<p class="fontweight">
+    <b>font-weight</b>：设置文字粗细。常用值有normal、bold、bolder、lighter、100-900（400正常，700加粗）。
+</p>
+
+<p class="fontstyle">
+    <b>font-style</b>：设置文字样式。常用值有normal、italic、oblique。清除文字默认的倾斜效果。
+    <em class="fontstyle">em的example自带倾斜效果，现在已被去除。</em>
+</p>
+
+<p class="lineheight">
+    <b>line-height</b>：设置行高。常用值有：数字（当前标签设定或默认的font-size的倍数）、数字+px、normal、em。
+    <p class="lineheight">Thus it was that the port of Dunkirk was kept open. When it was found impossible for the Armies of the north to reopen their communications to Amiens with the main French Armies, only one choice remained. It seemed, indeed, forlorn. The Belgian, British and French Armies were almost surrounded. Their sole line of retreat was to a single port and to its neighboring beaches. They were pressed on every side by heavy attacks and far outnumbered in the air.
+    </p>
+    <p class="lineheight">备注：行高 = 文本高度+上间距+下间距。留意到：空白 = 第一行的下间距 + 第二行的上间距；从而：行高 = 文字高度 + 空白。</p>
+</p>
+
+<p class="heightsp">
+    <b>行高-垂直居中</b>：行高属性值等于盒子高度属性值。只适用于单行文字。
+</p>
+
+<p class="fontfamily">
+    <b>font-family</b>：设置字体。常用值有：serif、sans-serif、monospace、cursive、fantasy。serif和sans-serif是两种不同的字体类型。
+    <p class="fontfamily">font-family属性值可以书写多个字体名，哥哥字体名用逗号隔开，执行顺序从左向右</p>
+</p>
+
+<p class="font">
+    <b>font</b>：简写属性（复合属性），包含了font-style、font-weight、font-size、line-height、font-family等属性。书写顺序：font-style font-weight font-size/line-height font-family。
+    <p class="font">注意：如果使用了font属性，单独使用的font-size、line-height、font-family等属性将失效。</p>
+    <p class="font">字号和字体值必须书写，否则不生效</p>
+</p>
+
+<p class="textindent">
+    <b>text-indent</b>：首行缩进。常用值有：数字+px、数字em（1em = 当前标签的字号大小）。
+    <p class="textindent">注意：text-indent属性只对块级元素的首行生效。</p>
+</p>
+
+<p class="textalign">
+    <b>text-align</b>：文本对齐方式。常用值有：left（默认）、right、center、justify（两端对齐）。
+    <p class="textalign">注意：text-align属性只对块级元素的文本生效。</p>
+    <p class="textalign">本质：居中的是字而非标签。属性要设置给内容的父级。</p>
+</p>
+
+<div class="textalign">
+    <img src="../Day_01_基础/img.jpg" alt="图片" width="200px" height="200px">
+</div>
+
+<p class="textdecoration">
+    <b>text-decoration</b>：文本装饰。常用值有：none、underline、overline（上划线）、line-through（删除线）。<br>
+    <a href="" class="textdecoration_none">取消下划线。</a>
+    <div class="textdecoration_underline">添加下划线</div>
+    <p class="textdecoration_line-through">添加删除线</p>
+    <span class="textdecoration_overline">添加上划线</span>
+</p>
+
+<p class="color">
+    <b>color</b>：设置文字颜色。常用值有：颜色关键字、十六进制颜色值、rgb()（取值0-255）、rgba()（a表示透明度，取值0-1）。
+    <p class="color1">颜色关键字</p>
+    <p class="color2">十六进制颜色值</p>
+    <p class="color3">rgb()</p>
+    <p class="color4">rgba()</p>
+</p>
+
+</body>
+</html>
