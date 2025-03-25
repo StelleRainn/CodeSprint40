@@ -5,7 +5,7 @@
 ## Mar 25th
 - 「推进」。
 - 今天正式开始CSS的学习。主要学习了CSS的基础。包括：
-- 引入方式：内部样式（head嵌套style，外部样式（link引入），行内样式（style属性、配合JS）
+- 引入方式：内部样式（head嵌套style），外部样式（link引入），行内样式（style属性、配合JS）。
 - 选择器：标签选择器、类选择、ID选择、后代选择器（未讲，属于此前已学习的知识）
 - 文字控制属性：
   - font-family：字体；font-size：字号；font-style：样式（倾斜等）；font-weight：粗体；font：复合属性；
