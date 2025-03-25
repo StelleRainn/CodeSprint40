@@ -2,6 +2,18 @@
 
 *此MarkDown用于记录自己的学习进度，也方便自己复习。*
 
+## Mar 25th
+- 「推进」。
+- 今天正式开始CSS的学习。主要学习了CSS的基础。包括：
+- 引入方式：内部样式（head嵌套style，外部样式（link引入），行内样式（style属性、配合JS）
+- 选择器：标签选择器、类选择、ID选择、后代选择器（未讲，属于此前已学习的知识）
+- 文字控制属性：
+  - font-family：字体；font-size：字号；font-style：样式（倾斜等）；font-weight：粗体；font：复合属性；
+  - text-align：对齐方式；text-indent：首行缩进；text-decoration：文本装饰（下划线）等；*text-transform：大小写转换；*
+  - line-height：行高； *letter-spacing：字母间距；word-spacing：单词间距；*
+  - color：字体颜色；background-color：背景颜色；
+- 小技巧：使用“标签名.类名”可快速补全一个包含类名的标签。
+
 ## Mar 24th
 - 「恢复」。
 - 上午：学习了button的基本用法，包括type属性的button、sumbit、reset值。
