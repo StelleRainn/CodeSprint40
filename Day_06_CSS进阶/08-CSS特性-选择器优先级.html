@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            color: #ffcc00;
+            font-size: 20px;
+        }
+
+        div {
+            color: #66ccff !important;
+        }
+
+        .box {
+            color: #4CAF50;
+        }
+
+        #test {
+            color: darksalmon;
+        }
+    </style>
+</head>
+<body>
+
+<h1>CSS特性 - 选择器优先级</h1>
+<p>当一个标签使用了多种选择器，基于不同种类的选择器的匹配规则</p>
+<p>选择器优先级：!important（提权，优先级最高；谨慎使用） > 行内样式 > ID > 类 > 标签 > 通配符选择器</p>
+<p>即：范围越大，优先级越低</p>
+
+
+<div class="box" id="test" style = "color: mediumpurple">div label</div>
+</body>
+</html>

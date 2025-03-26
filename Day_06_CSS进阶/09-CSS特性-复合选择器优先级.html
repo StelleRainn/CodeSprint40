@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /* (0, 0, 2, 1) */
+        .c1 .c2 div{
+            color: blue;
+        }
+
+        /* (0, 1, 0, 1) */
+        div #box3 {
+            color: red;
+        }
+
+        /* (0, 1, 1, 0) 胜出 */
+        #box1 .c3 {
+            color: #66ccff;
+        }
+    </style>
+</head>
+<body>
+
+<h1>复合选择器 - 优先级</h1>
+<p>计算公式：（行内样式，id选择器个数，类个数，标签选择器个数）</p>
+<p>规则：从左向右依次比较个数，同一级个数多的胜出；相同则继续向右比</p>
+<p>important权重最高</p>
+<p>继承权重最低（意思是：自己是个子类）</p>
+
+<div class="c1" id="box1">
+    <div class="c2" id="box2">
+        <div class="c3" id="box3">
+            What color is this?
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

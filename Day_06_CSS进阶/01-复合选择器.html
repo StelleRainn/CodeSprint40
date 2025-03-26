@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <style>
+        div span {
+            color: red;
+        }
+
+        .child > span {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<h1>复合选择器</h1>
+<p>由两个或多个基础选择器，通过不同的方式组合而成。更准确更高效地选择目标</p>
+<br>
+
+<p><strong>1.后代选择器</strong></p>
+<p>选择器之间有空格，表示后代关系</p>
+<p>父选择器 子/孙选择器 { CSS属性 }，其中选择器是昨天所学的任意一种选择器，包括标签选择器，类选择器，id选择器</p>
+<p>后代选择器会选中所有后代，包括儿子、孙子、重孙子……</p>
+
+<div>
+    <span>div 标签下的 span 标签（儿子级）</span>
+    <p>
+        <span>
+            div 标签下的 p 标签下的 span 标签（孙子级）
+        </span>
+    </p>
+</div>
+
+<br>
+
+<p><strong>2.子代选择器</strong></p>
+<p>父子选择器用 > 隔开</p>
+<p>父选择器 > 子选择器 { CSS属性 }</p>
+<p>子代选择器只会选中直接子元素，不会选中孙子级</p>
+
+<div class="child">
+    <span>儿子级别</span>
+    <p>
+        <span>
+            孙子级别
+        </span>
+    </p>
+</div>
+
+<br>
+
+</body>
+</html>
