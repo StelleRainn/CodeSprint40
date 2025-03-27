@@ -1,0 +1,44 @@
+/*CSS 书写顺序（到目前为止）
+1. 盒子模型属性
+2. 文字样式
+3. 圆角、阴影的修饰属性*/
+
+/*清除默认样式*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #f1f1f1;
+}
+
+.product {
+    margin: 50px auto;
+    width: 270px;
+    height: 253px;
+    background-color: #ffffff;
+
+    text-align: center;
+
+    border-radius: 10px;
+}
+
+.product img {
+    margin-top: 40px;
+}
+
+.product h2 {
+    margin-top: 20px;
+    margin-bottom: 12px;
+
+    color: #333333;
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.product p {
+    font-size: 12px;
+    color: #555555;
+}

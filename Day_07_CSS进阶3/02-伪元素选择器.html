@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
+
+        div::before {
+            content: '老鼠';
+            width: 100px;
+            height: 100px;
+            background-color: darkred;
+
+            display: block;
+        }
+
+        div::after {
+            content: '大米';
+            width: 100px;
+            height: 100px;
+            background-color: darkcyan;
+
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<h1>伪元素选择器</h1>
+<p><b>创建虚拟元素（伪元素），用来摆放装饰性内容</b></p>
+<p>E::before -- 在E元素 <b>里面</b> 最前面添加一个伪元素</p>
+<p>E::after -- 在E元素里面最后面添加一个伪元素</p>
+<p><b>注意：必须设置content:""属性，设置伪元素的内容；没有内容也要留空</b></p>
+<p>伪元素默认<b>行内样式</b></p>
+<p>权重和标签选择器相同</p>
+
+<div>爱</div>
+
+</body>
+</html>

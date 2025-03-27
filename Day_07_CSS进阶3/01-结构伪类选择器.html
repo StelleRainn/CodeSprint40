@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+
+        .list1 li:first-child {
+            background-color: green;
+        }
+
+        .list1 li:last-child {
+            background-color: red;
+        }
+
+        .list1 li:nth-child(3) {
+            background-color: blue;
+        }
+
+        /*n == 1*/
+        .list2 li:nth-child(2n) {
+            background-color: blue;
+        }
+
+        /*n == 0*/
+        .list2 li:nth-child(n + 5) {
+            background-color: green;
+        }
+
+        .list2 li:nth-child(-n + 5) {
+            background-color: red;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<h1>结构伪类选择器</h1>
+<p><b>根据元素的结构关系查找元素</b></p>
+<p>结构伪类选择器是根据元素的结构关系来查找元素的选择器。它们可以帮助我们选择特定位置或特定状态的元素。</p>
+
+<strong>
+    <p>E:first-child -- 查找第一个E元素</p>
+    <p>E:last-child -- 查找最后一个E元素</p>
+    <p>E:nth-child(n) -- 查找第n个E元素（第一个元素N值为1）</p>
+</strong>
+
+
+<ul class="list1">
+    <li>li 1</li>
+    <li>li 2</li>
+    <li>li 3</li>
+    <li>li 4</li>
+    <li>li 5</li>
+    <li>li 6</li>
+    <li>li 7</li>
+    <li>li 8</li>
+</ul>
+
+<strong style="margin-top: 5%;">
+    <p>:nth-child( 公式 )</p>
+    <p>根据元素的结构关系查找多个元素</p>
+    <p>nth-child(2n) -- 查找偶数位置的元素</p>
+    <p>nth-child(2n+1) 或 nth-child(2n-1) -- 查找奇数位置的元素</p>
+    <p>nth-child(5n) -- 查找5的倍数位置的元素</p>
+    <p>nth-child(n + 5) -- 查找第5个以后的标签</p>
+    <p>nth-child(-n + 5) -- 查找第5个以前的标签</p>
+</strong>
+
+<ul class="list2">
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+    <li>li</li>
+</ul>
+
+
+
+</body>
+</html>

@@ -4,10 +4,37 @@
 
 ## Mar 27th
 - 「加速」。
-- 上午：2小时，主要学习了CSS的背景属性，如background-color、background-image、background-repeat、background-position、background-size等；以及背景的复合属性。
-- 还学习了标签的显示模式：块级元素（如div、h1等）和行内元素（如span、a等），以及行内块元素；用display属性来控制或转换元素的显示模式。
+- 上午：2小时，主要学习了：
+  - **（重点）CSS的背景属性：**，如：
+    - background-color：背景颜色；
+    - background-image: `background-image: url('图片地址')`；
+    - background-repeat: `background-repeat: no-repeat | repeat-x | repeat-y | repeat(default)`；
+    - background-position: `background-position: 水平方向 垂直方向`；取值包括: `center | left | right | top | bottom | 数字px`；
+      - **特殊写法1**:只写一个关键字，另一方向默认居中；只写一个数字px，则代表水平方向，且垂直方向居中；
+      - **特殊写法2**:写关键字的顺序可以颠倒；
+    - background-size：`background-size: cover(充满背景，可能图片不全) | contain(图片触边，可能背景留空) | auto | 数字px(不常用)`；
+    - background-attachment：`background-attachment: fixed(固定) | scroll(滚动)`；
+    - 以及复合属性 background；不区分顺序，但是若需要缩放，则：`位置/缩放`。
+  - 标签的显示模式：块级元素（如div、h1等）和行内元素（如span、a等），以及行内块元素；
+  - （细节）用display属性来控制或转换元素的显示模式。
 - 综合昨天的知识和今早的新知识，做了两个综合案例。
-- 新的快捷键：cmd + D：快速向下复制。
+- *新的快捷键：cmd + D：快速向下复制。*
+- 下午与晚上场：5～5.5小时。学习了包括：
+  - 伪类选择器（nth-child()等）、伪元素选择器（E::before/after）等；
+  - **重点：盒子模型**，包括：
+    - 边框线：border，如`border: 1px solid #66ccff;`；以及四个方向自定义；
+    - 内边距：padding，如`padding: 10px`；可以四个方向自定义；可以有复合写法，**顺时针（上-右-下-左、上-左右-下、上下-左右）**；
+    - 内边距尺寸之撑大盒子的问题：`box-sizing: border-box`  -- 内减模式；
+    - 外边距：margin，与padding相同。不会撑大盒子。必须有width属性。**版心居中技巧：左右margin设置auto，如：** `margin: 0 center`；
+  - 更多重点，包括：
+    - 在CSS中，使用通配符选择器先清除默认样式，包括`margin`，`padding`，`box-sizing: border-box`等；
+    - 盒子内容溢出，使用属性 `overflow`，包括`hidden`、`scroll`、`auto`；
+    - 外边距（垂直方向）合并现象：取margin较大值；
+    - 外边距塌陷问题：子级元素的margin属性导致的父级元素位移。解决办法：`取消子级margin，设置父级padding`；`为父级添加overflow:hidden`；`为父级添加border-top`；
+    - 行内元素的内外边距问题：默认情况下，垂直方向不会受到影响；
+    - 盒子圆角属性：`border-radius`，写法：`border-radius: 10px / 5%`；以及复合写法，由左上角开始顺时针；正圆（正方形盒子，一半px或50%圆角）；胶囊（长方形盒子，高度一半的px）；
+    - 盒子阴影属性：`box-shadow`，写法：`box-shadow: 0(x) 0(y) 10px(模糊半径--柔和程度) 10px(扩散半径--大小) #66ccff inset(内阴影)`；
+  - 完成了两个综合案例，其中综合案例2非常具有代表性，建议多复习。
 
 ## Mar 26th
 - 「稳步」。

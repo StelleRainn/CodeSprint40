@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box1 {
+            width: 100px;
+            height: 100px;
+            background-color: darkcyan;
+            margin-bottom: 20px;
+        }
+
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: #66ccff;
+            /*此边距将合并box1的外边距*/
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>外边距-合并现象</h1>
+<p>垂直排列的兄弟元素，上下margin会合并</p>
+<p>现象：取两个margin中的较大值生效（即：较大的合并了较小的）</p>
+
+<div class="box1">
+</div>
+
+<div class="box2">
+</div>
+
+</body>
+</html>

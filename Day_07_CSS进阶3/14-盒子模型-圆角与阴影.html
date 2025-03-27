@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .box1 {
+      width: 200px;
+      height: 200px;
+      background-color: #66ccff;
+      margin: 50px auto;
+
+      /*border-radius: 20px ;*/
+
+      /*左上角开始，顺时针*/
+      /*border-radius: 10px 20px 30px 40px;*/
+
+      /*左上，右上，右下｜左下等于右上*/
+      /*border-radius: 10px 40px 80px;*/
+
+      /*左上，右上 ｜ 右下 == 左上， 左下 == 右上*/
+      border-radius: 10px 80px;
+    }
+
+    img {
+      width: 200px;
+      height: 200px;
+
+      /*border-radius: 100px;*/
+      border-radius: 50%;
+    }
+
+    .box2 {
+      width: 200px;
+      height: 80px;
+      background-color: #66ccff;
+
+      border-radius: 40px;
+    }
+
+    .box3{
+        width: 200px;
+        height: 80px;
+        background-color: #66ccff;
+        margin: 50px auto;
+
+        box-shadow:2px 5px 10px 1px rgba(0, 0, 0, 0.5);
+    }
+
+  </style>
+</head>
+<body>
+
+<h1>盒子模型 - 圆角与阴影</h1>
+<h2>圆角</h2>
+<p>border-radius: 数字+px / 百分比  --  表示圆角半径</p>
+<p>复合写法：从左上角顺时针开始。没有取值的角与对角取值相同。</p>
+
+<div class="box1"></div>
+
+<h2>正圆形</h2>
+<p>给 正方形 盒子设置圆角属性值为 <b>宽高的一半 或 50%</b> （最大50%）</p>
+
+<h2>胶囊形状</h2>
+<p>给 长方形 盒子设置圆角属性值为 <b>盒子高度的一半</b> </p>
+
+<img src="1.jpg" alt="">
+
+<div class="box2"></div>
+
+
+<h2>阴影</h2>
+<p>给元素设置阴影效果</p>
+<p><b>box-shadow</b></p>
+<p>X轴偏移（必须） Y轴偏移（必须） 模糊半径（柔和程度） 扩散半径（大小） 颜色 内外阴影（默认是外阴影，内阴影需添加inset）</p>
+
+<div class="box3"></div>
+
+</body>
+</html>

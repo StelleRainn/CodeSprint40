@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: #66ccff;
+
+            padding: 20px;
+
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<h1>盒子模型-尺寸计算</h1>
+
+<p><b>盒子尺寸 = 内容尺寸 + border尺寸 + 内边距尺寸</b></p>
+<p>结论：给盒子加border / padding会撑大盒子</p>
+
+<p>解决方法：</p>
+<p>手动做减法：减掉border / padding的尺寸</p>
+<p><b>内减模式：box-sizing: border-box</b> 不需要手动减法，盒子不会被撑大，但是内容会受影响</p>
+
+<div class="box1">
+    div label
+</div>
+
+
+
+</body>
+</html>
