@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .bgi {
+            width: 400px;
+            height: 400px;
+            background-image: url(1.png);
+        }
+
+        .bgirepeat {
+            width: 400px;
+            height: 400px;
+            background-color: #66ccff;
+            background-image: url(1.png);
+            background-repeat: no-repeat;
+        }
+
+        .bgp {
+            width: 400px;
+            height: 400px;
+            background-color: #66ccff;
+            background-image: url(1.png);
+            background-repeat: no-repeat;
+            /*background-position: left top;*/
+            /*background-position: right bottom;*/
+            /*background-position: bottom left;*/
+            /*background-position: bottom;*/
+            background-position: 100px;
+        }
+
+        .bgz {
+            width: 500px;
+            height: 300px;
+            background-color: #66ccff;
+            background-image: url(1.png);
+            background-repeat: no-repeat;
+            /*background-size: cover;*/
+            background-size: 100%;
+        }
+
+        body {
+            background-image: url(bg.jpg);
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body>
+<h1>CSS背景属性</h1>
+
+<p><b>1.背景图(bgi)</b></p>
+<p>background-image: url(图片地址);</p>
+<p>背景图默认是 <b>平铺效果，</b> 即复制 </p>
+<div class="bgi">div label</div>
+
+<p><b>2.背景图平铺方式(bgr)</b></p>
+<p>background-repeat: repeat (default) | repeat-x（水平方向平铺)）| repeat-y（垂直方向平铺） | no-repeat（不平铺）;</p>
+<div class="bgirepeat">
+    div label
+</div>
+
+<p><b>3.背景图位置(bgp)</b></p>
+<p>background-position: 水平方向位置 垂直方向位置;</p>
+<p>（关键字）background-position: left | center | right | top | bottom;</p>
+<p>（坐标，数字+px。正负都可以，水平方向：正右负左；垂直方向：正下负上）</p>
+<p>两条特殊写法：<br>
+关键字取值写法，可以颠倒取值顺序<br>
+可以只写一个关键字，另一个方向默认居中；数字只写一个值表示水平方向，垂直方向为居中<br>
+</p>
+<div class="bgp">
+    div label
+</div>
+
+<p><b>4.背景图缩放(bgz)</b></p>
+<p>（关键字写法）background-size: auto | cover（等比例缩放直到完全覆盖盒子，可能部分图片看不见） | contain（等比例缩放直到某边触底，可能部分背景空白）;</p>
+<p>（百分比）根据盒子尺寸计算图片大小（100%表示图片宽度和盒子宽度一致，效果相当于cover）</p>
+<p>（数字+px）不常用</p>
+
+<div class="bgz"></div>
+
+<p><b>5.背景图固定(bga)</b></p>
+<p>作用：背景图不会随着元素的内容滚动</p>
+<p>background-attachment: fixed | scroll;</p>
+
+
+</body>
+</html>

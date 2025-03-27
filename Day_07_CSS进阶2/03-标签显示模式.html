@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .div1 {
+      width: 100px;
+      height: 100px;
+      background-color: #66ccff;
+
+      /*display: inline-block;*/
+      /*display: inline;*/
+    }
+
+    .div2 {
+      width: 100px;
+      height: 100px;
+      background-color: darkcyan;
+
+      /*display: inline-block;*/
+      /*display: inline;*/
+    }
+
+    .span1 {
+      width: 100px;
+      height: 100px;
+      /*w h不生效*/
+      background-color: #66ccff;
+
+      /*display: inline-block;*/
+    }
+
+    .span2 {
+      width: 100px;
+      height: 100px;
+      background-color: darkcyan;
+
+      /*display: inline-block;*/
+    }
+
+    img {
+        width: 100px;
+        height: 100px;
+
+        display: block;
+    }
+  </style>
+</head>
+<body>
+<h1>显示模式</h1>
+<p><b>标签（元素）的显示方式</b></p>
+<p>作用：布局网页的时候，根据标签的显示模式选择合适的标签摆放内容</p><br>
+
+<p>常见的三种显示模式：</p>
+<p><b>1.块级元素：</b>独占一行；宽度默认是父级的100%；添加宽高属性生效。</p>
+<p>常见的块级元素：div、h1-h6、p、ul、ol、li、table</p>
+
+<div class="div1">div 标签1</div>
+<div class="div2">div 标签2</div>
+
+<br><br>
+
+<p><b>2.行内元素：</b>一行可以共存多个；尺寸由内容撑开；加 「宽」「高」不生效，「背景」生效。</p>
+<span class="span1">span111111</span>
+<span class="span2">span2</span>
+
+<br><br>
+
+<p><b>3.行内块元素：</b>一行共存多个；默认尺寸由内容撑开；添加宽高属性生效。</p>
+<img src="1.png" alt="" >
+<img src="1.png" alt="" >
+
+<br><br>
+
+<p><b>4.转换显示模式</b></p>
+<p>将元素转换<br>
+<p><b>display: block | inline-block | inline</b></p>
+
+
+</body>
+</html>

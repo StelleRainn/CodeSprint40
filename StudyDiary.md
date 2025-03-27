@@ -2,6 +2,13 @@
 
 *此MarkDown用于记录自己的学习进度，也方便自己复习。*
 
+## Mar 27th
+- 「加速」。
+- 上午：2小时，主要学习了CSS的背景属性，如background-color、background-image、background-repeat、background-position、background-size等；以及背景的复合属性。
+- 还学习了标签的显示模式：块级元素（如div、h1等）和行内元素（如span、a等），以及行内块元素；用display属性来控制或转换元素的显示模式。
+- 综合昨天的知识和今早的新知识，做了两个综合案例。
+- 新的快捷键：cmd + D：快速向下复制。
+
 ## Mar 26th
 - 「稳步」。
 - 今天主要学习了CSS的一些进阶内容，包括：
