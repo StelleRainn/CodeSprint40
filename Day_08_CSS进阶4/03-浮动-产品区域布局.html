@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style: none;
+    }
+
+    .product {
+      width: 1226px;
+      height: 628px;
+      margin: 50px auto;
+
+      background-color: #66ccff;
+    }
+
+    .left {
+      float: left;
+      width: 234px;
+      height: 628px;
+
+      background-color: darkcyan;
+    }
+
+    .right {
+      float: right;
+      width: 978px;
+      height: 628px;
+
+      background-color: darksalmon;
+    }
+
+    .right li{
+      float: left;
+      margin-right: 14px;
+      margin-bottom: 14px;
+      width: 234px;
+      height: 300px;
+
+      background-color: mediumpurple;
+    }
+
+    .right ul li:nth-child(4n) {
+      margin-right: 0;
+    }
+  </style>
+</head>
+<body>
+
+<h1 style="text-align: center">产品区域布局-小米官网产品区域复刻</h1>
+<p style="text-align: center">如果父级宽度不够，浮动的盒子依然会掉出来（换行）</p>
+
+<main class="product">
+  <div class="left"></div>
+  <div class="right">
+    <ul>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul></div>
+</main>
+
+</body>
+</html>

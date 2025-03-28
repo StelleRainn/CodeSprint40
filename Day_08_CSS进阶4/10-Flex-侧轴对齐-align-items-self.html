@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .box {
+        display: flex;
+        height: 300px;
+
+        /*align-items: stretch;*/
+        align-items: center;
+
+        border: 1px solid red;
+    }
+
+    .box div {
+        width: 200px;
+        height: 100px;
+        background-color: darkcyan;
+    }
+
+    .box div:nth-child(2) {
+        align-self: flex-end;
+    }
+
+  </style>
+</head>
+<body>
+
+<h1>侧轴对齐方式</h1>
+<p>属性名：align-items -- 控制所有弹性盒子（给弹性容器设置）</p>
+<p>属性名：align-self -- 控制单个弹性盒子（给弹性盒子设置）</p>
+<p>属性值：</p>
+<p>stretch：盒子沿着侧轴线被拉伸。直到铺满容器（盒子没有侧轴方向尺寸，则默认拉伸；若有尺寸，则不生效）</p>
+<p>center：沿侧轴居中排列</p>
+<p>flex-start：盒子从侧轴起点开始依次排列</p>
+<p>flex-end：盒子从侧轴终点开始依次排列</p>
+
+
+<div class="box">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .top {
+      margin: 10px auto;
+      width: 1200px;
+      /*height: 300px;*/
+      background-color: #66ccff;
+    }
+
+    .left {
+      float: left;
+      width: 200px;
+      height: 300px;
+      background-color: mediumpurple;
+    }
+
+    .right {
+      float: right;
+      width: 950px;
+      height: 300px;
+
+      background-color: darkcyan;
+    }
+
+    /*额外标签法*/
+    /*
+    .clearfix {
+        clear: both;
+    }
+    */
+
+    /*单伪元素法 不需要额外标签，给父级添加clearfix类*/
+    .clearfix::after{
+      content: "";
+      clear: both;
+      display: block;
+    }
+
+    .bottom {
+      width: 100%;
+      height: 100px;
+      background-color: skyblue;
+    }
+
+  </style>
+</head>
+<body>
+
+<h1>清除浮动</h1>
+<p>场景：浮动元素会脱标，如果 <b>父级没有高度</b>，子级无法撑开父级高度（导致页面布局混乱）</p>
+<p>解决方案：清除浮动</p>
+<h2>清除浮动的方式：</h2>
+<p>1.额外标签法：在父元素内容的最后添加一个块级元素(class="clearfix")，设置CSS属性 clear:both</p>
+<p>2.单伪元素法：原理和额外标签法一样</p>
+
+
+<div class="top clearfix">
+  <div class="left"></div>
+  <div class="right"></div>
+<!--    额外标签法所需要的额外标签：-->
+<!--    <div class="clearfix"></div>-->
+</div>
+<div class="bottom"></div>
+
+</body>
+</html>

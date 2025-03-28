@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            display: flex;
+            /*justify-content: flex-start;*/
+            /*justify-content: end;*/
+            /*justify-content: center;*/
+            /*justify-content: space-between;*/
+            /*justify-content: space-around;*/
+            justify-content: space-evenly;
+
+
+            height: 300px;
+            border: 1px solid red;
+        }
+
+        .box div {
+            width: 200px;
+            height: 100px;
+            background-color: darkcyan;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>主轴对齐方式</h1>
+<p>属性名：justify-content</p>
+<p>属性值：</p>
+<p>1. flex-start：默认值，盒子从起点开始依次排列</p>
+<p>2. flex-end：盒子从终点开始依次排列</p>
+<p><b>3. center：盒子沿主轴上居中排列</b></p>
+<p>4. space-between：沿主轴均匀排列，空白间距在盒子之间均分，首尾盒子紧贴容器边缘</p>
+<p>5. space-around：沿主轴均匀排列，空白间距均分在盒子两侧(弹性盒子之间的间距是两端间距的2倍)，首尾盒子与容器边缘有间隔</p>
+<p>6. space-evenly：沿主轴均匀排列，各个间距相等</p>
+
+<div class="box">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</div>
+
+</body>
+</html>

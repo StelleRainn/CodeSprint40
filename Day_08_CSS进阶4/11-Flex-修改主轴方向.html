@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /*此时主轴方向是垂直的*/
+      align-items: center;
+
+      width: 150px;
+      height: 120px;
+      background-color: #66ccff;
+    }
+
+    .box img {
+      width: 32px;
+      height: 32px;
+    }
+
+    </style>
+</head>
+<body>
+
+<h1>修改主轴方向</h1>
+<p>属性名：flex-direction</p>
+<p>属性值：</p>
+<p>row：主轴方向为水平方向，起点在左端（默认）</p>
+<p>column：垂直方向，从上到下</p>
+<p>row-reverse：水平方向，从右到左</p>
+<p>column-reverse：垂直方向，从下到上</p>
+
+<div class="box">
+  <img src="1.png" alt="">
+  <span>媒体</span>
+</div>
+
+</body>
+</html>

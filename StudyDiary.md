@@ -2,6 +2,21 @@
 
 *此MarkDown用于记录自己的学习进度，也方便自己复习。*
 
+## Mar 28th
+- 「波折」。
+- 我的内心遭受挑战，总不禁想着与人对比。但思来想去，明白我不应陷在过去的后悔里。**眼前的代码，就是回答未来的答案。**-15:37.
+- 上午+下午（没吃午饭）：约3小时，主要学习了浮动（float）和Flex布局等知识：
+  - **浮动**：`float: left | right | none`；浮动元素会脱离文档流，后续元素会环绕在其旁边；
+  - **清除浮动**：包括`overflow:hidden`、`额外标签法`，`单伪元素标签法`、`双伪元素标签法等`；
+  - **Flex布局**：`display: flex`，可以设置的点包括：
+    - 主轴对齐：`justify-content: center | space-between | space-around | space-evenly | flex-start | flex-end`；
+    - 侧轴对齐：`align-items(父级) / self(子级): center | stretch | baseline | flex-start | flex-end |`；
+    - 主轴方向修改：`flex-direction: row | row-reverse | column | column-reverse`；
+    - 弹性伸缩比：（写在子级，相当于占位权重/比例）`flex: 1 | 2 | 3 | ...`；
+    - 主轴元素换行：`flex-wrap: nowrap | wrap | wrap-reverse`；
+    - 行对齐方式：`align-content: center | space-between | space-around | space-evently`；
+  - 完成了一个综合案例。
+
 ## Mar 27th
 - 「加速」。
 - 上午：2小时，主要学习了：

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            height: 300px;
+            border: 1px solid #000;
+        }
+
+        .box div {
+            width: 200px;
+            height: 100px;
+            background-color: #66ccff;
+        }
+
+        .box1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            /*align-content: center;*/
+            /*align-content: space-between;*/
+            /*align-content: space-around;*/
+            align-content: space-evenly;
+
+
+            height: 400px;
+            border: 1px solid #000;
+        }
+
+        .box1 div {
+            width: 200px;
+            height: 100px;
+            background-color: #66ccff;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Flex弹性盒子换行</h1>
+<p>弹性盒子自动挤压或拉伸，默认情况下，所有弹性盒子都在一行显示。</p>
+<p>作用：控制弹性盒子 <b>主轴方向的换行</b></p>
+<p>属性名：flex-wrap</p>
+<p>属性值：wrap | no-wrap (默认)</p>
+
+
+<div class="box">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<h2>行对齐方式</h2>
+<p>控制的是行（例如换行）的对齐方式。对单行弹性盒子（比如no-warp）不生效</p>
+<p>属性名： align-content</p>
+<p>属性值和主轴对齐一致</p>
+
+
+<div class="box1">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+</body>
+</html>
