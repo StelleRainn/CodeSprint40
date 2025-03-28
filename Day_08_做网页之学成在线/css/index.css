@@ -1,0 +1,66 @@
+/*首页css样式*/
+
+/*版心居中，哪个标签有需要，就添加这个类*/
+.wrapper {
+    margin: 0 auto;
+    width: 1200px;
+}
+
+body {
+    background-color: #f3f5f7;
+}
+
+
+/*头部区域*/
+header {
+    height: 100px;
+    background-color: #fff;
+}
+
+header .wrapper {
+    display: flex;
+    padding-top: 29px;
+    padding-bottom: 30px;
+}
+
+/*头部 -- logo区域*/
+.logo a{
+    display: block;
+    width: 195px;
+    height: 41px;
+
+    /*将字体隐藏*/
+    font-size: 0;
+
+    /*logo图片*/
+    background-image: url('../images/logo.png');
+}
+
+
+/*头部 -- 导航区域*/
+.nav {
+    /*width: 244px;*/
+    height: 35px;
+    padding-left: 102px;
+}
+
+.nav ul {
+    display: flex;
+}
+
+.nav ul li {
+    margin-right: 24px;
+}
+
+.nav ul li a{
+    display: block;
+    padding: 6px 8px;
+    
+    font-size: 19px;
+    line-height: 27px;
+}
+
+nav ul li .active, /*默认选中的a*/
+.nav ul li a:hover {
+    border-bottom: #00a4ff solid 2px;
+}

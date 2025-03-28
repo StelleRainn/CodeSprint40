@@ -16,6 +16,7 @@
     - 主轴元素换行：`flex-wrap: nowrap | wrap | wrap-reverse`；
     - 行对齐方式：`align-content: center | space-between | space-around | space-evently`；
   - 完成了一个综合案例。
+- 晚上场：开始做一个完整的网页，学习了网页布局思路，目前在做header。目前的难点感觉在于各种距离的设置。明天跟视频敲完后，定个时间再自己敲一遍。
 
 ## Mar 27th
 - 「加速」。
