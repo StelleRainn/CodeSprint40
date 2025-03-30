@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>02-绝对定位</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            width: 400px;
+        }
+
+        .news {
+            margin:100px auto;
+            position: relative;
+            width: 400px;
+            height: 350px;
+            background-color: #f8f8f8;
+        }
+
+        /*
+        1.脱标且不占位
+        2.改变位置的参照物是父级
+        （先找最近的已经定位的祖先元素；如果所有祖先元素都没有定位，则参照浏览器可视区域改变位置）
+        3.标签显示模式会改变：宽高生效，具备行内块的特点。
+        */
+        .news span {
+            /*display: block;*/
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            width: 92px;
+            height: 32px;
+
+            text-align: center;
+            line-height: 32px;
+            color: #fff;
+
+            background-color: rgba(0, 0, 0, .5);
+        }
+    </style>
+</head>
+<body>
+
+<!--绝对定位： position: absolute-->
+<!--使用场景：子级绝对定位，父级相对定位（子绝父相）-->
+<!--使得无论父级怎样变化，子级都在父级的特定位置-->
+
+<div class="news">
+    <img src="images/news.jpg" alt="">
+    <span>展会活动</span>
+    <h4>22222</h4>
+</div>
+
+</body>
+</html>

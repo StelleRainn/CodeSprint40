@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>使用字体图标</title>
+    <!--引入样式表  -->
+    <link rel="stylesheet" href="iconfont_test/iconfont.css">
+  <style>
+
+    /*注意选择器优先级，如果这里使用标签选择器span，则样式不生效（权重低了）*/
+    .iconfont {
+        font-size: 100px;
+        color: darkcyan;
+    }
+  </style>
+</head>
+<body>
+<!--字体图标：展示的是图标，本质是字体-->
+<!--如果图标简单、纯色的，就可以选择「字体图标」来实现-->
+<!--如果图片比较复杂，多色的，还是选择06节的「CSS精灵」-->
+<!--字体图标的优势：灵活（尺寸、样式修改），轻量（体积小、渲染快），兼容性，使用方便（先下载再使用）-->
+
+<!--先下载，后使用：-->
+<!--1. 引入CSS样式表-->
+<!--2.标签使用字体图标类名 --（两个类名） -->
+<!--    iconfont -->
+<!--    icon-xxx -->
+<!--注意：选择器的优先级，至少等于或高于iconfont类选择器-->
+
+<span class="iconfont icon-copy"></span>
+
+</body>
+</html>

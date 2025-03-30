@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过渡效果transition</title>
+    <style>
+        img {
+            width: 200px;
+            height: 150px;
+
+            transition: all 0.5s ease;
+        }
+
+        img:hover {
+            width: 500px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<!--属性名：transition （复合属性）-->
+<!--属性值：过渡属性 花费时间(s)-->
+<!--过渡属性：-->
+<!--    1.具体的CSS属性 -->
+<!--    2. all（所有属性）（两个状态属性值不同的所有属性，都产生过渡效果）-->
+
+<!-- transition加给元素本身，并非hover-->
+
+<img src="images/huawei.jpg" alt="">
+</body>
+</html>

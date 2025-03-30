@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>轮播图</title>
+    <link rel="stylesheet" href="iconfont/iconfont.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .banner {
+            /*左右箭头的父级*/
+            position: relative;
+            margin: 100px auto;
+            width: 564px;
+            height: 315px;
+
+            overflow: hidden;
+        }
+
+        .banner ul {
+            display: flex;
+        }
+
+        .banner img {
+
+            /*去除底部留白*/
+            vertical-align: middle;
+            width: 564px;
+
+            border-radius: 12px;
+        }
+
+
+        /*按钮*/
+
+        .banner .prev,
+        .banner .next {
+            /*暂时隐藏*/
+            opacity: 0;
+            /*也可以display:none ，然后对应 block*/
+
+            width: 20px;
+            height: 30px;
+
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            text-decoration: none;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /*鼠标只要放到banner区域，就显现出两个按钮*/
+        .banner:hover .prev,
+        .banner:hover .next {
+            opacity: 1;
+        }
+
+        .prev {
+            left: 0;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 15px 0 0 15px;
+        }
+
+
+        /*原点*/
+
+        .banner ol {
+            height: 13px;
+
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            display: flex;
+
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .banner ol li {
+            width: 8px;
+            height: 8px;
+
+            margin: 3px;
+
+            border-radius: 50%;
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+        .banner ol .chosen {
+            background-color: #f00;
+        }
+    </style>
+</head>
+<body>
+<!--核心知识：定位，字体图标， flex布局-->
+<div class="banner">
+    <!--轮播图: ul>li -->
+    <ul>
+        <li><a href="#"><img src="images/banner1.jpg" alt=""></a></li>
+        <li><a href="#"><img src="images/banner2.jpg" alt=""></a></li>
+        <li><a href="#"><img src="images/banner3.jpg" alt=""></a></li>
+    </ul>
+
+    <!--轮播图的左右按钮-->
+    <a href="" class="prev ">
+        <span class="iconfont icon-icon-test4"></span>
+    </a>
+    <a href="" class="next">
+         <span class="iconfont icon-icon-test5"></span>
+    </a>
+
+    <!--轮播图的底部小圆点-->
+    <ol>
+        <li></li>
+        <li class="chosen"></li>
+        <li></li>
+    </ol>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03-定位居中</title>
+    <style>
+        img {
+            position: absolute;
+            left: 50%;
+            top:50%;
+            /*margin-left: -265px;*/
+            /*margin-top: -127px;*/
+
+            /*更方便，50%就是自己宽高的一半，无需人工计算*/
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+<!--加定位，绝对定位（子绝父相）-->
+<!--水平、垂直边偏移：50% （此时在第四象限）-->
+<!--子级向左、上移动自身尺寸的一半-->
+<!--    左、上的外边距为 - 尺寸的一半-->
+<!--    可以用margin写法，这里介绍新写法（推荐）：-->
+<!--        transform: translate(-50%, -50%) -- 参数1:水平方向，参数2:垂直方向-->
+
+<img src="images/login.webp" alt="">
+</body>
+</html>

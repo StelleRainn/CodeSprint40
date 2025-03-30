@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>05-堆叠层z-index</title>
+  <style>
+    div {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+    }
+
+    .box1 {
+      background-color: pink;
+
+      /*z-index取值为整数，默认是0，取值越大，显示顺序越靠上*/
+      /*z-index: 1;*/
+    }
+
+    .box2 {
+      left: 100px;
+      top: 100px;
+
+      z-index: -1;
+      background-color: skyblue;
+    }
+  </style>
+</head>
+<body>
+<!--默认效果L按照标签书写顺序，后来者居上-->
+<!--加入z-index：设置定位元素的层级顺序，改变定位元素的显示顺序-->
+
+<div class="box1">box1</div>
+<div class="box2">box2</div>
+
+</body>
+</html>

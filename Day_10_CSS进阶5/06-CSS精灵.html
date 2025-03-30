@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS精灵</title>
+  <style>
+     div {
+       width: 112px;
+       height: 110px;
+       background-color: pink;
+
+       /*背景图*/
+       background-image: url(images/abcd.jpg);
+
+       /*背景图位置*/
+       background-position: -256px -276px;
+     }
+  </style>
+</head>
+<body>
+<!--CSS精灵，一种网页图片应用处理方式，把网页中「一些背景图片」整合到「一张图片」文件中-->
+<!--再通过background-position精确定位出背景图片的位置-->
+<!--优势：减少服务器被请求的次数，减轻服务器的压力，提高页面加载速度-->
+
+<!--实现步骤：-->
+<!--1. 创建盒子，加宽高尺寸，盒子尺寸与小图尺寸相同 -- (通俗理解：相当于展示窗口)-->
+<!--2. 设置盒子背景图为「精灵图」 -- (所谓的“一张图片”)-->
+<!--3. 添加background-position，改变背景图位置-->
+<!--      使用pxcook测量小图左上角的「坐标」-->
+<!--      取「负数」坐标，作为bgp的属性值-->
+
+<!--通俗理解：在一张大图上，调整位置，以在「展示窗口」中显示大图中的某个小图-->
+
+<div></div>
+
+</body>
+</html>

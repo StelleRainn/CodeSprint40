@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>垂直对齐-vertical align</title>
+  <style>
+    div {
+      border:1px solid #000;
+    }
+
+    /*谁高度最大，就给谁加*/
+    /*可以间接去掉图片底部留白*/
+    img {
+      /*vertical-align: middle;*/
+
+      /*顶对齐（最高内容的顶部），顶部、底部都不留白*/
+      /*vertical-align: top;  */
+
+      /*底对齐（最高内容的底部），顶部、底部都不留白*/
+      vertical-align: bottom;
+    }
+  </style>
+</head>
+<body>
+<!--属性名： vertical-align-->
+<!--属性值： baseline（基线对齐，默认）| top | middle | bottom -->
+<!--基线：可以理解为写字的基线。除了字体本身，旁边的元素也会受影响（例如圆的底部会与此相切）-->
+<!--并且由于某些字会穿过基线，例如pjy等（行内块、行内），所以底部还会有留白（即使没有这些字）-->
+
+<!--所以vertical-align可以间接给图片底部留白去掉。-->
+<!--给图片转block也可以，因为不是行内块、行内标签（这些会默认按基线对齐）-->
+
+<div>
+  <img src="images/1.webp" alt="">
+  我是谁，我在哪儿？
+</div>
+</body>
+</html>
