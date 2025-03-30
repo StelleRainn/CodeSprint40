@@ -7,7 +7,7 @@
 <details><summary> 点击展开 / 关闭 </summary>
 
 ### Mar 30th, Day 10
-- 「冲刺」。
+- 「加紧」。
 - 心态更加稳定，按计划前进。
 - 白天场：完成了视频课Day08的内容，主要包括：
   - 定位：`position: relative | absolute | fixed` ；
