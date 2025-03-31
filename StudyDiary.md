@@ -6,6 +6,18 @@
 ## March 2025
 <details><summary> 点击展开 / 关闭 </summary>
 
+### Mar 31st, Mon, Day 11
+- 「尽力就好」。
+- 今天总体效率还算可以，只是因为晚上还要上课，否则多出来的两小时确实可以完成视频课Day10的内容并开启Day11。
+- 总之，在Day11，完成了大部分视频课Day10的内容；明天Day12，收尾Day10，完成Day11，如果可以，Day12也开启，追平之前「波动」导致的落后。
+- 内容总概：依然在完成「小兔鲜儿」网页的制作，完成了footer，banner，好物，推荐，品牌，生鲜共计6个板块。总体内容跟得上，有些新的知识点或需要强调的知识点：
+  - 对于轮播图，连续放置（flex）几张图片，这会被父盒子挤压，所以设置父盒子宽度（例如为ul设置宽度300%以容纳三张图）；然后会溢出，在父盒子使用overflow:hidden解决，例子见[CSS banner 轮播图](/Day_10_xtc-pc/css/index.css)（24行）；
+  - `E:not(:hover)`:意外发现的新技巧，可以实现与hover互斥的效果，在非hover状态下呈现某种样式；例如[CSS轮播图小圆点](/Day_10_xtc-pc/css/index.css)（98行）：当整个ol非hover，第一个圆点高亮；进入hover状态，原高亮消失，hover到哪儿，哪儿高亮。退出hover状态，第一个圆点恢复高亮。
+  - :hover的优先级高于:not(:hover)
+  - 注意margin塌陷问题，多考虑使用`overflow:hidden`来解决。
+  - transition过渡效果加在原元素，不要加在伪元素上（否则退出hover的时候没效果）。
+- 大体上就这些。最后一点，在案例复现上，还是选择先听课后敲代码的方式，耗时就耗时吧；如果一边看一边敲，自己的思考程度会降低。
+
 ### Mar 30th, Day 10
 - 「加紧」。
 - 心态更加稳定，按计划前进。
@@ -24,7 +36,7 @@
   - 透明度：`opacity`: 0.5（0-1之间）；印证了昨天提到的和background-color: rgba()的不同；
   - 鼠标样式：`cursor: pointer | default | text | move` 等；
 - 完成了两个综合案例，分别是对CSS精灵的运用以及轮播图效果的学习（flex布局，定位）等。
-- 晚上场：开始制作“小兔鲜”网页，这是视频课中「基础班」的最综合案例。
+- 晚上场：开始制作“小兔鲜儿”网页，这是视频课中「基础班」的最综合案例。
   - SEO：搜索引擎优化。`title`：网页标题标签；`description`：网页描述标签；`keywords`：网页关键词标签；（后两个是meta标签中的name属性值）；
   - Favicon：网站图标，出现在标题栏：`<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">`（ico文件放在网站的根目录即可）；
   - 设计流程记录：
