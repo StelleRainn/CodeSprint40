@@ -6,6 +6,7 @@
     margin: 0 auto;
 }
 
+/*-------------------------------------------*/
 
 /*快捷导航*/
 .shortcut {
@@ -53,6 +54,8 @@
     margin-right: 5px;
     /*vertical-align: middle;*/
 }
+
+/*------------------------------------------------*/
 
 /*头部 header*/
 .header {
@@ -166,4 +169,169 @@
     border-radius: 7px;
     background-color: #E26237;
 }
+
+/*-------------------------------------------------------*/
+
+/*底部区域 footer */
+.footer {
+    height: 580px;
+
+    background-color: #f5f5f5;
+}
+
+/*footer - service*/
+
+/*视频课没有在service使用 flex+center+space-evenly 居中，而是使用边距 */
+/*尝试过，如果这样，ul的宽度会被瞬间挤压至四个li的宽度，可能需要给每个li额外加边距*/
+.footer .service {
+    height: 178px;
+
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.service ul {
+    /*这里加margin-top不生效，启动了 内减 */
+    padding-top: 60px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.service ul li {
+    /*如果想在service加display居中，则需要另外加外边距*/
+    /*margin: 0 50px;*/
+    width: 190px;
+    height: 58px;
+
+    display: flex;
+}
+
+.service ul li h5 {
+    width: 58px;
+    height: 58px;
+
+    margin-right: 20px;
+
+    background-image: url('../images/sprite.png');
+}
+
+.service ul li:nth-child(2) h5 {
+    background-position: 0 -58px;
+}
+.service ul li:nth-child(3) h5 {
+    background-position: 0 -116px;
+}
+.service ul li:nth-child(4) h5 {
+    background-position: 0 -174px;
+}
+
+.service ul li span {
+    font-size: 28px;
+    line-height: 58px;
+}
+
+/*footer -- help */
+
+.footer .help{
+    height: 300px;
+
+    padding-top: 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+/*left 部分*/
+
+.footer .left {
+    display: flex;
+}
+
+.footer .left dl {
+    margin-right: 84px;
+}
+
+.footer .left dl:last-child {
+    margin-right: 0;
+}
+
+.footer .left  dt{
+    margin-bottom: 30px;
+
+    font-size: 18px;
+}
+
+.footer .left  dd  {
+    margin-bottom: 10px;
+
+    /*为了让最后两个不是a的客服电话、工作时间也变灰*/
+    color: #969696;
+}
+
+.footer .left  dd a{
+    color: #969696;
+}
+
+.footer .left  .iconfont {
+    margin-left: 5px;
+    color: #5EB69C;
+}
+
+/*right 部分*/
+.footer .right ul {
+    display: flex;
+}
+
+.footer .right ul li:first-child {
+    margin-right: 55px;
+}
+
+.footer .right .img {
+    margin-bottom: 10px;
+    width: 120px;
+    height: 120px;
+}
+
+.footer .right ul li p{
+    color: #969696;
+
+    /*用span不太行*/
+    text-align: center;
+}
+
+/*footer -- copyright*/
+
+.footer .copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer .copyright ul {
+    display: flex;
+}
+
+.footer .copyright ul li {
+    margin-bottom: 10px;
+}
+
+.footer .copyright ul li a {
+    padding: 0 10px;
+
+    color: #a1A1A1;
+    border-right: 1px solid #a1a1a1;
+}
+
+.footer .copyright ul li:last-child a {
+    border-right: none;
+}
+
+.footer .copyright p {
+    color: #a1a1a1;
+}
+
+
+
 
