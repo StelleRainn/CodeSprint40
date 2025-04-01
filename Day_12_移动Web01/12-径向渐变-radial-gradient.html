@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>径向渐变</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #66ccff;
+            border-radius: 50%;
+
+            background-image: radial-gradient(
+            50px at center center,
+            pink,
+            skyblue
+            );
+        }
+
+        button {
+            width: 100px;
+            height: 40px;
+            background-color: #000;
+            border: 0;
+            border-radius: 5px;
+            color: #fff;
+
+            /*添加一个背景高光*/
+            background-image: radial-gradient(
+            50px 20px at center center,
+            rgba(255, 255, 255, 0.4),
+            transparent
+            );
+        }
+    </style>
+</head>
+<body>
+<!--
+作用：为按钮添加高光效果。
+属性：
+background-image: radial-gradient(
+半径 at 圆心位置, -- 半径：单独 或 双值（变成椭圆）：x轴 y轴
+                -- 圆心位置：水平位置 垂直位置 -- 取值：方位名词｜像素单位值｜百分比（不常用）
+颜色1 终点位置,
+颜色2 终点位置,
+...
+颜色n 终点位置  -- (无逗号)
+);
+-->
+<div></div>
+<button>按钮</button>
+</body>
+</html>

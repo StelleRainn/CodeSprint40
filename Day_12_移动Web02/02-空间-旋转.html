@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>旋转</title>
+    <style>
+      .box {
+        width: 300px;
+        margin: 100px auto;
+
+        /*不加perspective，rotateX，Y的效果不明显*/
+        perspective: 1000px;
+      }
+      
+      img {
+        width: 300px;
+        transition: all 2s;
+      }
+
+      .box img:hover {
+        /*transform: rotateZ(60deg);*/
+        /*transform: rotateX(60deg);*/
+        transform:rotateY(60deg);
+
+      }
+    </style>
+</head>
+<body>
+<!--transform: rotateZ(值deg) -->
+<!--transform: rotateX(值deg) -->
+<!--从各个轴的正方向看去：正值顺时针，负值逆时针 -->
+<!--亦即 -- 左手法则：大拇指与各个轴的正方向相同，四个手指弯曲方向即为旋转的正方向-->
+
+<!--拓展：rotate3d(x, y, z, 角度度数)-->
+<!--自定义旋转轴的位置及旋转的角度， xyz取值为0-1之间的数字 -- 不常用-->
+
+<div class="box"><img src="images/hero.jpeg" alt=""></div>
+
+</body>
+</html>

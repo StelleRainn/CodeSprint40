@@ -7,12 +7,50 @@
 <details><summary> 点击展开 / 关闭 </summary>
 
 ### Apr 01st, Tue, Day 12
+- 「稳中有进」
+- 今天按期完成了目标。完成了视频课Day10的内容（复制黏贴等工作挑时间补齐就好）；完成了Day11，并开启了Day12（部分），与CodeSprint Day12追平。
+- 明日Day13：学习与完成视频课Day12，Day13，正式追平实际状态。
+- 今日总结：内容较多，主要内容是更多的CSS（动态CSS）
+  - 用`align-items`前，记得指定宽高，否则没效果（虽然生效）
+  - **平面转换 transform**：一般配合过渡 transition 使用。再次强调，transition 通常写在原元素中而非 hover 伪类
+  - 可以转换的内容包括：`translate（位移）｜rotate（旋转）｜scale（缩放）｜skew（倾斜）`
+    - 位移 -- transform: translate(x轴，y轴)，可以单独填写一个值（X轴），也可以translateX或translateY单独调整。值为百分比（参照自身尺寸）或像素值
+    - 旋转 -- transform: rotate(旋转角度deg)，同样地，可以X，Y单独设置。正值顺时针，负值逆时针。
+    - 改变平面转换的原点 -- transform-origin: 水平原点位置 垂直原点位置。值为各方位名词。默认为盒子中心点。
+    - 多重转换 -- 即：将transform用作复合属性。注意：第一个改变会影响盒子的轴向，从而影响第二个改变。
+    - 缩放 -- transform: scale(缩放倍数 | x轴缩放倍数，y轴缩放倍数)。通常用第一种。默认基于盒子原点。
+    - 倾斜 -- transform: skew(旋转度数deg)  --正值向左，负值向右。
+  - **线性渐变** -- background-image: linear-gradient();
+    - background-image: linear-gradient (
+    - 渐变方向, (默认从上到下｜to 方位词｜角度值deg -- 以x轴为0度)
+    - 颜色1 终点位置,（默认无｜百分比值） 
+    - 颜色2 终点位置, 
+    - ...); （最后的颜色不需要逗号）
+  - **径向渐变** -- background-image: radial-gradient(
+    - 半径 at 圆心位置, 
+      - -- 半径：单独 或 双值（变成椭圆）：x轴 y轴 
+      - -- 圆心位置：水平位置 垂直位置 -- 取值：方位名词｜像素单位值｜百分比（不常用） 
+    - 颜色1 终点位置, 
+    - 颜色2 终点位置, 
+    - ... 
+    - 颜色n 终点位置  -- (无逗号)
+    - );
+  - **空间变换**：依然是transform
+    - transform3d(x, y, z); --3d必须写三个值，否则不生效 
+    - transform:translateZ();
+  - 视距：perspective -- 添加给父级。从而更好观察子级的动效果。常用值800-1200px。
+  - 空间旋转：
+    - transform: rotateZ(值deg) 
+    - transform: rotateX(值deg) 
+    - 从各个轴的正方向看去：正值顺时针，负值逆时针
+    - 亦即 -- 左手法则：大拇指与各个轴的正方向相同，四个手指弯曲方向即为旋转的正方向
+- 完成了2个小案例，4个综合案例。明日需要及时复习与消化。
 
 </details>
 
-
 ## March 2025
-<details><summary> 点击展开 / 关闭 </summary>
+<details>
+<summary> 点击展开 / 关闭 </summary>
 
 ### Mar 31st, Mon, Day 11
 - 「尽力就好」。
@@ -100,7 +138,7 @@
     - background-position: `background-position: 水平方向 垂直方向`；取值包括: `center | left | right | top | bottom | 数字px`；
       - **特殊写法1**:只写一个关键字，另一方向默认居中；只写一个数字px，则代表水平方向，且垂直方向居中；
       - **特殊写法2**:写关键字的顺序可以颠倒；
-    - background-size：`background-size: cover(充满背景，可能图片不全) | contain(图片触边，可能背景留空) | auto | 数字px(不常用)`；
+    - background-size(大小与缩放)：`background-size: cover(充满背景，可能图片不全) | contain(图片触边，可能背景留空) | auto | 数字px(不常用)`；
     - background-attachment：`background-attachment: fixed(固定) | scroll(滚动)`；
     - 以及复合属性 background；不区分顺序，但是若需要缩放，则：`位置/缩放`。
   - 标签的显示模式：块级元素（如div、h1等）和行内元素（如span、a等），以及行内块元素；
@@ -173,6 +211,5 @@
 - 学习（复习）了HTML的基本语法和结构，基本的标签，注释，标题标签，段落标签，换行/水平线，文本格式标签（下划线那些），超链接标签，多媒体（图像、音频、视频），完成了两个十分简单的案例。
 - 学习（复习）了列表（有序、无序、定义列表），表格（表头、表格标题、合并单元格），表单（文本框、单选框、复选框、下拉列表；第二日打算从“按钮”部分继续）。
 - 今日有效学习时约：4～5小时，保持合理时间分配（如必要的中断休息），提高效率。再接再厉！
-
 
 </details>

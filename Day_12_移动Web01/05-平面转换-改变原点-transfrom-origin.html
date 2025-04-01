@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>改变旋转原点</title>
+    <style>
+        img {
+            width: 200px;
+            border: 1px solid #000;
+            transition: all 1s;
+
+            /*加在原来的图片中*/
+            transform-origin: right bottom;
+        }
+        
+        img:hover {
+            transform: rotate(360deg);
+        }
+    </style>
+</head>
+<body>
+<!--transform-origin: 水平原点位置 垂直原点位置-->
+<!--默认位置：盒子的中心点-->
+<!--取值：方位名词（left，right，top，bottom，center）-->
+
+<img src="images/rotate.png" alt="">
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>立体呈现</title>
+    <style>
+        .cube {
+            width: 200px;
+            height: 200px;
+            background-color: #66ccff;
+            margin: 100px auto;
+            transition: all 2s;
+            perspective: 1000px;
+
+            /*1.父级添加属性*/
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .cube div {
+            /*2.给子级添加定位：子绝父相*/
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 200px;
+
+        }
+
+        .front {
+            background-color: darkcyan;
+            /*3.调整子级位置*/
+            transform: translateZ(100px);
+        }
+
+        .back {
+            background-color: darksalmon;
+            transform: translateZ(-100px);
+        }
+
+        .cube:hover {
+            transform: rotateY(89deg);
+        }
+    </style>
+</head>
+<body>
+<!--属性：transform-style -->
+<!--属性值：-->
+<!--flat（默认）：子级处于平面中-->
+<!--preserve-3d：使自己处于3d空间-->
+
+<!--步骤：-->
+<!--父元素添加transform-style: preserve-3d;-->
+<!--子级定位 -- 子绝父相 -->
+<!--调整子盒子的位置（位移或旋转）-->
+
+<div class="cube">
+    <div class="front">前面</div>
+    <div class="back">后面</div>
+</div>
+
+</body>
+</html>

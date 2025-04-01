@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>空间转换</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            margin: 100px auto;
+            background-color: #66ccff;
+            transition: all 0.5s;
+        }
+
+        .box:hover {
+            /*默认情况下，无法观察到z轴的移动效果（显示器为2d平面）*/
+            transform: translate3d(100px, 100px, 100px);
+
+            /*填不够三个参数，无法生效*/
+            /*transform: translate3d(100px, 100px);*/
+
+            /*会依次覆盖*/
+            /*transform: translateX(100px);*/
+            /*transform: translateY(100px);*/
+            /*transform: translateZ(100px);*/
+        }
+
+        .son {
+            width: 200px;
+            height: 200px;
+            margin: 300px auto;
+            background-color: darkcyan;
+            transition: all 0.5s;
+        }
+
+        .father {
+            /*必须添加给直接父级*/
+            perspective: 100px;
+        }
+
+        .son:hover {
+            transform: translateZ(600px);
+        }
+
+
+    </style>
+</head>
+<body>
+<!--空间转化 -- 属性：依然是transform-->
+<!--z轴：位置与视线方向相同，靠近用户为正方向，远离用户为负方向-->
+<!--空间转换也叫3D转换-->
+
+<!--transform3d(x, y, z); --3d必须写三个值，否则不生效 -->
+<!--transform:translateZ();-->
+<!--可取正负；值：百分比（自身尺寸）｜数值）-->
+
+<div class="box"></div>
+
+<!--视距perspective-->
+<!--作用：指定了观察者与z=0平面的距离，为元素添加透视效果-->
+<!--透视效果：近大远小，近实远虚-->
+
+<!--属性：添加给「直接」父级，建议范围800-1200 -->
+<!--perspective: 视距-->
+<!--范围值：越小越近-->
+
+<div class="father">
+    <div class="son"></div>
+</div>
+
+</body>
+</html>
