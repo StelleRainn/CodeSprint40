@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>案例-双开门效果</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .father {
+      width: 1366px;
+      height: 600px;
+      margin: 0 auto;
+
+      display: flex;
+      overflow: hidden;
+
+      background: url('practice01/images/bg.jpg');
+    }
+
+    .father .left,
+    .father .right {
+      width: 50%;
+      height: 100%;
+
+      transition: all 0.5s ease;
+      background: url('practice01/images/fm.jpg');
+    }
+
+    .father .right {
+      /*精灵图*/
+      background-position: right;
+    }
+
+    /*鼠标效果 -- 左右移动*/
+    .father:hover .left {
+      transform: translate(-100%);
+    }
+
+    .father:hover .right {
+      transform: translateX(100%);
+    }
+  </style>
+</head>
+<body>
+
+<div class="father">
+  <div class="left"></div>
+  <div class="right"></div>
+</div>
+
+</body>
+</html>

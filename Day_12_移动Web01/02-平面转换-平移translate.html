@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>平面转换：平移</title>
+    <style>
+        .father {
+            width: 500px;
+            height: 300px;
+            margin: 100px auto;
+            border: 1px solid #000;
+        }
+
+        .son {
+            width: 200px;
+            height: 100px;
+            background-color: #66ccff;
+
+            transition: all 1s;
+        }
+
+        /*鼠标移到父盒子，son改变位置*/
+        .father:hover .son{
+            /*transform: translate(200px, 100px);*/
+
+            /*百分比：参照盒子自身尺寸*/
+            /*transform:  translate(50%, 100%);*/
+
+            /*transform: translate(100px);*/
+            transform: translateY(-100%);
+        }
+    </style>
+</head>
+<body>
+<!--属性：transform:translate(x轴，y轴)-->
+<!--取值：像素单位｜百分比（参照盒子自身的尺寸的计算结果）-->
+<!--取值正负均可-->
+
+<!--translate()只写一个值，表示只沿X轴方向移动-->
+<!--也可以具体到translateX()或translateY()-->
+<div class="father">
+    <div class="son"></div>
+</div>
+
+</body>
+</html>
