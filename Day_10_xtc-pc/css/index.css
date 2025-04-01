@@ -386,3 +386,90 @@
 .content .right li:hover {
     border: #00BE9A solid 2px;
 }
+
+
+/*最新专题 -- topic*/
+.topic {
+    margin-bottom: 40px;
+}
+.topic .title {
+    margin-top: 100px;
+    margin-bottom: 20px;
+}
+
+.topic-bd ul{
+    display: flex;
+    justify-content: space-between;
+}
+
+.topic-bd li {
+    width: 405px;
+    height: 355px;
+}
+
+/*topic -- 内容*/
+.topic-bd  .pic {
+    width: 405px;
+    height: 288px;
+    position: relative;
+}
+
+.topic-bd .txt {
+    width: 405px;
+    height: 67px;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    /*用align-items前，记得指定宽高，否则没效果（虽然生效）*/
+    align-items: center;
+    /*line-height: 67px;*/
+    color:#666;
+    font-size: 14px;
+}
+
+.topic-bd .txt .left {
+    display: flex;
+}
+
+.topic-bd .txt .left p {
+    margin-right: 20px;
+}
+
+.topic-bd .left p:nth-child(1) span{
+    color: #AA2113 ;
+}
+
+/*topic -- 定位内容*/
+.topic-bd .cover {
+    width: 405px;
+    height: 90px;
+    padding:0 15px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: 0;
+
+    /*渐变色*/
+    background-image: linear-gradient(180deg, rgba(137,137,137,0.00) 0%, rgba(0,0,0,0.90) 100%);
+    color: #fff;
+}
+
+.topic-bd .cover .left h4 {
+    font-size: 20px;
+    margin-bottom: 6px;
+}
+
+.topic-bd .cover .right {
+    height: 25px;
+    padding: 0 5px;
+
+    background-color: #fff;
+    color: #AA2113 ;
+    font-size: 15px;
+}
+
+.topic-bd .cover .right span {
+    font-size: 18px;
+}
