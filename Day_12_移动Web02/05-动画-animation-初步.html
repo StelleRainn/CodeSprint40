@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画animation</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 100px;
+        background-color: #66ccff;
+
+        animation: changeSize 3s;
+      }
+
+      /*动画一：宽度从200变化到800 */
+      /*@keyframes changeSize {*/
+      /*  from {*/
+      /*    width: 200px;*/
+      /*  }*/
+      /*  to {*/
+      /*    width: 800px;*/
+      /*  }*/
+      /*}*/
+
+
+      /*动画二：从200*100 变化到 300*300 变化到 800*500 */
+
+      @keyframes changeSize {
+        0% {
+          width: 200px;
+          height: 100px;
+        }
+
+        50% {
+          width: 200px;
+          height: 300px;
+        }
+
+        100% {
+          width: 800px;
+          height: 500px;
+        }
+      }
+    </style>
+</head>
+<body>
+
+<!--先定义，再使用-->
+
+
+<!--1. 定义动画-->
+
+<!--@keyframes 动画名称 {
+from {}  -- 大括号放入当前状态对应的CSS
+to {}
+} -- 适用于两种状态 -->
+
+<!--@keyframes 动画名称 {
+0% {} -- 前面的百分值表示动画时长的百分比
+10% {}
+...
+100% {}
+} -- 适用于多种状态 -->
+
+<!--2. 使用动画-->
+<!--animation: 动画名称 动画花费时长s -- 复合属性，这两个是必须的。 -->
+<!-- 哪个标签要用，就放到哪个标签里面-->
+
+<div class="box"></div>
+</body>
+</html>

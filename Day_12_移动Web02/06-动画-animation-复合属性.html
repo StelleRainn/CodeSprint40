@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animation复合属性</title>
+  <style>
+    .box {
+      width: 200px;
+      height: 100px;
+      background-color: #66ccff;
+
+      /*animation 复合属性，不区分先后顺序*/
+      /*速度曲线*/
+      /*animation: changeSize 2s steps(3);*/
+
+      /*延迟时间*/
+      /*animation: changeSize 2s 1s;*/
+
+      /*重复次数*/
+      /*animation: changeSize 2s 3;*/
+      /*animation: changeSize 2s infinite;*/
+
+      /*方向：交替*/
+      /*animation: changeSize 1s infinite alternate;*/
+
+      /*结束状态*/
+      /*animation: changeSize 1s forwards;*/
+
+      /*animation 各拆分属性用法 */
+      /*name & duration 必写*/
+      animation-name: changeSize;
+      animation-duration: 1s;
+
+      /*重复次数*/
+      animation-iteration-count: infinite;
+
+      /*反向交替*/
+      animation-direction: alternate;
+
+    }
+
+    .box:hover {
+      /*新：动画效果*/
+      /*按情况选择是否写在原元素里。此处是悬停则暂停。*/
+      /*要实现相反的效果 -- 鼠标悬停才播放 -- 则该属性添加到原元素里*/
+      animation-play-state: paused;
+    }
+
+    /*宽度从200变换到800*/
+    @keyframes changeSize {
+      from {
+        width: 200px;
+      }
+      to {
+        width: 800px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!--animation: 动画名称 动画时长 速度曲线 延迟时间 重复次数 动画方向 执行完毕时状态；-->
+<!--动画名称和时长必写。后面按需添加，不分顺序。-->
+<!--速度曲线：linear（匀速）｜加速｜减速｜steps(n)（分步）-- steps常配合精灵图实现精灵动画 -->
+<!--延迟时间 -- 开始的时间顺延；当有两个时间值，第一个表示动画时长，第二个时间表示延迟时间 -->
+<!--重复次数：n值｜infinite -- 无限循环-->
+<!--动画方向：alternate 往返/交替-->
+<!--执行完毕状态：backwards（默认：第一帧状态）｜forwards（最后一帧状态）-->
+
+<!--以上均有对应拆分属性。额外拆分属性：
+animation-play-state: paused -- 暂停，
+通常与hover配合使用。根据实际需求选择添加到原元素还是hover中 -->
+<div class="box"></div>
+</body>
+</html>

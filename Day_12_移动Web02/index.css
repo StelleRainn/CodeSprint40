@@ -1,0 +1,128 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+body {
+    /*视频课案例采用body和html标签都设置100%高度的解决办法，这里选择vh视图高度*/
+    height: 100vh;
+    background: url('practice03/f1_1.jpg') no-repeat center 0 / cover;
+}
+
+.cloud img {
+    position: absolute;
+    left: 50%;
+}
+
+.cloud img:nth-child(1) {
+    /*这里不要用transform，否则会被后面动画中的transform覆盖，可能鬼畜*/
+    /*要不然就在下面的动画中也把translate写进去，只是这样就不能三朵云共用一个动画*/
+    /*最后的文字动画就可以这么实现*/
+    /*transform: translate(-200px, 50px);*/
+    margin-left: -200px;
+    top: 15px;
+    animation: cloud-move 1s linear infinite alternate;
+}
+
+.cloud img:nth-child(2) {
+    /*transform: translate(300px, 80px);*/
+    margin-left: 300px;
+    top: 80px;
+    animation: cloud-move 1s linear infinite alternate 0.3s;
+}
+
+.cloud img:nth-child(3) {
+    /*transform: translate(-450px, 150px);*/
+    margin-left: -450px;
+    top: 150px;
+    animation: cloud-move 1s linear infinite alternate 0.8s;
+}
+
+@keyframes cloud-move {
+    to {
+        transform: translate(20px);
+    }
+}
+
+/*热气球*/
+.san img {
+    position: absolute;
+    left: 200px;
+    top: 240px;
+
+    animation: san 1s linear infinite alternate;
+}
+
+@keyframes san {
+    to {
+        transform: translateY(20px);
+    }
+}
+
+/*底部数字*/
+.numbers img {
+    position: absolute;
+}
+
+.numbers img:nth-child(1) {
+    left: 300px;
+    bottom: 25px;
+
+    animation: numbers 1s linear infinite alternate;
+}
+
+.numbers img:nth-child(2) {
+    left: 540px;
+    bottom: 35px;
+
+    animation: numbers 1s linear infinite alternate 0.2s;
+}
+
+.numbers img:nth-child(3) {
+    left: 750px;
+    bottom: 50px;
+
+    animation: numbers 1s linear infinite alternate 0.6s;
+}
+
+.numbers img:nth-child(4) {
+    left: 1000px;
+    bottom: 60px;
+
+    animation: numbers 1s linear infinite alternate 0.9s;
+}
+
+@keyframes numbers {
+    to {
+        transform: translateY(-20px);
+    }
+}
+
+
+/*大文字*/
+.text img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: textScale 1s ;
+}
+
+@keyframes textScale {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    20% {
+         transform: translate(-50%, -50%) scale(0.2);
+    }
+    40% {
+         transform: translate(-50%, -50%) scale(1.3);
+    }
+    70% {
+         transform: translate(-50%, -50%) scale(0.8);
+    }
+    100% {
+         transform: translate(-50%, -50%) scale(1);
+    }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>走马灯效果</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      
+      img {
+        display: block;
+        width: 200px;
+      }
+      
+      .box {
+        width: 600px;
+        height: 112px;
+        border: 5px solid #000;
+        margin: 100px auto;
+
+        overflow:hidden;
+      }
+      
+      ul {
+        display: flex;
+        animation: move 10s infinite linear;
+      }
+
+      /*动画效果：从 原始位置 向 左 移动*/
+      @keyframes move {
+        from {
+          transform: translate(0);
+        }
+
+        to {
+          /*200 * 7的总位移*/
+          transform: translate(-1400px);
+        }
+      }
+      
+      
+    </style>
+</head>
+<body>
+<!--无缝动画原理：复制开头图片到结尾的位置，且图片累加宽度 = 显示区域宽度-->
+
+<div class="box">
+  <ul>
+    <li><img src="images/1.jpg" alt=""></li>
+    <li><img src="images/2.jpg" alt=""></li>
+    <li><img src="images/3.jpg" alt=""></li>
+    <li><img src="images/4.jpg" alt=""></li>
+    <li><img src="images/5.jpg" alt=""></li>
+    <li><img src="images/6.jpg" alt=""></li>
+    <li><img src="images/7.jpg" alt=""></li>
+    <!--复制前面三张到后面，三张图的宽度恰好是显示区域的宽度-->
+    <li><img src="images/1.jpg" alt=""></li>
+    <li><img src="images/2.jpg" alt=""></li>
+    <li><img src="images/3.jpg" alt=""></li>
+  </ul>
+</div>
+
+</body>
+</html>

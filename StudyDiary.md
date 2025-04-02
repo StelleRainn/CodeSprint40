@@ -6,6 +6,40 @@
 ## April 2025
 <details><summary> 点击展开 / 关闭 </summary>
 
+### Apr 02nd, Wed, Day 13
+- 「Distance」
+- 积压的宿舍情感终于在这一天爆发与释怀，我不必再对没有自知之明的人抱有任何期待，愤怒之后，是释怀。也对自己的目标，更加清晰。这就是，我与他们的「Distance」
+- 今天花了点时间平复情绪，不算压抑，更多是释怀；加之上午有课，所以进度慢了些，没有能彻底追平视频课。但至少没有被拉开。
+- 不管怎样，今日还是学了不少内容，而且都很新，需要多复习：
+  - 空间转换之缩放：`transform: scale3d(x,y,z)`，理解成长方体的长宽高就行
+  - **动画** -- 今日重点：
+    - 属性 animation，值为复合型，包括：动画名称 动画花费时长s（此二者必写）｜ 速度曲线 重复 交替（动画方向）延迟时间 结束时状态 
+      - 动画名称：自己定义的名称，如@keyframe move，则move就是动画名称
+      - 花费时长 & 延迟启动时间：数字s，两个一起出现，前者为花费时长，后者为延迟时间
+      - 速度曲线：默认非线性动画，可填入linear --线性｜steps(n) --n帧分步动画
+      - 重复：可填入次数，或者infinite无限循环
+      - 交替/动画方向：填入alternate以实现往返效果
+      - 结束时状态：backwards --默认，第一帧状态｜afterwards --最后一帧状态
+    - 以上均可单独拆分为单个属性，另外有一个额外的拆分属性：animation-play-state: paused --暂停 --常与hover配合使用，按需求决定放在原元素还是hover伪元素里
+    - **使用动画**，分两步
+      - 定义动画：@keyframe animation-name {
+          from { CSS; }
+          to { CSS; } }  
+      - 或 @keyframe animation-name {
+          0% { CSS; }
+          20% { CSS; }
+          ...
+          100% { CSS; } }  
+      - 注意，没有多余的分号或逗号
+      - 第二步，哪个标签要用，就在哪个标签的css中写，如：animation: cloud-move 1s linear infinite alternate 0.8s
+    - 逐帧动画，使用「速度曲线」，animation-timing-function: steps(n)，配合精灵图实现精灵动画
+      - 定义显示区域（精灵图展示窗口）
+      - 注意，定义动画中，移动的是背景图，用background-position，用transform的话父盒子会位移
+      - 移动距离 = 精灵图宽度
+      - steps(N)，N与精灵小图个数相同
+      - 多组动画，即在animation属性中填入多个动画。
+- 今天Day 13，完成了视频课Day12的内容，明天时间充裕，完成Day13&14的内容；后天Day15，完成Day15，收尾。
+
 ### Apr 01st, Tue, Day 12
 - 「稳中有进」
 - 今天按期完成了目标。完成了视频课Day10的内容（复制黏贴等工作挑时间补齐就好）；完成了Day11，并开启了Day12（部分），与CodeSprint Day12追平。

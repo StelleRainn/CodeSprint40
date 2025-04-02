@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>空间缩放</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+
+      .nav {
+        margin: 100px auto;
+        width: 300px;
+      }
+
+
+      .nav ul{
+        display: flex;
+      }
+
+
+      .nav li {
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        transition: all 0.5s;
+
+        /*1.父级加3d*/
+        transform-style: preserve-3d;
+        position: relative;
+
+      /*    测试空间缩放*/
+      /*    transform: scaleZ(2);*/
+      /*    相当于一个立方体的长宽高。*/
+          transform: scale3d(0.5, 2, 3);
+      }
+
+      .nav li a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+
+        /*2.子绝父相 加定位*/
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+
+      /*正面*/
+      .nav li a:first-child {
+        background-color: darkcyan;
+        /*3. 调整各个子级位置 -- 前面部分，向「前」（用户方向）挪*/
+        transform: translateZ(20px);
+
+      }
+
+      /*背面*/
+      .nav li a:last-child {
+        background-color: darksalmon;
+        /*4. 调整子级位置 -- 顶面部分，先放倒，后拉高。注意放倒后，轴发生变化。*/
+        transform: rotateX(90deg)  translateZ(20px);
+      }
+
+
+      /*为整个li添加旋转效果 -- 不用单独设置a*/
+      .nav li:hover {
+        transform: rotateX(-90deg);
+      }
+    </style>
+</head>
+<body>
+
+<!--1.搭建立方体-->
+<div class="nav">
+  <ul>
+    <li>
+      <a href="">首页</a>
+      <a href="">Index</a>
+    </li>
+    <li>
+      <a href="">登录</a>
+      <a href="">Login</a>
+    </li>
+    <li>
+      <a href="">注册</a>
+      <a href="">Register</a>
+    </li>
+  </ul>
+</div>
+
+</body>
+</html>
