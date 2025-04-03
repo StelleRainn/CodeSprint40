@@ -1,0 +1,19 @@
+/*快速生成后代选择器*/
+
+.father {
+  color: red;
+
+  .son {
+    color: #66ccff;
+
+    a {
+      text-decoration: none;
+
+      //在内嵌中使用&符号，表示当前选择器。且不会生成后代选择器。
+      //应用：配合hover伪类，或nth-child()等结构伪类使用
+      &:hover {
+        color: #00BE9A;
+      }
+    }
+  }
+}

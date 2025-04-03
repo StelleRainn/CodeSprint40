@@ -1,0 +1,127 @@
+@import "base.less";
+
+@rootSize: 37.5rem;
+
+
+//以下是视频课的实现方案，但是标题有些不居中
+//header {
+//  height: (44/ @rootSize);
+//  padding: 0 (15 / @rootSize);
+//
+//  display: flex;
+//  justify-content: space-between;
+//  align-items: center;
+//
+//  .iconfont {
+//    font-size: (24 / @rootSize);
+//  }
+//
+//  h3 {
+//    font-size: (17 / @rootSize);
+//  }
+//
+//  .note {
+//    font-size: (15 / @rootSize);
+//    color: #2CB5A5;
+//  }
+//}
+
+//个人实现方案 -- 使用绝对定位
+header {
+  position: relative;
+  height: (44/@rootSize);
+  padding: 0 (15/@rootSize);
+
+  .iconfont {
+    position: absolute;
+    left: 0;
+    top: (22/@rootSize);
+    transform: translate(50%,-50%);
+    font-size: (24 / @rootSize);
+  }
+
+  h3 {
+    position: absolute;
+    font-size: (17 / @rootSize);
+    left: 50%;
+    top: (22/@rootSize);
+    transform: translate(-50%,-50%);
+  }
+
+  .note {
+    position: absolute;
+    right: 0;
+    top: (22/@rootSize);
+    transform: translate(-30%,-50%);
+    font-size: (15 / @rootSize);
+    color: #2CB5A5;
+  }
+}
+
+
+.banner {
+  margin-top: (30/@rootSize);
+  margin-bottom: (33/@rootSize);
+  text-align: center;
+
+  img {
+    width: (240/@rootSize);
+    height: (206/@rootSize);
+    margin-bottom: (18/@rootSize);
+  }
+
+  p {
+    font-size: 16px;
+
+    span {
+      color: #16C2A3;
+    }
+  }
+}
+
+.type {
+  li {
+    width: (345/@rootSize);
+    height: (78/@rootSize);
+    margin:0 auto (15/@rootSize);
+    padding: 0 (15/@rootSize);
+
+    border: (1/@rootSize) solid #EDEDED;
+    border-radius: (4/@rootSize);
+
+
+    a {
+      display: flex;
+      height: 100%; //先有高，才能center
+      align-items: center;
+
+      img {
+        width: (40/@rootSize);
+        height: (40/@rootSize);
+        margin-right: (13.5/@rootSize);
+      }
+
+      .txt {
+        flex: 1;
+        h4 {
+          font-size: (16/@rootSize);
+          line-height: (24/@rootSize);
+          color: #3C3E42;
+          margin-bottom: (3/@rootSize);
+        }
+
+        p {
+          font-size: (13/@rootSize);
+          line-height: (20/@rootSize);
+          color: #848484;
+        }
+
+      }
+
+      .iconfont {
+        font-size: (16/@rootSize);
+        color: #848484;
+      }
+    }
+  }
+}

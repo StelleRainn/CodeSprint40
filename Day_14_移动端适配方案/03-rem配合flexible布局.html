@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flexible布局--基础运用</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .box {
+            width: 1.8rem;
+            height: 0.8rem;
+            background-color: #66ccff;
+        }
+    </style>
+
+</head>
+<body>
+<div class="box"></div>
+
+<!--一个问题：设计稿中给出的尺寸单位是px，如何转换成rem？-->
+<!--原理：已知在rem设计中，一个元素的「实际宽高px值」=「rem值 * 根字号px值」-->
+<!--所以，当设计稿给出实际宽高px，并根据设计稿所选的设备宽度（视口宽度 -- 由此可得到根字号的值），就可以得到rem值-->
+<!--rem单位值 = 实际px值 / 根字号-->
+
+
+<!--在body结束标签前写脚本-->
+<script src="js/flexible.js"></script>
+</body>
+</html>

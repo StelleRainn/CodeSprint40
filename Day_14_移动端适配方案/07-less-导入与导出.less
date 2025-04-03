@@ -1,0 +1,26 @@
+// out: ./lessOutputTest/index.css
+
+/*
+less -- 导入
+语法：
+@import "path/to/less"; -- 不要漏掉分号
+
+提示：
+如果导入的是less文件，.less后缀可以省略
+*/
+
+@import '04-less-运算.less';
+@import "05-less-嵌套";
+
+/*
+less -- 导出
+语法：在less的「第一行」：
+// out: ./index.css  -- 没有分号；
+// out: ./myCss/index.css
+*/
+
+/*
+less -- 禁止导出
+同样在第一行：
+// out: false
+*/

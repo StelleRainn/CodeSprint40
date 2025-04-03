@@ -1,0 +1,22 @@
+/*
+概念：
+容器，存储数据，方便使用和修改。
+
+语法：
+1.定义变量：@变量名：数据;    -- 不要漏掉分号。
+2.使用变量：CSS属性: @变量名;
+*/
+
+@myCyan: darkcyan;
+
+.body {
+  background-color: @myCyan;
+}
+
+.box {
+  color: @myCyan;
+
+  a {
+    background-color: @myCyan;
+  }
+}
