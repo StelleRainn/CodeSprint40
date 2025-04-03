@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>媒体查询配合CSS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /*当检测到屏幕宽度为375px，网页背景颜色变成天依蓝*/
+        /*@media (width: 375px) {*/
+        /*    body {*/
+        /*        background-color: #66ccff;*/
+        /*    }*/
+        /*}*/
+
+
+        /*为每一个手机（视口）单独设置HTML字号，以实现不同设备的自适应缩放效果*/
+        @media (width: 320px) {
+            html {
+                /*设置为视口宽度的 1/10 */
+                font-size: 32px;
+            }
+        }
+
+        @media (width: 375px) {
+            html {
+                font-size: 37.5px;
+            }
+        }
+
+        @media (width: 414px) {
+            html {
+                font-size: 41.4px;
+            }
+        }
+
+        .box {
+            width: 5rem;
+            height: 3rem;
+            background-color: #66ccff;
+        }
+
+    </style>
+</head>
+<body>
+
+<!--解决的问题1:手机屏幕大小不同，分辨率不同，如何设置不同的HTML标签字号？-->
+<!--媒体查询 -- 可以用于检测视口宽度，编写差异化的CSS样式 -- 当某个条件成立，执行对应的CSS样式-->
+<!--@media (媒体特性/需要查询的媒体 -- 没有多余的分号) {
+    选择器 {
+      CSS属性;
+    }
+ } -->
+
+<!--解决的问题2:设备宽度不同，HTML标签字号设置多少合适？-->
+<!--在目前rem布局方案中，将网页等分成10份，HTML标签的字号视为视口宽度的 1/10-->
+<div class="box"></div>
+
+</body>
+</html>

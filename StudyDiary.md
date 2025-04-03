@@ -6,6 +6,28 @@
 ## April 2025
 <details><summary> 点击展开 / 关闭 </summary>
 
+### Apr 03rd, Thu, Day 14
+- 移动端适配方案
+  - 了解了**谷歌模拟器**，可以在Chrome的 网页检查器 中选择移动设备
+    - 小技巧，使用网页检查器时，查看PC布局，一般在下面；查看移动端，一般在侧面
+  - **屏幕分辨率**、**视口与二倍图**
+    - 硬件分辨率：物理分辨率（出厂设置）
+    - 缩放调节的分辨率：逻辑分辨率（由软件/驱动/操作系统等设置）
+    - PC端网页分辨率与逻辑分辨率保持一致
+    - iPhone 6/7/8 -- 逻辑分辨率375px；plus -- 414px
+    - **视口**：移动端网页分辨率并非逻辑分辨率。视口是，显示HTML网页的区域，使用视口约束HTML尺寸。使用HTML5自动骨架中就可以生成。
+      - `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
+    - **二倍图**：现阶段设计稿参考iPhone 6/7/8，以375px的设备宽度产出设计稿；则二倍图设计稿的尺寸即为750px。为确保缩放、比例关系正确，在pxcook、html等设计稿中，要切换2x模式。
+  - **适配方案**
+    - 宽度适配：宽度自适应
+      - 百分比布局｜Flex布局
+      - 适用于PC端
+    - 等比适配：宽高等比缩放
+      - rem｜vw
+      - 适用于移动端
+  - rem适配方案
+    - 
+
 ### Apr 02nd, Wed, Day 13
 - 「Distance」
 - 积压的宿舍情感终于在这一天爆发与释怀，我不必再对没有自知之明的人抱有任何期待，愤怒之后，是释怀。也对自己的目标，更加清晰。这就是，我与他们的「Distance」
@@ -22,17 +44,17 @@
       - 结束时状态：backwards --默认，第一帧状态｜afterwards --最后一帧状态
     - 以上均可单独拆分为单个属性，另外有一个额外的拆分属性：animation-play-state: paused --暂停 --常与hover配合使用，按需求决定放在原元素还是hover伪元素里
     - **使用动画**，分两步
-      - 定义动画：@keyframe animation-name {
+      - 定义动画： `@keyframe animation-name {
           from { CSS; }
-          to { CSS; } }  
-      - 或 @keyframe animation-name {
+          to { CSS; } } ` 
+      - 或` @keyframe animation-name {
           0% { CSS; }
           20% { CSS; }
           ...
-          100% { CSS; } }  
+          100% { CSS; } } ` 
       - 注意，没有多余的分号或逗号
-      - 第二步，哪个标签要用，就在哪个标签的css中写，如：animation: cloud-move 1s linear infinite alternate 0.8s
-    - 逐帧动画，使用「速度曲线」，animation-timing-function: steps(n)，配合精灵图实现精灵动画
+      - 第二步，哪个标签要用，就在哪个标签的css中写，如：`animation: cloud-move 1s linear infinite alternate 0.8s`
+    - 逐帧动画，使用「速度曲线」，`animation-timing-function: steps(n)`，配合精灵图实现精灵动画
       - 定义显示区域（精灵图展示窗口）
       - 注意，定义动画中，移动的是背景图，用background-position，用transform的话父盒子会位移
       - 移动距离 = 精灵图宽度
