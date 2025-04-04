@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>媒体查询-书写顺序</title>
+    <style>
+        /*若要依次检测多个视口，媒体查询的顺序是有要求的 -- CSS的层叠性*/
+        /*min-width：由小到大依次书写*/
+        /*max-width：由大到小依次书写*/
+
+        body {
+            background-color: #cccccc;
+        }
+
+        @media (min-width: 768px) {
+            body{
+                background-color: lightcyan;
+            }
+        }
+
+        @media (min-width: 992px) {
+            body{
+                background-color: cyan;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            body{
+                background-color: darkcyan;
+            }
+        }
+    </style>
+</head>
+<body>
+
+</body>
+</html>

@@ -8,7 +8,18 @@ body {
   background-color: #f9fafb;
 }
 
+
+// 头部
 header {
+  //原本做法：使用fixed定位
+  //为了解决定位后的脱标现象，可以考虑利用空白盒子占位或给search板块加一个上外边距
+  //这里，使用新的办法：sticky
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 2;
+
+  //避免fixed带来的转变成行内块元素的问题
   width: 100%;
   height: (50/@vw);
   padding:  0 (15/@vw);
@@ -24,7 +35,7 @@ header {
     width: (235/@vw);
     height: (50/@vw);
     //复合写法 -- bg-size若要生效，必须紧跟position
-    background: url("../assets/head.png") no-repeat center center/contain;
+    background: url("../assets/head.png") no-repeat left center/contain;
     //background-image: url("../assets/head.png");
     //background-size: contain;
     //background-repeat: no-repeat;
@@ -45,3 +56,218 @@ header {
   }
 }
 
+// 搜索
+.search {
+  width: 100%;
+  height: (52/@vw);
+  padding: (10/@vw) (15/@vw);
+  .txt {
+    width: 100%;
+    height: 100%;
+
+    text-align: center;
+    line-height: (32/@vw);
+    font-size: (14/@vw);
+    color: #a1a4b3;
+
+    border-radius: (26/@vw);
+    background-color: #f2f4f5;
+    .iconfont {
+      font-size: (16/@vw);
+    }
+  }
+}
+
+//banner区域
+.banner {
+  width: 100%;
+  height: (108/@vw);
+  padding: 0 (15/@vw);
+  ul {
+    li {
+      //给li标签加尺寸
+      width: (345/@vw);
+      height: (108/@vw);
+      img{
+        width: 100%;
+        height: 100%;
+        //新属性object-fit，取值和bg-size一样。
+        //差别在于，这个是对图片的直接设置。而bg-size属于背景图系列
+        object-fit: cover;
+        border-radius: (5/@vw);
+      }
+    }
+  }
+}
+
+//排行榜
+.list {
+  width: 100%;
+  margin-top: (20/@vw);
+  padding: 0 (15/@vw);
+
+  .content {
+
+    li {
+      width: 100%;
+      height: (105/@vw);
+      margin-bottom: (16/@vw);
+
+      display: flex;
+
+      border-radius: (10/@vw);
+      background-color: #fff;
+
+      .pic {
+        img{
+          width: (105/@vw);
+          height: (105/@vw);
+          margin-right: (20/@vw);
+          border-radius: (10/@vw);
+        }
+      }
+
+      .txt {
+        padding-top: (4/@vw);
+
+        dl {
+          display: flex;
+          flex-direction: column;
+
+          a {
+            line-height: 1.8;
+            font-size: (12 / @vw);
+            color: #a1a4b3;
+          }
+
+          //为dt中的文字单独设置样式
+          dt {
+            a, .iconfont {
+              font-size: (14/@vw);
+              color: #333;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//标题--公共样式
+.title {
+  width: 100%;
+  height: (26.5/@vw);
+  margin-bottom: (16/@vw);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h4 {
+    font-size: (20/@vw);
+  }
+
+  a {
+    font-size: (12/@vw);
+    color: #a1a4b3;
+
+    .iconfont {
+      font-size: (12/@vw);
+    }
+  }
+}
+
+//推荐歌单
+.recommend {
+  padding: 0 (15/@vw);
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      li {
+        width: (105/@vw);
+        height: (142/@vw);
+        margin-bottom: (16/@vw);
+        a {
+          display: flex;
+          flex-direction: column;
+          .pic {
+            position: relative;
+            span {
+              width: (70/@vw);
+              height: (28/@vw);
+
+              display: block;
+              position: absolute;
+              left: 0;
+              bottom: 0;
+
+              line-height: (28/@vw);
+              text-align: center;
+              color: #fff;
+
+              border-radius: 0 (10/@vw) 0 (10/@vw);
+              background-color: rgba(0, 0, 0, .8);
+            }
+
+            img {
+              width: (105/@vw);
+              height: (105/@vw);
+              //用户上传图片，未必比例相同
+              object-fit: cover;
+              border-radius: (10/@vw);
+            }
+          }
+          .txt {
+            font-size: (14/@vw);
+          }
+        }
+      }
+    }
+}
+
+//下载区域
+.download {
+  width: (345/@vw);
+  height: (45/@vw);
+  padding: 0 (10/@vw) 0 (15/@vw);
+
+  position: fixed;
+  left: (15/@vw);
+  bottom: (30/@vw);
+
+  border-radius: (45/@vw);
+  background-color: #fff;
+
+  a {
+    //加宽高，不然本身只能靠弹性内容撑开，align-items就无法生效
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    img {
+      width: (36/@vw);
+      height: (36/@vw);
+      margin-right: (10/@vw);
+    }
+
+    p {
+      flex: 1;
+      font-size: (14/@vw);
+    }
+
+    .iconfont {
+      width: (32/@vw);
+      height: (32/@vw);
+
+      font-size: (16/@vw);
+      text-align: center;
+      line-height: (32/@vw);
+
+      border-radius: 50%;
+      background-color: #f2f3f5;
+    }
+  }
+}
