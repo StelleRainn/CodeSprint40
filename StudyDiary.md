@@ -16,6 +16,7 @@
   ```
   - 然后在css中设置`.logo a {font-size: 0; background-image: url(...)}`
   - 今天的案例不用，所以不需要h1嵌套，写div即可；想到了，所以复习一下
+  - `Background`属性补充（强调）：在复合写法中，`bg-size(contain, cover等)`必须跟在`position`后面，以`/`分隔，否则会有错误。正确实例：`center/contain`
 
 ### Apr 03rd, Thu, Day 14
 - 在足够的欲望面前，其他的小杂念又算什么？
