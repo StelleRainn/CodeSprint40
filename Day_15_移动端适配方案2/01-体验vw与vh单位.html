@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vw与vh单位</title>
+    <style>
+         * {
+             margin: 0;
+             padding: 0;
+         }
+
+         .box {
+             width: 50vw;
+             height: 50vh;
+             background-color: darkcyan;
+         }
+    </style>
+</head>
+<body>
+<!--vw与vh都是相对单位-->
+<!--是相对于「视口」的计算结果-->
+
+<!--vw -- viewport width-->
+<!--1vw = 1/100 视口宽度-->
+<!--vh -- viewport height-->
+<!--1vh = 1/100 视口高度-->
+<!--比如，对于320*568的屏幕，1vw=3.2px，1vh=5.68px-->
+
+<!--可以直接实现移动端适配效果，不需要媒体查询，也不需要额外的js-->
+
+<div class="box"></div>
+</body>
+</html>

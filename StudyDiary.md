@@ -6,6 +6,17 @@
 ## April 2025
 <details><summary> 点击展开 / 关闭 </summary>
 
+### Apr 04th, Fri, Day 15
+- 知识点总结
+  - SEO补充：对网站logo使用SEO优化时，采用h1嵌套a，例如
+  ```
+  <div class="logo">
+        <h1><a href="#">小兔鲜儿</a></h1>
+  </div>
+  ```
+  - 然后在css中设置`.logo a {font-size: 0; background-image: url(...)}`
+  - 今天的案例不用，所以不需要h1嵌套，写div即可；想到了，所以复习一下
+
 ### Apr 03rd, Thu, Day 14
 - 在足够的欲望面前，其他的小杂念又算什么？
 - 今天是清明节假期前一天，图书馆很空。心情多少有点受影响，不是难过，不是压抑，就是复杂。但取得offer的渴望足够强大，我无论如何都要前进。

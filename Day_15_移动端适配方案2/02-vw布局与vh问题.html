@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vw布局与vh问题</title>
+    <link rel="stylesheet" href="02-vw与vh.css">
+</head>
+<body>
+<!--与rem一样，对于设计稿中的px单位，需要转换成vw/vh单位-->
+<!--原理：x vw * 设计稿选定的视口宽度/100px = 实际设计稿px -->
+<!--或 y vh * 设计稿参考的视口高度/100px = 实际设计稿px -->
+<!--这样布局好以后，对于不同设备都可以自适应-->
+<div class="box"></div>
+
+<!--vh单位问题-->
+<!--开发中，vw和vh不建议混用-->
+<!--因为vh基于视口高度，对于「全面屏」，视口高度设计大，混用可能导致盒子变形-->
+</body>
+</html>
