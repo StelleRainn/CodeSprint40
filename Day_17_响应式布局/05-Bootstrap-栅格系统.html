@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>栅格系统</title>
+    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<!--栅格化：将整个网页的宽度等分成「12」份，每个盒子占用对应的份数-->
+<!--eg. 一行要排4个盒子，则每个盒子占 12/4 = 3 份-->
+
+<!--响应断点 与 类前缀-->
+<!--xs：<567px .col- -->
+<!--sm：>=576px .col-sm- -->
+<!--md：>=768px .col-md- -->
+<!--ld：>=992px .col-lg- -->
+<!--xl：>=1200px .col-xl- -->
+<!--xxl：>=1400px .col-xxl- -->
+
+
+<!--  container -> row(实现flex) -> col-*-*(在什么区间，占多少份)  -->
+
+<!--网页宽度大于等于1200px，一行徘4个盒子-->
+<!--网页宽度大于等于768px，一行徘2个盒子-->
+<!--网页宽度大于等于576px，一行徘1个盒子-->
+
+<!--快捷键：option+shift+鼠标选择：同步选择-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-3 col-md-6 col-sm-12">1</div>
+        <div class="col-xl-3 col-md-6 col-sm-12">2</div>
+        <div class="col-xl-3 col-md-6 col-sm-12">3</div>
+        <div class="col-xl-3 col-md-6 col-sm-12">4</div>
+    </div>
+</div>
+</body>
+</html>
