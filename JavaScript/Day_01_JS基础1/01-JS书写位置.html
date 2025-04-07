@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JS的书写位置</title>
+</head>
+<body>
+<!--JS：运行在浏览器中的编程语言-->
+<!--和CSS一样，包括：内部、行内（内联）、外部三种方式-->
+
+<button onclick="alert('行内样式')"></button>
+
+<!--内部JS，写在</body>标签上面-->
+<!--写在底部的目的是，让页面按顺序从上往下加载，避免HTML元素加载不完全-->
+<script>
+    alert('Hello, JavaScript!')
+</script>
+
+<!--外部JS，和之前flexible.js、Bootstrap.js一样-->
+<script src="01-my.js">
+    // 这中间无需写代码，写了也会被忽略
+</script>
+</body>
+</html>
