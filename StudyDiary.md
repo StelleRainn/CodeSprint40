@@ -18,7 +18,7 @@
   - **输出语法**: `document.write('...')`, `console.log('...')`, `alert('...')`
   - **变量**：`let 变量名 = 值` *忘记var吧！*
   - **命名规则**：仅`字母`，`数字`，`下划线`与`$`符号，数字不能开头；严格区分大小写；建议使用`小驼峰命名法`
-  - 变量初始化与输入输出的结合：e.g. `let name = prompt('Please enter your name')`  `document.write('name')`
+  - 变量初始化与输入输出的结合：e.g. `let name = prompt('Please enter your name')`  `document.write(name)`
 - 内容较为基础，加上本身有编程经验，所以上手很快。明天的内容预估总需8小时学习（含视频课Day1的一部分和Day2全部），明日也无事，就抓紧时间干起来吧！
 
 ### Apr 06th, Sun, Day 17
