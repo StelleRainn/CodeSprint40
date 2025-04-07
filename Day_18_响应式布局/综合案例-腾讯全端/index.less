@@ -1,0 +1,106 @@
+// 导航
+.bg-body-tertiary {
+  // 记得加important
+  background-color: transparent !important;
+
+  .navbar-collapse {
+    //flex-grow即flex的一个拆分，现不需要其占位，取消掉即可（父级container本身有space-between在）
+    flex: 0;
+
+    .navbar-nav {
+
+      // 关键点：防止中文自动换行
+      // Bootstrap 的 flex 布局没有默认限制文本换行，加上 中文文本的连续性，导致在 <li> 宽度未明确定义时，文字换行后视觉上显得“竖排”
+      // 加了 white-space: nowrap 后，强制文本不换行
+      .nav-item {
+        margin-left: 30px;
+        white-space: nowrap;
+        a {
+          color: #fff;
+        }
+      }
+
+      .nav-item:first-child a {
+        color:orange;
+      }
+    }
+  }
+}
+
+// 轮播图
+.carousel {
+  // 使用媒体查询实现响应式效果
+  // 视口宽度小于768px，高250px；视口宽度大于等于768px，高400px；视口宽度大于等于992px，高度500px
+  .carousel-item {
+    //height: 500px;
+    @media (max-width: 768px) {
+      height: 250px;
+    }
+
+    @media (min-width: 768px) {
+      height: 400px;
+    }
+
+    @media (min-width: 992px) {
+      height: 500px;
+    }
+
+    background-position: center center;
+    background-size: cover;
+
+    &:nth-child(1) {
+      background-image: url('assets/uploads/banner_1.jpg');
+    }
+    &:nth-child(2) {
+      background-image: url('assets/uploads/banner_2.jpg');
+    }
+    &:nth-child(3) {
+      background-image: url('assets/uploads/banner_3.jpg');
+    }
+    &:nth-child(4) {
+      background-image: url('assets/uploads/banner_4.jpg');
+    }
+  }
+}
+
+// 开源项目
+.project {
+  margin-top: 60px;
+  text-align: center;
+
+  // 栅格系统实现响应式效果 -- 直接在html中添加类名
+  // 大于992px，一行排4个 -- col-lg-3
+  // 大于768px，一行排2个 -- col-md-6
+
+  .content {
+    .row {
+      div {
+        height: 200px;
+        margin-bottom: 10px;
+        a {
+          // 块级宽度和父级一样大
+          display: block;
+          height: 100%;
+          border-radius: 4px;
+          background-color: darkcyan;
+        }
+
+        &:nth-child(1) a{
+          background-color: #70c3ff;
+        }
+
+        &:nth-child(2) a{
+          background-color: #fd6a7f;
+        }
+
+        &:nth-child(3) a{
+          background-color: #7f8ea0;
+        }
+
+        &:nth-child(4) a{
+          background-color: #89d04f;
+        }
+      }
+    }
+  }
+}
