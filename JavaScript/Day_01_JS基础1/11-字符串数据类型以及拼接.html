@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串</title>
+</head>
+<body>
+<script>
+    // 可以单引号、双引号、反引号，没有本质区别
+    // 单、双引号可以互相嵌套，但不能自己嵌套自己
+    // 或者用转义字符 \
+    let str = '' // 空字符串
+    console.log(typeof (str))
+    console.log(typeof ('11'))
+    console.log(typeof (11))
+    console.log('单引号嵌套"双引号"')
+    console.log('\'转义字符\'')
+
+
+    // 字符串拼接
+    // +号，数字相加，字符相连
+    console.log('1'+'1')
+    let age = 21
+    console.log('my age is '+ age + ' years')
+    // 也可以采用如下方法:模板字符串
+    console.log(`my age is ${age} years`)
+</script>
+</body>
+</html>

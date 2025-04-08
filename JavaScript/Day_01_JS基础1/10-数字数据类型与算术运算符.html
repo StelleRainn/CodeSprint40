@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数字数据类型</title>
+</head>
+<body>
+<p>js 是弱数据类型语言，只有当赋值后才知道其具体类型</p>
+<p>基本数据类型：numbers、string、boolean、undefined、null</p>
+<p>引用数据类型：object对象</p>
+
+<script>
+  // Number 数字类型
+  // 整数、小数（浮点）、正数、负数等都统一是数字型
+  // 数字与算术运算符 + - * / %
+  // n ** x：n的x次幂
+  console.log((1+1)*6)
+  console.log(6/5)
+  console.log(6%5) // 求余数，用来判断奇偶数等
+
+  // Exercise
+  let r = prompt('enter the radius:')
+  let result = 3.14 * r ** 2
+  console.log(result)
+
+  // NaN：代表计算错误；是一个不正确的数学运算的结果
+  // 且NaN具有“粘性”，任何对NaN的操作都会返回NaN
+  console.log('name' - 2)
+  console.log(NaN + 2)
+  console.log(NaN === NaN)
+
+</script>
+</body>
+</html>

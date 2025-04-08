@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>布尔-未定义-空-数据类型检测</title>
+</head>
+<body>
+<script>
+
+  // 布尔类型 boolean
+  let isReal = true
+  let isFalse = false
+  console.log(`isReal:${isReal}, isFalse:${isFalse}`)
+  console.log(3>4)
+
+  // 未定义类型 undefined
+  let unknown  // 声明一个变量但未赋值
+  console.log(unknown)
+
+  // 空类型 null
+  let obj = null // 赋值了，但内容为空（把null作为尚未创建的「对象」）
+  console.log(obj)
+
+  // 计算有区别
+  console.log(undefined + 1) // NaN
+  console.log(null + 1) // 1
+
+  // 数据类型检测 typeof 或 typeof()
+  let num = 10
+  let str = `str`
+  console.log(typeof num)
+  console.log(typeof (str))
+  console.log(typeof isFalse)
+  console.log(typeof isReal)
+  console.log(typeof (unknown))
+  console.log(typeof obj)
+</script>
+</body>
+</html>
