@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Switch</title>
+</head>
+<body>
+<p>switch-case语句一般用于等值判断，不适合区间判断</p>
+<p>记得加break来退出switch -- 防止穿透</p>
+<script>
+  // Exercise
+  let num1 = Number(prompt('num1'))
+  let num2 = Number(prompt('num2'))
+  let operator = prompt('operator')
+
+  switch (operator) {
+    case ('+'): {
+      document.write(`${num1} ${operator} ${num2} = ${num1+num2}`)
+      break
+    }
+    case ('-'): {
+      document.write(`${num1} ${operator} ${num2} = ${num1-num2}`)
+      break
+    }
+    case ('*'): {
+      document.write(`${num1} ${operator} ${num2} = ${num1*num2}`)
+      break
+    }
+    // case 后的括号、花括号不是必须的
+    case '/':
+      document.write(`${num1} ${operator} ${num2} = ${num1/num2}`)
+      break
+    default: {
+      document.write('Typo')
+    }
+  }
+
+</script>
+</body>
+</html>

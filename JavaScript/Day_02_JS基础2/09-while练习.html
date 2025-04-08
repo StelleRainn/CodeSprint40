@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise</title>
+</head>
+<body>
+
+<script>
+  // Exercise 1
+  let i = 1
+  while (i <= 100) {
+    document.write(`${i} `)
+    i++
+  }
+
+  document.write('<br><br>')
+
+  // Exercise
+  let sum = 0
+  let j = 1
+  while (j <= 100) {
+    sum += j
+    j++
+
+    // 更简便的写法
+    // sum += j++
+  }
+  document.write(`The sum from 1 ~ 100 is: ${sum}`)
+
+  document.write('<br><br>')
+
+  // Exercise 3: 1-100的偶数和
+  let even_sum = 0
+  let k = 1
+  while (k <= 100) {
+    if (k % 2 === 0) { // 将 === 改为 !== 就变成求奇数和
+      even_sum += k
+    }
+    k++
+  }
+  document.write(`The sum of even numbers from 1~100 is: ${even_sum}`)
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>continue和break</title>
+</head>
+<body>
+
+
+<script>
+    // break 退出整个循环
+    // continue 结束单次循环，继续下次循环（跳回while起点）
+    let answer = prompt('Do you still love me?')
+    while (true) {
+      answer = prompt('No, please~')
+      if (answer === '爱') {
+        document.write('Love you too~')
+        break
+      }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>综合案例-银行取钱</title>
+</head>
+<body>
+
+<script>
+  let balance = 1000
+
+  while (true) {
+    // 这里换行，prompt也会换行，不一定要加\n
+    let operation = Number(prompt(`
+    Please select your operation:\n
+    1. Withdraw
+    2. Top Up
+    3. Check Balance
+    4. Exit
+    `))
+
+    if (operation === 4) {
+      alert('See you next time~')
+      break
+    }
+
+    switch (operation) {
+      case 1:
+        balance += Number(prompt('How much you\'d like to withdraw~ '))
+        alert(`Withdraw success! Your balance now is ${balance}`)
+        break
+      case 2:
+        let cashes = Number(prompt('How much you\'d like to top up~ '))
+        balance -= cashes
+        alert(`Withdraw success! ${cashes} has been top up! Your balance now is ${balance}`)
+        break
+      case 3:
+        alert(`~~ Your balance now is ${balance} ~~`)
+        break
+      default:
+        alert('Nothing I can help you here~')
+    }
+  }
+
+
+</script>
+</body>
+</html>
