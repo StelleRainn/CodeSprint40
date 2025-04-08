@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>三元运算符</title>
+</head>
+<body>
+<script>
+  // condition ? 满足条件所执行的代码 : 不满足条件所执行的代码
+  console.log(3 > 5 ? 3 : 5) // 5
+
+  // 三元运算符 一般用来取值(赋值)，简化if双分支
+  let num = 3 > 5 ? 3 : 5
+  console.log(num)
+
+  // Exercise：求两个数的较大者
+  let a = Number(prompt('num1:'))
+  let b = +prompt('num2')
+  document.write(`The larger one is ${String(a > b ? a : b)}`)
+
+  // Exercise：数字补0
+  let input = Number(prompt('a number:'))
+  document.write(`After formatted: ${input > 10 ? input : '0'+ input}`) // '0' + input: 隐式转换，拼接
+
+</script>
+</body>
+</html>

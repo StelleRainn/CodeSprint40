@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>if单分支</title>
+</head>
+<body>
+<p>三大流程控制语句</p>
+<p>顺序、分支、循环</p>
+<p>分支：有选择性的执行想要的代码</p>
+<p>包含：if分支，三元运算，switch分支</p>
+
+<p>if又分单分支、双分支、多分支</p>
+<script>
+    //if单分支
+    let num = 1
+    if (num === 1) {
+      console.log('执行')
+    }
+
+    // 除了0，都执行（包括负数）
+    if (0) {
+      console.log('不执行')
+    }
+
+    if (1) {
+      console.log('执行')
+    }
+
+    // 除了空字符串，其他字符串都为真
+    if ('') {
+      console.log('不执行')
+    }
+
+    if (' ') {
+      console.log('执行 -- 空格不是空字符串哦～')
+    }
+
+    // Exercise：成绩判断
+    let score = Number(prompt('Please enter your score:'))
+    if ( score >= 700 ) {
+      alert('Welcome')
+    }
+
+</script>
+</body>
+</html>

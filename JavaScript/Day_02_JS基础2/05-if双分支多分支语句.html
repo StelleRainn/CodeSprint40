@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>if双分支与多分支</title>
+</head>
+<body>
+
+<script>
+
+    let userName = prompt('Enter your name:')
+    let pwd = prompt('Enter your password:')
+    if (userName === 'rainn' && pwd === '123456') {
+      document.write('Login success')
+    } else {
+      document.write('typo')
+    }
+
+    // Exercise
+    // User input
+    let year = Number(prompt('Enter a year:'))
+    // Judge conditions: 能被4整除但不能被100整除，或被400整除的年份是闰年
+    if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+      document.write(`${year} is a 闰年`)
+    } else {
+      document.write(`${year} is a 平年`)
+    }
+
+    // Exercise
+    let score = Number(prompt('Enter your score:'))
+    if (score >= 90) {
+      document.write('Good')
+    } else if (score >= 70) {
+      document.write('Normal')
+    } else if (score >= 60) {
+      document.write('Acceptable')
+    } else {
+      document.write('Failed')
+    }
+
+
+</script>
+</body>
+</html>

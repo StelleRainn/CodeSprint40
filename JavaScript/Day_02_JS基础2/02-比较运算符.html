@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>比较运算符</title>
+</head>
+<body>
+<p>和之前学过的任意编程语言的比较运算符一样</p>
+<p>==：两边值是否相等</p>
+<p>===：两边是否类型和值都相等（全等） --- 推荐使用</p>
+<p>!==：左右两边是否不全等</p>
+
+<script>
+  console.log(2 == 2) //true
+  console.log(2 == '2') // true 有隐式转换
+  console.log(2 === '2') // false 建议使用
+  console.log(undefined == null) // true
+  console.log(NaN === NaN)
+
+
+  console.log('a' < 'b') // true 比较的是ASCII码值
+  console.log('aa' < 'ab') // true
+  console.log('aa' < 'aac') // true
+
+  // 尽量不要比较小数，存在精度问题
+  console.log(0.1 + 0.2) //0.30000000000004
+  console.log((0.1*10 + 0.2*10) / 10) // 0.3
+</script>
+</body>
+</html>
