@@ -6,6 +6,62 @@
 ## April 2025
 <details><summary> 点击展开 / 关闭 </summary>
 
+### Apr 09th, Wed, Day 20
+- 「推进」
+- 别无他事，稳住心态，坚定目标，持续推进
+- 今日学习知识点：
+  - **for循环**：和C++一致；注意`continue`结束单次循环（并回到if），`break`跳出循环
+  - **循环嵌套**：直角三角形打印，九九乘法表等常规内容
+  ```
+  // Exercise 99乘法表
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j <= i; j++) {
+      document.write(`<span>${j+1} x ${i+1} = ${(i+1)*(j+1)}</span>`)
+    }
+    document.write('<br>')
+  }
+  ```
+  - **数组的增删改查**：
+    - *p.s. 创建数组可以使用`let array = new Array(data)`-- 属于未来的知识*
+    - 增：`push(data)` -- 末尾追加 | `unshift(data)` -- 开头追加。都返回数组的长度, e.g.```console.log(emptyArray.unshift('unshift new content')) // 5```
+    - 删：`pop()` -- 末尾删除，返回该元素本身 | `shift()` -- 首部删除，返回该元素本身 | `splice(index, counts)` -- 指定索引及个数删除，counts无参则默认删到最后
+    - 改：常规赋值。注意昨日所提的运算细节，如`undefined + number` 得 `NaN`, `undefined + 'Strings'` 得 `'undefinedStrings'`
+    - 查：常规操作。注意索引不要越界
+  - **综合案例，输入季度销售额，在HTML界面渲染柱状图**
+    - 核心：通过for循环取得4个输入，存入到数组，再将每个元素输出到盒子CSS的height属性上。部分代码：
+    ```
+     //渲染界面
+     document.write('<div class="box">')
+     for (let i = 0; i < seasons.length; i++) {
+       // 一个div.box盒子
+       document.write(`
+         <div style="height: ${seasons[i]}px">
+            <span>${seasons[i]}</span>
+            <h4>Season${i+1}</h4>
+         </div>
+       `)
+     }
+     document.write('</div>')
+    ```
+  - **拓展之冒泡排序**：核心思想/两个关键点：
+    - 双重循环，每一趟循环都让`arr[0]`与其它数据元素(arr.length - 1个)比较，根据大小进行交换(升序或降序，自行调整if判断中arr[j]和arr[j+1]的比较方式)
+    - 一趟排序完成后，产生本趟**最值**，「冒泡」到数组末尾。下一趟arr[0]无需与最值比较。所以内层循环的终止条件是 `j < arr.length -1 -i`
+    ```
+    for (let i = 0; i < array.length - 1; i++) {
+    for (let j = 0; j < array.length - 1 - i; j++) {
+      if (array[j] > array[j+1]) {
+         swap...
+    ```
+    - 可以用一个布尔标志，当没有发生交换时，可以直接结束循环（外层）
+    - JS也有sort()函数 `e.g. array.sort() ` 默认升序
+    - sort()函数如需降序，可以填入函数 `array.sort( function (a, b) { return b - a } )`
+    - 关于 return b-a 的理解
+      - **sort函数通过return expression判断，当expression的结果大于0，交换参数a、b的位置；结果小于等于0，不交换参数a、b的位置；**
+      - 假设锚定规则「大于0则交换位置」：
+        - 若使用 return a-b ：当发生交换，说明「前者」（指参数的位置）a更大，同时被排到后面，完成升序
+        - 若使用 return b-a ：当发生交换，说明「后者」b更大，同时被排到前面，完成降序
+- 无他，及时复习
+
 ### Apr 08th, Tue, Day 19
 - 「推进」
 - 别无他事，持续推进JavaScript基础部分的学习

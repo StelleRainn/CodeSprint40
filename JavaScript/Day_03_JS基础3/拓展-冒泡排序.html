@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>冒泡排序拓展</title>
+</head>
+<body>
+
+<script>
+  // 第一趟：5个数比较4次（arr[0]与arr[1]~arr[length-1]各比较一次)
+  // 外层循环启发：每一趟比较length-1次
+
+  // 每次循环后，最大数「浮动」到数组最后，所以只剩length-1个数要比较
+  // 内层循环启发：只剩length -i -1次比较；i表示经过i次外层循环后，i个最大数已排序到数组末尾
+  let array = [5, 4, 77, 55, 32, 40]
+  for (let i = 0; i < array.length - 1; i++) {
+    for (let j = 0; j < array.length - 1 - i; j++) {
+      if (array[j] > array[j+1]) {
+        let temp = array[j]
+        array[j] = array[j+1]
+        array[j+1] = temp
+      }
+    }
+  }
+  console.log(array)
+
+  // 当然，有排序函数(升序)
+  let array_1 = [1, 47, 77, 55, 32, 40]
+  array_1.sort()
+  console.log(array_1)
+
+  // sort 降序
+  array_1.sort(function (a, b) {
+    return b - a
+  })
+
+  console.log(array_1)
+</script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组</title>
+</head>
+<body>
+
+<script>
+  // 使用new Array 构造函数声明（暂时了解）
+  // let arr = new Array('data', 'a', 'b')
+
+  // 查
+  // Exercise 数组求和与平均值
+  let scores = [2, 6, 1, 7, 4]
+  let sum = 0
+  for (let i = 0; i < scores.length; i++) {
+    sum += scores[i]
+  }
+  let avg = sum / scores.length
+
+  console.log(`${sum},${avg}`)
+
+  // Exercise 求数组最大/最小值（单纯比大小，没有排序）
+  let numbers = [2, 6, 1, 77, 52, 25, 7]
+  let max = numbers[0]
+  let min = numbers[0]
+  for (let i = 1; i < numbers.length ; i++) {
+    // if (numbers[i] > max) {
+    //   max = numbers[i]
+    // }
+    // 也可以简化一些，用三元运算符
+    max = max > numbers[i] ? max : numbers[i] // 最大值
+    min = min < numbers[i] ? min : numbers[i] // 最小值
+  }
+  console.log(`${max},${min}`)
+
+  // 改：
+  let emptyArray = []
+  emptyArray[0] = 1
+  emptyArray[2] = 2
+  console.log(emptyArray) // 1, undefined, 2
+
+  emptyArray[0] = 2
+  console.log(emptyArray) // 0, undefined, 2
+
+  for (let i = 0; i < emptyArray.length; i++) {
+    emptyArray[i] = emptyArray[i] + '拼接字符串'
+  }
+  console.log(emptyArray) // '2拼接字符串', 'undefined拼接字符串', '2拼接字符串'
+
+  // 增：
+  // 重点：push()方法：将一个或多个元素添加到数组的「末尾」，并返回该数组的新长度。
+  let arrLength = emptyArray.push('push新内容')
+  console.log(`${arrLength}`) // 4
+  console.log(emptyArray) // '2拼接字符串', 'undefined拼接字符串', '2拼接字符串', 'push新内容'
+
+  // unshift()方法：讲一个或多个元素添加到数组的「开头」，同样返回数组的新长度
+  console.log(emptyArray.unshift('unshift new content')) // 5
+  console.log(emptyArray) // 'unshift new content', '2拼接字符串', 'undefined拼接字符串', '2拼接字符串', 'push新内容'
+
+  // Exercise 数组筛选: 将大于10的数据放入新数组
+  let originArray = [2, 0, 6, 1, 77, 0, 53, 25, 7]
+  let newEmpty = []
+  for (let i = 0; i < originArray.length; i++) {
+    if (originArray[i] >= 10) {
+      newEmpty.push(originArray[i])
+    }
+  }
+  console.log(newEmpty) // 77， 53， 25/
+
+  // / Exercise 数组筛选: 将0的数据筛选掉，其他存入新数组
+  let zeroArray = [2, 0, 6, 1, 77, 0, 53, 25, 7]
+  let secondNewEmpty = []
+  for (let i = 0; i < zeroArray.length; i++) {
+    if (zeroArray[i] !== 0) {
+      secondNewEmpty.push(zeroArray[i])
+    }
+  }
+  console.log(secondNewEmpty) // 2, 6, 1, 77, 53, 25, 7
+
+  // 删
+  //pop() shift() & splice(index)
+
+  // 1. pop(): 删除最后一个元素，并返回「该元素」的值。无参。
+  let popArray = ['red', 'green', 'blue']
+  console.log(popArray.pop())  // blue
+
+  // 2. shift(): 删除第一个元素，返回该元素值。无参。
+  console.log(popArray.shift()) //red
+
+  console.log(popArray) //green
+
+  // 3. splice(start, deleteCount)
+  // 参数：起始位置，删除几个元素。start默认0，deleteCount不写则全删。
+  // 开发常用
+  let testArr = ['red', 'green', 'blue']
+  testArr.splice(1, 1) // green
+  console.log(testArr) // red blue
+
+
+
+
+</script>
+</body>
+</html>

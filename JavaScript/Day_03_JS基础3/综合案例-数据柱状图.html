@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据柱状图</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            height: 300px;
+            width: fit-content;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            border: 1px solid #66ccff;
+            border-right: none;
+            border-top: none;
+        }
+
+        .box div {
+            width: 80px;
+            margin: 0 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #66ccff;
+        }
+
+        .box span {
+            transform: translateY(-30px);
+        }
+
+        .box h4 {
+            transform: translateY(30px);
+        }
+
+    </style>
+</head>
+<body>
+<!--<div class="box">-->
+<!--    <div style="height: 150px">-->
+<!--        <span>123</span>-->
+<!--        <h4>Season 1</h4>-->
+<!--    </div>-->
+<!--    <div style="height: 200px">-->
+<!--        <span>123</span>-->
+<!--        <h4>Season 1</h4>-->
+<!--    </div>-->
+<!--    <div style="height: 150px">-->
+<!--        <span>123</span>-->
+<!--        <h4>Season 1</h4>-->
+<!--    </div>-->
+<!--    <div style="height: 300px">-->
+<!--        <span>123</span>-->
+<!--        <h4>Season 1</h4>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<script>
+  // 询问季度数量
+  // 输入每个季度
+  // 渲染HTML界面
+
+  // 询问季度数量
+  seasonNumbers = Number(prompt('请输入季度数量～'))
+  seasons = []
+
+  // 输入每个季度
+  for (let i = 0; i < seasonNumbers; i++) {
+    // seasons[i] = Number(prompt(`请输入第${i+1}季度的份额：`))
+    // 或者
+    seasons.push(Number(prompt(`请输入第${i+1}季度的份额：`)))
+  }
+
+  //渲染界面
+  document.write('<div class="box">')
+  for (let i = 0; i < seasons.length; i++) {
+    // 一个div.box盒子
+    document.write(`
+        <div style="height: ${seasons[i]}px">
+            <span>${seasons[i]}</span>
+            <h4>Season${i+1}</h4>
+        </div>
+    `)
+  }
+  document.write('</div>')
+
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for循环</title>
+</head>
+<body>
+<script>
+  // 若果明确了循环的次数，推荐使用for循环；反之推荐使用while
+
+  // 和C++类同
+  for (let i = 0; i < 10; i++) {
+    console.log(i)
+  }
+
+
+  // Exercise
+  for (let i = 0; i< 100; i++) {
+    document.write(`${i}岁`)
+  }
+
+  // Exercise: 1~100偶数和
+  let sum = 0
+  for (let i = 0; i<= 100; i++) {
+    if (i % 2 === 0) {
+      sum += i
+    }
+  }
+  document.write(`${sum}`)
+
+  // Exercise: 遍历数组
+  let arr = ['grain', 'stelle', 'rainn', 'charlotte']
+  for (let i = 0; i < arr.length; i++) {
+    console.log(arr[i], typeof arr[i])
+  }
+
+  // 退出循环：continue：结束本次循环；break：退出整个for循环
+  for (let i = 0; i < 5; i++) {
+    if (i === 3) {
+      // continue // 退出本次循环，直接回到for开头
+      break // 结束循环
+    }
+    console.log(`${i}`)
+  }
+
+  // 无限循环
+  // for (;;) {
+  //   console.log(1)
+  // }
+
+
+</script>
+</body>
+</html>
