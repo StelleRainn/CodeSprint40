@@ -19,10 +19,10 @@
     - 搭配算术运算符运算： + - * / %；n ** x: n的x次幂
   - **字符串类型 String**：用单、双、反引号以及转义字符；单双引号可以互相嵌套；使用+号可以对两个字符串接
     - **模板字符串**：只能用反引号，内部可以接 ${expression}, expression代表变量或表达式，e.g.
-      - `document.write(\`Hello, my name is ${userName} and I'm ${userAge} years old.\`)`
-      - `document.write(\`The larger one is ${String(a > b ? a : b)}\`)`
+      - ```document.write(`Hello, my name is ${userName} and I'm ${userAge} years old.`)```
+      - ```document.write(`The larger one is ${String(a > b ? a : b)}`)```
       - 补充昨日对**输出语法**的用法：可以利用document.write('html codes')来输出html标签，配合模板字符串修改一些内容
-      - e.g. `document.write(`<td>${price}元</td>`)` 在没学DOM操作前，先这么用着
+      - e.g. ```document.write(`<td>${price}元</td>`)``` 在没学DOM操作前，先这么用着
       - 再补充：WebStorm检测到${}的输入会自动修正单引号
   - **布尔 Boolean**、**未定义 Undefined**与**空 Null**：
     - boolean： true / false
@@ -44,16 +44,16 @@
       console.log(parseFloat('123.123px')) // 123.123
       console.log(parseFloat('abc123abc')) // NaN
       ```
-  - **赋值运算符**：=, +=, -=, *=， /=，%= ；和C++一样，没什么好说的
-  - **自增运算符**：++i/i++, --i/i--; 和C++一样，依然格外注意看好是先自增还是先运算
+  - **赋值运算符**：`=, +=, -=, *=， /=，%=` ；和C++一样
+  - **自增运算符**：`++i / i++, --i / i--`; 和C++一样，依然格外注意看好是先自增还是先运算
     - 存在自增和运算并行的情况，需留意 e.g. `let i = 1 console.log(i++ + ++i + i) // 1 + 3 + 3 = 7`
   - **比较运算符**：和之前学过的C++大部分都一样，额外留意：
-    - `==`：值相等；`===`：值和类型相等（全相等），**推荐使用**，对应 `!==`: 不全等
+    - `==`：值相等；`===`：值和类型相等（全相等），**推荐使用**，对应`!==`: 不全等
     - `undefined == null // true `
     - `NaN === NaN // false`
     - 本质：比较的是ASCII码值：`console.log('aa' < 'aac') // true`
   - **逻辑运算符：与或非**：记住优先级：`小括号 > 一元运算符(含!) > 算术运算符 > 逻辑运算符(先 && 后 ||)`
-  - **if单/双/多分支**：和C++一致 if if-else if-else if-else
+  - **if单/双/多分支**：和C++一致 `if / if-else / if-else if-else`
   - **三元运算符**：简化if双分支，一般用来取值（不限定，比较简洁，爱用就用）
     - `condition ? 满足条件所执行的代码 : 不满足条件所执行的代码`
     ```
@@ -61,10 +61,11 @@
      let input = Number(prompt('a number:'))
      document.write(`After formatted: ${input > 10 ? input : '0'+ input}`) // '0' + input: 隐式转换，拼接
     ```
-  - **switch分支**：用来做条件匹配；注意 `case 值:` 中的值要和prompt输入的值全相等 p.s. 可以写`case (value): {多条 expressions}`，也可以`case value: 多条expressions`
+  - **switch分支**：用来做条件匹配；注意 `case 值:` 中的值要和prompt输入的值全相等 
+    - *p.s. 可以写`case (value): {多条 expressions}`，也可以`case value: 多条expressions`*
     - 记得加break防止穿透
     - 记得加default:
-  - **while循环**：和C++一样，注意continue是结束某次（某个条件的）循环（回到while起点），break是结束整个while循环
+  - **while循环**：和C++一样，注意`continue`是结束某次（某个条件的）循环（回到while起点），`break`是结束整个while循环
 - 今天做了两个综合案例（以及很多小Exercise），1是day1的，prompt获取输入并打印到html表格中，知识点即**模板字符串**；2是while+switch循环，和以前学过的程序设计课程的知识类型，不难，及时温习就好。
 - 今日达标完成任务。明天开启视频课Day3的学习。
 
