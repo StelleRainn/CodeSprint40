@@ -19,8 +19,8 @@
     - 搭配算术运算符运算： + - * / %；n ** x: n的x次幂
   - **字符串类型 String**：用单、双、反引号以及转义字符；单双引号可以互相嵌套；使用+号可以对两个字符串接
     - **模板字符串**：只能用反引号，内部可以接 ${expression}, expression代表变量或表达式，e.g.
-      - `document.write(`Hello, my name is ${userName} and I'm ${userAge} years old.`)`
-      - `document.write(`The larger one is ${String(a > b ? a : b)}`)`
+      - `document.write(\`Hello, my name is ${userName} and I'm ${userAge} years old.\`)`
+      - `document.write(\`The larger one is ${String(a > b ? a : b)}\`)`
       - 补充昨日对**输出语法**的用法：可以利用document.write('html codes')来输出html标签，配合模板字符串修改一些内容
       - e.g. `document.write(`<td>${price}元</td>`)` 在没学DOM操作前，先这么用着
       - 再补充：WebStorm检测到${}的输入会自动修正单引号
