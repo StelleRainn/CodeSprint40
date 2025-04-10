@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>体验函数</title>
+    <style>
+      span {
+        display: inline-block;
+        width: 100px;
+        height: 50px;
+        color: #66ccff;
+        font-size: 18px;
+        text-align: center;
+        line-height: 50px;
+        border: 1px solid #66ccff;
+        /*border-collapse: collapse;*/
+        margin: 2px;
+        padding: 5px;
+        border-radius: 3px;
+        box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, .5);
+      }
+    </style>
+</head>
+<body>
+
+<script>
+  // 1. 函数的声明 function 函数名() { 函数体 }
+  // 常用动词作开头：can has is get set load
+  function sayHello() {
+    console.log('Hello, World')
+  }
+
+  // 2. 调用函数
+  sayHello()
+
+  // Exercise
+  function sheet99 () {
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j <= i; j++) {
+        document.write(`<span>${j+1} x ${i+1} = ${(i+1)*(j+1)}</span>`)
+      }
+      document.write('<br>')
+    }
+  }
+
+  for (let i = 0; i < 3; i++) {
+    sheet99()
+  }
+
+  // 3. 函数的参数
+  // function 函数名(参数列表) { 函数体 }
+  // 参数列表无需let声明
+
+  // Exercise 求两个数的和
+  function add(a, b) { // 形参
+    return a + b
+  }
+  console.log(add(3, 4)) // 实参
+
+  // Exercise 求[1,N]的累加和
+  function sumN(n) {
+    let sum = 0
+    for (let i = 1; i <= n; i++) {
+      sum += i
+    }
+    return sum
+  }
+  console.log(sumN(100))
+
+  // Exercise 求[a,b]的累加和
+  function sumAny(start, end) {
+    let sum = 0
+    for (let i = start; i <= end; i++) {
+      sum += i
+    }
+    return sum
+  }
+  console.log(sumAny(1,100))
+
+  // 4. 默认参数
+  // 若没有实参，则形参为undefined，会有NaN错误
+  // 故引入默认参数: 有实参则用实参运算，无实参则以默认参数运算
+  function sumAnyWithDefault (start = 1, end = 10) {
+    let sum = 0
+    for (let i = start; i <= end; i++) {
+      sum += i
+    }
+    return sum
+  }
+
+  console.log(sumAnyWithDefault()) // [1,10]
+
+  // Exercise 求学生总分
+  function sumScore(array = []) { // 空数组作参数默认值
+    let score = 0
+    // 视情况，情况一用于处理用户输入的情况（全字符串）
+    // for (let i = 0; i < array.length; i++) {
+    //   score += Number(array[i])
+    // }
+    // 情况二，防止原数组有差错数据（也可以移除）
+    for (let i = 0; i < array.length; i++) {
+      if ((typeof array[i]) === 'number') {
+        score += array[i]
+      }
+    }
+    return score
+  }
+
+
+  let array = [1, 2, 3, 4, '5']
+  console.log(sumScore(array))
+  console.log(sumScore())
+
+  // p.s.
+  console.log(typeof array[1]) // number
+  console.log(typeof (typeof array[1]))  // string
+
+
+  // 5. 函数返回值 return
+  // return 后面的代码不会再被执行，会立即结束当前函数
+  // 没有return的函数，返回值默认是undefined
+
+</script>
+</body>
+</html>

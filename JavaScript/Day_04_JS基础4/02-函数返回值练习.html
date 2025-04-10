@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>求最大最小值</title>
+</head>
+<body>
+<script>
+
+    // 1.求两个数中的最大值
+    function getMax(a, b) {
+      return a > b ? a : b
+    }
+
+    let max = getMax(201, 200)
+    console.log(max)
+
+    // 2.求任意数组中的最大值
+    function getArrayMax(array = []) {
+      let max = array[0]
+      for (let i = 1; i < array.length; i++) {
+        if (array[i] > max) {
+          max = array[i]
+        }
+      }
+      return max
+    }
+
+    let array = [1, 2, 3, 4, 5]
+    let result = getArrayMax(array)
+    console.log(result)
+
+    // 3.求最大值及最小值
+    function getArrayMaxAndMin(array = []) {
+      let max = array[0]
+      let min = array[0]
+      for (let i = 0; i < array.length; i++) {
+        max = max > array[i] ? max : array[i]
+        min = min < array[i] ? min : array[i]
+      }
+
+      // 通过数组返回多个数据
+      return [max, min]
+    }
+
+    let newArray = [1, 2, 3, 4, 5, 6, 7]
+    let maxRe  = getArrayMaxAndMin(newArray)[0]
+    let minRe  = getArrayMaxAndMin(newArray)[1]
+    console.log(maxRe, minRe)
+
+</script>
+</body>
+</html>
