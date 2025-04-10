@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>作用域</title>
+</head>
+<body>
+<script>
+  // 分「全局作用域」和「局部作用域」
+  // 全局作用域：在整个script标签内或js代码内都有效 -- 对应全局变量
+  // 局部作用域：只在某个代码块中有效 -- 对应局部变量
+
+  // 全局变量
+  let num = 10
+  console.log(num)
+  function f() {
+    console.log(num)
+  }
+
+  // 局部变量
+  for (let i = 0; i < 10; i++) {
+    console.log(i)
+  }
+  // console.log(i) // not defined
+
+  // 特殊情况-1
+  // 在函数内部变量没有声明而直接赋值，会被当作全局变量。
+  // 强烈不推荐！
+  function f1() {
+    number = 10
+  }
+  f1()
+  console.log(number) // 10
+
+  // 特殊情况-2
+  // 函数的形参可以看作局部变量
+  function f2(x, y) {
+    return x + y
+  }
+  f2(1,2)
+  // console.log(x) // 报错
+
+
+  // 变量访问原则 -- 就近原则，先查找当前作用域，在一级一级往上查找（作用域链）
+  let x =10
+  function f3() {
+    let x = 20
+    function f4() {
+      let x = 30
+      console.log(x)
+    }
+    f4()
+  }
+  f3()
+  console.log(x) // 30
+</script>
+</body>
+</html>

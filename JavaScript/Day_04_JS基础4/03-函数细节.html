@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>细节</title>
+</head>
+<body>
+
+<script>
+  // 1.函数名相同，后面覆盖前面
+  function f() {
+    console.log(1)
+  }
+
+  function f() {
+    console.log(2)
+  }
+
+  f() // 无论写在哪儿，结果都是2
+
+  // 2.参数不匹配
+  function f1(a, b) {
+    return a + b
+  }
+
+  // 实参多于形参 -- 剩余实参不参与运算
+  console.log(f1(1,2,3)) // 2
+  // 实参少于形参 -- 另一个形参就变成了undefined，出现NaN结果
+  console.log(f1(1)) // NaN
+</script>
+</body>
+</html>

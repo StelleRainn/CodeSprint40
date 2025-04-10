@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>匿名函数</title>
+</head>
+<body>
+
+<script>
+  // 之前学习的都为具名函数
+  // 匿名函数 function() {}
+
+  // 1.函数表达式 -- 将匿名函数赋值给一个变量
+  let fn = function (a, b) {
+    return a + b
+  }
+  // 调用
+  let re = fn(10, 20)
+  console.log(re) // 30
+  // 和具名函数的不同：具名函数的调用可以在任意位置（包括在函数定义前），而函数表达式必须先声明再调用
+
+  // 2.立即执行函数 -- 避免全局变量之间的污染
+  // 立即执行函数之间，必须加分号!
+  // 如果前面有代码，也要加分号!
+  ;(function (x, y) { // 分号不能省略，漏掉则报错
+    console.log(x + y)
+  })(1 ,2);
+
+  (function (x ,y) {
+    console.log(x + y)
+  }(1, 2)); // 调用函数的括号（实参列表）也可以写在里面
+
+  // p.s. 立即执行函数也可以加函数名
+
+</script>
+</body>
+</html>

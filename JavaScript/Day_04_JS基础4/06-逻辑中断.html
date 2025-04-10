@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>逻辑中断</title>
+</head>
+<body>
+<script>
+  let age = 18
+  console.log(false && age++) // 返回false // 一假则假，导致后面的age++不再需要执行
+  console.log(age) // 18
+
+  console.log(true || age++) // 返回true // 一真则真，导致后面的age++依然不执行
+  console.log(age) // 18
+
+  console.log(11 && 22) // 同真才真，按顺序执行到最后的真 // 22
+  console.log(11 || 22) // 一真，执行完第一个真结束 // 11
+
+  // 总结
+  // && 只要左边为假就中断（短路）
+  // || 只要左边为真就中断（短路）
+  // 原因：通过左边的式子就能得到整个结果（&&的一假则假，||的一真则真）,所以没必要再判断右边
+
+  function f(x, y) {
+    x = x || 0
+    y = y || 0
+    return x + y
+  }
+
+  console.log(f(1,2)) // 3
+  console.log(f()) // 0 避免了undefined的NaN情况出现
+
+</script>
+</body>
+</html>

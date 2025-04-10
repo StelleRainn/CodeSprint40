@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>封装计算时间函数</title>
+</head>
+<body>
+
+<script>
+  let userInputSeconds = Number(prompt('请输入秒数：'))
+
+  function timerTransformer(sec = 0) {
+    let hours, minutes, seconds
+    // 使用parseInt来保留整数，接受字符串型
+    hours = parseInt(String(((sec / 60) / 60) % 24))
+    minutes = parseInt(String((sec / 60) % 60))
+    seconds = parseInt(String(sec % 60))
+    let times = [hours, minutes, seconds]
+    // 补0
+    for (let i = 0; i < times.length; i++) {
+        times[i] = times[i] < 10 ? '0' + times[i] : times[i]
+    }
+    return times
+  }
+
+  let re = timerTransformer(userInputSeconds)
+
+  document.write(`
+    <h2>${userInputSeconds}秒转换后是${re[0]}小时${re[1]}分${re[2]}秒</h2>
+  `)
+</script>
+</body>
+</html>
