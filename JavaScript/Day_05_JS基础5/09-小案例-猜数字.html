@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>猜数字</title>
+</head>
+<body>
+
+<script>
+  // 生成随机数
+  let random = Math.floor(Math.random() * (10 - 1 + 1) + 1)
+
+  // 用户输入
+  let userInput = Number(prompt('Please enter a number:'))
+
+  // // 循环判断
+  // while (true) {
+  //   if (userInput === random) {
+  //     alert(`Bingo~, the correct answer is ${random}`)
+  //     break
+  //   } else if (userInput > random) {
+  //     userInput = Number(prompt('Too large~ try a smaller one~'))
+  //   } else {
+  //     userInput = Number(prompt('Too small~ try a larger one~'))
+  //   }
+  // }
+
+  // 改进：限定次数
+  let times = 3
+  times--
+  while (times) {
+    if (userInput === random) {
+      alert(`Bingo~, the correct answer is ${random}`)
+      break
+    } else if (userInput > random) {
+      userInput = Number(prompt('Too large~ try a smaller one~'))
+      times--
+    } else {
+      userInput = Number(prompt('Too small~ try a larger one~'))
+      times--
+    }
+  }
+  if ( times === 0) {
+      alert(`Sorry ~ you've used up your chances, the correct answer is ${random}`)
+  }
+
+
+</script>
+</body>
+</html>

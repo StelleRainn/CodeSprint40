@@ -6,6 +6,48 @@
 ## April 2025
 <details><summary> 点击展开 / 关闭 </summary>
 
+### Apr 11th, Fri, Day 22
+- 「持续推进」
+- 节奏稳定的一天，正式完成了JS视频课的基础语法部分，即将进入Web APIs阶段。
+- 今天的主要知识点是**对象**：
+  - **基本概念**：一种无序的集合。*p.s.数组是一种有序的聚合*
+  - **声明**：`let obj = {}` 或 `let obj = new Object()`。后者是未来的知识
+  - **构成**：属性和方法。`属性名: 属性值` `方法名: 函数`。各属性、方法之间用逗号隔开
+    - e.g. `age: 18, sayHi: function () {console.log('Hi~')}`
+  - **增删改查 & 方法的调用**：围绕 对象名.属性名/方法名 操作
+    - 增：对象名.新属性 = 值
+    - 改：对象名.原属性 = 值
+    - 删：delete 对象名.属性（不常用）
+    - 查：对象名.属性名 或 对象名['属性名']。
+      - 重点，尤其是第二种方式在面对属性名是字符串或含特殊字符、for-in循环中特别有用
+      - 第二种方式中，引号是必须加的
+    - 方法的调用：对象名.方法名(参数)
+  - **遍历对象**：使用for-in循环 *p.s.虽然也可以用于遍历数组，但由于变化量输出的是字符/串，不推荐这么用*
+  ```
+  for (let key in obj) { 
+    console.log(key) // 得到了属性名，而且都有引号（字符串）-- 'myName' 'age' 'gender'
+    console.log(obj[key]) // 'stelle rainn' 18 'male'
+  }
+  ```
+  - **内置数学对象**：提供一些列可用于数学运算的属性或方法
+    - 属性：e.g. `Math.E` `Math.PI` `Math.LN2`
+    - 方法：`Math.ceil(x)` `Math.floor(x)` `Math.round(x)` `Math.abs(x)` `Math.max(x, y, z)` `Math.min(x, y, z)` `Math.pow(x,n)` `Math.sqrt(x)`
+    - 随机数：`Math.random(x)`无参数，返回[0,1)区间的随机小数，扩展运用：
+      - 取数组元素：`arr[Math.floor(Math.random() * (arr.length))] // 因为数组长度值刚好比索引值多1，加上floor(x), 解决了右开区间取值的问题`
+      - 任取[min, max]之间的整数：`Math.floor(Math.random() * (max - min + 1) + min)`
+  - 拓展知识：简单数据类型和引用数据类型
+    - 简单数据类型（值类型）：变量本身存储这个值，存储于栈空间
+    - 引用数据类型（复杂数据类型）：变量本身只存储这个对象的「引用地址」，这个地址指向堆空间中存储的实际数据
+    - *p.s. 类似C++中的指针*
+    ```
+    let obj1 = {
+    age : 18
+      }
+    let obj2 = obj1
+    obj2.age = 20
+    console.log(obj1.age) // 20
+    ```
+
 ### Apr 10th, Thu, Day 21
 - 「推进」
 - 依旧是节奏稳定的一天，继续推进JavaScript基础的学习。今天的主要知识点是**函数**：

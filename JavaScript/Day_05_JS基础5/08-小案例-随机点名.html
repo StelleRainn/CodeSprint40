@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机点名</title>
+</head>
+<body>
+
+<script>
+    let arr = ['grain', 'stelle', 'rainn', 'charlotte', 'John', 'skyblue']
+    // 最大索引5，而arr.length = 6，可以利用
+    // let random = Math.floor(Math.random() * arr.length)
+    // document.write(arr[random])
+
+    // 改进，不允许重复显示
+    let newRandom = Math.floor(Math.random() * arr.length)
+    document.write(arr[newRandom])
+    arr.splice(newRandom, 1)
+    console.log(arr)
+</script>
+</body>
+</html>

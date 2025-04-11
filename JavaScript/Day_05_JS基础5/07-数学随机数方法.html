@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>random</title>
+</head>
+<body>
+
+<script>
+  // 无参数，返回[0,1)区间的随机小数
+  console.log(Math.random())
+
+  // 取0～10之间的整数 [0,10]
+  console.log(Math.floor(Math.random() * ( 10 + 1 )))
+
+  // 从数组中抽取
+  let arr = ['red', 'blue', 'green']
+  let random = Math.floor(Math.random() * (arr.length))
+  console.log(arr[random])
+
+  // 取min～max之间的整数 [min,max]
+  // Math.floor(Math.random() * (max - min + 1) + min)
+  function getRandom(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+  let max = 10
+  let min = 5
+  console.log(getRandom(min, max))
+
+
+</script>
+</body>
+</html>

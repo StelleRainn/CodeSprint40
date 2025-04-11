@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生成随机颜色</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+
+<script>
+  function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
+  function getRandomArray(array) {
+    return array[Math.floor(Math.random() * array.length)]
+  }
+
+  function getRandomColor(flag = true) {
+    let hexColor = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f']
+    let re = []
+    if (flag) {
+      for (let i = 0; i < 6; i++) {
+        re[i] = getRandomArray(hexColor)
+      }
+    } else {
+        for (let i = 0; i < 3; i++) {
+          re[i] = getRandomNumber(0,255)
+        }
+      }
+    return re
+  }
+
+
+  function printColor(flag = true) {
+    let re
+    if (flag) {
+      re = getRandomColor(flag)
+      console.log(re)
+      document.write(`
+      <div style = "background-color: #${re[0]}${re[1]}${re[2]}${re[3]}${re[4]}${re[5]};">1</div>
+      `)
+    } else {
+      re = getRandomColor(flag)
+      console.log(re)
+      document.write(`
+      <div style = "background-color: rgb(${re});">1</div>
+      `)
+    }
+  }
+
+
+  printColor(true)
+  printColor()
+  printColor(false)
+
+</script>
+</body>
+</html>
