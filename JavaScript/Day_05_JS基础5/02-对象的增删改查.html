@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增删改查</title>
+</head>
+<body>
+
+<script>
+  let me = {
+    myName: 'stelle rainn',
+    age: 18,
+    gender: 'male',
+    'height-weight': '168-58'
+  }
+
+  // 查：对象名.属性名
+  console.log(me.myName)
+  console.log(me.myName, me.age)
+
+  // 改：重新赋值（不用再let）
+  me.age = 21
+  console.log(me)
+  console.log(me.age) // 21
+
+  // 增：对象名.新属性 = 值 （也不用再let）
+  me.height = 168
+  console.log(me)
+  console.log(me.height) // 168
+
+  // 删（了解）：delete 对象名.属性名
+  delete me.height
+  console.log(me)
+
+  // （重点）查的另一种方法: 当属性中出现字符串, 或其中有特殊字符
+  // 对象名['属性名']
+  // 这个引号是必须加的
+  console.log(me['height-weight'])
+  console.log(me['gender'])
+  console.log(me['age'])
+</script>
+</body>
+</html>

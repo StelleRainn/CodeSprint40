@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>遍历循环</title>
+</head>
+<body>
+
+<script>
+  // 对象无序且没有长度，不能用常规for循环
+  // for in 循环：可遍历对象，也可以遍历数组（少用）
+
+  // 遍历数组示例（不推荐使用）
+  let arr = ['11', '22', '44']
+  for (let k in arr) {
+    console.log(k) // 输出数组的下标索引号，但都是字符串
+    console.log(arr[k])
+  }
+
+  // 遍历对象示例
+  let me = {
+    myName: 'stelle rainn',
+    age: 18,
+    gender: 'male'
+  }
+
+  // ！！！重点！！！
+  for (let Key in me) {
+    // console.log(Key) // 得到了属性名，而且都有引号（字符串）'myName' 'age' 'gender'
+    // 所以可以通过“查”的第二种方式调用
+    // obj[key]
+    console.log(me[Key]) // 'stelle rainn' 18 'male'
+  }
+
+  // Exercise
+
+
+</script>
+</body>
+</html>
