@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通过类名修改样式</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: #66ccff;
+        }
+
+        /*该类名用于后续在JS中添加*/
+        .box {
+            width: 300px;
+            height: 300px;
+            background-color: darkcyan;
+            margin: 100px auto;
+            padding: 10px 10px;
+            border: 1px skyblue solid;
+        }
+    </style>
+</head>
+<body>
+<div class="nav"></div>
+
+<script>
+  // 新值换旧值（覆盖之前的类名）
+  // 获取元素
+  const div = document.querySelector('div')
+
+  // 添加类名（由于class已经是关键字，所以用className）
+  div.className = 'box'
+
+  // 如果想保留原类名，就两个一起写
+  div.className = 'nav box'
+
+  // 缺点：多个类名操作麻烦
+
+</script>
+</body>
+</html>

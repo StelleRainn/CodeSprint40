@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>style样式修改属性</title>
+    <style>
+        body {
+            background: url('images/desktop_1.jpg') no-repeat top center/cover;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: #66ccff;
+        }
+    </style>
+</head>
+<body>
+<div class="box"></div>
+
+<script>
+  // 1.通过style属性操作css
+  // 对象.style.样式属性 = 值
+  // 生成的是「行内样式表」，权重较高！
+  // 在改样式较少的时候比较方便
+
+  const box = document.querySelector('.box')
+  box.style.width = '300px' // px等单位一定要加
+  box.style.height = '300px'
+  box.style.backgroundColor = 'darkCyan' // css中有短横线的，用小驼峰命名法
+  box.style.border = '2px solid #000'
+  box.style.borderTop = '2px solid red'
+  box.style.boxShadow = '2px 2px 10px 5px rgba(0, 0, 0, .5)'
+
+
+  // Exercise 页面刷新，随机更换「背景」图片
+  // p.s. body是唯一的，所以不用querySelector也可以，直接document.body
+
+  // 生成随机数函数
+  function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
+  document.body.style.backgroundImage = `url('images/desktop_${getRandomNumber(1, 10)}.jpg')`
+
+
+</script>
+</body>
+</html>

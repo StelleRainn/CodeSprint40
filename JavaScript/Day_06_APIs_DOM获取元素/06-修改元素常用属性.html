@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改元素属性</title>
+</head>
+<body>
+<img src="images/1.webp" alt="">
+
+<img src="#" alt="#" class="randomPic">
+
+<script>
+  // 操作元素常用属性，如src，href等
+  // 对象.属性 = 值
+  const img = document.querySelector('img')
+  img.src = 'images/2.webp'
+  img.title = 'title'
+
+  // Exercise 页面刷新，图片随机更换
+  // 获取元素
+  const pic = document.querySelector('.randomPic')
+
+  // 生成随机数函数
+  function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
+  // 修改图片
+  pic.src = `images/${getRandomNumber(0, 6)}.webp`
+
+</script>
+</body>
+</html>

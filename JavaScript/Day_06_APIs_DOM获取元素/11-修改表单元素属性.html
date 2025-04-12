@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>操作表单元素属性</title>
+</head>
+<body>
+<label>
+    <input type="text"  value="Computer">
+</label>
+
+<label for=""><input type="checkbox" name="" id="" class="check"></label>
+
+<button>click</button>
+<script>
+  // 获取 DOM对象.属性名
+  // 设置 DOM对象.属性名 = 新值
+
+  // 1. 获取元素
+  const uname = document.querySelector('input')
+
+  // 2. 获取表单的值：用obj.value（innerHTML不行）
+  console.log(uname.value)
+
+  // 修改类型
+  uname.type = 'password'
+
+  // 表单中的添加效果/移除效果，一律用「布尔值」表示
+  // 1. checked
+  const check = document.querySelector('.check')
+  console.log(check.checked) // 默认false
+  // 用布尔值而不是字符串
+  check.checked = true
+  console.log(check.checked) // true
+
+  // p.s. 虽然用 'true' 也可以，但实际上是发生了隐式转换，非空字符串就是true
+  // 因为checked属性本身只接受布尔值
+
+  // 2. disabled
+  const button = document.querySelector('button')
+  console.log(button.disabled) // 默认false
+  button.disabled = true
+  console.log(button.disabled) // true
+
+</script>
+</body>
+</html>

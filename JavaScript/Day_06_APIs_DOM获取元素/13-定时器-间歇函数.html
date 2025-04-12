@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定时器-间歇函数</title>
+</head>
+<body>
+<!--每隔一段时间需要自动执行一段代码，不需要我们手动去触发-->
+
+<script>
+  // 1.开启定时器
+  // setInterval(函数，间隔时间)
+  // 每隔一段时间执行该函数，间隔时间的单位是毫秒
+
+  // 匿名函数方式
+  setInterval(function () {
+    console.log('1s/carries')
+  }, 1)
+
+  // 用外部具名函数时，只填函数名，不要填括号
+  function f() {
+    console.log('外部函数')
+  }
+  setInterval(f, 1000)
+
+  // 定时器有返回值：一个id数字，代表自己是第几个定时器
+  let n = setInterval(function () {
+    console.log(2)
+  }, 1000)
+  console.log(n) // 3
+
+  // 2.关闭定时器 clearInterval
+  let timer = setInterval(function () {
+    console.log('hello')
+  }, 1000)
+  clearInterval(timer)
+
+</script>
+</body>
+</html>

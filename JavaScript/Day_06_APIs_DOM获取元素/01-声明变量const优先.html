@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>声明变量const优先</title>
+</head>
+<body>
+
+<script>
+  // const：语义化更好（毕竟未来不会改的话）
+  // 建议：有了变量先给const，如果发现后面是要被修改的，再改为let
+
+  // 特殊：数组
+  const arr = ['red', 'blue'] // arr看似是常量
+  arr.push ('green') // 修改了数组中的内容，但这个追加不会报错
+  console.log(arr) // 因为arr本身存储的是地址值，且地址值自始至终没有修改，自然没有报错
+
+  // 但以下情况会报错
+  // arr = [1, 2, 3]
+  // console.log(arr)
+
+  // 总结，可以追加，但不能「赋值」修改
+  const obj = {}
+  obj.name = 'rainn' // OK
+  // obj = {name: rainn} // 不OK
+  console.log(obj)
+
+  // 建议：数组和对象用const声明
+  // 用let的情况：基本数据类型的值/引用数据类型的地址发生变化的时候
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>从HTML标签获取DOM对象</title>
+</head>
+<body>
+<div class="box"></div>
+<p id="nav"></p>
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+</ul>
+
+<script>
+  // 1.根据CSS选择器来获取DOM元素（重点）
+  // 语法：document.querySelector('css选择器') // 必须加引号（字符串），不然就是变量了
+  // 参数：包含一个或多个有效的CSS选择器字符串
+  // 返回值：匹配到的「第一个」元素，一个HTMLElement对象；没有匹配到则返回空
+
+  // 选择匹配到的的第一个元素
+  const box = document.querySelector('div')
+  const nav = document.querySelector('#nav')
+  const li = document.querySelector('ul li:nth-child(1)')
+  console.log(box)
+  console.log(nav)
+  console.log(li)
+
+  // 选择所有
+  // 返回值：匹配到的所有元素，NodeList对象集合
+  const lis = document.querySelectorAll('ul li')
+  console.log(lis)
+  // 伪数组：有长度有所引号，但没有pop，push等数组方法
+  // 注意：querySelectorAll获取的一定是伪数组，哪怕只有一个元素
+
+  // 在控制台将内容遍历输出
+  for (let i = 0; i < lis.length; i++) {
+    console.log(lis[i])
+  }
+
+  // 2.其他获取DOM元素的方法（了解）
+  document.getElementById('nav') // 根据id获取第一个元素（单元素）
+  document.getElementsByTagName('div') // 根据标签获取一类元素 得到伪数组
+  document.getElementsByClassName('name') // 根据类名获取元素 得到伪数组
+</script>
+</body>
+</html>

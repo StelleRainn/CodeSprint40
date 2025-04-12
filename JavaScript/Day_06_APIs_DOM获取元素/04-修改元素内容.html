@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改元素内容</title>
+</head>
+<body>
+<div class="box">我是文字内容</div>
+<script>
+    // 对象.innerText 属性 & 对象.innerHTML 属性
+
+    // 1.获取元素
+    const div = document.querySelector('div')
+    // console.log(div.innerText) // 文字内容
+
+    // 2.修改内容
+    div.innerText = '这是innerText修改的内容'
+    console.log(div.innerText)
+
+    // innerText 不解析标签
+    div.innerText = '<strong>不解析标签</strong>'
+
+    // innerHTML 可以解析标签
+    div.innerHTML = '<strong>解析标签</strong>'
+
+    // Exercise
+</script>
+</body>
+</html>

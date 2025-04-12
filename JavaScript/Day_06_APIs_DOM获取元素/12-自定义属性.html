@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义属性</title>
+</head>
+<body>
+<!--自定义属性必须以data- 开头-->
+<div data-id = '1' data-spm = 'sample'>1</div>
+<div data-id = '1' data-spm = 'sample'>2</div>
+<div data-id = '1' data-spm = 'sample'>3</div>
+<div data-id = '1' data-spm = 'sample'>4</div>
+<div data-id = '1' data-spm = 'sample'>5</div>
+
+
+<script>
+  const one = document.querySelector('div')
+
+  // 在DOM对象上一律以dataset对象方式获取
+  console.log(one.dataset) // DOMStringMap（拿到全部自定义属性）
+  console.log(one.dataset.id) // 1
+  console.log(one.dataset.spm) // sample
+</script>
+</body>
+</html>
