@@ -6,6 +6,87 @@
 ## April 2025
 <details><summary> 点击展开 / 关闭 </summary>
 
+### Apr 12th, Sat, Day 23
+- 「持续推进」
+- 正式进入JS的Web APIs学习，接触到了非常多新的知识，需及时复习：
+  - **声明变量const优先**：
+    - const的语义化更好；
+    - 建议数组和对象使用const声明，因为数组/对象名本身存储的是地址；
+    - 使用数组方法或对象属性赋值时，本身没有影响 数组/对象名 中的地址值；
+    - 注意，如果将 数组/对象名 用于声明新的 数组/对象，那就等同于修改了地址，就会引发常量报错；
+  - **DOM树与DOM对象**：
+    - 最核心思想：把网页内容当作对象处理；DOM对象：浏览器根据html标签生成的「JS对象」，有属性名和方法
+    - document对象：最大的DOM对象
+  - **由HTML树获取DOM元素（重点）**：
+    - `document.querySelector('css选择器')` 
+      - 必须加引号（字符串）；
+      - 参数，一个或多个css选择器（和css一样的写法）；
+      - 返回值：匹配到的「第一个」元素，一个HTMLElement对象；没有则返回空
+    - `document.querySelectorAll('css选择器')`
+      - 返回值：匹配到的所有元素，NodeList对象集合
+      - 一个伪数组（哪怕只有一个元素），有长度、索引号，但没有数组方法
+    - 其他获取方式（了解即可）：
+      ```
+      document.getElementById('nav') // 根据id获取第一个元素（单元素）
+      document.getElementsByTagName('div') // 根据标签获取一类元素 得到伪数组
+      document.getElementsByClassName('name') // 根据类名获取元素 得到伪数组
+      ```
+  - **修改元素内容：** `obj.innerText = 'text'`或`obj.innerHTML = 'text'`，其中，`innerHTML`会解析html标签；常用于**双标签**
+  - **修改元素常用属性：**修改如src，href等html标签的属性，像修改对象属性一样修改。 e.g. `img.src = 'images/01.jpg'`
+  - **修改元素样式：**分为`style`，`className`，`classList`三种方式
+    - **style方式：**和修改对象属性一样，但要先加入`.style`。e.g. `box.style.backgroundColor = 'darkCyan' // css中有短横线的，用小驼峰命名法`
+    - **className方式：**覆盖一个新的类名。 e.g. `div.className = 'nav box' // 若想保留原类名，就两个一起写`
+    - **classList方式：追加、删除、切换类名：**
+    ```
+    // 「追加」类名
+    box.classList.add('active') // 类名一样不加点，并且是字符串
+    // 「移除」类名
+    box.classList.remove('box')
+    // 「切换」类名：有就删掉，没有就加上
+    box.classList.toggle('box')
+    ```
+  - **修改表单元素属性：**本质还是修改对象属性、重新赋值
+    - 获取表单的值：用`obj.value`而非`innerHTML`
+    - 修改类型：e.g. `input.type = 'password'`
+    - 修改表单中的添加/移除效果，一律用「布尔值」。 e.g. `check.checked = true` `button.disabled = true`
+    - `button`特殊一些，双标签，所以还是用innerHTML修改其中的文字
+    - p.s. 虽然有时填 'true' 字符串也生效，但本质上他们发生了隐式转换，上述属性只接受布尔值。生效是因为非空字符串在转换时成为了true
+  - **自定义属性：**
+    - 一律以`data-`开头。e.g. `<div data-id = '1' data-spm = 'sample'>1</div>`
+    - 在DOM对象上一律以dataset对象方式获取。e.g.
+    ```
+    console.log(div.dataset) // DOMStringMap（拿到全部自定义属性）
+    console.log(div.dataset.id) // 1
+    console.log(div.dataset.spm) // sample
+    ```
+  **定时器之间歇函数：**
+    - `setInterval(函数, 间隔时间ms)`，返回值：定时器id（表示自己是第几个定时器）
+    - `clearInterval(timer)` 结束定时器，参数`timer`即某个定时器，如`let timer = setInterval(...)`
+    ```
+    setInterval(function () {
+      console.log('1s/carries')
+    }, 1000)
+    ```
+    - 使用外部具名函数的话，不用加括号，只填入函数名即可。e.g. `setInterval(f, 1000)`
+- 完成了3个小案例（随机抽奖、随机轮播图、阅读用户协议倒计时）和一个综合案例（顺序定时轮播图）
+  - 随机抽奖：对数组方法，Math对象方法（Random）和innerHTML的运用
+  - 随机轮播图：对修改元素内容、常用属性、样式属性的综合运用
+  - 用户协议倒计时：对修改表单属性、计时器的综合运用
+  - 综合案例：综合了修改元素内容、常用属性、样式属性、计时器的综合运用。
+    - 其中对于原点指示器，运用排他思想，比原先计划用数组下标计算的方式更加高效直观
+    ```
+    // 删除前一个圆点
+    // li[i - 1].classList.remove('active')
+    // 用排他思想做会更好！避免了数组下标的计算问题
+    document.querySelector('.slider-indicator .active').classList.remove('active')
+    ...
+    li[i].classList.add('active')
+    ```
+- 至此，JavaScript也算是开始与之前学的HTML开始互通了，及时复习！
+    
+
+
+
 ### Apr 11th, Fri, Day 22
 - 「持续推进」
 - 节奏稳定的一天，正式完成了JS视频课的基础语法部分，即将进入Web APIs阶段。
