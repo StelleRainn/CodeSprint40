@@ -40,10 +40,10 @@
       document.getElementsByClassName('name') // 根据类名获取元素 得到伪数组
       ```
   - **修改元素内容：** `obj.innerText = 'text'`或`obj.innerHTML = 'text'`，其中，`innerHTML`会解析html标签；常用于**双标签**
-  - **修改元素常用属性：**修改如src，href等html标签的属性，像修改对象属性一样修改。 e.g. `img.src = 'images/01.jpg'`
-  - **修改元素样式：**分为`style`，`className`，`classList`三种方式
-    - **style方式：**和修改对象属性一样，但要先加入`.style`。e.g. `box.style.backgroundColor = 'darkCyan' // css中有短横线的，用小驼峰命名法`
-    - **className方式：**覆盖一个新的类名。 e.g. `div.className = 'nav box' // 若想保留原类名，就两个一起写`
+  - **修改元素常用属性：** 修改如src，href等html标签的属性，像修改对象属性一样修改。 e.g. `img.src = 'images/01.jpg'`
+  - **修改元素样式：** 分为`style`，`className`，`classList`三种方式
+    - **style方式：** 和修改对象属性一样，但要先加入`.style`。e.g. `box.style.backgroundColor = 'darkCyan' // css中有短横线的，用小驼峰命名法`
+    - **className方式：** 覆盖一个新的类名。 e.g. `div.className = 'nav box' // 若想保留原类名，就两个一起写`
     - **classList方式：追加、删除、切换类名：**
     ```
     // 「追加」类名
@@ -53,7 +53,7 @@
     // 「切换」类名：有就删掉，没有就加上
     box.classList.toggle('box')
     ```
-  - **修改表单元素属性：**本质还是修改对象属性、重新赋值
+  - **修改表单元素属性：** 本质还是修改对象属性、重新赋值
     - 获取表单的值：用`obj.value`而非`innerHTML`
     - 修改类型：e.g. `input.type = 'password'`
     - 修改表单中的添加/移除效果，一律用「布尔值」。 e.g. `check.checked = true` `button.disabled = true`
