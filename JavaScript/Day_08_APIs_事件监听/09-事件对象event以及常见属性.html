@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件对象event</title>
+</head>
+<body>
+<button>button</button>
+
+<label >
+    <input type="text">
+</label>
+
+<script>
+    // 事件绑定的回调函数的「第一个参数」就是事件对象
+    // 必须是在事件里面！
+    // 常见属性
+    const btn = document.querySelector('button')
+    btn.addEventListener('click', function (e) {
+      console.log(e) // PointerEvent
+      console.log(e.type) // type: 获取当前的事件类型
+      console.log(e.clientX) //获取光标相对于浏览器可见窗口左上角的位置
+      console.log(e.clientY)
+      console.log(e.offsetX) // 获取光标相对于当前DOM元素左上角的位置
+      console.log(e.offsetY)
+    })
+
+    // key: 键盘值 （keycode已废弃）
+    const input = document.querySelector('input')
+    input.addEventListener('keyup', function (e) {
+      // console.log(e.key)
+      if (e.key === 'Enter') {
+        console.log('我按了enter')
+      }
+    })
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件监听</title>
+    <style>
+        .ad {
+            width: 400px;
+            height: 100px;
+            margin: 0 auto;
+            background-color: darkcyan;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .ad .close {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+        }
+        
+        
+    </style>
+</head>
+<body>
+<button>
+    点击
+</button>
+
+<div class="ad">
+    <p>我是广告</p>
+    <div class="close">x</div>
+</div>
+
+<script>
+  // 元素对象.addEventListener('事件类型', 要执行的函数)
+  // 三要素：事件源，事件类型，事件调用的函数
+
+  // Exercise 点击按钮，弹出对话框
+  const btn = document.querySelector('button')
+  btn.addEventListener('click', function () {
+    alert('点击了')
+  })
+
+  // Exercise 关闭广告
+  const AD = document.querySelector('.ad')
+  const closeAd = document.querySelector('.ad .close')
+  closeAd.addEventListener('click', function () {
+    AD.style.display = 'none'
+  })
+
+  // 过去版本的事件监听
+  btn.onclick = function () {
+    alert('onclick')
+  }
+
+  // 但是会被新的onclick覆盖(addEventListener就不会)
+  btn.onclick = function () {
+    alert('onclick2')
+  }
+
+
+</script>
+</body>
+</html>

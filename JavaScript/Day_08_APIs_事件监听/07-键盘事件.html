@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>键盘事件与用户输入文本事件</title>
+  <style>
+    /*拓展：css中的focus*/
+    input {
+      width: 200px;
+      transition: all .3s;
+    }
+
+    input:focus {
+      width: 350px;
+    }
+  </style>
+</head>
+<body>
+<label>
+  <input type="text" name="" id="">
+</label>
+
+<script>
+  // 键盘事件 keydown / up
+  // 用户输入事件 input
+  const input = document.querySelector('input')
+  input.addEventListener('keydown', function () {
+    // console.log('press')
+  })
+
+  input.addEventListener('keyup', function () {
+    // console.log('up')
+  })
+
+  input.addEventListener('input', function () {
+    // console.log('123')
+    // console.log(input.value)
+  })
+
+
+</script>
+</body>
+</html>

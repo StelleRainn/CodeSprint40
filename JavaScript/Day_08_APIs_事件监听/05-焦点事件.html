@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>焦点事件</title>
+</head>
+<body>
+<label>
+  <input type="text" >
+</label>
+
+<script>
+  // focus 获得焦点
+  // blur 失去焦点
+  const input = document.querySelector('input')
+
+  input.addEventListener('focus', function () {
+    console.log('焦点触发')
+  })
+
+  input.addEventListener('blur', function () {
+    console.log('焦点消失')
+  })
+</script>
+</body>
+</html>

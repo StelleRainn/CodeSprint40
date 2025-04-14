@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>环境对象this</title>
+</head>
+<body>
+<button>button</button>
+
+
+<script>
+  // 每个函数里面都有this环境对象
+  function f() {
+    console.log(this)  // window. 普通函数中，this指向window
+  }
+  f()
+
+  const btn = document.querySelector('button')
+  btn.addEventListener('click', function () {
+    console.log(this) // <button>button</button> btn对象
+    this.style.color = 'red' // this 指代了 btn
+  })
+
+  // 粗略规则
+  // 函数的调用方式不同，this的指代对象也不同
+  // 谁调用，this就是谁 -- 粗略规则
+  // 直接调用函数，其实相当于window.fn()，所以指向window
+
+
+  // 回调函数：将函数A作为参数，传递给函数B时，称函数A为回调函数
+  // setInterval(fn, 1000) fn()就是回调函数
+  // addEvenListener('type', function(){...}) function也是回调函数
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>鼠标事件</title>
+</head>
+<body>
+
+<button>
+    button
+</button>
+<div><p>111</p></div>
+
+<script>
+  const btn = document.querySelector('button')
+
+  // 过去版本的事件监听
+  btn.onclick = function () {
+    alert('onclick')
+  }
+
+  // 但是会被新的onclick覆盖(addEventListener就不会)
+  btn.onclick = function () {
+    alert('onclick2')
+  }
+
+  // 而addEvenListener不会出现覆盖的情况
+  btn.addEventListener('click', function () {
+    alert('add1')
+  })
+
+  btn.addEventListener('click', function () {
+    alert('add2')
+  })
+
+  // 鼠标事件
+  // click 鼠标点击
+  // mouseenter 鼠标经过
+  // mouseleave 鼠标离开
+  const div = document.querySelector('div')
+  div.addEventListener('mouseenter', function () {
+    console.log('mouse enter')
+  })
+
+  div.addEventListener('mouseleave', function () {
+    console.log('mouse leave')
+  })
+</script>
+</body>
+</html>
