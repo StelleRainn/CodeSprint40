@@ -6,6 +6,67 @@
 ## April 2025
 <details><summary> 点击展开 / 关闭 </summary>
 
+### Apr 14th, Mon, Day 25
+- 「一如既往，一往无前」
+- 投入到学习状态中的感觉很美好，愿一切都将有所收获。
+- 今日知识点总结：
+  - 最核心：**事件监听：** 
+    - `元素对象.addEventListener('事件类型', 要执行的函数)`
+    - 三要素：事件源（元素对象），事件类型，执行（调用）的函数
+    - e.g. 关闭广告：btn.addEventListener('click', function () { AD.style.display = 'none' })
+    - 其他版本的事件监听（看到别人的代码知道即可）： btn.onclick = function () {...} 缺点在于，会被新的onclick覆盖（相当于重置onclick函数），而addEvenListener就不会覆盖
+  - 今日所学的四类事件：鼠标事件、焦点事件、键盘事件、文本输入事件
+    - 鼠标事件：click mouseenter mouseleave 
+    - 焦点事件：focus blur 主要是input文本框
+    - 键盘事件：keydown keyup
+    - 输入事件：input
+  - 事件对象event以及常见属性：
+    - 时间绑定的回调函数的第一个参数就是事件对象，必须是在事件里面
+    - 回调函数：将函数A作为参数，传递给函数B时，称函数A为回调函数 e.g. setInterval(fn, 1000) fn()就是回调函数
+    ```
+    btn.addEventListener('click', function (e) {
+      console.log(e) // PointerEvent
+      console.log(e.type) // type: 获取当前的事件类型
+      console.log(e.clientX) //获取光标相对于浏览器可见窗口左上角的位置
+      console.log(e.clientY)
+      console.log(e.offsetX) // 获取光标相对于当前DOM元素左上角的位置
+      console.log(e.offsetY)
+    })
+    ```
+    - key属性：键盘值（原先keycode已弃用） e.g. if (e.key === 'Enter') { console.log('我按了enter') }
+  - 环境对象this：
+    - 每个「函数里面」都有this对象，普通函数中，this指向window；回调函数里则指向调用者 e.g.
+    ```
+    btn.addEventListener('click', function () {
+      console.log(this) // <button>button</button> btn对象
+      this.style.color = 'red' // this 指代了 btn
+    })
+    ```
+    - 函数的调用方式不同，this的指代对象也不同。粗略规则：谁调用，this就是谁
+  - 5个案例+2个综合案例
+    - 随机点名：通过click事件设置开始/结束点名，通过定时器与随机数，选出名字并填入到innerHTML中，删除对应姓名，最后禁用按钮
+    - 轮播图完整版：
+      - 通过click事件设置左右按钮业务(index++或index--)，分别设置index达限后恢复（归0或arr.length - 1)，
+      - 根据index更换轮播组件的内容，小圆点依旧采用排他思想：先移除原active的active类，再为现在的index增添active类
+      - 自动播放业务，本质是右按钮（next）业务。知识点：不用重复写一遍，直接用 next.click() 自动调用点击事件（外嵌定时器）
+      - 鼠标经过/离开影响自动播放：mouseenter与mouseleave事件，分别销毁定时器与开启定时器即可
+    - 搜索框菜单：通过对input分别设置focus/blur焦点事件，控制元素的display:block/none样式
+    - 按回车发布评论，以及评论字数统计：
+      - 获焦/失焦事件控制字数统计的opacity
+      - 计算字数：对textArea设置input事件，获取textArea.value.length计算字数
+      - str.trim()方法：去除字符串左右两边的空格
+      - 发布评论：为textArea设置键盘事件，当事件对象`e.key === 'Enter'`,检测空内容(`if(textArea.value.trim() // 去除左右空内容并检测是否为空`)，修改样式，发布评论; 清空字数
+    - 综合案例：Tab栏切换：
+      - 为每个a标签添加mouseenter事件，添加样式，同时完成对内容div块添加样式的操作（都是利用排他思想添加active类）
+    - 综合案例：全选反选案例：(checkbox) 全选可以控制所有小按钮，小按钮也可以反过来控制全选按钮
+      - 全选控制小按钮：为checkAll添加click事件，遍历所有singleCheck[i],直接令所有小按钮与自己的checked属性同步 核心代码：singleCheck[i].checked=this.checked
+      - 小按钮控制全选：同样是计数思维，当老师的方法相当简洁——利用css中的:checked伪类，统计其个数，等于singleCheck.length则令大按钮checked为true
+      - 同时，引入一种新的简化if判断的语句，即若当if判断条件是某变量等于某值，决定另一个变量取true或false的双分支情况下，可以这样写：
+      - e.g. `checkAll.checked = flag === singleCheck.length // 将flag === singleCheck.length的判断结果赋值给checked属性`
+      - 核心代码：`checkAll.checked = document.querySelectorAll('.ck:checked').length === singleCheck.length `
+- 今日知识点还是相当丰富的，很有意思，也很重要，及时复习！
+    
+
 ### Apr 13th, Sun, Day 24
 - 「社会实践」
 - 今天没有进行知识理论的学习，而是去参加了社区的社会实践活动
