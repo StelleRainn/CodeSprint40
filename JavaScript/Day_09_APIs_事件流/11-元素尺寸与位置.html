@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>元素尺寸与事件</title>
+  <style>
+    div {
+      width: 200px;
+      height: 200px;
+      background-color: darkcyan;
+      margin: 100px;
+    }
+  </style>
+</head>
+<body>
+<div></div>
+<script>
+  // 获取自身宽高
+  // offsetWidth 和 offsetHeight
+  // 和clientWidth、clientHeight接近，但是包括border
+  // p.s. 只读
+
+  // 获取位置：获取元素距离自己「定位」父级元素的左、上距离
+  // offsetLeft 和 offsetTop
+  // p.s. 只读（和scrollTop、scrollLeft不同）
+
+  const div = document.querySelector('div')
+  console.log(div.offsetLeft) // 108px -- 100px的自身外边距加上8px的body默认的外边距
+</script>
+</body>
+</html>

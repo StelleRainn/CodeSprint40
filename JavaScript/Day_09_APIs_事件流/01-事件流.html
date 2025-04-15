@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件流</title>
+    <style>
+        .father {
+            width: 500px;
+            height: 500px;
+            background-color: darkcyan;
+        }
+
+        .son {
+            width: 200px;
+            height: 200px;
+            background-color: cyan;
+        }
+    </style>
+</head>
+<body>
+<div class="father">
+    <div class="son"></div>
+</div>
+
+<script>
+    // 事件流指的是事件完整执行过程中的流动路径
+    // 捕获阶段：父到子
+    // 冒泡阶段：子到父
+
+
+    // 事件捕获（了解）
+    // 从DOM的根元素开始去执行对应的事件（从外到里）
+    const father = document.querySelector('.father')
+    const son = document.querySelector('.son')
+
+    // 为addEvenListener传入第三个参数true，表示捕获阶段触发
+    // 点击son时，依次显示grandfather、father和son
+    // document.addEventListener('click', function () {
+    //   alert('grandfather')
+    // }, true)
+    //
+    // father.addEventListener('click', function () {
+    //   alert('father')
+    // }, true)
+    //
+    // son.addEventListener('click', function () {
+    //   alert('son')
+    // }, true)
+
+    // p.s. onclick方法没有捕获，只有冒泡
+
+    // 事件冒泡：当一个元素的事件被触发，同样的事件（同名事件）将会在该元素的所有祖先元素依次被触发
+    // 对于上述例子，把第三个参数删掉（默认false）就是冒泡（也即：默认就是冒泡）
+    document.addEventListener('click', function () {
+      alert('grandfather')
+    })
+
+    father.addEventListener('click', function () {
+      alert('father')
+    })
+
+    // son.addEventListener('click', function () {
+    //   alert('son')  //son father grandfather
+    // })
+
+    // 阻止冒泡
+    // 事件对象.stopPropagation()
+    // 本质：阻断事件流动传播，在冒泡阶段有效，捕获阶段也有效
+    son.addEventListener('click', function (e) {
+      alert('son')
+      e.stopPropagation()   // 只有son
+    })
+
+</script>
+</body>
+</html>

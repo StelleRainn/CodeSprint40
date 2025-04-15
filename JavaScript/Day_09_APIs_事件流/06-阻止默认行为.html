@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="https://apple.com.cn">
+    <input type="submit" name="1" id="1">
+</form>
+<a href="https://apple.com.cn">Apple</a>
+
+<script>
+  // 阻止默认行为
+  // e.preventDefault()
+
+  const form = document.querySelector('form')
+  form.addEventListener('submit', function (e) { // 行为是submit
+    e.preventDefault() // 点击提交无法再跳转
+  })
+
+  const a = document.querySelector('a')
+  a.addEventListener('click', function (e) {
+    e.preventDefault() // 无法再跳转
+  })
+</script>
+</body>
+</html>

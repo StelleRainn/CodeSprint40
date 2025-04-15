@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>事件委托</title>
+</head>
+<body>
+<ul>
+    <li>第1个孩子</li>
+    <li>第2个孩子</li>
+    <li>第3个孩子</li>
+    <li>第4个孩子</li>
+    <li>第5个孩子</li>
+    <p>该标签不应该变色</p>
+</ul>
+
+
+<script>
+  // 减少注册次数，提高程序性能
+  // 原理：利用事件冒泡的特点：
+  // 给「父元素注册事件」，当触发子元素时，会冒泡到父元素身上，从而触发父元素的事件
+
+  // 获取父元素，并给父元素添加事件
+  const ul = document.querySelector('ul')
+  ul.addEventListener('click', function (e) {
+    // console.log(1)
+    // 如何明确自己点击的是哪一个孩子并对其调整呢？
+    // 利用环境对象e的target属性
+    // console.log(e.target) // e.target 就是我们点击的对象
+    // e.target.style.color = 'red'
+
+    // 更进一步，为了准确性（例如可能混入不需要变化的标签），使用e.target.tagName
+    // e.g. 只需要li做变化，其中的p不变化
+    console.dir(e.target) // 可以查看e.target对象的各种属性
+    if (e.target.tagName === 'LI') {
+      e.target.style.color = 'red'
+    }
+  })
+
+</script>
+</body>
+</html>

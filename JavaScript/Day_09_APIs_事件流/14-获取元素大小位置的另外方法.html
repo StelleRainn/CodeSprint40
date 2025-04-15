@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+  <style>
+    div {
+        width: 200px;
+        height: 200px;
+        background-color: darkcyan;
+        margin: 100px auto;
+    }
+  </style>
+</head>
+<body>
+<div></div>
+
+<script>
+
+  // element.getBoundingClientRect()方法
+  // 获得一组对象，内含各种坐标
+  // 差异：这个是基于视口的
+    const div = document.querySelector('div')
+    console.log(div.getBoundingClientRect()) // 得到一个对象，内含各种坐标
+
+</script>
+</body>
+</html>

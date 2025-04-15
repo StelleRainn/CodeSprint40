@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面滚动事件</title>
+  <style>
+    body {
+      height: 3000px;
+    }
+
+    div {
+      display: none;
+      overflow: scroll;
+      margin: 100px auto;
+      width: 200px;
+      height: 200px;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+
+<div>
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+  测试文字测试文字测试文字
+</div>
+
+<script>
+  // 事件名: scroll
+  // 一般为 window 添加，也可以为其他对象加
+  window.addEventListener('scroll', function (e) {
+    console.log('scroll')
+  })
+
+  // 两个重要属性：
+  // scrollLeft：被卷去的左部
+  // scrollTop: 被卷去的头部
+  // 这两个值可「读写」，得到的是数字型，不带单位
+  const div = document.querySelector('div')
+  div.addEventListener('scroll', function () {
+    console.log(this.scrollTop)
+  })
+
+  // 想要知道整个页面被卷去多少，需要获取最大的元素HTML，但不通过像document.body获取
+  // 而是 document.documentElement -- 返回HTML标签
+  window.addEventListener('scroll', function () {
+    // console.log(document.documentElement.scrollTop)
+
+    // 试着控制div块的显隐
+    const distance = document.documentElement.scrollTop
+    console.log(distance)
+    div.style.display = distance > 100 ? 'block' : 'none'
+  })
+
+
+
+
+</script>
+</body>
+</html>

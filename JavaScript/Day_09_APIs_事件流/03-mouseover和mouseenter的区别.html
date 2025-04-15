@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    .father {
+      width: 500px;
+      height: 500px;
+      background-color: darkcyan;
+    }
+
+    .son {
+      width: 200px;
+      height: 200px;
+      background-color: cyan;
+    }
+  </style>
+</head>
+<body>
+<div class="father">
+  <div class="son"></div>
+</div>
+
+<script>
+  const father = document.querySelector('.father')
+  const son = document.querySelector('.son')
+
+  // 用mouseover和mouseout会有冒泡效果
+  // father.addEventListener('mouseover', function () {
+  //   console.log('over')
+  // })
+  //
+  // father.addEventListener('mouseout', function () {
+  //   console.log('out')
+  // })
+
+  // 没有给son设置任何事件，但是经过会有效果影响
+  // 解释：经过孩子，会被认为离开father一次，但是son没有鼠标事件，就冒泡上去，又执行一次father的经过
+
+  // 而mouseenter和mouseleave就不会
+  father.addEventListener('mouseenter', function () {
+    console.log('over')
+  })
+
+  father.addEventListener('mouseleave', function () {
+    console.log('out')
+  })
+
+  // 综上，LO注册事件与L2注册事件的区别
+  // LO
+  // 同一对象，后面注册会覆盖前面的；null覆盖可以解绑；都是冒泡阶段执行
+  // L2
+  // 后面注册不会向前覆盖；通过第三个参数决定是否冒泡（true：冒泡）；使用removeEvenListener取消时间绑定；且匿名函数无法被解绑
+
+</script>
+</body>
+</html>

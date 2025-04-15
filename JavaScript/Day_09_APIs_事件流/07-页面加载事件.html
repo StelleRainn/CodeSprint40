@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>页面加载事件</title>
+</head>
+<body>
+
+<button>button</button>
+<script>
+  // 最好等到页面资源全部加载完了再执行脚本
+  // 有些老代码喜欢把script写在head中，这时候找dom元素可能为空（从上往下执行）
+
+  // 1. 页面加载事件 load - 监听「页面」所有资源加载完毕
+  // 向 window 添加 load 事件
+  window.addEventListener('load', function (e) {
+    alert('11')
+  })
+
+  // 也可以针对某个资源绑定load事件，例如图片
+  const img = document.querySelector('img')
+  img.addEventListener('load', function (e) {
+    //...
+  })
+
+  // 2. 页面加载事件 DOMContentLoaded
+  // HTML结构被加载完就触发，而无需等待样式表、图像完全加载 - 速度更快
+  // 向 document 添加 DOMContentLoaded 事件
+  document.addEventListener('DOMContentLoaded', function (e) {
+    alert('HTML')
+  })
+</script>
+</body>
+</html>
