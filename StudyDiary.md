@@ -6,6 +6,88 @@
 ## April 2025
 <details><summary> 点击展开 / 关闭 </summary>
 
+### Apr 15th, Tue, Day 26
+- 「持续推进」
+- 今日知识点总结
+  - 事件流概念：事件完整执行过程中的流动路径
+    - 事件捕获：
+      - 从DOM根元素开始去执行对应的事件（外到里）
+      - addEventListener传入第三个参数true，表示事件捕获触发
+    - 事件冒泡：
+      - 一个元素的事件触发，同名事件在祖先元素依次触发
+      - addEventListener第三个参数删掉或false，表示冒泡阶段触发（也即默认冒泡）
+    - 例如，一个页面中类名father的div嵌套一个类名son的div，在JS中获取对象后，都添加click事件：
+      - 事件捕获执行顺序：document - father - son
+      - 事件冒泡执行顺序：son - father - document
+    - p.s. onclick方法没有捕获，只有冒泡
+    - 阻止冒泡：obj.stopPropagation() 本质：组织事件流动传播，在冒泡/捕获阶段都有效。
+  - 事件解绑：
+    - L0：btn.onclick = null 直接将事件置空
+    - L2：btn.removeEventListener('click', fn)  p.s. 匿名函数无法解绑
+    - mouseover/mouseout 和 mouseenter/mouseleave 的区别：
+      - over/out 组会有冒泡效果，例如内嵌在father中的son，即使没有给son设置事件，鼠标经过son时会认为离开了father；而son并没有事件，又冒泡回来执行father的经过事件
+      - 同样的例子，在 enter/leave 组中就不会发生，经不经过son都不会影响
+    - 总结对比：
+      - L0：同一对象，后者覆盖前者；null覆盖可以解绑；都是冒泡阶段执行
+      - L2：注册不会向前覆盖；使用removeEventListener解绑；通过第三个参数决定冒泡
+  - 事件委托：减少注册次数，提高程序性能
+    - 利用冒泡特点，只需为父元素注册事件，当子元素被触发，就必然冒泡回父元素并执行相应事件
+    - 在执行函数中获取点击对象：e.target e就是先前的学到的事件对象 p.s. 可以使用console.dir(e.target)查看对象的各种属性
+    - 进一步筛选特定标签：e.target.tagName 例如可能为'A'或'LI'等
+  - 阻止默认行为：e.preventDefault() 包括表单中的submit，a标签的跳转
+  - 页面加载事件：load 与 DOMContentLoaded
+    - 监听「页面」，等待所有资源加载完毕，一般用于window，也可以针对某些资源添加，如图片等
+    - window.addEventListener('load', function(e) {...} )
+    - 另一种页面加载事件，HTML结构加载完即触发，无需等待样式表、图片等，速度更快
+    - document.addEventListener('DOMContentLoaded', function (e) {...} )
+  - 页面滚动事件：scroll
+    - 两个重要属性：scrollTop 与 scrollLeft，可读可写，数字型，无单位
+    - 分别表示“被卷去的头部”和“被卷去的左部”
+    - 想知道整个页面被卷去多少，需要获取最大元素HTML，方式：document.documentElement -- 返回HTML标签
+    ```
+      window.addEventListener('scroll', function () { 
+      console.log(document.documentElement.scrollTop }) 
+    ```
+    - 页面滚动距离可以作为固定写法，非常常用：`const distance = document.documentElement.scrollTop`
+  - 页面尺寸相关：
+    - 事件 resize：窗口尺寸改变时触发
+    - 元素属性 clientWidth / clientHeight：获取元素可视部分的宽高，包含padding，不含border和margin；只读
+    - 元素属性 offsetWidth / offsetHeight：获取元素自身宽高，包含到border，不含margin；只读
+    - 元素属性 offsetTop / offsetLeft：获取自己与「包含定位属性」的父级元素的上/左距离；只读
+    - 元素方法 obj.getBoundingClientRect()：获得一组对象，内含各种坐标；基于视口（了解即可）
+- 3个案例与1个综合案例
+  - Tab栏切换：事件委托
+    - 通过事件委托，为父元素添加事件，事件中，利用e.target.tagName筛选出点击的a标签，更改内容
+    - tab-nav完成后，为获取索引以更新tab-content，利用了自定义属性dataset，将e.target.dataset.id作为索引给到items数组，完成内容切换
+  - 滚动控制头部的显/隐：scrollTop 与 offsetTop的配合
+    - 当页面scrollTop > 模块.offsetTop，控制div块的显
+    - `header.style.top = distance > sk.offsetTop ? '0' : '-80px'`
+  - 点击标签，小滑块跟随：offsetLeft 与 transform: translate() 配合
+    - 滑块需要移动的距离，即div块位置与左边的距离，即offsetLeft
+    - ``line.style.transform = `translateX(${distance}px)` // 记得加px``
+  - 综合案例：电梯导航
+    - 为防止变量污染，将不同业务封装到不同的立即执行函数中 (function () {...} (params -- optional);
+    - 模块一：页面滑动，电梯显隐 + backTop按钮
+      - 和小案例2一样，核心是在scroll事件中，利用 scrollTop 与 模块.offsetTop进行对比
+      - `elevator.style.opacity = distance > entry.offsetTop ? '1' : '0'`
+      - backTop按钮则是添加点击事件，置scrollTop = 0
+    - 模块二：按钮active样式
+      - 利用事件委托(e.target.tagName === 'A')与click事件完成
+      - 与之前的案例不同，本次在一开始「排他」时，没有active类，所以定义一个oldStyle+一个if判断是否有旧active类，若有就删，没有就可以加，避免了报错
+    - 模块三：点击实现页面跳转
+      - 核心：控制 scrollTop = 制定模块的offsetTop
+      - 一开始选择了获取所有模块并用switch-case实现跳转到不同模块，视频课采取更简易的方法，利用了自定义属性与类名之间的巧妙联系
+      - ``document.documentElement.scrollTop = document.querySelector(`.xtx_goods_${e.target.dataset.name}`).offsetTop``
+    - 模块四：小按钮随页面滚动自动激活
+      - 在scroll事件中，先移除旧样式，然后：
+      - 利用if判断scrollTop所处的距离在哪些模块之间，再直接用自定义属性获取对应电梯小按钮，使其有active类
+    - 补充：CSS知识：
+      - 属性选择器，例如input[type] {css} 或进一步 input[type=text] {css}
+        - 在模块4中，表现为：`document.querySelector('[data-name=new]').classList.add('active') // 属性选择器`
+      - 让页面滚动更丝滑：scroll-behavior: smooth (html标签)
+        - `document.documentElement.style.scrollBehavior = 'smooth'`
+
+
 ### Apr 14th, Mon, Day 25
 - 「一如既往，一往无前」
 - 投入到学习状态中的感觉很美好，愿一切都将有所收获。
