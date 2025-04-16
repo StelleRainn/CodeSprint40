@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul></ul>
+
+<script>
+    // 向页面添加元素
+
+    // 1. 创建节点
+    // 语法：document.createElement('标签名')
+    const div = document.createElement('div')
+    console.log(div) // <div></div>
+
+    // 2. 追加节点
+    // 2.1 插入到父元素的最后一个子元素
+    // 父元素.appendChild(节点)
+    const ul = document.querySelector('ul')
+    const li = document.createElement('li')
+    li.innerHTML = 'This is a li'
+    ul.appendChild(li)
+
+    // 2.2 插入到父元素中某个子元素的前面
+    // 父元素.insertBefore(要插入的元素, 在哪个元素前面)
+    const li2 = document.createElement('li')
+    li2.innerHTML = 'insertBefore'
+    // ul.insertBefore(li2, li)
+
+    // 或者用 父元素.children[i]
+    // .children返回的是一个数组，哪怕只有一个元素
+    ul.insertBefore(li2, ul.children[0])
+
+</script>
+</body>
+</html>

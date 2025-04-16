@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>距离2025年5月14日还有 <span></span></div>
+<script>
+    const span = document.querySelector('span')
+
+    function calculateRemains() {
+      const now = +new Date()
+      const future = +new Date('2025-5-14 9:41:00')
+      const remain_seconds = (future - now) / 1000
+
+      let d = parseInt(String(((remain_seconds / 60) / 60) / 24))
+      let h = parseInt(String(((remain_seconds / 60) / 60) % 24))
+      let m = parseInt(String((remain_seconds / 60)  % 60))
+      let s = parseInt(String((remain_seconds % 60)))
+
+      d = d >= 10 ? `${d}` : '0' + `${d}`
+      h = h >= 10 ? `${h}` : '0' + `${h}`
+      m = m >= 10 ? `${m}` : '0' + `${m}`
+      s = s >= 10 ? `${s}` : '0' + `${s}`
+
+      return `${d}天${h}小时${m}分钟${s}秒`
+    }
+
+    span.innerHTML = `${calculateRemains()}`
+    let timer = setInterval(function () {
+      span.innerHTML = `${calculateRemains()}`
+    }, 1000)
+
+</script>
+</body>
+</html>

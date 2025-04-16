@@ -6,6 +6,51 @@
 ## April 2025
 <details><summary> 点击展开 / 关闭 </summary>
 
+### Apr 16th, Wed, Day 27
+- 「积极思考」
+- Web APIs的内容都很新，这几天连续接触新知识，思考的压力其实不小，所以更加要多多复习
+- 今日知识点总结：
+  - 日期对象：使用 new 关键字
+    - 实例化：`const date = new Date() // 获取当前的系统时间`
+    - 实例化并指定时间：`const date = new Date('2025-5-1 08:30:00')`
+    - 日期对象方法：包括但不限于以下例子，注意`getMonth`和`getDay`方法
+    ```
+    console.log(date.getFullYear()) // 2025 年 数字型
+    console.log(date.getMonth() + 1) // 0 ~ 11, +1为实际月份
+    console.log(date.getDate()) // 16 号
+    console.log(date.getDay() + 1) // 0 ~ 6, +1为实际星期几
+    ```
+  - 时间戳：现在距离1970年的「毫秒数」，故每个时间都有唯一的时间戳
+    - 三种获取方法：`getTime()` -- 必须先实例化 | `+new Date(optional param)` | `Date.now` -- 只能得到当前时间戳
+  - DOM结点相关：DOM树中每一个内容都称为节点，包括元素结点，属性结点，内容结点；重点关注元素结点，即标签 p.s. html是根结点
+    - 查找结点 -- 从之前的查找元素变为「查找关系」 p.s.两种方式并不冲突
+      - 查找父结点：只得到最近一级的「亲父亲」
+        ```
+        console.log(son.parentNode)  // father
+        console.log(son.parentNode.parentNode) // grandfather // 都返回dom对象
+        ```
+      - 查找子结点：
+        - `childNodes`：获得所有子节点、包括文件节点、注释结点（了解）
+        - `children`：仅获得所有「元素」结点，并返回一个伪数组，和querySelectorAll相似；且选择的是「亲儿子」
+        ```
+        const ul = document.querySelector('ul')
+        console.log(ul.children)
+        ```
+      - 查找兄弟结点：`li.nextElementSibling // 下一个兄弟` | `li.previousElementSibling) // 下一个兄弟`
+    - **增加结点（重点）** -- 先创建，后追加
+      - 创建： `const li = document.createElement('li')`  `li.innerHTML = 'This is a li' // 使用innerHTML直接向新标签书写更多HTML内容`
+      - 追加：
+        - `ul.appendChild(li) // 插入到父元素的最后一个子元素` 
+        - `ul.insertBefore(li, ul.children[0]) // 插入到某个子元素前面，父元素.insertBefore(要插入的元素, 在哪个元素前面)`
+        - p.s. `父元素.children`返回的是一个数组，哪怕只有一个元素
+    - 克隆结点：`element.cloneNode(boolean) `
+      - `true`：克隆时会包含后代节点（深克隆）
+      - `false`：克隆时不包含后代节点（浅克隆，只克隆标签，内容不管）（默认）
+      - e.g. 克隆后 前插 `ul.insertBefore(ul.children[2].cloneNode(true), ul.children[0])`
+    - 删除结点：要删除元素必须通过父元素删除
+      - `父元素.removeChild(子元素)` e.g. `ul.removeChild(ul.children[0])`
+        
+
 ### Apr 15th, Tue, Day 26
 - 「持续推进」
 - 今日知识点总结

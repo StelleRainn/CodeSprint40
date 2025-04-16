@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+
+<script>
+  // 元素.cloneNode(bool)
+  // true：克隆时会包含后代节点（深克隆）
+  // false：克隆时不包含后代节点（浅克隆，只克隆标签，内容不管）（默认）
+
+  const ul = document.querySelector('ul')
+  // 克隆后 追加
+  const li1 = ul.children[0].cloneNode(true)
+  ul.appendChild(li1)
+  // 克隆后 前插
+  ul.insertBefore(ul.children[2].cloneNode(true), ul.children[0])
+
+</script>
+</body>
+</html>

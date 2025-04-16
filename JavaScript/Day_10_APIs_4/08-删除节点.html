@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+  <li>4</li>
+</ul>
+
+
+<script>
+  // 要删除元素必须通过父元素删除
+  // 父元素.removeChild(子元素)
+  const ul = document.querySelector('ul')
+
+  ul.removeChild(ul.children[0])
+
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .father {
+            width: 400px;
+            height: 400px;
+            margin: 100px auto;
+            background-color: darkcyan;
+        }
+
+        .son {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="grandfather">
+    <div class="father">
+        <div class="son">x</div>
+    </div>
+
+    <div class="father" style="background-color: cyan;">
+        <div class="son">x</div>
+    </div>
+
+    <div class="father" style = "background-color: lightcyan;">
+        <div class="son">x</div>
+    </div>
+<!----------------------子结点------------------------->
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+
+</div>
+
+
+<script>
+    // 一、DOM节点：DOM树中每一个内容都称为节点
+
+    // 类型：
+    // 元素节点：所有标签；html是根节点 document -> html
+    // 属性节点：所有的属性，如href
+    // 文本节点：所有的文本
+
+    // 二、查找节点 -- 以前是查找元素，现在是根据关系查找（不冲突）
+    // 1. 父节点查找
+    // 子元素.parentNode -- 只能获得最近一级的「亲父亲」
+    const son = document.querySelector('.son')
+    console.log(son) // son
+    console.log(son.parentNode)  // father
+    console.log(son.parentNode.parentNode) // grandfather // 都返回dom对象
+
+    // son.addEventListener('click', function () {
+    //   son.parentNode.style.display = 'none'
+    // })
+
+    // 多个box存在，可以做到仅关闭自己的、当前的box
+    const closeBtn = document.querySelectorAll('.son')
+    for (let i = 0; i < closeBtn.length; i++) {
+      closeBtn[i].addEventListener('click', function () {
+        this.parentNode.style.display = 'none'
+      })
+    }
+
+    // 2. 子节点查找
+    // childNodes：获得所有子节点、包括文件节点、注释结点（了解）
+    // children：仅获得所有「元素」结点，并返回一个伪数组，和querySelectorAll相似
+    // 选择的是「亲儿子」
+    const ul = document.querySelector('ul')
+    console.log(ul.children)
+
+    // 3. 兄弟元素查找
+    // 下一个：nextElementSibling 属性
+    // 上一个：previousElementSibling 属性
+    const second_li = document.querySelector('ul li:nth-child(2)')
+    console.log(second_li.nextElementSibling) // 下一个兄弟
+    console.log(second_li.previousElementSibling) // 下一个兄弟
+</script>
+</body>
+</html>

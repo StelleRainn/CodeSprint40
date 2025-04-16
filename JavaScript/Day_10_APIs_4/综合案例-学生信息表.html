@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>学生信息管理</title>
+  <link rel="stylesheet" href="综合案例-学生信息表/css/index.css" />
+</head>
+
+<body>
+  <h1>新增学员</h1>
+<!--  autocomplete：历史记录自动填充-->
+  <form class="info" autocomplete="off">
+    姓名：<input type="text" class="uname" name="uname" required/>
+    年龄：<input type="text" class="age" name="age" required/>
+    性别:
+    <select name="gender" class="gender" required>
+      <option value="男">男</option>
+      <option value="女">女</option>
+    </select>
+    薪资：<input type="text" class="salary" name="salary" required />
+    就业城市：<select name="city" class="city" required>
+      <option value="北京">北京</option>
+      <option value="上海">上海</option>
+      <option value="广州">广州</option>
+      <option value="深圳">深圳</option>
+      <option value="曹县">曹县</option>
+    </select>
+    <button class="add">录入</button>
+  </form>
+
+  <h1>就业榜</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>薪资</th>
+        <th>就业城市</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 
+        <tr>
+          <td>1001</td>
+          <td>欧阳霸天</td>
+          <td>19</td>
+          <td>男</td>
+          <td>15000</td>
+          <td>上海</td>
+          <td>
+            <a href="javascript:">删除</a>
+          </td>
+        </tr> 
+        -->
+    </tbody>
+  </table>
+<script>
+  // 准备一个空数组来接收数据
+  const arr = []
+
+  // 获取表单数据
+  const uname = document.querySelector('.uname')
+  const age = document.querySelector('.age')
+  const gender = document.querySelector('.gender')
+  const salary = document.querySelector('.salary')
+  const city = document.querySelector('.city')
+
+  const tbody = document.querySelector('tbody') // 标签选择
+
+  const form_items = document.querySelectorAll('[name]') // 属性选择
+
+  // 模块一：录入事件
+  // 1. 禁用表单提交事件
+  const form = document.querySelector('form')
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // 8. 表单内容的非空判断
+    // 可以自己为表单控件添加required属性，可以实现基础效果(完全为空的，不允许)
+    // 但空字符串可以跳过required，所以可以在这里用trim()优化一下
+    // 注意trim方法是针对str的，所以先String一下
+    for (let i = 0; i < form_items.length; i++) {
+      if (String(form_items[i].value).trim() === '') {
+        return alert('请填入完整字段')
+      }
+    }
+
+    // 2. 创建对象并存入数组
+    const obj = {
+      stuId : +new Date(),
+      uname : uname.value,
+      age : age.value,
+      gender : gender.value,
+      salary : salary.value,
+      city : city.value
+    }
+    arr.push(obj)
+
+    // 3. 点击提交后，应当清空表单。利用<input type = 'reset'>
+    form.reset()
+
+    // 4. 向tbody添加tr（外部封装函数，记得调用）
+    render()
+  })
+
+  // 模块二：创建新结点，然后追加到tbody
+  function render() {
+    // 5. 清空先前的tbody防止重复渲染
+    // 不用 tbody.removeChild()，直接置空
+    tbody.innerHTML = null
+
+
+    for (let i = 0; i < arr.length; i++) {
+      const tr = document.createElement('tr')
+      tr.innerHTML = `
+        <td>${arr[i].stuId}</td>
+        <td>${arr[i].uname}</td>
+        <td>${arr[i].age}</td>
+        <td>${arr[i].gender}</td>
+        <td>${arr[i].salary}</td>
+        <td>${arr[i].city}</td>
+        <td>
+          <a href="javascript:" data-id = ${i}>删除</a>
+        </td>
+      `
+      // 6. 为a动态生成自定义属性data-id，方便后期删除
+
+      tbody.appendChild(tr)
+    }
+  }
+
+  // 模块三：删除事件（事件委托做法）
+  tbody.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') {
+      // 7. 根据自定义属性寻找id，然后作删除索引
+      arr.splice(+e.target.dataset.id, 1)
+      // 然后重新渲染
+      render()
+    }
+  })
+
+</script>
+
+</body>
+
+</html>

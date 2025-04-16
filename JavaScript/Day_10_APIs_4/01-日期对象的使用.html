@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div></div>
+
+
+<script>
+  // 日期对象：表示时间的对象；可以获取当前系统的时间
+
+  // 1. 实例化 -- 使用new关键字
+
+  // 获得当前时间
+  const date = new Date()
+  console.log(date) // Wed Apr 16 2025 16:01:18 GMT+0800 (中国标准时间)
+  console.dir(date) // 可以查看其中的方法
+
+  // 指定时间
+  const date_1 = new Date('2025-5-1 08:30:00')
+  console.log(date_1)
+
+  // 2. 日期对象方法
+  console.log(date.getFullYear()) // 2025 年 数字型
+  console.log(date.getMonth() + 1) // 0 ~ 11, +1为实际月份
+  console.log(date.getDate()) // 16 号
+  console.log(date.getDay() + 1) // 0 ~ 6, +1为实际星期几
+
+  // Exercise
+  function getMyDate() {
+    const date = new Date()
+    const y = date.getFullYear()
+    const mo = date.getMonth() + 1
+    const d = date.getDate()
+    const h = date.getHours()
+    const m = date.getMinutes()
+    const s = date.getSeconds()
+
+    let dates = [y, mo, d, h, m, s]
+    for (let i = 0; i < dates.length ; i++) {
+      dates[i] = dates[i] > 10 ? `${dates[i]}` : '0'+ `${dates[i]}`
+    }
+
+    return `${dates[0]}-${dates[1]}-${dates[2]} ${dates[3]}:${dates[4]}:${dates[5]}`
+  }
+
+  const div = document.querySelector('div')
+
+  // div.innerHTML = getMyDate()
+  // // 让时间自动变化
+  // let timer = setInterval(function () {
+  //   div.innerHTML = getMyDate()
+  // }, 1000)
+
+
+  // 以上函数都可以被一个方法替代（快速开发）
+  div.innerHTML = date.toLocaleString()
+   let timer = setInterval(function () {
+     const date = new Date()
+    div.innerHTML = date.toLocaleString()
+  }, 1000)
+
+  // 还有toLocaleDateString、toLocaleTimeString
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
