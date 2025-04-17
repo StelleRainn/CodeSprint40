@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>学生信息管理</title>
+  <link rel="stylesheet" href="综合案例-学生信息表/css/index.css" />
+</head>
+
+<body>
+  <h1>新增学员</h1>
+  <form class="info" autocomplete="off">
+    姓名：<input type="text" class="uname" name="uname" />
+    年龄：<input type="text" class="age" name="age" />
+    性别:
+    <select name="gender" class="gender">
+      <option value="男">男</option>
+      <option value="女">女</option>
+    </select>
+    薪资：<input type="text" class="salary" name="salary" />
+    就业城市：<select name="city" class="city">
+      <option value="北京">北京</option>
+      <option value="上海">上海</option>
+      <option value="广州">广州</option>
+      <option value="深圳">深圳</option>
+      <option value="曹县">曹县</option>
+    </select>
+    <button class="add">录入</button>
+  </form>
+
+  <h1>就业榜</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>薪资</th>
+        <th>就业城市</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 
+        <tr>
+          <td>1001</td>
+          <td>欧阳霸天</td>
+          <td>19</td>
+          <td>男</td>
+          <td>15000</td>
+          <td>上海</td>
+          <td>
+            <a href="javascript:">删除</a>
+          </td>
+        </tr> 
+        -->
+    </tbody>
+  </table>
+  <script>
+  // 参考数据
+  //   const initData = [
+  //     {
+  //       stuId: 1001,
+  //       uname: '欧阳霸天',
+  //       age: 19,
+  //       gender: '男',
+  //       salary: '20000',
+  //       city: '上海',
+  //     }
+  //   ]
+
+  // 核心逻辑： 本地存储(JSON str)
+  // -> 变量arr数组（反JSON）
+  // -> map方法处理数据（转化为HTML标签tr中的内容）
+  // -> 新数组join方法（字符化）后用innerHTML写入
+  // -> 新增业务：将表单组件的value值存入arr数组，渲染，JSON化后更新本地存储
+
+  // 模块一：渲染业务（将本地存储的数据渲染到浏览器页面）
+  // 1. 读取数据
+  // 将「本地存储中的JSON字符串」取出，赋给变量数组；并考虑空数组的情况
+  const arr = JSON.parse(localStorage.getItem('data')) || [] // 逻辑中断
+
+  // 2. 渲染页面 -- 封装为函数
+  // map方法将数组转换为tr字符串
+  function render() {
+    const trArr = arr.map(function (ele, index) { // map方法，将数组每个对象转换为含html标签tr的字符串
+      return `
+      <tr>
+      <td>${ele.stuId}</td>
+      <td>${ele.uname}</td>
+      <td>${ele.age}</td>
+      <td>${ele.gender}</td>
+      <td>${ele.salary}</td>
+      <td>${ele.city}</td>
+      <td>
+        <a href="javascript:" data-id = ${index} >删除</a>
+      </td>
+    </tr>
+      `
+    })
+  // 此时trArr仍然是一个数组，使用JSON转换为字符串
+  document.querySelector('tbody').innerHTML = trArr.join('')
+  }
+  // 默认渲染，不需要点击
+  render()
+
+
+  // 模块二：新增业务
+  const form = document.querySelector('form')
+
+  const uname = document.querySelector('[name=uname]')
+  const age = document.querySelector('[name=age]')
+  const salary = document.querySelector('[name=salary]')
+  const gender = document.querySelector('[name=gender]')
+  const city = document.querySelector('[name=city]')
+
+
+  form.addEventListener('submit', function (e) {
+    // 阻止默认行为
+    e.preventDefault()
+
+    // 非空判断
+    if (!uname.value || !age.value || !salary.value) {
+      return alert('输入内容不能为空')
+    }
+
+    // 将新数据存入数组后，调用渲染函数，并重置表单
+    arr.push(
+      {
+        stuId: +new Date(),
+        uname: uname.value,
+        age: age.value,
+        gender: gender.value,
+        salary: salary.value,
+        city: city.value,
+      }
+    )
+    // 新数据要存储到本地存储中（「改」-- 覆盖替换即可）
+    localStorage.setItem('data', JSON.stringify(arr))
+    render()
+    form.reset()
+  })
+
+  // 模块三：删除业务
+  document.querySelector('tbody').addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') {
+      // 使用自定义属性id作为索引（在模块一中动态渲染）
+      // 不要直接用removeChild，因为这样的索引是定死的，无法动态更新
+      // 比如有2个元素，第二个的data-id为1，在父元素也是children[1]
+      // 删掉第一个后，第二个的data-id还是1，但其位置已经变成了children[0]，就会引发错误
+      // this.removeChild(this.children[e.target.dataset.id])
+     if (confirm('你确定要删除吗？')) { // confirm方法确认
+        arr.splice(Number(e.target.dataset.id), 1)
+        // 更新本地存储，重新渲染
+        localStorage.setItem('data', JSON.stringify(arr))
+        render()
+     }
+    }
+  })
+
+
+
+  </script>
+</body>
+
+</html>

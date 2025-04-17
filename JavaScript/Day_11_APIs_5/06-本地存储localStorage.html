@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>本地存储-localStorage</title>
+</head>
+<body>
+
+<script>
+    // 作用：将数据永久地存储在本地，除非手动删除，否则关闭页面也存在
+
+    // 特性：
+    // 多窗口（页面）共享（同一浏览器共享）
+    // 键值对形式存储
+
+    // 语法：
+    // 存储数据
+    // localStorage.setItem('key', 'value')
+    const uname = 'uname'
+    localStorage.setItem(uname, 'rainn') // 在 开发者工具-应用-本地存储空间 查看
+
+    // 获取数据
+    // localStorage.getItem()
+    console.log(localStorage.getItem(uname))
+
+    // 删除数据 只删除名字
+    // removeItem() 和 clear()
+    localStorage.removeItem(uname) // 删除指定键
+    localStorage.clear() // 全部删除
+
+    // 改：有就是改，没有就是增加
+    localStorage.setItem(uname, 'stelle')
+    localStorage.setItem('age', 18)
+    console.log(localStorage.getItem('age')) // 注意：本地存储只能存储字符串
+
+    // sessionStorage
+    // 生命周期为关闭浏览器窗口（关闭浏览器就消失）
+    // 其余和localStorage一致
+</script>
+</body>
+</html>

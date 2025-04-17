@@ -13,6 +13,7 @@
   - 日期对象：使用 new 关键字
     - 实例化：`const date = new Date() // 获取当前的系统时间`
     - 实例化并指定时间：`const date = new Date('2025-5-1 08:30:00')`
+    - 格式化：`new Date().toLocaleString`
     - 日期对象方法：包括但不限于以下例子，注意`getMonth`和`getDay`方法
     ```
     console.log(date.getFullYear()) // 2025 年 数字型

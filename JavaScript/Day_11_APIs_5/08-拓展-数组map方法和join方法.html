@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>map 和 join方法</title>
+</head>
+<body>
+
+
+<script>
+  const arr = ['red', 'blue', 'green']
+  // map方法，也称为映射，可以遍历数组、处理数据，并「返回新的数组」-- 和forEach最大的差别
+  const newArr = arr.map(function (ele, index) {
+    console.log(ele) // 数组元素
+    console.log(index) // 索引号
+    return ele + 'Color' // 处理数据并返回新数组
+  })
+  console.log(newArr) // ['redColor', 'blueColor', 'greenColor']
+
+
+  // join()方法把数组中的所有元素「拼接」成一个长字符串
+  console.log(newArr.join()) // redColor,blueColor,greenColor 参数为空，逗号分割（默认）
+  console.log(newArr.join('')) // redColorblueColorgreenColor 参数为空字符串，则分割消失
+  console.log(newArr.join('|')) // redColor|blueColor|greenColor
+
+</script>
+</body>
+</html>

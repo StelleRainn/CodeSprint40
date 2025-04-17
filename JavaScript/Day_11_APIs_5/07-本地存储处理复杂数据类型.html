@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>存储复杂数据类型</title>
+</head>
+<body>
+
+<script>
+  // 本地存储只能存储字符串，无法处理复杂数据类型
+  const obj = {
+    uname: 'rainn',
+    age: 18,
+    sex: 'male'
+  }
+  // localStorage.setItem('obj', obj) // [object Object] // 无法正确存入
+
+  // 解决办法：将复杂数据类型转化为「JSON字符串」，再存储到本地
+  // 语法：JSON.stringify(复杂数据类型)
+  localStorage.setItem('obj', JSON.stringify(obj))
+
+  // 此时存入的是 JSON字符串
+  console.log(typeof localStorage.getItem('obj')) // string
+  console.log(localStorage.getItem('obj')) // {"uname":"rainn","age":18,"sex":"male"}
+  // JSON 对象：属性和值有引号，而且引号统一是双引号
+
+  // 取：将 JSON字符串转换为对象
+  // 语法：JSON.parse( JSON string )
+  console.log(JSON.parse(localStorage.getItem('obj'))) // {uname: 'rainn', age: 18, sex: 'male'}
+
+</script>
+</body>
+</html>
