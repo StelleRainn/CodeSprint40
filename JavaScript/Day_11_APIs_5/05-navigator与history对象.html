@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>forward</button>
+<button>backward</button>
+
+<script>
+  // navigator 对象 -- 获取浏览器信息
+  // 检测userAgent（浏览器信息）
+  !(function () {
+    const userAgent = navigator.userAgent
+    // 验证是否为Android或iPhone
+    const android = userAgent.match(/(Android);?[\s\/]+([\d.]+)?/)
+    const iphone = userAgent.match(/(iPhone\sOS)\s([\d_]+)/)
+    // 如果是Android或iPhone，则跳转到移动站点
+    if (android || iphone) {
+      location.href = 'https://m.itcast.cn'
+  }
+  })()
+
+  // p.s. 立即执行函数前的感叹号只是为了防止报错
+  // (function () {...})() //ok
+  // !function () {} () // 也OK
+
+
+  // history 对象 -- 管理历史记录，控制后退、前进
+  // 常用方法 back() | forward() | go() -- 1前进，-1后退
+
+  const forward = document.querySelector('button:first-child')
+  const backward = forward.nextElementSibling
+
+  forward.addEventListener('click', function () {
+    history.go(1)
+    location.href = 'https://apple.com'
+  })
+
+  backward.addEventListener('click', function () {
+    history.go(-1)
+  })
+</script>
+</body>
+</html>

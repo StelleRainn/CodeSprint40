@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Exercise-->
+<a href="https://apple.com.cn" style = 'text-decoration: none'>支付成功，<span>5</span>秒之后跳转到首页</a>
+
+<!--search-->
+<form action="">
+    <label>
+        <input type="text" name="username" autocomplete="off" >
+        <input type="password" name="pwd">
+    </label>
+    <button type="submit">submit</button>
+</form>
+
+<!--hash-->
+<a href="#/my">my</a>
+<a href="#/friend">friend</a>
+<a href="#/download">download</a>
+
+<!--reload-->
+<button class="reload">reload</button>
+
+<script>
+  console.log(window.location === location)
+
+  // location是一个对象，其中有各种属性，包括href、search、hash、reload
+
+  // href -- 页面地址 -- 最重要
+  // console.log(location.href)
+  // location.href = 'https://apple.com.cn'
+
+  // search -- 获取表单信息 -- ?后的内容
+  // 提交表单后，可以获取表单信息（必须有name）（?后面的部分）
+  // location.search -> '?username=11&pwd=11'
+
+  // hash -- 获取#后的地址 -- 为后期vue路由做铺垫
+  // location.hash -> '#/friend'
+
+  // reload -- 刷新 -- 相当于f5
+  // 强制刷新 - reload(true)
+  const reload = document.querySelector('.reload')
+  reload.addEventListener('click', function () {
+    location.reload()
+  })
+
+  // Exercise1 - 5s后自动跳转页面
+  // const a = document.querySelector('a')
+  // let n = 5
+  // let timer = setInterval(function (){
+  //   n--
+  //   a.innerHTML = `支付成功，<span>${n}</span>秒之后跳转到首页`
+  //
+  //   // 停止定时器并跳转
+  //   if (!n) {
+  //     clearInterval(timer)
+  //     location.href = 'https://apple.com.cn'
+  //   }
+  // }, 1000)
+
+</script>
+</body>
+</html>

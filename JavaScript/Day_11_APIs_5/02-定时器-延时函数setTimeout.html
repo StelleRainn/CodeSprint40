@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>setTimeout</title>
+    <style>
+         img {
+             position: absolute;
+             left: 0;
+             bottom: 0;
+         }
+    </style>
+</head>
+<body>
+<img src="images/ad.png" alt="">
+
+<script>
+  // 延时函数定时器 - n秒之后执行
+  // setTimeout(回调函数, 等待的毫秒数) window同样可以省略
+  // 同样地，返回一个ID
+
+  let timer = setTimeout(function () {
+    console.log('Time\'s out')
+  }, 2000)
+
+  console.log(timer) // 1
+
+  // 清除延时函数
+  // clearTimeout(timer)
+  clearTimeout(timer)
+
+  // Exercise：5秒钟之后消失的广告
+  const ad = document.querySelector('img')
+  let timer_e = setTimeout(function () {
+    document.body.removeChild(ad)
+  }, 2000)
+
+  clearTimeout(timer_e)
+
+</script>
+</body>
+</html>
