@@ -6,6 +6,76 @@
 ## April 2025
 <details><summary> 点击展开 / 关闭 </summary>
 
+### Apr 17th, Thu, Day 28
+- 「推进」
+- 今日有效学习时间大约4～5小时，晚上参加了社区活动，此日志是在18号写的
+- 主要知识点总结：
+  - **BOM与window对象** ：BOM即浏览器对象模型，`window`是其中最大的对象，其子级包括`document | location | navigator | history | screen`
+    - `window`对象是JS中的顶级对象、全局对象；`window`对象下的属性和方法调用时可以省略`window`
+  - 延时函数：`setTimeout(function() {...}, 1000)` 和间歇函数相近，不同点在于，延时函数的意义是「多久后」开始，所以只会执行一次
+    - 清除延时函数：`clearTimeout(timer)`
+  - 理论知识：JS的单线程，同步与异步任务，事件循环
+    - JS是单线程的；但HTML5 Web Worker标准允许JS脚本创建多个线程
+    - 同步：程序执行顺序与任务排列顺序一致；异步则是可以在做一件事的同时去做另一件事；本质：流水线上各个流程的执行顺序不同
+    - 同步任务：都在主线程执行，形成执行栈；
+    - **异步任务**，通过回调函数实现，被添加到任务队列中，包括：
+      - 普通事件（click、resize），资源加载（load、error），定时器（setInterval、setTimeout）等
+    - 事件循环机制：1.先执行执行栈的同步任务；2.异步任务放到任务队列（先放入Web API或者说浏览器API，处理后再加入到任务队列）3.执行栈同步任务处理完毕，系统读取任务队列的异步任务，按顺序执行
+  - **location对象（window.location）**，介绍其中四个属性/方法：
+    - `href`: 页面地址，可以修改以实现页面跳转等功能 e.g. `location.href = https://apple.com.cn`
+    - `search`: 提交表单后，获取表单信息问号后的内容，要求表单标签都有`name`属性 e.g. `location.search -> '?username=11&pwd=11'`
+    - `hash`: 获取#后的地址 e.g.` location.hash -> '#/friend'`
+    - `reload`: 刷新页面，可带参数ture表示强制刷新 e.g. `location.reload(true)`
+  - **navigator对象** ：获取浏览器的信息 -- 可用于检测是否为移动端设备（安卓/iOS）而进行网页跳转
+  - **history对象** ：管理历史记录，控制后退/前进，包括`forward()`,` back()`, `go()`; `go()`带参数，`1`前进，`-1`后退
+  - **本地存储localStorage(重点)** ：将数据永久存储在本地，除非手动删除，否则即使页面关闭，数据也存在
+    - 特性：同一浏览器多页面/窗口**共享**；以**键值对**形式存储
+    - 增加/修改数据：`localStorage.setItem('key', 'value')`；没有key就是增，有key就是覆盖原来的key，也即改。注意：**本地存储只能存储字符串！**
+    - 获取数据：`localStorage.getItem('key')`
+    - 删除数据：1. 只删除指定key：`localStorage.removeItem('key')`; 2. 全部删除：`localStorage.clear()`
+  - 向本地存储存入复杂数据类型：**JSON字符串**
+    - 复杂数据类型无法直接存入localStorage e.g. `localStorage.setItem('obj', obj) // [object Object] // 无法正确存入`
+    - 需要将**对象、数组**等复杂数据类型转化为**「JSON字符串」**，再存储到本地
+    - **语法** ：`JSON.stringify(数据)` e.g. `localStorage.setItem('obj', JSON.stringify(obj)`
+    - 此时`typeof localStorage.getItem('obj')`返回`string`，log输出得到 `{"uname":"rainn","age":18,"sex":"male"}`
+    - JSON 对象：属性和值有引号，而且引号统一是双引号
+    - 此时需要从本地存储中拿出来用，就要反JSON化
+    - **语法** ：`JSON.parse(JSON字符串)` e.g. `console.log(JSON.parse(localStorage.getItem('obj'))) // {uname: 'rainn', age: 18, sex: 'male'}`
+  - 拓展数组的map()和join()方法
+    - `map()`，也即映射，遍历数组、处理数据，并且可以**返回新数组**, e.g.
+    ```
+    const newArr = arr.map(function (ele, index) {
+      console.log(ele) // 数组元素
+      console.log(index) // 索引号
+      return ele + 'Color' // 处理数据并返回新数组
+    })
+    console.log(newArr) // ['redColor', 'blueColor', 'greenColor']
+    ```
+    - `join()`，把数组中所有元素拼接起来，并且通过参数可以定义拼接方式，**常用空字符串使所有字符串相接为一个长串**，以及：
+    ```
+    console.log(newArr.join()) // redColor,blueColor,greenColor 参数为空，逗号分割（默认）
+    console.log(newArr.join('')) // redColorblueColorgreenColor 参数为空字符串，则分割消失
+    console.log(newArr.join('|')) // redColor|blueColor|greenColor
+    ```
+- 其他小细节知识点：
+  - 立即执行函数，一般用括号封住 e.g. `(function() {...} )() // OK`; 但有时，也可以用`!``+`等符号防止报错（要能看懂别人的代码） e.g. `!function(){...} () // 也OK`
+  - `sessionStorage`：`和localStorage相近`，差别在于存活周期，`sessionStorag`e在关闭浏览器窗口后就消失
+  - `confirm('message')` 方法确认 e.g.` if (confirm('你确定要删除吗？')) { ... }`
+  - form表单属性之`autocomplete`：可以设置历史记录自动填充，填入`off`以关闭
+  - 对于表单value判空，H5新增了required属性，可以实现基础的表单判空，但空字符串可以跳过这一点，所以JS中可以用trim()方法进一步优化 
+    - e.g. `if (String(form_items[i].value).trim() === '') {return alert('请填入完整字段')}`
+- 综合案例：学生信息表：通过**表单添加学生信息**，并将**信息渲染在页面上**，可以通过**按钮删除**；数据存入**本地存储**，刷新页面不会消失。实现的核心逻辑如下：
+  - **本地存储**中，存储的是key名为`data`的字符串，其值在反JSON化后得到的是对象数组（亦即取数据操作，并将对象数组赋值给一个const arr变量）
+  - **渲染表单环节** ：对于数组中的每一个对象，需要向**tbody中追加一列tr** ，所以：
+    - **用map方法遍历arr，将每个对象的各个值拆分给tr中对应的td，并返回一个带有完整tr中html内容的新字符串；将所有这些字符串返回到新数组** -- 最核心
+    - 对于新数组，利用数组`join('')`方法将数组每个tr拼接起来（这就得到了完整的，无分割的html内容），再用innerHTML向tbody追加这份内容，渲染完成
+  - 而对于**增加信息环节** ，则是对**from添加submit事件**，用`arr.push()`方法，将表单各个控件的value封装成一个对象{...}，填入push参数中，存入到数组
+    - 继而存入到本地（记得JSON化），重新调用渲染函数即可。**细节：记得阻止默认提交；非空判断；reset清空表单**
+  - 对于最后的**删除信息环节** ，则为tbody添加点击事件（并利用事件委托），利用自定义属性获取索引（自定义属性在渲染表单环节中动态添加），使用数组删除办法删除该数据，更新本地存储并重新渲染即可
+  - 这里有一个注意点，使用`arr.splice(Number(e.target.dataset.id), 1)`方法而不能是`this.removeChild(this.children[e.target.dataset.id])`
+    - 原因是，data-id是固定的，但删除某个元素后，其位置发生了变化，this.children[]的索引改变了，与data-id不能匹配，会出现报错
+    
+
 ### Apr 16th, Wed, Day 27
 - 「积极思考」
 - Web APIs的内容都很新，这几天连续接触新知识，思考的压力其实不小，所以更加要多多复习
