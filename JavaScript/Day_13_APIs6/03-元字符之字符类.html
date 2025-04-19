@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符类</title>
+</head>
+<body>
+
+<script>
+    // [] 匹配字符集合
+    // 只要其中出现一个就可以；如果是精确匹配，那就变成只能选一个
+    console.log(/^[abc]$/.test('a')) // true
+    console.log(/[abc]/.test('ab')) // true
+    console.log(/^[abc]$/.test('ab')) // false -- 精确匹配，只能选一个
+    console.log(/^[abc]*$/.test('ab')) // true -- 加量词解决
+    console.log('---------------------')
+    // []内加连字符- 表示范围
+    console.log(/^[a-z]$/.test('a')) // true
+    console.log(/^[A-Z]$/.test('A')) // true
+    console.log(/^[0-9]$/.test('1')) // true
+    console.log(/^[0-9a-zA-Z]$/.test('1')) // true
+    console.log(/^[0-9a-zA-Z]$/.test('a')) // true
+    console.log(/^[0-9a-zA-Z]$/.test('A')) // true
+    console.log('---------------------')
+    // e.g. 一个5位数qq号
+    // p.s. {4,}只重复距离自己最近的前一个，也就是后四位[0-9]
+    console.log(/^[1-9][0-9]{4,}$/.test('10000')) // true
+    console.log(/^[1-9][0-9]{4,}$/.test('1000a')) // false
+    // 其他
+    // [^] 表示取反，即除括号内的字符（不要和边界符搞混）
+    // . 表示除换行符之外的任何单个字符
+
+
+</script>
+</body>
+</html>
