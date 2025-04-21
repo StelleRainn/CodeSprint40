@@ -10,15 +10,54 @@
 
 ### Apr 21st, Mon, Day32
 - 我想，变得更强！去成为一个出色的**「工程师」**！
+
 - p.s. 今日先写个快速总结，明日把API案例的最后一点完成后，在补充更详细的内容；
+
 - 今日知识点快速总结：主要是做两个综合案例：
-	- APIs6中的综合案例，主要是表单验证相关知识：
-		-  发送短信验证码：`click`事件，`间歇函数`与`innerHTML`修改内容。重点：**节流阀**，通过一个`flag`信号量来避免反复点击与触发间歇函数；
-		-  表单验证：
-		   -  各控件添加`change`事件，正则表达式`reg.test(ev.value)`验证输入内容；封装验证函数verify，使各个控件可以复用；函数返回true/false，方便最后`submit`时再次统一验证；
-		   -  最后的二次密码验证，与`pwd.value`匹配即可
-		-  同意协议
-		-  提交
+  - APIs6中的综合案例，主要是表单验证相关知识：
+    -  发送短信验证码：`click`事件，`间歇函数`与`innerHTML`修改内容。重点：**节流阀**，通过一个`flag`信号量来避免反复点击与触发间歇函数；
+    -  表单验证：
+       -  各控件添加`change`事件，正则表达式`reg.test(ev.value)`验证输入内容；封装验证函数verify，使各个控件可以复用；函数返回`true/false`，方便最后`submit`时再次统一验证；
+       -  最后的二次密码验证，与`pwd.value`匹配即可；
+    -  同意协议：`classList.toggle`添加类名即可；
+    -  提交：针对表单各个控件再次调用验证函数（取得布尔值），以及验证同意小按钮有没有新增的类名即可；
+    -  登录页之tab栏切换效果：`click`事件与事件委托；**排他思想**添加`active`类；对于tabPane中的内容，采用先全部获取并隐藏，再根据**自定义属性data-id**显示对应盒子；
+    -  登录页之点击登录：（验证环节不再重复）用户协议使用checked属性确认；点击登录后，使用`localStorage.setItem()`将用户名存入到本地存储（简单字符串不需要JSON化）；使用location.href跳转到主页；
+    -  主页之显示用户名：封装为render函数；检查本地存储相应字段，如有就用innerHTML填入相关字段，并设置退出登录（c`lick事件`，`confirm`确认，`localStorage.removeItem()`删除数据，来模拟退出）；若无，则分别设置登录和注册链接即可；
+
+  - APIs7综合案例，重点实现图片的放大镜效果，以及其他一些内容：
+
+    - 头部显隐：依旧是比较`scrollTop`与指定元素的`offsetTop`来控制`display: none / block`；注意以下几点：
+
+      - **是给window添加scroll事件**；
+
+      - const distance写在事件里面（实时获取）；
+
+      - offsetTop本身是个定值（多数情况），scrollTop动态变化；
+
+        ```javascript
+        sticky.style.top = distance >= xtx_wrapper.offsetTop ? '0' : '-80px'
+        ```
+
+    - 图片切换模块：和APIs6的登录页tab切换原理相近，注意点：
+
+      - 使用`mouseover`而不是`enter`：**前者才可以冒泡**，进而实现**事件委托**；
+
+      - `ev.target.tagName`选择的是IMG，但是排他思想添加`active`类的时候，给它父级的`li（parentNode）`添加：
+
+        ```javascript
+        ev.target.parentNode.classList.add('active') // IMG的上一级才是LI
+        ```
+
+      - 修改中等盒子的图片，修改的是其子级中的img；middle类本身没有src属性：
+
+        ```javascript
+        middle.querySelector('img').src = `${ev.target.src}` // middle 本身没有src，是middle里面的子级img的图片src
+        ```
+
+    - 放大镜模块：……
+
+- 明日将放大镜模块完成后再来补充；并进入JS进阶阶段，期待本周四可以通关JavaScript初步！
 
 
 
