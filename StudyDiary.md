@@ -4,7 +4,23 @@
 
 ## April 2025
 
-<details><summary> 点击展开 / 关闭 </summary>
+<details><summary> 点击展开 / 关闭 </summary> 
+
+
+
+### Apr 21st, Mon, Day32
+- 我想，变得更强！去成为一个出色的**「工程师」**！
+- p.s. 今日先写个快速总结，明日把API案例的最后一点完成后，在补充更详细的内容；
+- 今日知识点快速总结：主要是做两个综合案例：
+	- APIs6中的综合案例，主要是表单验证相关知识：
+		-  发送短信验证码：`click`事件，`间歇函数`与`innerHTML`修改内容。重点：**节流阀**，通过一个`flag`信号量来避免反复点击与触发间歇函数；
+		-  表单验证：
+		   -  各控件添加`change`事件，正则表达式`reg.test(ev.value)`验证输入内容；封装验证函数verify，使各个控件可以复用；函数返回true/false，方便最后`submit`时再次统一验证；
+		   -  最后的二次密码验证，与`pwd.value`匹配即可
+		-  同意协议
+		-  提交
+
+
 
 ### Apr 20th, Sun, Day 31
 
@@ -373,7 +389,7 @@
       console.log(div.dataset.id) // 1
       console.log(div.dataset.spm) // sample
       ```
-  **定时器之间歇函数：**
+        **定时器之间歇函数：**
     - `setInterval(函数, 间隔时间ms)`，返回值：定时器id（表示自己是第几个定时器）
     - `clearInterval(timer)` 结束定时器，参数`timer`即某个定时器，如`let timer = setInterval(...)`
     ```
@@ -801,7 +817,7 @@
                   font-size: 37.5px;
               }
           }
-        ```
+      ```
         - 实际工作中，不太可能为每个视口都单独编写这样的代码，于是引入一个js文件：flexible布局，以实现自适应：
             - `<script src="js/flexible.js"></script>`
         - 于是在实际中，就有 rem单位值 = 实际px值(来自设计稿) / 根字号(常设置成变量，如@rootSize: 37.5px)
@@ -847,13 +863,13 @@
           --常与hover配合使用，按需求决定放在原元素还是hover伪元素里
         - **使用动画**，分两步
             - 定义动画： `@keyframe animation-name {
-          from { CSS; }
-          to { CSS; } } `
+            from { CSS; }
+            to { CSS; } } `
             - 或` @keyframe animation-name {
-          0% { CSS; }
-          20% { CSS; }
-          ...
-          100% { CSS; } } `
+            0% { CSS; }
+            20% { CSS; }
+            ...
+            100% { CSS; } } `
             - 注意，没有多余的分号或逗号
             - 第二步，哪个标签要用，就在哪个标签的css中写，如：`animation: cloud-move 1s linear infinite alternate 0.8s`
         - 逐帧动画，使用「速度曲线」，`animation-timing-function: steps(n)`，配合精灵图实现精灵动画
