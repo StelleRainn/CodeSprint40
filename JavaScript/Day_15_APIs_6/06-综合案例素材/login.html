@@ -21,7 +21,7 @@
   <!-- 登录内容 -->
   <div class="xtx-login-main">
     <div class="wrapper">
-      <form action="">
+      <form action="" autocomplete="off">
         <div class="box">
           <div class="tab-nav">
             <a href="javascript:;" class="active" data-id="0">账户登录</a>
@@ -77,6 +77,39 @@
     </div>
   </div>
   <script>
+    const tabNav = document.querySelector('.tab-nav')
+    const tabPane = document.querySelectorAll('.tab-pane')
+
+    // tab栏切换效果
+    tabNav.addEventListener('click', function (ev) {
+      if(ev.target.tagName === 'A') {
+        document.querySelector('.active').classList.remove('active')
+        ev.target.classList.add('active')
+        // 获取过来全部隐藏，然后根据data-id显示对应的盒子
+        for (let i = 0; i < tabPane.length; i++) {
+          tabPane[i].style.display = 'none'
+        }
+        tabPane[ev.target.dataset.id].style.display = 'block'
+      }
+    })
+
+    // 点击提交模块
+    const form = document.querySelector('form')
+    const agree = document.querySelector('[name=agree]')
+    const username = document.querySelector('[name=username]')
+    const pwd = document.querySelector('[name=password]')
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault()
+      if (!agree.checked) { // checkbox 的check属性
+        alert('请勾选同意用户协议')
+      } else {
+        // 将用户信息记录到本地存储
+        localStorage.setItem('username', username.value)
+        localStorage.setItem('password', pwd.value)
+        location.href = 'index.html'
+      }
+    })
+
 
   </script>
 </body>
