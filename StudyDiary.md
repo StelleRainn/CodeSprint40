@@ -6,60 +6,61 @@
 
 <details><summary> 点击展开 / 关闭 </summary> 
 
-
-
 ### Apr 21st, Mon, Day32
-- 我想，变得更强！去成为一个出色的**「工程师」**！
+
+- 我想，变得更强！去成为一个出色的 **「工程师」**！
 
 - p.s. 今日先写个快速总结，明日把API案例的最后一点完成后，在补充更详细的内容；
 
 - 今日知识点快速总结：主要是做两个综合案例：
-  - APIs6中的综合案例，主要是表单验证相关知识：
-    -  发送短信验证码：`click`事件，`间歇函数`与`innerHTML`修改内容。重点：**节流阀**，通过一个`flag`信号量来避免反复点击与触发间歇函数；
-    -  表单验证：
-       -  各控件添加`change`事件，正则表达式`reg.test(ev.value)`验证输入内容；封装验证函数verify，使各个控件可以复用；函数返回`true/false`，方便最后`submit`时再次统一验证；
-       -  最后的二次密码验证，与`pwd.value`匹配即可；
-    -  同意协议：`classList.toggle`添加类名即可；
-    -  提交：针对表单各个控件再次调用验证函数（取得布尔值），以及验证同意小按钮有没有新增的类名即可；
-    -  登录页之tab栏切换效果：`click`事件与事件委托；**排他思想**添加`active`类；对于tabPane中的内容，采用先全部获取并隐藏，再根据**自定义属性data-id**显示对应盒子；
-    -  登录页之点击登录：（验证环节不再重复）用户协议使用checked属性确认；点击登录后，使用`localStorage.setItem()`将用户名存入到本地存储（简单字符串不需要JSON化）；使用location.href跳转到主页；
-    -  主页之显示用户名：封装为render函数；检查本地存储相应字段，如有就用innerHTML填入相关字段，并设置退出登录（c`lick事件`，`confirm`确认，`localStorage.removeItem()`删除数据，来模拟退出）；若无，则分别设置登录和注册链接即可；
+    - APIs6中的综合案例，主要是表单验证相关知识：
+        - 发送短信验证码：`click`事件，`间歇函数`与`innerHTML`修改内容。重点：**节流阀**，通过一个`flag`信号量来避免反复点击与触发间歇函数；
+        - 表单验证：
+            - 各控件添加`change`事件，正则表达式`reg.test(ev.value)`验证输入内容；封装验证函数verify，使各个控件可以复用；函数返回
+              `true/false`，方便最后`submit`时再次统一验证；
+            - 最后的二次密码验证，与`pwd.value`匹配即可；
+        - 同意协议：`classList.toggle`添加类名即可；
+        - 提交：针对表单各个控件再次调用验证函数（取得布尔值），以及验证同意小按钮有没有新增的类名即可；
+        - 登录页之tab栏切换效果：`click`事件与事件委托；**排他思想**添加`active`类；对于tabPane中的内容，采用先全部获取并隐藏，再根据
+          **自定义属性data-id**显示对应盒子；
+        - 登录页之点击登录：（验证环节不再重复）用户协议使用checked属性确认；点击登录后，使用`localStorage.setItem()`
+          将用户名存入到本地存储（简单字符串不需要JSON化）；使用location.href跳转到主页；
+        - 主页之显示用户名：封装为render函数；检查本地存储相应字段，如有就用innerHTML填入相关字段，并设置退出登录（c
+          `lick事件`，`confirm`确认，`localStorage.removeItem()`删除数据，来模拟退出）；若无，则分别设置登录和注册链接即可；
 
-  - APIs7综合案例，重点实现图片的放大镜效果，以及其他一些内容：
+    - APIs7综合案例，重点实现图片的放大镜效果，以及其他一些内容：
 
-    - 头部显隐：依旧是比较`scrollTop`与指定元素的`offsetTop`来控制`display: none / block`；注意以下几点：
+        - 头部显隐：依旧是比较`scrollTop`与指定元素的`offsetTop`来控制`display: none / block`；注意以下几点：
 
-      - **是给window添加scroll事件**；
+            - **是给window添加scroll事件**；
 
-      - const distance写在事件里面（实时获取）；
+            - const distance写在事件里面（实时获取）；
 
-      - offsetTop本身是个定值（多数情况），scrollTop动态变化；
+            - offsetTop本身是个定值（多数情况），scrollTop动态变化；
 
-        ```javascript
-        sticky.style.top = distance >= xtx_wrapper.offsetTop ? '0' : '-80px'
-        ```
+              ```javascript
+              sticky.style.top = distance >= xtx_wrapper.offsetTop ? '0' : '-80px'
+              ```
 
-    - 图片切换模块：和APIs6的登录页tab切换原理相近，注意点：
+        - 图片切换模块：和APIs6的登录页tab切换原理相近，注意点：
 
-      - 使用`mouseover`而不是`enter`：**前者才可以冒泡**，进而实现**事件委托**；
+            - 使用`mouseover`而不是`enter`：**前者才可以冒泡**，进而实现**事件委托**；
 
-      - `ev.target.tagName`选择的是IMG，但是排他思想添加`active`类的时候，给它父级的`li（parentNode）`添加：
+            - `ev.target.tagName`选择的是IMG，但是排他思想添加`active`类的时候，给它父级的`li（parentNode）`添加：
 
-        ```javascript
-        ev.target.parentNode.classList.add('active') // IMG的上一级才是LI
-        ```
+              ```javascript
+              ev.target.parentNode.classList.add('active') // IMG的上一级才是LI
+              ```
 
-      - 修改中等盒子的图片，修改的是其子级中的img；middle类本身没有src属性：
+            - 修改中等盒子的图片，修改的是其子级中的img；middle类本身没有src属性：
 
-        ```javascript
-        middle.querySelector('img').src = `${ev.target.src}` // middle 本身没有src，是middle里面的子级img的图片src
-        ```
+              ```javascript
+              middle.querySelector('img').src = `${ev.target.src}` // middle 本身没有src，是middle里面的子级img的图片src
+              ```
 
-    - 放大镜模块：……
+        - 放大镜模块：……
 
 - 明日将放大镜模块完成后再来补充；并进入JS进阶阶段，期待本周四可以通关JavaScript初步！
-
-
 
 ### Apr 20th, Sun, Day 31
 
@@ -288,7 +289,7 @@
             - 核心：控制 scrollTop = 制定模块的offsetTop
             - 一开始选择了获取所有模块并用switch-case实现跳转到不同模块，视频课采取更简易的方法，利用了自定义属性与类名之间的巧妙联系
             -
-            ``document.documentElement.scrollTop = document.querySelector(`.xtx_goods_${e.target.dataset.name}`).offsetTop``
+          ``document.documentElement.scrollTop = document.querySelector(`.xtx_goods_${e.target.dataset.name}`).offsetTop``
         - 模块四：小按钮随页面滚动自动激活
             - 在scroll事件中，先移除旧样式，然后：
             - 利用if判断scrollTop所处的距离在哪些模块之间，再直接用自定义属性获取对应电梯小按钮，使其有active类
@@ -428,7 +429,7 @@
       console.log(div.dataset.id) // 1
       console.log(div.dataset.spm) // sample
       ```
-        **定时器之间歇函数：**
+      **定时器之间歇函数：**
     - `setInterval(函数, 间隔时间ms)`，返回值：定时器id（表示自己是第几个定时器）
     - `clearInterval(timer)` 结束定时器，参数`timer`即某个定时器，如`let timer = setInterval(...)`
     ```
@@ -974,9 +975,9 @@
 - 今天总体效率还算可以，只是因为晚上还要上课，否则多出来的两小时确实可以完成视频课Day10的内容并开启Day11。
 - 总之，在Day11，完成了大部分视频课Day10的内容；明天Day12，收尾Day10，完成Day11，如果可以，Day12也开启，追平之前「波动」导致的落后。
 - 内容总概：依然在完成「小兔鲜儿」网页的制作，完成了footer，banner，好物，推荐，品牌，生鲜共计6个板块。总体内容跟得上，有些新的知识点或需要强调的知识点：
-    -
-    对于轮播图，连续放置（flex）几张图片，这会被父盒子挤压，所以设置父盒子宽度（例如为ul设置宽度300%以容纳三张图）；然后会溢出，在父盒子使用overflow:
-    hidden解决，例子见[CSS banner 轮播图](/HTML5_CSS3/Day_10_xtc-pc/css/index.css)（24行）；
+  -
+  对于轮播图，连续放置（flex）几张图片，这会被父盒子挤压，所以设置父盒子宽度（例如为ul设置宽度300%以容纳三张图）；然后会溢出，在父盒子使用overflow:
+  hidden解决，例子见[CSS banner 轮播图](/HTML5_CSS3/Day_10_xtc-pc/css/index.css)（24行）；
     - `E:not(:hover)`:
       意外发现的新技巧，可以实现与hover互斥的效果，在非hover状态下呈现某种样式；例如[CSS轮播图小圆点](/HTML5_CSS3/Day_10_xtc-pc/css/index.css)
       （98行）：当整个ol非hover，第一个圆点高亮；进入hover状态，原高亮消失，hover到哪儿，哪儿高亮。退出hover状态，第一个圆点恢复高亮。
@@ -1020,7 +1021,9 @@
 - 自昨天内心的自我怀疑后，现在的心态已经更好。明确目标：H5+C3+JS6+React+Git/WebPack等，再做出一到两个个人项目，5月中上旬投简历，期望中下旬上班。
 - **目标够明确，欲望够明确，就无须再被干扰。只管奋力向前。体会网页开发的乐趣。**
 -
+
 今天的学习，主要是继续完成昨天的网页制作。整体跟做不算难，算是对过去所有（没系统学习前端时）、及前面8天的H5C3知识的综合运用。成品：[学成在线（静态页面）](HTML5_CSS3/Day_09_做网页之学成在线/index.html).
+
 - 充分体验了更系统的**从整体到局部，由上到下，由左到右，由内到外**的规范开发历程，颠覆了以往自己“小作坊”式的反复拼凑、调整的经历。
 - 一些新的知识点与一些注意点：
     - `vertical-align`: 行内块和行内垂直方向对齐方式。如：`vertical-align: middle`
@@ -1150,8 +1153,10 @@
 ### Mar 21st, Day 01
 
 -
+
 梳理了一下Git的基本用法，包括在GitHub上建仓库（不要有初始化选项），Commit与Push，Pull等；并意识到一个关键：在Push前先Pull一遍，避免其他修改的冲突。即“Pull -
 Commit - Push”。
+
 - 学习（复习）了HTML的基本语法和结构，基本的标签，注释，标题标签，段落标签，换行/水平线，文本格式标签（下划线那些），超链接标签，多媒体（图像、音频、视频），完成了两个十分简单的案例。
 - 学习（复习）了列表（有序、无序、定义列表），表格（表头、表格标题、合并单元格），表单（文本框、单选框、复选框、下拉列表；第二日打算从“按钮”部分继续）。
 - 今日有效学习时约：4～5小时，保持合理时间分配（如必要的中断休息），提高效率。再接再厉！
