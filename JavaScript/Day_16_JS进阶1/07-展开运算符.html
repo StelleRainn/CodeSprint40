@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 拓展：展开运算符
+  // 将数组展开（注意区分剩余参数，剩余参数只能存在于函数之中，得到真数组）
+
+  // 典型运用场景
+  // 1. 可以求数组最大值
+  const arr1 = [1, 2, 3]
+  console.log(Math.max(...arr1)) // 3
+  console.log(Math.min(...arr1)) // 1
+
+  // 2. 还可以合并数组
+  const arr2 = [4, 5, 6]
+  const arr3 = [...arr1, ...arr2]
+  console.log(arr3)
+</script>
+</body>
+</html>

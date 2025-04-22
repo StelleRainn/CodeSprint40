@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="">
+
+</form>
+
+<script>
+  // 箭头函数更适用于那些本来需要匿名函数的地方，不绑定this
+  // 箭头函数属于表达式函数，因此不存在函数提升
+  // 基本语法
+
+  // 1.无参
+  const fun = () => {
+    console.log(123)
+  }
+  fun()
+
+  // 2.带参
+  const f = (x, y) => {
+    console.log(x, y)
+  }
+  f(1, 2)
+
+  // 3.简化写法：只有一个形参，可以省略小括号
+  // 函数执行体只有一行代码，可以省略大括号
+  const f1 = x => console.log(x)
+  f1(5) // 5
+
+  // 4.简化写法：一行return可以省略return
+  const f2 = (x, y) => x + y
+  console.log(f2(2, 4)) // 6
+
+  // e.g.阻止表单默认提交：省略小括号，大括号
+  document.querySelector('form').addEventListener('click', ev => ev.preventDefault())
+
+  // 5.箭头函数可以直接返回一个对象
+  // 用小括号是因为函数体的花括号和对象的花括号冲突
+  const f3 = uname => ({uname: uname})
+  console.log(f3('Rainn')) // {uname: 'Rainn'}
+
+  // 6.箭头函数没有动态参数argument，只有剩余参数...args
+  const getSum = (...args) => {
+    let sum = 0
+    for (let i = 0; i < args.length; i++) {
+      sum += args[i]
+    }
+    return sum
+  }
+  console.log(getSum(1, 2, 3, 4)) // 10
+
+  // 7. 箭头函数中的this
+  // 箭头函数不会创建自己的this，如果有this，那将是从自己的作用域链的上一层沿用this
+  // DOM事件使用回调函数时，就不推荐使用箭头函数了
+  const fn1 = () => console.log(this)
+  fn1() // window -- 因为上一层是window，并不是因为window调用了它
+
+  const obj = {
+    name: 'Rainn',
+    sayHi: function () {
+      console.log(this)
+    }
+  }
+  obj.sayHi() // obj, sayHi函数自带this
+
+  const obj1 = {
+    name: 'Rainn',
+    sayHi: () => console.log(this)
+  }
+  obj1.sayHi() // window，sayHi函数没有this，且上一级作用域直接到了window
+
+  const obj2 = {
+    name: 'Rainn',
+    sayHi: function () {
+      const fn = () => {
+        console.log(this)
+      }
+      fn()
+    }
+  }
+  obj2.sayHi() // obj, fn上一级作用域（obj的sayHi函数中）有this，所以按作用域链理解即可
+</script>
+</body>
+</html>

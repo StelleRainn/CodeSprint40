@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 剩余参数 ...args
+  // 剩余参数：借助...获取剩余的实参，是个真数组，可以用数组方法；推荐使用
+  function getSum(a, b, ...arr) {
+    let sum = 0
+    sum += a + b
+    for (let i = 0; i < arr.length; i++) {
+      sum += arr[i]
+    }
+    return sum
+  }
+
+  console.log(getSum(2, 3)) // 5
+  console.log(getSum(2, 3, 4, 5, 6)) // 20
+
+
+</script>
+</body>
+</html>

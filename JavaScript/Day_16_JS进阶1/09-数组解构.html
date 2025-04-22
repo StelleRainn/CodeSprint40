@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 数组解构是将数组的单元值（数组元素）快速批量赋值给「变量」的简洁语法
+  const [max, min, avg] = [100, 60, 80]
+  // 然后，直接用这个变量
+  console.log(max)
+  console.log(min)
+  console.log(avg)
+
+  // 典型用法：交换两个变量的值
+  let a = 1
+  let b = 2
+  ;[b, a] = [a, b] // 此处的分号必须要加
+  console.log(a, b) // 2 1
+
+  // 分号拓展：前面有代码，后面用数组开头的，用分号隔开；当然，立即执行函数开头也要加
+  ;[1, 2, 3].map(function (item) { // 不加分号就报错
+    console.log(item)
+  })
+
+  // 冒泡排序可以由此简化
+  const arr = [5, 4, 3, 2, 1]
+  for (let i = 0; i < arr.length - 1; i++) {
+    for (let j = 0; j < arr.length - i - 1; j++) { // 记得是每次都从最底层开始，每趟使一个元素冒泡至最高点
+      if (arr[j] > arr[j + 1]) {
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
+      }
+    }
+  }
+  console.log(arr)
+
+  // Exercise 1
+  const pc = ['海尔', '联想', '小米', '方正']
+  const [hr, lx, mi, fz] = pc
+  console.log(hr, lx, mi, fz)
+
+  // Exercise 2
+  function getValue() {
+    return [100, 60]
+  }
+
+  const [Emax, Emin] = getValue()
+  console.log(Emax, Emin)
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 代码在执行之前，预解析，把所有var声明的变量提升到「当前」作用域的最前面
+  // 而且只提升声明，不提升赋值
+  // 变量能够在被声明之前访问
+  // let / const 声明的变量不存在变量提升
+  console.log(num) // undefined
+  var num = 10
+  console.log(num) // 10
+
+
+  // 函数提升类似，在声明之前就可以被调用
+  // 会把所有函数声明提升到「当前」作用域的最前面
+  // 同样地，只提升函数声明，不提升函数调用
+  f()
+
+  function f() {
+    console.log('函数提升')
+  }
+
+  // 但如果是函数表达式，就不存在提升的现象
+  fun() // 报错
+  var fun = function f() {
+    console.log('函数提升')
+  }
+</script>
+</body>
+</html>

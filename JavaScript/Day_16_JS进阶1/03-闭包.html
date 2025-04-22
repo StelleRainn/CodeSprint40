@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 闭包：一个函数对周围状态的引用捆绑在一起，内层函数中访问到其外层函数的作用域
+  // 简单理解：闭包 = 内层函数 + 外层函数的变量
+
+  // 简单演示
+  // function outer() {
+  //   const a = 1
+  //
+  //   function f() {
+  //     console.log(a) // 在Scope中可以看到 Closure (outer)
+  //   }
+  //
+  //   f()
+  // }
+  //
+  // outer()
+
+  // 基本格式
+  function outer() {
+    const a = 10
+
+    function fn() {
+      console.log(a)
+    }
+
+    return fn // key  // outer() ==（return语句）== fn === function fn() {}
+  }
+
+  const fun = outer()
+  fun() // 10
+
+  // 闭包的应用：使数据私有，同时让外部也可以访问函数内部的变量
+  // 一般情况下统计函数被调用的次数，counter作为全局变量容易被篡改
+  let counter = 0
+
+  function func() {
+    counter++
+    console.log(`函数被调用了${counter}次`)
+  }
+
+  // 将counter闭包
+  function count() {
+    let counter = 0
+
+    function f() {
+      counter++
+      console.log(`函数被调用了${counter}次`)
+    }
+
+    return f
+  }
+
+  // 当调用ff()时，counter是私有的，即使修改counter，也不会影响到闭包中的counter
+  // 同时，ff引用count里面的counter，所及局部变量不会被垃圾机制回收，可能会造成内存泄露（潜在风险）
+  const ff = count()
+
+
+</script>
+
+</body>
+</html>
