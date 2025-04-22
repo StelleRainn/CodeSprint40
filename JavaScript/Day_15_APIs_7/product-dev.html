@@ -501,20 +501,62 @@
   // 计算鼠标在盒子内的移动距离：鼠标在页面的坐标pageX pageY - 盒子边缘到页面边缘的距离
   middle.addEventListener('mousemove', function (ev) {
     // console.log(ev) // mouseEvent
-    // console.log('X', ev.pageX) // 鼠标-横坐标
-    // console.log('Y', ev.pageY) // 鼠标-纵坐标
+    // console.log('X', ev.pageX) // 鼠标之横坐标
+    // console.log('Y', ev.pageY) // 鼠标之纵坐标
     // // console.log('M', middle.offsetLeft) // 不要用offset，受父盒子影响
-    // console.log('Mx', middle.getBoundingClientRect().x) // 中等盒子的横坐标
+    // console.log('Mx', middle.getBoundingClientRect().x) // 中等盒子的横坐标 x或left都是一样的
     // console.log('My', middle.getBoundingClientRect().y)
 
     const distanceX = ev.pageX - middle.getBoundingClientRect().x // 正常
-    const distanceY = ev.pageY - middle.getBoundingClientRect().y // 存在一定异常
+    // const distanceY = ev.pageY - middle.getBoundingClientRect().y // 存在一定异常
+    // getBoundingClientRect()是基于视口的距离，如果向下滑动，这个y值就会变小，导致distanceY增大
+    // 故，还要减去页面卷积部分，即html的scrollTop
+    const distanceY = ev.pageY - middle.getBoundingClientRect().y - document.documentElement.scrollTop
     console.log('Dx', distanceX, 'Dy', distanceY)
     // 初步移动
-    layer.style.left = distanceX + 'px'
-    layer.style.top = distanceY + 'px'
-  })
+    // layer.style.left = distanceX + 'px'
+    // layer.style.top = distanceY + 'px'
 
+    // 计算更具体的移动坐标坐标与范围限制（条件判断，理解为区间函数）
+    // 定义move表示遮罩的实际移动坐标
+    // 在Distance小于遮罩宽度一半时，遮罩不移动；move保持为0；
+    // 在Distance处在[middle盒子宽度-遮罩宽度一半, middle盒子宽度]这个区间，遮罩不移动；move在middle宽-遮罩宽处停止；
+    // 在Distance处于[遮罩宽度一半, middle盒子宽度-遮罩宽度一半]区间内，此时遮罩开始移动，；
+    // 为平衡第一点的影响，move在移动过程应该是Distance - 遮罩半宽
+    // 通过调整实现了“鼠标在黑色遮罩居中”的效果
+
+    // 定义黑色遮罩的实际跟随坐标；通过offsetWidth获取元素自身宽高
+    let moveX = 0, moveY = 0
+    const halfLayerWidth = layer.offsetWidth / 2
+    const middleWidth = middle.offsetWidth
+    if (distanceX < halfLayerWidth) {
+      moveX = 0
+    } else if (distanceX < middleWidth && distanceX > (middleWidth - halfLayerWidth)) {
+      moveX = (middleWidth - halfLayerWidth) - halfLayerWidth
+    } else {
+      moveX = distanceX - halfLayerWidth // 后面两次-halfLayerWidth是为抵消鼠标实际位置（d）与遮罩开始移动的位置的差距（m）
+    }
+    layer.style.left = moveX + 'px'
+
+    const halfLayerHeight = layer.offsetHeight / 2
+    const middleHeight = middle.offsetHeight
+    if (distanceY < halfLayerHeight) {
+      moveY = 0
+    } else if (distanceY < middleHeight && distanceY > (middleHeight - halfLayerHeight)) {
+      moveY = (middleHeight - halfLayerHeight) - halfLayerHeight
+    } else {
+      moveY = distanceY - halfLayerHeight
+    }
+
+    layer.style.top = moveY + 'px'
+
+    // 最后，更改large图片的（bg）的内容
+    // large本身的宽高是800*800，恰是middle的两倍；改变背景位置即可实现这个效果
+    large.style.backgroundPositionX = -2 * moveX + 'px'
+    large.style.backgroundPositionY = -2 * moveY + 'px'
+
+
+  })
 </script>
 </body>
 
