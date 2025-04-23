@@ -48,6 +48,35 @@
 
   const [Emax, Emin] = getValue()
   console.log(Emax, Emin)
+
+  // 一些特殊情况：
+
+  // 1.单元值少而变量多
+  const [i, j, k, l] = [1, 2, 3]
+  console.log(i, j, k, l) // 1, 2, 3, undefined
+
+  // 2.变量少而单元值多
+  const [x, y] = [1, 2, 3]
+  console.log(x, y) // 1, 2
+
+  // 3.利用「剩余参数」解决变量少的问题
+  const [v, w, ...args] = [1, 2, 3, 4, 5]
+  console.log(v, w, args) // 1, 2, [3, 4, 5]
+
+  // 4.防止undefined传递
+  const [f = 0, g = 0] = [1]
+  console.log(f, g) // 1, 0
+
+  // 5.按需导入赋值（即忽视某些单元值）
+  const [m, n, , o] = [1, 2, 3, 4]
+  console.log(m, n, o) // 1, 2, 4
+
+  // 6. 多维数组解构
+  const [r, t, p] = [1, 2, [3, 4]]
+  console.log(p[0]) // 3
+  const [q, e, [h, s]] = [1, 2, [3, 4]]
+  console.log(h, s) // 3 ,4
+
 </script>
 </body>
 </html>

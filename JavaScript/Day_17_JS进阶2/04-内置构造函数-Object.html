@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 学习Object的三个静态方法
+
+  const obj = {
+    name: 'rainn',
+    age: 21,
+    gender: 'male',
+  }
+
+  // Object.keys(obj) 获取对象中所有属性（键），返回一个数组
+  console.log(Object.keys(obj))
+
+  // Object.values(obj) 获取对象中的所有值，返回一个数组
+  console.log(Object.values(obj))
+
+  // Object.assign(target, source) 拷贝对象到目标
+  const newObj = {}
+  Object.assign(newObj, obj)
+  console.log(newObj)
+  Object.assign(newObj, {school: 'GDUFS'})
+  console.log(newObj) // {name: 'rainn', age: 21, gender: 'male', school: 'GDUFS'}
+</script>
+</body>
+</html>

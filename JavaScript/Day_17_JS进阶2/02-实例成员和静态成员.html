@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 实例成员：
+  // 「实例对象」中的属性和方法被称为实例成员（即实例属性和实例方法）
+  // 1.为构造函数传入参数，创建结构相同但值不同的对象
+  // 2.实例对象彼此独立互不影响
+  function Stu(name) {
+    this.name = name
+  }
+
+  const rainn = new Stu('rainn')
+  const stelle = new Stu('stelle')
+
+  rainn.name = 'Rainn' // 实例属性
+  rainn.sayHi = () => console.log('Hi') // 实例方法
+
+  // 静态成员：
+  // 「构造函数」中的属性和方法被称为静态成员
+  // 1.静态成员只能通过构造函数来访问， 如 Math.PI, Math.random()
+  // 2.静态方法中的this指向构造函数
+  Stu.school = 'GDUFS' // 静态属性
+  console.log(Stu.school)
+  Stu.sayHi = function () { // 静态方法
+    console.log(this)
+  }
+  Stu.sayHi() // 指向Stu函数
+</script>
+
+</body>
+</html>

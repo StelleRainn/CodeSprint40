@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  const obj = {
+    name: 'rainn',
+    age: 18,
+    sayHi: function () {
+      console.log('Hi')
+    }
+  }
+
+  // 解构名和对象中的属性名要一致才会赋值（因为对象是无序的）
+  // 对象中找不到与变量名一致的属性时变量值为undefined
+  // 解构的变量名不要和外面的变量名冲突
+  const {name, age, sayHi} = obj
+
+  console.log(name) // rainn
+  console.log(age) // 18
+  sayHi() // Hi
+
+  // 1.对象解构的变量名的重新改名，语法：旧变量名: 新变量名
+  const {name: username} = obj
+  console.log(username) // rainn
+
+  // 2.解构对象数组
+  const stu = [
+    {
+      name: 'Charlotte',
+      gender: 'female',
+    },
+    {
+      name: 'Rainn',
+      gender: 'male',
+    }
+  ]
+  const [{name: name1, gender: gender1}, {name: name2, gender: gender2}] = stu
+  console.log(name1, gender1, name2, gender2) // Charlotte female Rainn male
+
+  // 3.多级对象解构
+  // 对象嵌套对象
+  const pig = {
+    name: '佩奇',
+    family: {
+      mother: '猪妈妈',
+      father: '猪爸爸',
+      sister: '乔治',
+    },
+    age: 6
+  }
+  // 在其中说明是哪个对象
+  const {name: pigName, family: {mother, father, sister}, age: pigAge} = pig
+  console.log(pigName)
+  console.log(sister)
+
+  // 对象嵌套对象，并内嵌在数组
+  const pigs = [
+    {
+      name: '佩奇',
+      family: {
+        mother: '猪妈妈',
+        father: '猪爸爸',
+        sister: '乔治',
+      },
+      age: 6
+    }
+  ]
+  const [{name: theName, family: {mother: mo, father: fa, sister: sis}, age: theAge}] = pigs
+  console.log(theName, mo, fa, sis, theAge) // 佩奇 猪妈妈 猪爸爸 乔治 6
+
+</script>
+</body>
+</html>

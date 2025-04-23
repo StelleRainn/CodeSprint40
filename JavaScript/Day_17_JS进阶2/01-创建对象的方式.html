@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 创建对象的三种方式
+  // 字面量
+  const obj1 = {name: 'rainn'}
+  // new 关键字
+  const obj2 = new Object({name: 'rainn'})
+
+  // 新知识点：构造函数
+  // 是一种特殊的函数，主要用来初始化对象
+  // 使用场景：通过构造函数来快速创建多个类似的对象（类似于Java类中的构造函数）
+  // 两个约定：函数命名以大写字母开头；只能由“new”操作符来执行
+  // 构造函数内部无需写return，返回值即为新创建的对象；构造函数内部的return返回的值无效
+
+  function Student(name, age, gender) {
+    this.name = name
+    this.age = age
+    this.gender = gender
+  }
+
+  // 实例化
+  console.log(new Student('rainn', '21', 'male'))
+
+  // 实例化中，出现new关键字，经过了以下四步：
+  // 立即创造一个新的空对象；this指向这个新的空对象；执行构造函数的代码，修改this，添加属性；返回对象
+
+  // Exercise
+  function Good(name, price, count) {
+    this.name = name
+    this.price = price
+    this.count = count
+  }
+
+  console.log(new Good('小米', '1999', '20'))
+  console.log(new Good('华为', '3999', '59'))
+  console.log(new Good('Vivo', '1888', '100'))
+</script>
+</body>
+</html>

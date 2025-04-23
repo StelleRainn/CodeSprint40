@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+  const str = 'rainn'
+  console.log(str.length)
+
+  // 为什么简单数据类型也会有属性和方法？
+  // 实际上，在JS的底层，自动进行了包装，也就是基本包装类型：
+  const string = new String('rainn')
+  console.log(string.length)
+
+  // 字符串、数值、布尔等基本类型都有专门的构造函数，称为包装类型
+</script>
+</body>
+</html>

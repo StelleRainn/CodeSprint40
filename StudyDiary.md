@@ -2,44 +2,348 @@
 
 *此MarkDown用于记录自己的学习进度，也方便自己复习。*
 
-*Apr
-22nd留：从今天开始，调整日志风格：总标题使用h1，月份使用h2，每日使用h3，每日板块标题用h4；每日主题或简单心里话使用引用；代码块标注代码语言；不强制设置缩进；全部以冒号、分号或句号结尾。*
+*Apr 22nd留：从今天开始，调整日志风格：总标题使用h1，月份使用h2，每日使用h3，每日板块标题用h4；每日主题或简单心里话使用引用；代码块标注代码语言；不强制设置缩进；全部以冒号、分号或句号结尾。*
 
 ## April 2025
 
 <details><summary> 点击展开 / 关闭 </summary> 
+
+
+### Apr 23rd, Wed, Day 34
+
+> Make every second worth it.
+
+#### 数组解构
+
+将数组元素值「快速、批量」赋值给变量的简洁语法。
+
+```javascript
+const [max, min, avg] = [100, 60, 80]
+// 然后，直接用这个变量
+console.log(max)
+```
+
+可以方便地交换两个变量：
+
+```javascript
+;[b, a] = [a, b] // 此处的分号必须要加
+```
+
+p.s. 关于分号：
+
+```javascript
+// 分号拓展：前面有代码，后面用数组开头的，用分号隔开；当然，立即执行函数开头也要加
+;[1, 2, 3].map(function (item) { // 不加分号就报错
+  console.log(item)
+})
+```
+
+一些特殊情况：
+
+```javascript
+// 1.单元值少而变量多
+const [i, j, k, l] = [1, 2, 3]
+console.log(i, j, k, l) // 1, 2, 3, undefined
+
+// 2.变量少而单元值多
+const [x, y] = [1, 2, 3]
+console.log(x, y) // 1, 2
+
+// 3.利用「剩余参数」解决变量少的问题
+const [v, w, ...args] = [1, 2, 3, 4, 5]
+console.log(v, w, args) // 1, 2, [3, 4, 5]
+
+// 4.防止undefined传递
+const [f = 0, g = 0] = [1]
+console.log(f, g) // 1, 0
+
+// 5.按需导入赋值（即有意地忽视某些单元值）（重）
+const [m, n, , o] = [1, 2, 3, 4]
+console.log(m, n, o) // 1, 2, 4
+
+// 6. 多维数组解构
+const [r, t, p] = [1, 2, [3, 4]]
+console.log(p[0]) // 3
+const [q, e, [h, s]] = [1, 2, [3, 4]]
+console.log(h, s) // 3 ,4
+```
+
+#### 对象解构
+
+和数组解构接近，但有几个注意点：
+
+1. **变量名要和对象属性/方法相同**，因为数组是**无序**的，需要一致才能赋值；否则，变量名输出undefined；
+2. 解构中的变量名不要与其他、外部的变量名冲突。
+
+```javascript
+const obj = {
+  name: 'rainn',
+  age: 18,
+  sayHi: function () {
+    console.log('Hi')
+  }
+}
+
+const {name, age, sayHi} = obj
+```
+
+```javascript
+// 对象解构的变量名的重新改名，语法：旧变量名: 新变量名
+const {name: username} = obj
+console.log(username) // rainn
+```
+
+对于一些嵌套关系，如对象数组，对象嵌套对象，甚至嵌套对象数组，只需记住：**解构体的结构要和被解构体相同**，例如数组被解构，那就`const [...] = [...]`；对象被解构，就是`const {...} = {...}`；内部的结构（按需求）保持一致即可。一些例子:
+
+```javascript
+// 2.解构对象数组
+const stu = [
+  {
+    name: 'Charlotte',
+    gender: 'female',
+  },
+  {
+    name: 'Rainn',
+    gender: 'male',
+  }
+]
+const [{name: name1, gender: gender1}, {name: name2, gender: gender2}] = stu // 解构体是数组
+console.log(name1, gender1, name2, gender2) // Charlotte female Rainn male
+```
+
+```javascript
+// 3.对象嵌套对象
+const pig = {
+  name: '佩奇',
+  family: {
+    mother: '猪妈妈',
+    father: '猪爸爸',
+    sister: '乔治',
+  },
+  age: 6
+}
+// 在其中说明是哪个对象
+const {name: pigName, family: {mother, father, sister}, age: pigAge} = pig // 解构体是对象
+```
+
+```javascript
+// 对象嵌套对象，并内嵌在数组
+const pigs = [
+  {
+    name: '佩奇',
+    family: {
+      mother: '猪妈妈',
+      father: '猪爸爸',
+      sister: '乔治',
+    },
+    age: 6
+  }
+]
+
+// 解构体是数组
+const [{name: theName, family: {mother: mo, father: fa, sister: sis}, age: theAge}] = pigs
+console.log(theName, mo, fa, sis, theAge) // 佩奇 猪妈妈 猪爸爸 乔治 6
+```
+
+#### 数组的forEach循环
+
+和map方法类型，但是只遍历，不迭代，也没有返回值。
+
+```javascript
+// array.forEach(function(当前数组元素，当前元素索引号) {...} )
+// 当前数组元素必写，索引号可选
+const arr = ['r', 'g', 'b']
+arr.forEach((item, index) => console.log(item, index))
+```
+
+
+
 ### Apr 22nd, Tue, Day 33
+
 
 > 那些年没敢追的女孩，那些年没能敲下的代码……回想起来也有遗憾；但不必遗憾，现在，就努力去追赶，用自己的双手与智慧去成就梦想，遇见更好的自己！
 
 #### 作用域和作用域链
 
 > ```
-> // 局部作用域 和 全局作用域
+> 局部作用域 和 全局作用域
 > 
-> // 局部作用域又分函数作用域和块级作用域
-> // 块级作用域，使用{}包含的代码块，在其内部声明的变量几乎不能被外面访问
-> // let 和 const 默认有块作用域，var没有块作用域
+> 局部作用域又分函数作用域和块级作用域
+> 块级作用域，使用{}包含的代码块，在其内部声明的变量几乎不能被外面访问
+> let 和 const 默认有块作用域，var没有块作用域
 > 
-> // 全局作用域，写在script标签和.js文件中的代码
-> // 函数中未使用任何关键字生命的比阿亮为全局变量，不推荐
-> // 尽可能少的声明全局变量，防止变量被污染
+> 全局作用域，写在script标签和.js文件中的代码
+> 函数中未使用任何关键字生命的比阿亮为全局变量，不推荐
+> 尽可能少的声明全局变量，防止变量被污染
 > 
 > 
-> // 作用域链
-> // 本质：底层的「变量查找机制」
-> // 函数被执行，优先查找当前函数作用域中的变量
-> // 当前作用域查找不到则「依次、逐级」查找父级作用域，直到全局作用域
-> // p.s. 子作用域能访问父作用域，父作用域无法访问子作用域
+> 作用域链
+> 本质：底层的「变量查找机制」
+> 函数被执行，优先查找当前函数作用域中的变量
+> 当前作用域查找不到则「依次、逐级」查找父级作用域，直到全局作用域
+> p.s. 子作用域能访问父作用域，父作用域无法访问子作用域
 > ```
 
 #### JS垃圾回收机制
 
-##### 内存生命周期
+**内存生命周期**
 
-内存分配（声明变量）、内存使用（读写）、内存回收（使用完毕，由垃圾回收器处理）
+1. **内存分配**（声明变量）、**内存使用**（读写）、**内存回收**（使用完毕，由垃圾回收器处理）
 
-全局变量在关闭页面时回收（一般），局部变量在使用完毕后自动被回收；
+2. 全局变量在关闭页面时回收（一般），局部变量在使用完毕后自动被回收；
+
+**垃圾回收机制的两种办法**
+
+1. **引用计数算法**。核心：定义“内存不再使用”。原理是：多一次引用，次数加1；减少一次引用，次数-1；若引用为0，回收堆空间。但存在一个缺陷，若存在相互引用，则引用永远不会为0，无法回收而造成内存泄露。
+2. **标记清除法**。核心：定时从根部出发扫描对象，如果是可达（reachable）则保留，否则被标记为不再使用，回收内存。
+
+#### 闭包
+
+一个函数对周围状态的引用捆绑在一起，内部函数可以访问其外层函数的作用域。简单理解：**闭包 = 内层函数 + 外层函数的变量**。
+
+闭包的应用：使数据私有，同时让外部也可以访问函数内部的变量。
+
+```javascript
+// 将counter闭包
+function count() {
+  let counter = 0
+
+  function f() {
+    counter++
+    console.log(`函数被调用了${counter}次`)
+  }
+
+  return f
+}
+
+const ff = count()
+// 当调用ff()时，counter是私有的，即使修改外部的counter，也不会影响到闭包中的counter
+// 同时，ff引用count里面的counter，所以局部变量不会被垃圾机制回收，可能会造成内存泄露（潜在风险）
+```
+
+#### 变量提升和函数提升
+
+1. var声明的变量，会存在函数提升现象（先使用再声明）。原理是：代码在执行之前，预解析，把所有var声明的变量提升到「当前」作用域的最前面。p.s. 提升的是声明，但赋值不会提升。
+2. let / const 声明的变量不存在函数提升
+
+```javascript
+console.log(num) // undefined
+var num = 10
+console.log(num) // 10
+```
+
+3. 函数的声明接近，之所以可以先调用再声明，也是因为预解析而将函数的声明提前到了「当前作用域」的最前面。同样地，提升的只是函数的声明，不提升调用。
+
+#### 函数动态参数 arguments
+
+**本质：伪数组，并且只能存在于函数中**。可以接受多个参数。
+
+```javascript
+function getSum() {
+  let sum = 0
+  for (let i = 0; i < arguments.length; i++) {
+    sum += arguments[i]
+  }
+  return sum
+}
+
+getSum(2, 3) // Arguments(2)
+getSum(1, 2, 3, 4, 5, 6, 7) // Arguments(7)
+```
+
+#### 剩余参数 ...args
+
+**本质：真数组，也能接受多个参数，同样只能存在于函数中**。开发中推荐使用。
+
+```javascript
+function getSum(a, b, ...arr) {
+  let sum = 0
+  sum += a + b
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i]
+  }
+  return sum
+}
+
+console.log(getSum(2, 3)) // 5
+console.log(getSum(2, 3, 4, 5, 6)) // 20
+```
+
+#### 展开运算符
+
+可以将数组展开；注意区分剩余参数。典型应用场景包括数组求最值、合并数组等：
+
+```javascript
+const arr1 = [1, 2, 3]
+console.log(Math.max(...arr1)) // 3 // Math.max()本身不接受数组参数
+```
+
+```javascript
+const arr2 = [4, 5, 6]
+const arr3 = [...arr1, ...arr2]
+```
+
+#### 箭头函数
+
+适用于那些需要匿名函数的地方；不绑定this；属于表达式函数，不存在变量提升。
+
+p.s. 箭头函数没有动态参数，只有剩余参数...args
+
+```javascript
+const fun = () => {
+  console.log(123)
+}
+```
+
+```javascript
+const f = (x, y) => {
+  console.log(x, y)
+}
+```
+
+```javascript
+// 简化写法：只有一个形参，可以省略小括号；函数执行体只有一行代码，可以省略大括号
+const f1 = x => console.log(x)
+
+// 一行return可以省略return
+const f2 = (x, y) => x + y
+```
+
+```javascript
+// 箭头函数可以直接返回一个对象
+// 用小括号是因为函数体的花括号和对象的花括号冲突
+const f3 = uname => ({uname: uname})
+console.log(f3('Rainn')) // {uname: 'Rainn'}
+```
+
+关于箭头函数中的this，简单来说：箭头函数本身不生成this；如果在内部使用了this关键字，它会沿着「作用域链」在上一级寻找this。e.g.
+
+```javascript
+const obj = {
+  name: 'Rainn',
+  sayHi: function () {
+    console.log(this)
+  }
+}
+obj.sayHi() // obj, sayHi函数自带this
+
+const obj1 = {
+  name: 'Rainn',
+  sayHi: () => console.log(this)
+}
+obj1.sayHi() // window，sayHi函数没有this，且上一级作用域直接到了window
+
+const obj2 = {
+  name: 'Rainn',
+  sayHi: function () {
+    const fn = () => {
+      console.log(this)
+    }
+    fn()
+  }
+}
+obj2.sayHi() // obj, fn上一级作用域（obj的sayHi函数中）有this，所以按作用域链理解即可
+```
 
 
 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+  const arr = [1, 2, 3, 4, 5]
+  // 常见实例方法
+  // forEach：遍历数组
+  // filter：遍历与过滤，返回新数组
+  // map：遍历，迭代与处理，返回新数组
+
+  // reduce：累计器，返回累计处理的结果，经常用于求和等
+  const total = arr.reduce(function (previousValue, currentValue) {
+    return previousValue + currentValue
+  })
+
+  console.log(total) // 15
+
+  // 回调函数之后，可以加入「起始值」，结果会加到这个起始值
+  const totalWithInitialValue = arr.reduce(function (previousValue, currentValue) {
+    return previousValue + currentValue
+  }, 10)  // 10是起始值
+
+  console.log(totalWithInitialValue) // 25
+
+  // 可以改成箭头函数
+  const to = arr.reduce((prev, current) => prev + current)
+  console.log(to) // 10
+
+  const tot = arr.reduce((prev, current) => prev + current, 10)
+  console.log(tot) // 25
+
+  // 执行过程
+  // 1.如果没有起始值，则prev值采取数组的第一个元素值
+  // 2.每一次循环，把return返回值作为下一次循环到prev值
+  // 3.如果有起始值，起始值作为第一个prev值
+
+
+  // Exercise：计算薪资
+  const array = [
+    {
+      name: 'Rainn',
+      salary: 10000,
+    },
+    {
+      name: 'Stelle',
+      salary: 10000,
+    },
+    {
+      name: 'Charlotte',
+      salary: 10000,
+    }
+  ]
+
+  console.log(typeof array[0].salary)
+  const totalSalary = array.reduce((prev, current) => prev + current.salary, 0)
+  // 核心点：不要用prev.salary，因为返回值是个值，不是对象，没有salary；且0是必须的
+  // const totalSalary = array.reduce((prev, current) => prev.salary + current.salary, 0)
+  console.log(totalSalary)
+
+  // 新需求：当月涨薪30%
+  const totalSalaryE = array.reduce((prev, current) => prev + current.salary * (1 + 0.3), 0)
+  console.log(totalSalaryE)
+
+
+</script>
+</body>
+</html>

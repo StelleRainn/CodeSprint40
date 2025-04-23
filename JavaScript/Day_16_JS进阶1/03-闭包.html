@@ -31,7 +31,7 @@
       console.log(a)
     }
 
-    return fn // key  // outer() ==（return语句）== fn === function fn() {}
+    return fn // key  // outer() === fn（return语句） === function fn() {}
   }
 
   const fun = outer()
@@ -58,9 +58,9 @@
     return f
   }
 
-  // 当调用ff()时，counter是私有的，即使修改counter，也不会影响到闭包中的counter
-  // 同时，ff引用count里面的counter，所及局部变量不会被垃圾机制回收，可能会造成内存泄露（潜在风险）
   const ff = count()
+  // 当调用ff()时，counter是私有的，即使修改counter，也不会影响到闭包中的counter
+  // 同时，ff引用count里面的counter，所以局部变量不会被垃圾机制回收，可能会造成内存泄露（潜在风险）
 
 
 </script>
