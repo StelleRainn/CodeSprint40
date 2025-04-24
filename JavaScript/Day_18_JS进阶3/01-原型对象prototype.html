@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 公共的属性写到构造函数中
+  function Student(name, age) {
+    this.name = name
+    this.age = age
+    this.which = this
+  }
+
+  console.dir(Student.prototype)
+
+  // 原型对象prototype
+  // 在此挂载让各个对象共享的方法
+  Student.prototype.sing = function () {
+    console.log('Singing~')
+    console.log(this)
+  }
+
+  const rainn = new Student('rainn', 21)
+  const charlotte = new Student('charlotte', 20)
+
+  console.log(rainn.which)
+  console.log(charlotte.which)
+  rainn.sing()
+  charlotte.sing()
+
+  console.log(rainn.sing === charlotte.sing) // true
+
+</script>
+</body>
+</html>

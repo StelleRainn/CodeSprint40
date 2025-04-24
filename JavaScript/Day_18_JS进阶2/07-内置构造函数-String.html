@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // split()方法：恰好和数组join方法反过来
+  // 将字符串拆分成数组，参数就是分隔符
+  const str = 'Grain,Stelle,Rainn'
+  const arr = str.split(',')
+  console.log(arr)
+  const str1 = '2025-4-24'
+  const arr2 = str1.split('-')
+  console.log(arr2)
+
+
+  // substring()方法
+  // str.substring(indexStart[, indexEnd]) 省略indexEnd，则默认截取到字符串的最后.
+  // 包含indexStart，不包含indexEnd
+  const longStr = '0123456789'
+  const subStr1 = longStr.substring(0)
+  const subStr2 = longStr.substring(8)
+  const subStr3 = longStr.substring(5, 9) // 5678
+  console.log(subStr1, subStr2, subStr3)
+
+
+  // startsWith()方法（同步记住endsWith()方法）
+  // startsWith(searchString[, position])判断当前字符串是否以另外一个给定的子字符串开头，返回布尔值
+  console.log(str.startsWith('Grain')) // t
+  console.log(str.startsWith('Rainn')) // f
+  console.log(str.startsWith('Rainn', 13)) // true
+
+  // includes()方法
+  // includes(searchString[, position]) 区分大小写
+  console.log(str.includes('Rainn')) // true
+  console.log(str.includes('rainn')) // false
+
+</script>
+</body>
+</html>

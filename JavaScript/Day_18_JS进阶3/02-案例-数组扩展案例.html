@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  const arr = [1, 2, 4]
+
+  // 自定义max方法，求数组最大值
+  Array.prototype.max = function () {
+    return (Math.max(...this)) // 直接用this指向调用的数组
+  }
+
+  console.log(arr.max())
+
+  // 自定义sum方法，求数组元素之和
+  Array.prototype.sum = function () {
+    return this.reduce((prev, current) => prev + current, 0)
+  }
+
+  console.log(arr.sum())
+  
+</script>
+</body>
+</html>

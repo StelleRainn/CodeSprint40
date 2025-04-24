@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  function Student() {
+
+  }
+
+  // 每个原型对象里都有一个constructor属性，指向该prototype原型对象的构造函数
+  console.dir(Student.prototype) // 指向了Student构造函数
+  console.log(Student.prototype.constructor === Student) // true
+
+  // 使用场景：
+  // 需要为构造函数添加多个方法，可以给原型对象采取对象的形式赋值。
+  // 存在问题：会覆盖prototype原来的内容，导致constructor不再指向原来的构造函数
+  // 所以，当采用这种方式为构造函数的prototype追加方法时，需要重新声明一次constructor
+
+  console.log(Student.prototype) // 有constructor
+
+  Student.prototype = {
+    constructor: Student, // 如果不加这一句，后面输出就无法查看到constructor
+    sing: function () {
+      console.log('sing')
+    },
+    dance: function () {
+      console.log('dance')
+    }
+  }
+
+  console.log(Student.prototype) // 既保留了constructor，又追加了sing和dance方法
+
+</script>
+</body>
+</html>

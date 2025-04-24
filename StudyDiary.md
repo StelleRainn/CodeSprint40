@@ -11,6 +11,118 @@
 <details><summary> 点击展开 / 关闭 </summary> 
 
 
+### Apr 24th, Thu, Day 35
+
+> We've made so far. Yet we can't stop by this far.
+
+#### 两种编程思想
+
+1. **面向过程**：按照分析好了的步骤依次解决问题。性能比面向对象高。
+
+2. **面向对象**：以对象功能来划分问题而不是步骤。
+
+   每一个对象都是功能中心，具有明确分工。
+
+   非常灵活、代码可复用、易维护和开发、适用于多人合作的大型项目。
+
+   包括**三大特性**：**封装，继承，多态**
+
+#### 构造函数
+
+构造函数体现了面向对象的封装特性；创建的对象彼此独立，互不影响。
+
+但是，存在**浪费内存**的问题（比如，每new一个对象，其中的函数也会开辟、占用一份内存，即使这两个函数表现起来是一致的）。
+
+为了解决这一问题，引出**「原型」**。
+
+#### 原型对象 prototype
+
+构造函数通过**原型**分配的函数是所有对象共享的；每一个构造函数都有一个`prototype`对象（通过`dir`可以看到是`Object`），指向另一个对象，也称为**原型对象**；
+
+**prototype可以挂载函数**，故可以将不变的方法直接定义在prototype对象上，然后所有对象的实例就可以共享这些方法。
+
+**p.s. 构造函数和原型对象中的this都指向「实例化的对象」**
+
+```javascript
+// 相同属性定义在构造函数中
+function Student(name, age) {
+  this.name = name
+  this.age = age
+  this.pointer = this
+}
+
+// 相同方法定义在原型对象中
+Student.prototype.sing = function () {
+  console.log('Singing~')
+  console.log(this)
+}
+
+const rainn = new Student('rainn', 21)
+const charlotte = new Student('charlotte', 20)
+
+console.log(rainn.sing === charlotte.sing) // true
+
+// this指向实例对象
+console.log(rainn.which) // 指向rainn对象
+console.log(charlotte.which) // 指向charlotte对象
+rainn.sing() // log结果为rainn对象
+charlotte.sing() // log结果为charlotte对象
+```
+
+**可以自定义方法**
+
+```javascript
+// 自定义max方法，求数组最大值
+Array.prototype.max = function () {
+  return (Math.max(...this)) // 直接用this指向调用的数组
+}
+console.log(arr.max())
+
+// 自定义sum方法，求数组元素之和
+Array.prototype.sum = function () {
+  return this.reduce((prev, current) => prev + current, 0)
+}
+console.log(arr.sum())
+```
+
+#### 原型 constructor属性
+
+每个`prototype`中都有一个`constructor`属性，指向自己的构造函数。
+
+```javascript
+function Student () {}
+console.log(Student.prototype.constructor === Student) // true
+```
+
+使用场景：需要为prototype添加多个方法，采用了对象赋值的形式。这会导致原prototype中的内容被覆盖，constructor属性丢失。故而，在对象赋值的过程中，显式声明（赋值）constructor。
+
+```javascript
+console.log(Student.prototype) // 有constructor
+// 采用对象赋值的形式为prototype添加方法
+Student.prototype = { 
+  constructor: Student, // 如果不加这一句，后面输出就无法查看到constructor
+  sing: function () {
+    console.log('sing')
+  },
+  dance: function () {
+    console.log('dance')
+  }
+}
+console.log(Student.prototype) // 既保留了constructor，又追加了sing和dance方法
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Apr 23rd, Wed, Day 34
 
@@ -35,6 +147,9 @@ function Student(name, age, gender) {
   this.name = name
   this.age = age
   this.gender = gender
+  this.sayHi = function () {
+    console.log('Singing.')
+  }
 }
 
 // 实例化
@@ -170,7 +285,92 @@ const realList = Array.from(list)
 console.log(realList)
 ```
 
+#### 内置构造函数 String系列
 
+1. **split**方法：将字符串拆分成数组，参数即分隔符。和数组join方法反过来。
+
+```javascript
+const str = '2025-4-24'
+const arr = str1.split('-')
+console.log(arr)
+```
+
+2. **substring**方法：截取子字符串。
+
+```javascript
+// str.substring(indexStart[, indexEnd]) 省略indexEnd，则默认截取到字符串的最后.
+// 包含indexStart，不包含indexEnd
+const longStr = '0123456789'
+const subStr1 = longStr.substring(0)
+const subStr2 = longStr.substring(8)
+const subStr3 = longStr.substring(5, 9) // 5678
+```
+
+3. **startsWith**方法：判断字符串是否以给定的子字符串开头，返回一个布尔值。（同步记住**endsWith**方法）
+
+```javascript
+const str = 'Grain,Stelle,Rainn'
+// startsWith(searchString[, position])判断当前字符串是否以另外一个给定的子字符串开头，返回布尔值
+console.log(str.startsWith('Grain')) // t
+console.log(str.startsWith('Rainn')) // f
+console.log(str.startsWith('Rainn', 13)) // true
+```
+
+4. **includes**方法：判断是否包含某子串：
+
+```javascript
+// includes(searchString[, position]) 区分大小写
+console.log(str.includes('Rainn')) // true
+console.log(str.includes('rainn')) // false
+```
+
+#### 内置构造函数 Number系列
+
+1. **toFixed**方法：保留几位小数，注意四舍五入：
+
+```javascript
+const number = 10.919
+console.log(number.toFixed()) // 11 -- 四舍五入
+console.log(number.toFixed(2)) // 10.92
+```
+
+2. **toString**方法：转化为字符串，和字符串**String()**方法一致：
+
+```javascript
+console.log(typeof String(number))
+console.log(typeof number.toString())
+```
+
+#### 购物车渲染案例
+
+**核心：使用数组map方法遍历数组，使用对象解构来简化代码；最后的价格统计使用数组reduce方法计算**
+
+1. 数据数组中，每个元素都是对象，所以**map后解构**来获取对象中的各个属性；
+
+```javascript
+document.querySelector('.list').innerHTML = goodsList.map((item) => {
+  const {name, price, picture, count, spec, gift} = item
+ ...
+```
+
+2. `spec`比较特殊，**本身是个对象，且内容不固定**，所以需要`Object.values(spec)`来获取其中的**所有值**，然后渲染即可；
+
+```javascript
+...`<p class="spec">${Object.values(spec).join('/')}</p>`...
+```
+
+2. `gift`也比较特殊，不是每个数组元素（对象）都有；通过条件判断来确定是否获取，否则，将其置为**空字符串**（解构时，如果没获取到，就是undefined）
+
+```javascript
+const str = gift ? gift.split(',').map(current => `<span class="tag">【赠品】${current}</span>`).join('') : ''
+// 然后在后面的map return中将str写入即可
+```
+
+4. 计算总价时，可以注意一个细节，即**先增大再做除法**，可以**减少精度误差**
+
+```javascript
+const total = goodsList.reduce((prev, current) => ((prev + current.price * current.count) * 100) / 100, 0)
+```
 
 
 
