@@ -85,7 +85,7 @@ Array.prototype.sum = function () {
 console.log(arr.sum())
 ```
 
-#### 原型 constructor属性
+#### 原型对象中的 constructor属性
 
 每个`prototype`中都有一个`constructor`属性，指向自己的构造函数。
 
@@ -111,13 +111,95 @@ Student.prototype = {
 console.log(Student.prototype) // 既保留了constructor，又追加了sing和dance方法
 ```
 
+#### 对象原型 \__proto__  或  [[prototype]]
 
+每个对象都会有一个属性\__proto__ ，称为对象原型，指向构造函数的prototype。这就是实例对象能够使用prototype中方法的原因。
 
+\__proto__是JS的非标准属性，只读；在浏览器中显示为[[prototype]]，两种方式的意义相同。
 
+```javascript
+const rainn = new Student()
+console.log(rainn.__proto__ === Student.prototype) // true
+console.log(rainn.__proto__.constructor === Student) // true
+```
 
+#### 原型继承
 
+抽取共同属性称为一个公共的构造函数（父类），新的构造函数（子类）通过prototype继承其中的属性。
 
+注意：继承后需要重新为prototype.constructor赋值，令其指回构造函数
 
+*p.s. 可以按照Java中类的思想理解*
+
+```javascript
+// 父类
+function Human() {
+  this.eyes = 2
+  this.head = 1
+}
+
+// 子类
+function Student() {
+  this.school = 'GDUFS'
+}
+function Worker() {
+  this.company = 'Apple'
+}
+
+// 继承
+Student.prototype = new Human()
+Student.prototype.constructor = Student // 也要记得重新声明constructor
+const Rainn = new Student()
+
+Worker.prototype = new Human()
+Worker.prototype.constructor = Worker
+const Charlotte = new Worker()
+
+Worker.prototype.salary = function () { // 添加新方法
+  console.log('发工资')
+}
+console.log(Charlotte) // 有新方法
+console.log(Rainn) // 不受影响
+```
+
+#### 原型链
+
+> 梳理清楚**构造函数**，**实例对象**与**原型对象**之间的关联。
+
+基于prototype的继承使得不同构造函数的原型对象关联在一起，且这种关联的关系是一种链状结构。将原型对象的链状结构关系称为原型链。
+
+**原理：原型对象prototype本身也是个对象，是对象就有\__proto__**
+
+*p.s. 最大的基类是Object。万物皆对象。*
+
+```javascript
+function Person () {}
+
+// 只要是对象，就有__proto__，指向构造函数的prototype
+console.log(Person.prototype.__proto__ === Object.prototype) // true
+console.log(Object.prototype.__proto__ === null) // true 顶级对象，无法再向上寻找 
+
+// 只要是原型对象，就有constructor，指回构造函数
+console.log(Person.prototype.constructor === Person) // true
+console.log(Object.prototype.constructor === Object) // true
+```
+
+**原型链-查找规则**：访问一个对象的属性/方法，先看看这个对象自身有没有；如果没有，就沿着\__proto__所指向的prototype上寻找；直到顶级构造函数Object的prototype；如果依然没有，就返回null。
+
+意义：为对象成员的查找机制提供一个方向或者说路线。
+
+**instanceof** 运算符：检测构造函数的prototype属性是否出现在某个实例对象的原型链上；
+
+简单理解：**对象是否属于某个构造函数**。
+
+```javascript
+const rainn = new Person()
+console.log(rainn instanceof Person) // true
+console.log(rainn instanceof Object) // true
+console.log(rainn instanceof Array) // false
+console.log([''] instanceof Array) // true
+console.log(Array instanceof Object) // true
+```
 
 
 

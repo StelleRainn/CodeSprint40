@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // // 公共对象
+  // const Human = {
+  //   head: 1,
+  //   eyes: 2,
+  // }
+
+  // function Student() {
+  //   this.school = 'GDUFS'
+  // }
+  //
+  // function Worker() {
+  //   this.company = 'Apple'
+  // }
+
+  // // 原型继承
+  // Student.prototype = Human
+  // Student.prototype.constructor = Student // 避免被覆盖
+  //
+  // const rainn = new Student()
+  // console.log(rainn)
+  // // 得到 school 和 [[prototype]]（即对象原型），后者中有constructor, head和eyes
+  // // 也即：通过对象原型__proto__找到了prototype中的属性
+  //
+  // Worker.prototype = Human
+  // Worker.prototype.constructor = Worker
+  // const charlotte = new Worker()
+  // console.log(charlotte) // 得到 company 和 [[prototype]]: {constructor, head, eyes}
+  //
+  // // 但这样一来，Student 和 Worker 的原型都指向了同一个对象（就是堆中的那一个对象）
+  // // 如果谁做出了修改，另一方也会被动修改（因为本质上修改了Human对象）
+  // Student.prototype.study = function () {
+  //   console.log('Have classes')
+  // }
+  // console.log(charlotte) // 此时这里面也有study方法
+
+  // 所以，抽取共同对象，形成构造函数（父类）
+  function Human() {
+    this.eyes = 2
+    this.head = 1
+  }
+
+  // 子类
+  function Student() {
+    this.school = 'GDUFS'
+  }
+
+  function Worker() {
+    this.company = 'Apple'
+  }
+
+  // 继承
+  Student.prototype = new Human()
+  Student.prototype.constructor = Student // 也要记得重新声明constructor
+
+  const Rainn = new Student()
+  console.log(Rainn)
+
+  Worker.prototype = new Human()
+  Worker.prototype.constructor = Worker
+
+  const Charlotte = new Worker()
+  Worker.prototype.salary = function () { // 添加新方法
+    console.log('发工资')
+  }
+
+  console.log(Charlotte) // 有新方法
+  console.log(Rainn) // 不受影响
+
+</script>
+</body>
+</html>

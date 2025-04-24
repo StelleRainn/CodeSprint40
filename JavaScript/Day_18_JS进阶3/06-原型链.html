@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 基于prototype的继承使得不同构造函数的原型对象关联在一起，且这种关联的关系是一种链状结构
+  // 将原型对象的链状结构关系称为原型链
+
+  // 原型对象prototype本身也是个对象，所以，它也有__proto__对象原型
+  // 它就会「向上」寻找
+  // 最大的基类就是Object，Object.prototype.__proto__无法再向上关联，从而为空
+  function Person() {
+  }
+
+  // 只要是对象，就有__proto__，指向原型对象
+  console.log(Person.prototype.__proto__ === Object.prototype) // true
+  console.log(Object.prototype.__proto__ === null) // true 无法再向上关联
+
+  // 只要是原型对象，就有constructor，指回构造函数
+  console.log(Person.prototype.constructor === Person) // true
+  console.log(Object.prototype.constructor === Object) // true
+
+  // 原型链-查找规则
+  // 先看对象自身有没有这个属性/方法，如果没有就查找它的原型（__proto__所指向的prototype）
+  // 直到Object的prototype，如果还没有，那就是null
+  // 意义：为对象成员查找机制提供一个方向，或者说路线
+
+  // instanceof运算符检测构造函数的prototype属性是否出现在某个实例对象的原型链上
+  // 简单理解：是否属于某个构造函数
+  const rainn = new Person()
+  console.log(rainn instanceof Person) // true
+  console.log(rainn instanceof Object) // true
+  console.log(rainn instanceof Array) // false
+  console.log([''] instanceof Array) // true
+  console.log(Array instanceof Object) // true
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+  // 对象都会有一个属性__proto__，称为对象原型，指向构造函数的prototype原型对象
+  // 这就是为什么对象可以使用prototype原型对象的方法
+  function Student() {
+  }
+
+  // __proto__是JS非标准属性。
+  // 浏览器显示的[[Prototype]] 和 __proto__的意义相同
+  // 只读
+  const rainn = new Student()
+  console.log(rainn.__proto__)
+  console.log(rainn.__proto__ === Student.prototype) // true
+  console.log(rainn.__proto__.constructor === Student) // true 指回Student
+  console.log(rainn.__proto__.constructor === Student.prototype.constructor) // true
+
+</script>
+</body>
+</html>
