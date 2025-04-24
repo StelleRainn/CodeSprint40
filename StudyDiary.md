@@ -4,157 +4,176 @@
 
 *Apr 22nd留：从今天开始，调整日志风格：总标题使用h1，月份使用h2，每日使用h3，每日板块标题用h4；每日主题或简单心里话使用引用；代码块标注代码语言；不强制设置缩进；全部以冒号、分号或句号结尾。*
 
+
+
 ## April 2025
 
 <details><summary> 点击展开 / 关闭 </summary> 
+
 
 
 ### Apr 23rd, Wed, Day 34
 
 > Make every second worth it.
 
-#### 数组解构
+#### 创建对象的三种方式
 
-将数组元素值「快速、批量」赋值给变量的简洁语法。
-
-```javascript
-const [max, min, avg] = [100, 60, 80]
-// 然后，直接用这个变量
-console.log(max)
-```
-
-可以方便地交换两个变量：
-
-```javascript
-;[b, a] = [a, b] // 此处的分号必须要加
-```
-
-p.s. 关于分号：
+1. 字面量：`cosnt obj = {name: 'rainn'}`
+2. new 关键字：`construction obj = new Object({name: 'rainn'})`
+3. **构造函数：**
+   1. 是一种特殊的函数，用来初始化对象、快速创建多个类似的对象； *类似于Java中的类*；
+   2. 约定：函数命名以大写字母开头；并且只能由new关键字执行；
+   3. 构造函数内部不写return（写了也无效）；其返回值就是新创建的对象。
+   4. 实例化过程中，new关键字执行之后，经过以下四步：
+      1. 立即创造一个新的空对象；
+      2. 构造函数中的this指向这个新对象；
+      3. 执行构造函数的代码，修改this，添加属性；
+      4. 返回对象。
 
 ```javascript
-// 分号拓展：前面有代码，后面用数组开头的，用分号隔开；当然，立即执行函数开头也要加
-;[1, 2, 3].map(function (item) { // 不加分号就报错
-  console.log(item)
-})
-```
-
-一些特殊情况：
-
-```javascript
-// 1.单元值少而变量多
-const [i, j, k, l] = [1, 2, 3]
-console.log(i, j, k, l) // 1, 2, 3, undefined
-
-// 2.变量少而单元值多
-const [x, y] = [1, 2, 3]
-console.log(x, y) // 1, 2
-
-// 3.利用「剩余参数」解决变量少的问题
-const [v, w, ...args] = [1, 2, 3, 4, 5]
-console.log(v, w, args) // 1, 2, [3, 4, 5]
-
-// 4.防止undefined传递
-const [f = 0, g = 0] = [1]
-console.log(f, g) // 1, 0
-
-// 5.按需导入赋值（即有意地忽视某些单元值）（重）
-const [m, n, , o] = [1, 2, 3, 4]
-console.log(m, n, o) // 1, 2, 4
-
-// 6. 多维数组解构
-const [r, t, p] = [1, 2, [3, 4]]
-console.log(p[0]) // 3
-const [q, e, [h, s]] = [1, 2, [3, 4]]
-console.log(h, s) // 3 ,4
-```
-
-#### 对象解构
-
-和数组解构接近，但有几个注意点：
-
-1. **变量名要和对象属性/方法相同**，因为数组是**无序**的，需要一致才能赋值；否则，变量名输出undefined；
-2. 解构中的变量名不要与其他、外部的变量名冲突。
-
-```javascript
-const obj = {
-  name: 'rainn',
-  age: 18,
-  sayHi: function () {
-    console.log('Hi')
-  }
+function Student(name, age, gender) {
+  this.name = name
+  this.age = age
+  this.gender = gender
 }
 
-const {name, age, sayHi} = obj
+// 实例化
+console.log(new Student('rainn', '21', 'male'))
 ```
 
-```javascript
-// 对象解构的变量名的重新改名，语法：旧变量名: 新变量名
-const {name: username} = obj
-console.log(username) // rainn
-```
+#### 实例成员 & 静态成员
 
-对于一些嵌套关系，如对象数组，对象嵌套对象，甚至嵌套对象数组，只需记住：**解构体的结构要和被解构体相同**，例如数组被解构，那就`const [...] = [...]`；对象被解构，就是`const {...} = {...}`；内部的结构（按需求）保持一致即可。一些例子:
+1. **实例成员**
 
-```javascript
-// 2.解构对象数组
-const stu = [
-  {
-    name: 'Charlotte',
-    gender: 'female',
-  },
-  {
-    name: 'Rainn',
-    gender: 'male',
-  }
-]
-const [{name: name1, gender: gender1}, {name: name2, gender: gender2}] = stu // 解构体是数组
-console.log(name1, gender1, name2, gender2) // Charlotte female Rainn male
-```
+实例成员即「实例对象」中的属性和方法（实例属性、实例方法）。
+
+为构造函数传入不同的参数，创建结构相同但值不同的对象；实例对象彼此互不影响。
 
 ```javascript
-// 3.对象嵌套对象
-const pig = {
-  name: '佩奇',
-  family: {
-    mother: '猪妈妈',
-    father: '猪爸爸',
-    sister: '乔治',
-  },
-  age: 6
+function Stu(name) {
+  this.name = name
 }
-// 在其中说明是哪个对象
-const {name: pigName, family: {mother, father, sister}, age: pigAge} = pig // 解构体是对象
+
+const rainn = new Stu('rainn')
+const stelle = new Stu('stelle')
+
+rainn.name = 'Rainn' // 实例属性
+rainn.sayHi = () => console.log('Hi') // 实例方法
 ```
+
+2. **静态成员**
+
+「构造函数」中的属性和方法就是静态成员。
+
+只能通过构造函数访问，例如`Math.PI`，`Math.random()`；静态方法中的`this`指向构造函数。
 
 ```javascript
-// 对象嵌套对象，并内嵌在数组
-const pigs = [
-  {
-    name: '佩奇',
-    family: {
-      mother: '猪妈妈',
-      father: '猪爸爸',
-      sister: '乔治',
-    },
-    age: 6
-  }
-]
-
-// 解构体是数组
-const [{name: theName, family: {mother: mo, father: fa, sister: sis}, age: theAge}] = pigs
-console.log(theName, mo, fa, sis, theAge) // 佩奇 猪妈妈 猪爸爸 乔治 6
+Stu.school = 'GDUFS' // 静态属性
+Stu.sayHi = function () { // 静态方法
+  console.log(this)
+}
+Stu.sayHi() // 指向Stu函数
 ```
 
-#### 数组的forEach循环
+#### 基本包装类型
 
-和map方法类型，但是只遍历，不迭代，也没有返回值。
+简单的数据类型（如字符串）也有自己的属性和方法，这实际上是因为JS在底层自动进行了包装；字符串、数值、布尔等基本类型都有专门的构造函数，称为包装类型。
+
+``````javascript
+const str = 'rainn'
+console.log(str.length)
+
+// 实际上相当于
+const string = new String('rainn')
+``````
+
+#### 内置构造函数 Object系列
+
+- `Object.keys(obj)`：获取obj对象的所有键（属性），返回一个**数组**；
+- `Object.values(obj)`：获取obj对象的所有值，同样返回一个**数组**；
+- `Object.assign(target, source)`：拷贝一个源对象到目标对象之中；
+
+``````javascript
+const newObj = {}
+Object.assign(newObj, obj)
+Object.assign(newObj, {school: 'GDUFS'}) // 追加
+``````
+
+#### 内置构造函数 Array系列
+
+已经学习过的一些**实例方法**：
+
+1. **forEach**方法：遍历数组：
 
 ```javascript
-// array.forEach(function(当前数组元素，当前元素索引号) {...} )
-// 当前数组元素必写，索引号可选
-const arr = ['r', 'g', 'b']
-arr.forEach((item, index) => console.log(item, index))
+arr.forEach(function (current ) { ... }) 
 ```
+2. **filter**方法：遍历并做条件过滤，将符合条件的元素加入到新数组并返回该数组：
+
+```javascript
+arr.filter(function (current) {...})
+```
+3. **map**方法：遍历与迭代处理，返回处理后的新数组：
+
+```javascript
+arr.map(function (current) {...})
+```
+
+**新方法：**
+
+4. **reduce**方法：返回累计处理的结果，常用于求和操作等;
+   1. 参数：回调函数，起始值。
+   2. 回调函数中，至少包含prev和current两个值；如果没有起始值，则默认以数组第一个元素作为起始值。 p.s. 注意一个细节：第一个元素未必是个数值，所以建议至少填入起始值0。
+   3. 每一次循环，都会把当前return结果作为prev传递给下一次循环。
+
+``````javascript
+const total = arr.reduce(function (previousValue, currentValue) {
+    return previousValue + currentValue
+  })
+const tot = arr.reduce((prev, current) => prev + current, 10)
+
+// 对象数组：prev值不要采用prev.salary，因为首次循环之后的返回值就是纯数值了，而不是对象。
+const totalSalary = array.reduce((prev, current) => prev + current.salary, 0)
+``````
+
+5. **join**方法：将数组元素拼接成一个字符串，返回字符串。参数即拼接方式，默认逗号。
+
+```javascript
+console.log(arr.join('/'))
+console.log(typeof arr.join()) // string
+```
+
+6. **find方法**：返回数组中满足提供的测试函数的第一个元素的值。否则返回 undefined。
+
+```javascript
+// find(callbackFn(element, index, array), thisArg)
+const apple = phones.find(value => value.name === 'Apple')
+```
+
+7. **every**方法：测试一个数组内的**所有元素**是否能通过指定函数的测试。返回一个布尔值。
+
+```javascript
+console.log(numbers.every((value) => value >= 1)) // true
+```
+
+8. **some**方法：和every接近，但只要有一个元素通过测试，就能返回true。
+
+**静态方法from：将伪数组转换为真数组**：
+
+9. **Array.from(伪数组序列)**：
+
+```javascript
+const list = document.querySelectorAll('ul li')
+console.log(list) // NodeList
+const realList = Array.from(list)
+console.log(realList)
+```
+
+
+
+
+
+
 
 
 
@@ -345,63 +364,304 @@ const obj2 = {
 obj2.sayHi() // obj, fn上一级作用域（obj的sayHi函数中）有this，所以按作用域链理解即可
 ```
 
+#### 数组解构
+
+将数组元素值「快速、批量」赋值给变量的简洁语法。
+
+```javascript
+const [max, min, avg] = [100, 60, 80]
+// 然后，直接用这个变量
+console.log(max)
+```
+
+可以方便地交换两个变量：
+
+```javascript
+;[b, a] = [a, b] // 此处的分号必须要加
+```
+
+p.s. 关于分号：
+
+```javascript
+// 分号拓展：前面有代码，后面用数组开头的，用分号隔开；当然，立即执行函数开头也要加
+;[1, 2, 3].map(function (item) { // 不加分号就报错
+  console.log(item)
+})
+```
+
+一些特殊情况：
+
+```javascript
+// 1.单元值少而变量多
+const [i, j, k, l] = [1, 2, 3]
+console.log(i, j, k, l) // 1, 2, 3, undefined
+
+// 2.变量少而单元值多
+const [x, y] = [1, 2, 3]
+console.log(x, y) // 1, 2
+
+// 3.利用「剩余参数」解决变量少的问题
+const [v, w, ...args] = [1, 2, 3, 4, 5]
+console.log(v, w, args) // 1, 2, [3, 4, 5]
+
+// 4.防止undefined传递
+const [f = 0, g = 0] = [1]
+console.log(f, g) // 1, 0
+
+// 5.按需导入赋值（即有意地忽视某些单元值）（重）
+const [m, n, , o] = [1, 2, 3, 4]
+console.log(m, n, o) // 1, 2, 4
+
+// 6. 多维数组解构
+const [r, t, p] = [1, 2, [3, 4]]
+console.log(p[0]) // 3
+const [q, e, [h, s]] = [1, 2, [3, 4]]
+console.log(h, s) // 3 ,4
+```
+
+#### 对象解构
+
+和数组解构接近，但有几个注意点：
+
+1. **变量名要和对象属性/方法相同**，因为数组是**无序**的，需要一致才能赋值；否则，变量名输出undefined；
+2. 解构中的变量名不要与其他、外部的变量名冲突。
+
+```javascript
+const obj = {
+  name: 'rainn',
+  age: 18,
+  sayHi: function () {
+    console.log('Hi')
+  }
+}
+
+const {name, age, sayHi} = obj
+```
+
+```javascript
+// 对象解构的变量名的重新改名，语法：旧变量名: 新变量名
+const {name: username} = obj
+console.log(username) // rainn
+```
+
+对于一些嵌套关系，如对象数组，对象嵌套对象，甚至嵌套对象数组，只需记住：**解构体的结构要和被解构体相同**，例如数组被解构，那就`const [...] = [...]`；对象被解构，就是`const {...} = {...}`；内部的结构（按需求）保持一致即可。一些例子:
+
+```javascript
+// 2.解构对象数组
+const stu = [
+  {
+    name: 'Charlotte',
+    gender: 'female',
+  },
+  {
+    name: 'Rainn',
+    gender: 'male',
+  }
+]
+const [{name: name1, gender: gender1}, {name: name2, gender: gender2}] = stu // 解构体是数组
+console.log(name1, gender1, name2, gender2) // Charlotte female Rainn male
+```
+
+```javascript
+// 3.对象嵌套对象
+const pig = {
+  name: '佩奇',
+  family: {
+    mother: '猪妈妈',
+    father: '猪爸爸',
+    sister: '乔治',
+  },
+  age: 6
+}
+// 在其中说明是哪个对象
+const {name: pigName, family: {mother, father, sister}, age: pigAge} = pig // 解构体是对象
+```
+
+```javascript
+// 对象嵌套对象，并内嵌在数组
+const pigs = [
+  {
+    name: '佩奇',
+    family: {
+      mother: '猪妈妈',
+      father: '猪爸爸',
+      sister: '乔治',
+    },
+    age: 6
+  }
+]
+
+// 解构体是数组
+const [{name: theName, family: {mother: mo, father: fa, sister: sis}, age: theAge}] = pigs
+console.log(theName, mo, fa, sis, theAge) // 佩奇 猪妈妈 猪爸爸 乔治 6
+```
+
+#### 数组的forEach循环
+
+和map方法类型，但是只遍历，不迭代，也没有返回值。
+
+```javascript
+// array.forEach(function(当前数组元素，当前元素索引号) {...} )
+// 当前数组元素必写，索引号可选
+const arr = ['r', 'g', 'b']
+arr.forEach((item, index) => console.log(item, index))
+```
+
+#### 数组的filter方法
+
+筛选数组符合条件的元素，并加入到新数组中，返回这个数组。
+
+``````javascript
+const newArr = arr.filter(function(currentValue, index, array) {...} )
+const newArr = arr.filter(currentValue => currentValue > 10)
+``````
+
+#### 综合案例：渲染商品
+
+能够根据不同价格渲染不同的商品。
+
+1. 封装渲染函数：使用数组forEach循环，采用「字符串拼接」的方式，将每一个商品的div块（即HTML内容）写进一个空字串。最后，将这个字符串通过innerHTML写入网页中。
+2. 价格筛选：核心：使用数组filter筛选，将符合条件的元素返回到一个新数组，然后调用渲染函数渲染该数组即可。
+
+``````javascript
+// 采用click事件委托；并采用对象解构简化代码
+const {tagName, dataset} = ev.target
+let arr = goodsList // 默认
+  if (tagName === 'A') {
+    if (dataset.index === '1') {
+      arr = goodsList.filter(item => item.price < 100)
+    } else if {...} else {...}
+render(arr)
+``````
+
+
+
 
 
 ### Apr 21st, Mon, Day 32
 
-- 我想，变得更强！去成为一个出色的 **「工程师」**！
+> 我想，变得更强！去成为一个出色的 **「工程师」**！
 
-- p.s. 今日先写个快速总结，明日把API案例的最后一点完成后，在补充更详细的内容；
+今日主要是做**两个综合案例**：
+#### APIs6-综合案例：表单验证相关知识：
 
-- 今日知识点快速总结：主要是做两个综合案例：
-    - APIs6中的综合案例，主要是表单验证相关知识：
-        - 发送短信验证码：`click`事件，`间歇函数`与`innerHTML`修改内容。重点：**节流阀**，通过一个`flag`信号量来避免反复点击与触发间歇函数；
-        - 表单验证：
-            - 各控件添加`change`事件，正则表达式`reg.test(ev.value)`验证输入内容；封装验证函数verify，使各个控件可以复用；函数返回
-              `true/false`，方便最后`submit`时再次统一验证；
-            - 最后的二次密码验证，与`pwd.value`匹配即可；
-        - 同意协议：`classList.toggle`添加类名即可；
-        - 提交：针对表单各个控件再次调用验证函数（取得布尔值），以及验证同意小按钮有没有新增的类名即可；
-        - 登录页之tab栏切换效果：`click`事件与事件委托；**排他思想**添加`active`类；对于tabPane中的内容，采用先全部获取并隐藏，再根据
-          **自定义属性data-id**显示对应盒子；
-        - 登录页之点击登录：（验证环节不再重复）用户协议使用checked属性确认；点击登录后，使用`localStorage.setItem()`
-          将用户名存入到本地存储（简单字符串不需要JSON化）；使用location.href跳转到主页；
-        - 主页之显示用户名：封装为render函数；检查本地存储相应字段，如有就用innerHTML填入相关字段，并设置退出登录（c
-          `lick事件`，`confirm`确认，`localStorage.removeItem()`删除数据，来模拟退出）；若无，则分别设置登录和注册链接即可；
+- **发送短信验证码**：
 
-    - APIs7综合案例，重点实现图片的放大镜效果，以及其他一些内容：
+    `click`事件，`间歇函数`与`innerHTML`修改内容。重点：**节流阀**，通过一个`flag`信号量来避免反复点击与触发间歇函数；
 
-        - 头部显隐：依旧是比较`scrollTop`与指定元素的`offsetTop`来控制`display: none / block`；注意以下几点：
+- **表单验证**：
+  
+    各控件添加`change`事件；使用正则表达式`reg.test(ev.value)`验证输入内容；封装验证函数`verify`，使各个控件可以复用；函数返回`true/false`，方便最后`submit`时再次统一验证；
+    
+    最后的二次密码验证，与`pwd.value`匹配即可；
+    
+- **同意协议**：`classList.toggle`添加类名即可；
 
-            - **是给window添加scroll事件**；
+- **提交**：针对表单各个控件再次调用验证函数（取得布尔值），以及验证同意小按钮有没有新增的类名（代表已经选中）即可；
 
-            - const distance写在事件里面（实时获取）；
+- **登录页之tab栏切换效果**：
+  
+  添加`click`事件与**事件委托**；**排他思想**添加`active`类；对于tabPane中的内容，采用**先全部获取并隐藏**的方式，再根据**自定义属性data-id**显示对应盒子；
+  
+- **登录页之点击登录**：
+  
+  用户协议使用`checked`属性确认；点击登录后，使用`localStorage.setItem()`将用户名存入到**本地存储**（**简单字符串不需要JSON化**）；使用`location.href`跳转到主页；
+  
+  *p.s. 这里不重复做表单验证相关功能了*
+  
+- **主页之显示用户名**：封装为`render`函数；检查**本地存储**相应字段，如有就用`innerHTML`填入相关字段，并设置退出登录（`click事件`，`confirm`确认，`localStorage.removeItem()`删除数据，来模拟退出）；若无，则分别设置登录和注册链接即可；
 
-            - offsetTop本身是个定值（多数情况），scrollTop动态变化；
+#### APIs7-综合案例：图片的放大镜效果：
 
-              ```javascript
-              sticky.style.top = distance >= xtx_wrapper.offsetTop ? '0' : '-80px'
-              ```
+- **头部显隐**：依旧是比较`scrollTop`与指定元素的`offsetTop`来控制`display: none / block`；注意以下几点：
 
-        - 图片切换模块：和APIs6的登录页tab切换原理相近，注意点：
+    - **是给window添加scroll事件**；
 
-            - 使用`mouseover`而不是`enter`：**前者才可以冒泡**，进而实现**事件委托**；
+    - `const distance`写在事件里面（实时获取）；
 
-            - `ev.target.tagName`选择的是IMG，但是排他思想添加`active`类的时候，给它父级的`li（parentNode）`添加：
+    - `offsetTop`本身是个定值（多数情况），`scrollTop`动态变化；
 
-              ```javascript
-              ev.target.parentNode.classList.add('active') // IMG的上一级才是LI
-              ```
+   ```javascript
+sticky.style.top = distance >= xtx_wrapper.offsetTop ? '0' : '-80px'
+   ```
 
-            - 修改中等盒子的图片，修改的是其子级中的img；middle类本身没有src属性：
+- **图片切换模块**：和APIs6的登录页tab切换原理相近，注意点：
 
-              ```javascript
-              middle.querySelector('img').src = `${ev.target.src}` // middle 本身没有src，是middle里面的子级img的图片src
-              ```
+    - 使用`mouseover`而不是`mouseenter`：**前者才可以冒泡**，进而实现**事件委托**；
 
-        - 放大镜模块：……
+    - `ev.target.tagName`选择的是IMG，但是**排他思想**添加`active`类的时候，是给它父级（`li`标签，通过`parentNode`获取）添加：
 
-- 明日将放大镜模块完成后再来补充；并进入JS进阶阶段，期待本周四可以通关JavaScript初步！
+   ```javascript
+   ev.target.parentNode.classList.add('active') // IMG的上一级才是LI
+   ```
+
+    - 修改中等盒子的图片，修改的是其子级中的`img`；`middle`类本身没有`src`属性：
+
+   ```javascript
+   middle.querySelector('img').src = `${ev.target.src}` // middle 本身没有src，是middle里面的子级img的图片src
+   ```
+
+- **放大镜模块**：
+
+    - 使用`mouseenter / mouseleave`事件，当鼠标经过中等盒子，大盒子出现 / 隐藏；大盒子也添加该事件；
+
+    - 中等盒子黑色遮罩layer的显/隐：`mouseenter / mouseleave` 事件控制`display`;
+
+    - **layer的移动计算：**
+
+        1. 整体采用`mousemove`事件，通过`console.log(ev)`可以得到 `mouseEvent`；符合移动即触发的效果；
+
+        2. 我们需要分别获取**鼠标的坐标**和**中等盒子的坐标**，才能确定layer在中等盒子中的坐标：
+
+           ev中，有`PageX`和`PageY`两个属性，就是鼠标在页面的横纵坐标（相当于left值和top值）；
+
+           而中等盒子的坐标，采用`getBoundingClientRect()`，其中的`x`和`y`就是我们需要的、**该盒子基于视口的坐标**；而不用`offsetLeft / offsetTop`，是因为担心受父级盒子的**定位**影响。
+
+        3. 如此，通过`distance = Page - getBoundingClientRect()`，就能初步计算layer需要在middle中移动的距离；再令`layer.style.top(left) = distanceY(distanceX) + 'px'`，就实现了在mousemove事件中，layer随鼠标变化而移动的效果。
+
+        4. 但存在一个问题，当页面向上滚动，y值会变小，导致distanceY偏大；看起来就是layer跑到了鼠标下方。
+
+        5. 所以，还要减去html的scrollTop卷积部分来修正这个问题：
+
+        ```javascript
+        const distanceY = ev.pageY - middle.getBoundingClientRect().y -document.documentElement.scrollTop
+        ```
+        
+        6. **重点难点**：需要更精确地控制移动范围，采用条件判断，以分段函数理解就可以
+        
+        ```javascript
+        // 定义move表示遮罩的实际移动坐标
+        // 在Distance小于遮罩宽度一半时，遮罩不移动；move保持为0；
+        // 在Distance处在[middle盒子宽度-遮罩宽度一半, middle盒子宽度]这个区间，遮罩不移动；move在middle宽-遮罩宽处停止；
+        // 在Distance处于[遮罩宽度一半, middle盒子宽度-遮罩宽度一半]区间内，此时遮罩开始移动，；
+        // 为平衡第一点的影响，move在移动过程应该是Distance - 遮罩半宽
+        // 通过调整实现了“鼠标在黑色遮罩居中”的效果
+        
+        // 定义黑色遮罩的实际跟随坐标；通过offsetWidth获取元素自身宽高
+        let moveX = 0, moveY = 0
+        const halfLayerWidth = layer.offsetWidth / 2
+        const middleWidth = middle.offsetWidth
+        if (distanceX < halfLayerWidth) {
+           moveX = 0
+        } else if (distanceX < middleWidth && distanceX > (middleWidth - halfLayerWidth)) {
+           moveX = (middleWidth - halfLayerWidth) - halfLayerWidth
+        } else {
+           moveX = distanceX - halfLayerWidth // 后面两次-halfLayerWidth是为抵消鼠标实际位置（d）与遮罩开始移动的位置的差距（m）
+         }
+        layer.style.left = moveX + 'px' // top同理
+        ```
+        
+        7. 最后，修改large盒子中的背景图片，鉴于large中的图片恰好是middle缩放的2倍，通过更新bg-position，同步移动2倍的moveX或moveY，即可实现效果：
+        
+        ```javascript
+        large.style.backgroundPositionX = -2 * moveX + 'px'
+        large.style.backgroundPositionY = -2 * moveY + 'px'
+        ```
+        
+           
+        
+        
+
 
 ### Apr 20th, Sun, Day 31
 
@@ -421,8 +681,7 @@ obj2.sayHi() // obj, fn上一级作用域（obj的sayHi函数中）有this，所
 - 「暂缓」
 - 本周末依然是被各种事物拆碎的状态，上午写了社区的每日总结，下午学习了2个小时不到的JS视频课，主要是**正则表达式**
   相关的内容，就不在这里写了，学完了视频课的那一个Day再一起写。
-- 晚上参加了社区的实践活动-生死99秒，第一次竞选了队长。虽然最后没有胜利，但也算出了一把风头，要自信，要有气势；**要纯粹，要相信
-  **。
+- 晚上参加了社区的实践活动-生死99秒，第一次竞选了队长。虽然最后没有胜利，但也算出了一把风头，要自信，要有气势；**要纯粹，要相信。**
 
 ### Apr 18th, Fri, Day 29
 
