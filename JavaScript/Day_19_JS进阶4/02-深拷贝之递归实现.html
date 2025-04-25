@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 通过递归函数实现深拷贝
+  // 在一个函数内部调用自己，称该函数为递归函数
+  // 必须要加退出条件return，否则会发生栈溢出错误（stack overflow）
+
+  // e.g.利用递归实现setTimeout模拟setInterval
+  // function timer() {
+  //   setTimeout(() => {
+  //     console.log(new Date().toLocaleString())
+  //     timer()
+  //   }, 1000)
+  // }
+  //
+  // timer()
+
+  const rainn = {
+    name: 'rainn',
+    age: 18,
+    // 复杂数据类型
+    body: {
+      weight: 55,
+      height: 168,
+    },
+    hobby: ['cycle', 'run'],
+    skill: [
+      {
+        subject: 'Program',
+        level: 'C++ & Java & Python & Javascript'
+      },
+      {
+        subject: 'English',
+        level: 'CET-4 & CET-6'
+      }
+    ]
+  }
+
+  const charlotte = {}
+
+  const deepCopy = function (target, source) {
+    for (let key in source) { // 对象遍历，key是属性名（变量），source[key]是属性值（相当于source.key的值，详见基础day7）
+      if (source[key] instanceof Array) { // 判断是否是数组（复杂数据类型）
+        target[key] = []
+        deepCopy(target[key], source[key]) // 递归调用
+      } else if (source[key] instanceof Object) { // 判断是否为对象，但Array先行，因为数组也是对象
+        target[key] = {}
+        deepCopy(target[key], source[key])
+      } else {
+        target[key] = source[key]
+      }
+    }
+  }
+
+  deepCopy(charlotte, rainn)
+
+  charlotte.name = 'Charlotte'
+  console.log(charlotte.name, rainn.name) // 互不影响
+
+  charlotte.hobby = ['swim', 'sing']
+  console.log(charlotte.hobby, rainn.hobby) // 互不影响
+
+  charlotte.body.height = 165
+  charlotte.body.weight = 45
+  console.log(charlotte.body, rainn.body) // 互不影响
+
+  charlotte.skill[0].level = 'Python'
+  charlotte.skill[1].level = 'Profession-8'
+  console.log(rainn.skill, charlotte.skill) // 互不影响
+
+  console.log(charlotte, rainn)
+
+  console.log(charlotte.hobby instanceof Object) // true array也是数组
+
+
+</script>
+</body>
+</html>

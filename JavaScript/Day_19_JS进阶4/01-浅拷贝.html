@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+  // 拷贝对象
+  const obj = {
+    name: 'rainn',
+    age: 18
+  }
+
+  // {...sourceObj}
+  const o1 = {...obj}
+  o1.age = 20
+  console.log(obj.age, o1.age) // 18 20 对o1的修改不会影响原来的obj
+
+  // Object.assign(target, source)
+  const o2 = {}
+  Object.assign(o2, obj)
+  o2.age = 20
+  console.log(obj.age, o2.age) // 18 20 对o2的修改也不会影响到obj
+
+  // 拷贝数组
+  // [...sourceArray]
+  // Array.prototype.concat()
+
+  // 如果是简单数据类型，就将值拷贝；两个对象属性互不影响；
+  // 但如果是引用数据类型，就拷贝了地址；导致在新的对象/数组中对这个属性作修改，就会影响到原来的对象/数组（就像直接赋值的情况）
+  // 简单理解：如果是单层对象，ok；如果多层（例如对象嵌套对象）就会有问题。
+</script>
+</body>
+</html>

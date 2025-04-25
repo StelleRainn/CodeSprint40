@@ -11,6 +11,14 @@
 <details><summary> 点击展开 / 关闭 </summary> 
 
 
+### Apr 25th, Fri, Day 36
+
+> 里程碑2。Milestone 2.
+
+
+
+
+
 ### Apr 24th, Thu, Day 35
 
 > We've made so far. Yet we can't stop by this far.
