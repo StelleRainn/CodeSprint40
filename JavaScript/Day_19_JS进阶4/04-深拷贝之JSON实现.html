@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  const rainn = {
+    name: 'rainn',
+    age: 18,
+    // 复杂数据类型
+    body: {
+      weight: 55,
+      height: 168,
+    },
+    hobby: ['cycle', 'run'],
+    skill: [
+      {
+        subject: 'Program',
+        level: 'C++ & Java & Python & Javascript'
+      },
+      {
+        subject: 'English',
+        level: 'CET-4 & CET-6'
+      }
+    ]
+  }
+
+  // 核型：先将对象转换为JSON字符串，然后将字符串复制给新变量，最后再转换为对象；完成切割
+  const charlotte = JSON.parse(JSON.stringify(rainn))
+  console.log(charlotte)
+</script>
+</body>
+</html>

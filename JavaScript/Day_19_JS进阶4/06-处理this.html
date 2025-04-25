@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>11</button>
+<script>
+  // 1. 普通函数中的this：谁调用，this的值就指向谁
+
+  // 普通函数没有明确调用者时，this的值为window
+  // 严格模式下没有调用者时，this的值为undefined
+  // 严格模式 'use strict'
+  console.log(this) // Window
+  function f() {
+    console.log(this) // Window
+  }
+
+  f()
+
+  setTimeout(function () {
+    console.log(this) // Window
+  }, 1)
+
+  document.querySelector('button').addEventListener('click', function () {
+    console.log(this) // button
+  })
+
+  const obj = {
+    name: 'rainn',
+    sayHi: function () {
+      console.log(this) // 指向obj对象
+    }
+  }
+
+  obj.sayHi()
+
+  // 2. 箭头函数的this
+  // 箭头函数本身没有this，箭头函数的this引用就是最近一级作用域的this
+  // 向外层作用域中，一层一层查找this，直到找到this的定义
+  // 适用于 需要使用上层this的地方
+</script>
+</body>
+</html>

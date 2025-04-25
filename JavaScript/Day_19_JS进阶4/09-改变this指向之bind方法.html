@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>send</button>
+
+<script>
+  // bind方法不会调用函数。但是可以改变函数内部this的指向
+  // 返回一个新函数（对原函数的拷贝），但是this的指向已经被修改
+  // function.bind(thisArg, args1, args2, ..., argsN)
+  const obj = {
+    age: 21
+  }
+
+  function fn() {
+    console.log(this) // 指向window
+  }
+
+  const fun = fn.bind(obj)
+  fun()
+
+  // Exercise：按钮点击后，2秒后再开启：除了改箭头函数和直接传入DOM对象之外，就可以使用bind方法
+  const btn = document.querySelector('button')
+
+  btn.addEventListener('click', function () {
+    this.disabled = true
+    setTimeout(function () {
+      this.disabled = false
+    }.bind(this), 2000) // 这里的this指向的是btn
+  })
+
+
+</script>
+</body>
+</html>

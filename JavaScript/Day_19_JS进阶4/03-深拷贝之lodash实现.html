@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--引用lodash库-->
+<script src="lodash.min.js"></script>
+<script>
+  const rainn = {
+    name: 'rainn',
+    age: 18,
+    // 复杂数据类型
+    body: {
+      weight: 55,
+      height: 168,
+    },
+    hobby: ['cycle', 'run'],
+    skill: [
+      {
+        subject: 'Program',
+        level: 'C++ & Java & Python & Javascript'
+      },
+      {
+        subject: 'English',
+        level: 'CET-4 & CET-6'
+      }
+    ]
+  }
+
+  const charlotte = _.cloneDeep(rainn)
+  console.log(charlotte)
+</script>
+
+</body>
+</html>

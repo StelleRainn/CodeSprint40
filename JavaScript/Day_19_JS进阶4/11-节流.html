@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 500px;
+            background-color: #ccc;
+            color: #fff;
+            text-align: center;
+            font-size: 100px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="box"></div>
+<script src="lodash.min.js"></script>
+<script>
+  // throttle：单位时间内，频繁触发事件，「只执行一次」
+  // 使用场景： 鼠标移动mousemove， 页面缩放resize，滚动条scroll等
+
+
+  // 只有在鼠标经过3s后计数器才加一，期间不论怎么移动都不影响
+  const box = document.querySelector('.box')
+  let i = 0
+
+  function mouseMove() {
+    box.innerHTML = String(++i)
+  }
+
+  // 1. lodash中的函数
+  // box.addEventListener('mousemove', _.throttle(mouseMove, 3000))
+
+  // 2. 手写节流函数：依然靠setTimeout定时器，和防抖相似
+  // 不同点：判断到有定时器，则不开启新定时器；
+  // 否则，开启定时器，执行代码（调用），并清空定时器
+
+  function throttle(fn, wait) {
+    let timer
+    // 闭包变量，内部函数引用了外部函数作用域中的变量，这个变量就会“被保留下来”，不会被销毁。
+    // 不能写在return function的作用域中，否则每次事件都会重新声明一个timer
+
+    return function () {
+      if (!timer) {
+        timer = setTimeout(function () {
+          fn()
+          // 注意：清空定时器不能用clearTimeout！
+          // 不能在定时器里面清除定时器，因为定时器还在运作
+          // clearTimeout(timer)
+          timer = null
+        }, wait)
+      }
+    }
+  }
+
+  box.addEventListener('mousemove', throttle(mouseMove, 1000))
+
+</script>
+</body>
+
+</html>

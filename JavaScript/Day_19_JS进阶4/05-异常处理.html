@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p></p>
+
+<script>
+  // 1. throw new Error('message')
+  // function fn1(x, y) {
+  //   if (!x || !y) {
+  //     throw new Error('参数不完整') // 会终止程序
+  //   }
+  //   return x + y
+  // }
+  //
+  // fn1()
+
+  // 2. try-catch-finally捕获异常
+  // 拦截错误，提示浏览器提供的错误信息，但不中断程序的执行（可以在catch块中加入return / throw来终止）
+  // finally 不管是否有错误，都会执行
+  function fn2() {
+    try {
+      document.querySelector('span').style.color = 'red'
+    } catch (e) { // 参数e中的message是错误消息
+      console.log(e.message)
+      // throw new Error(e.message)
+    } finally {
+      alert('finally 语句中的代码一定会执行')
+    }
+
+    console.log('后续代码正常运行')
+  }
+
+  fn2()
+
+  // 3. debugger
+  debugger
+  // 在浏览器中自动打开debug调试程序
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <style>
+        .box {
+            width: 500px;
+            height: 500px;
+            background-color: #ccc;
+            color: #fff;
+            text-align: center;
+            font-size: 100px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="box"></div>
+<script src="lodash.min.js"></script>
+<script>
+  // debounce：单位时间内，频繁触发事件，只执行最后一次
+  // 使用场景：搜索框搜索输入。只需用户最后一次输入完，再发送请求；手机号，邮箱验证输入检测。
+
+
+  // Exercise：鼠标划过div块后，i++
+  // 如果不防抖，那么哪怕划过1像素，i也会自增，
+  // 如果存在大量消耗性能的代码，如dom操作、数据处理等，就有可能造成卡顿
+
+
+  // 只有在鼠标最后一次移动并停了200ms才计数
+  const box = document.querySelector('.box')
+  let i = 0
+
+  function mouseMove() {
+    box.innerHTML = String(++i)
+  }
+
+  // 1. 可以通过lodash库中提供的防抖函数
+  // box.addEventListener('mousemove', _.debounce(mouseMove, 200))
+
+  // 2. 手写防抖函数。核心：利用setTimeout定时器
+  function debounce(fn, wait) {
+    let timer
+    return function () {
+      // key：每次执行前，检测是否有定时器，如有，则清除上一个定时器；
+      // 然后在新的定时器中调用函数
+      if (timer) clearTimeout(timer)
+      timer = setTimeout(function () {
+        fn()
+      }, wait)
+    }
+  }
+
+  box.addEventListener('mousemove', debounce(mouseMove, 200))
+  // 理解：addEventListener绑定的本身是函数名，这里填入了函数调用
+  // 这就意味着，btn在绑定时就已经触发了这个事件，并将其返回值作为事件处理函数
+  // 所以，在debounce函数中，我们返回一个函数（不是函数调用）；在mousemove事件后，执行的就是这个返回的函数
+
+</script>
+</body>
+
+</html>

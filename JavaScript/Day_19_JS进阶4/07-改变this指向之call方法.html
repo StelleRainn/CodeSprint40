@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // function.call(this语句, 参数1, 参数2...)
+  const obj = {
+    name: 'rainn',
+  }
+
+  function fn(x, y) {
+    console.log(this) // 一般调用时，指向window
+    console.log(x + y)
+  }
+
+  // 调用函数的同时，指定this的指向
+  fn.call(obj, 1, 2) // {name: 'rainn'} 3
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+  // function.call(thisArg, [参数1, ..., 参数n])
+  // 必须以数组的方式传递其他参数
+  const obj = {
+    name: 'rainn',
+  }
+
+  function fn(x, y) {
+    console.log(this) // 一般调用时，指向window
+    console.log(x + y)
+  }
+
+  // 也可以改变this的指向，其他参数以数组的形式传入
+  fn.apply(obj, [1, 2])
+
+  // 使用场景：求数组最大值
+  const arr = [1, 2, 3]
+  const max = Math.max.apply(Math, arr)
+  console.log(max)
+
+</script>
+</body>
+</html>
