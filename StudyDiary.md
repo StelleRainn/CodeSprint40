@@ -63,8 +63,8 @@ const charlotte = new Student('charlotte', 20)
 console.log(rainn.sing === charlotte.sing) // true
 
 // this指向实例对象
-console.log(rainn.which) // 指向rainn对象
-console.log(charlotte.which) // 指向charlotte对象
+console.log(rainn.pointer) // 指向rainn对象
+console.log(charlotte.pointer) // 指向charlotte对象
 rainn.sing() // log结果为rainn对象
 charlotte.sing() // log结果为charlotte对象
 ```
@@ -865,7 +865,7 @@ render(arr)
     - `offsetTop`本身是个定值（多数情况），`scrollTop`动态变化；
 
    ```javascript
-sticky.style.top = distance >= xtx_wrapper.offsetTop ? '0' : '-80px'
+   sticky.style.top = distance >= xtx_wrapper.offsetTop ? '0' : '-80px'
    ```
 
 - **图片切换模块**：和APIs6的登录页tab切换原理相近，注意点：
