@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="referrer" content="never"/>
+    <title>综合案例</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 1200px;
+            margin: 0 auto;
+        }
+
+        .video video {
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .elevator {
+            position: fixed;
+            top: 280px;
+            right: 20px;
+            z-index: 999;
+            background: #fff;
+            border: 1px solid #e4e4e4;
+            width: 60px;
+        }
+
+        .elevator a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            text-align: center;
+            color: #999;
+        }
+
+        .elevator a.active {
+            color: #1286ff;
+        }
+
+        .outline {
+            padding-bottom: 300px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="header">
+        <a href="http://pip.itcast.cn">
+            <img src="https://pip.itcast.cn/img/logo_v3.29b9ba72.png" alt=""/>
+        </a>
+    </div>
+    <div class="video">
+        <video src="https://v.itheima.net/LapADhV6.mp4" controls></video>
+    </div>
+    <div class="elevator">
+        <a href="javascript:;" data-ref="video">视频介绍</a>
+        <a href="javascript:;" data-ref="intro">课程简介</a>
+        <a href="javascript:;" data-ref="outline">评论列表</a>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+<script>
+
+  // 新知识点：video.ontimeupdate，当视频/音频（进度条等）发生变化，执行函数；有L0和L2两种写法
+  const video = document.querySelector('video')
+  // L0写法：
+  // video.ontimeupdate = function () {
+  //   console.log('video update') // 触发频次很高，需要节流，1s触发一次即可
+  // }
+  // L2写法：
+  // video.addEventListener('timeupdate', function () {
+  //   console.log('video update')
+  // })
+  // 使用lodash进行节流（只需要1s记录一次就可以了）
+  function recordVideoTime() {
+    // console.log(video.currentTime) // video.currentTime获取当前视频的播放的时间
+    // 存入本地存储
+    localStorage.setItem('currentTime', String(video.currentTime))
+  }
+
+  video.addEventListener('timeupdate', _.throttle(recordVideoTime, 1000))
+
+  // 新知识点2: loadeddata 事件在媒体当前播放位置的视频帧（通常是第一帧）加载完成后触发。
+  video.addEventListener('loadeddata', () => {
+    // video.currentTime属性是可读写的
+    video.currentTime = Number(localStorage.getItem('currentTime'))
+  })
+
+
+</script>
+</body>
+
+</html>

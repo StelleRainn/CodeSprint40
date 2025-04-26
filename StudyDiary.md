@@ -15,6 +15,33 @@
 
 > 里程碑2。Milestone 2.
 
+#### 浅拷贝
+
+可以完成对「单层」对象的拷贝，对新的对象/数组的修改不会影响到原来的对象/数组。包括两种方法：
+
+```javascript
+// {...sourceObj}
+const o1 = {...obj}
+o1.age = 20
+console.log(obj.age, o1.age) // 18 20 对o1的修改不会影响原来的obj
+```
+
+```javascript
+// Object.assign(target, source)
+const o2 = {}
+Object.assign(o2, obj)
+o2.age = 20
+console.log(obj.age, o2.age) // 18 20 对o2的修改也不会影响到obj
+```
+
+拷贝数组，包括`[...sourceArray]`和`Array.prototype.contact`两种方法。
+
+然而，浅拷贝不能完成对多级（嵌套）的对象/数组的拷贝（对于其中的简单数据类型就拷贝了值，但引用数据类型还是拷贝了地址），故引出**深拷贝**。
+
+#### 深拷贝
+
+
+
 
 
 
@@ -208,6 +235,29 @@ console.log(rainn instanceof Array) // false
 console.log([''] instanceof Array) // true
 console.log(Array instanceof Object) // true
 ```
+
+#### 综合案例：点击按钮，得到弹窗
+
+> 要求使用面向对象的思路完成
+
+核心：封装一个模态框Modal（公共类），存入属性（一个DOM元素，也就是弹窗）；为modal的prototype添加方法：open()和close()。当点击按钮时，添加click事件，回调函数中执行new Moal().open()即可。
+
+**公共类**（构造函数），参数包括title和message（默认空），创建属性modalBox，赋值一个DOM元素；随后，为其添加类名和innerHTML，完成初步内容写入。
+
+```javascript
+this.modalBox = document.createElement('div') // 为modalBox属性 赋值 一个DOM元素
+```
+
+**open()方法**：向页面（body）添加该DOM元素即可；但要留意一个小bug，频繁点击按钮，页面会反复叠加该盒子；所以，在open()方法中，在添加DOM元素之前，要先检测是否已经有该元素了，如有，就要移除后才添加；本案例采用逻辑中断的方式完成：
+
+```javascript
+const existedBox = document.querySelector('.modal')
+existedBox && existedBox.remove() // 如果没有，则不执行remove，往下继续；如果有，就移除后再继续
+
+document.body.append(this.modalBox)
+```
+
+**close()方法：**在prototype添加close()方法，使用**remove()方法**移除自身。注意点：因为先打开过才能关闭，所以在open()方法中追加关闭按钮的点击事件，由**里面的回调函数执行close()方法**。
 
 
 
