@@ -2,14 +2,12 @@
 
 *此MarkDown用于记录自己的学习进度，也方便自己复习。*
 
-*Apr 22nd留：从今天开始，调整日志风格：总标题使用h1，月份使用h2，每日使用h3，每日板块标题用h4；每日主题或简单心里话使用引用；代码块标注代码语言；不强制设置缩进；全部以冒号、分号或句号结尾。*
-
-
+*Apr
+22nd留：从今天开始，调整日志风格：总标题使用h1，月份使用h2，每日使用h3，每日板块标题用h4；每日主题或简单心里话使用引用；代码块标注代码语言；不强制设置缩进；全部以冒号、分号或句号结尾。*
 
 ## April 2025
 
 <details><summary> 点击展开 / 关闭 </summary> 
-
 
 ### Apr 25th, Fri, Day 36
 
@@ -36,7 +34,8 @@ console.log(obj.age, o2.age) // 18 20 对o2的修改也不会影响到obj
 
 拷贝数组，包括`[...sourceArray]`和`Array.prototype.contact`两种方法。
 
-然而，浅拷贝不能完成对多级（嵌套）的对象/数组的拷贝（对于其中的简单数据类型就拷贝了值，但引用数据类型还是拷贝了地址），故引出**深拷贝**。
+然而，浅拷贝不能完成对多级（嵌套）的对象/数组的拷贝（对于其中的简单数据类型就拷贝了值，但引用数据类型还是拷贝了地址），故引出*
+*深拷贝**。
 
 #### 深拷贝
 
@@ -46,7 +45,8 @@ console.log(obj.age, o2.age) // 18 20 对o2的修改也不会影响到obj
 
 自定义函数deepCopy(target, source)，接受新对象、源对象作为参数，将源对象拷贝给新对象，同时两个对象之间各自的属性/修改互不影响。
 
-核心要点：遍历，条件判断与递归。使用**forin**循环遍历对象中的每一个属性，对每个属性作**if判断**，根据属性**instanceof**的不同类型将其**递归处理**：
+核心要点：遍历，条件判断与递归。使用**forin**循环遍历对象中的每一个属性，对每个属性作**if判断**，根据属性**instanceof**
+的不同类型将其**递归处理**：
 
 ```javascript
 const charlotte = {} // 新对象
@@ -79,6 +79,8 @@ console.log(charlotte)
 ```
 
 **JSON化实现：**最直观也最简单，将源对象转化为完全的字符串，将字符串赋值给新变量，再将其反JSON化，就得到了一致但地址不同的两个对象。
+
+*p.s. 但是不支持拷贝函数*
 
 ```javascript
 const charlotte = JSON.parse(JSON.stringify(rainn))
@@ -255,7 +257,8 @@ e.g. 鼠标经过div块，3s后计数器加一，期间不论怎么移动都不�
 box.addEventListener('mousemove', _.throttle(mouseMove, 3000))
 ```
 
-**手写节流：** 和防抖结构类似，但**核心正好相反**：如果有正在运行的定时器，那就放任执行，什么也不做；如果没有定时器了，才开启定时器并在wait秒执行代码fn，并在最后**清空**定时器。
+**手写节流：** 和防抖结构类似，但**核心正好相反**：如果有正在运行的定时器，那就放任执行，什么也不做；如果没有定时器了，才开启定时器并在wait秒执行代码fn，并在最后
+**清空**定时器。
 
 p.s. 注意这里的用词***清空***，因为我们是无法在定时器内部***销毁***一个定时器的，也就是clearTimer不生效，所以，只能*清空*：
 
@@ -279,18 +282,18 @@ box.addEventListener('mousemove', throttle(mouseMove, 3000))
 
 #### 综合案例：视频播放位置记忆，节流优化性能
 
-- 学习两个媒体事件：`timeupdate` & `loadeddata`  
+- 学习两个媒体事件：`timeupdate` & `loadeddata`
 
-​	*p.s. 如果是L0写法，前面都要加`on`，如`video.ontimeupdate = function () {...} `*
+​    *p.s. 如果是L0写法，前面都要加`on`，如`video.ontimeupdate = function () {...} `*
 
-​	`timeupdate`: 当视频/音频（进度条等）发生变化，执行函数；
+​    `timeupdate`: 当视频/音频（进度条等）发生变化，执行函数；
 
-​	`loadeddata`: 事件在媒体当前播放位置的视频帧（通常是第一帧）加载完成后触发。
+​    `loadeddata`: 事件在媒体当前播放位置的视频帧（通常是第一帧）加载完成后触发。
 
 - video属性：`video.currentTime`可读可写，代表当前媒体的进度
 - 节流的要点：
-  - 我们需要timeupdate事件获得当前视频的currentTime属性值，并存入到本地存储，刷新页面时，在loadeddata事件中，从本地存储取出这个值，重新赋值给currentTime；
-  - 然而，timeupdate的频次较高，我们只需要1s执行一次进度记录就可以了，所以，采用节流效果防止重复触发。
+    - 我们需要timeupdate事件获得当前视频的currentTime属性值，并存入到本地存储，刷新页面时，在loadeddata事件中，从本地存储取出这个值，重新赋值给currentTime；
+    - 然而，timeupdate的频次较高，我们只需要1s执行一次进度记录就可以了，所以，采用节流效果防止重复触发。
 
 ```javascript
 const video = document.querySelector('video')
@@ -307,10 +310,6 @@ video.addEventListener('loadeddata', () => {
   video.currentTime = Number(localStorage.getItem('currentTime'))
 })
 ```
-
-
-
-
 
 ### Apr 24th, Thu, Day 35
 
@@ -338,7 +337,8 @@ video.addEventListener('loadeddata', () => {
 
 #### 原型对象 prototype
 
-构造函数通过**原型**分配的函数是所有对象共享的；每一个构造函数都有一个`prototype`对象（通过`dir`可以看到是`Object`），指向另一个对象，也称为**原型对象**；
+构造函数通过**原型**分配的函数是所有对象共享的；每一个构造函数都有一个`prototype`对象（通过`dir`可以看到是`Object`
+），指向另一个对象，也称为**原型对象**；
 
 **prototype可以挂载函数**，故可以将不变的方法直接定义在prototype对象上，然后所有对象的实例就可以共享这些方法。
 
@@ -485,7 +485,8 @@ console.log(Person.prototype.constructor === Person) // true
 console.log(Object.prototype.constructor === Object) // true
 ```
 
-**原型链-查找规则**：访问一个对象的属性/方法，先看看这个对象自身有没有；如果没有，就沿着\__proto__所指向的prototype上寻找；直到顶级构造函数Object的prototype；如果依然没有，就返回null。
+**原型链-查找规则**：访问一个对象的属性/方法，先看看这个对象自身有没有；如果没有，就沿着\__
+proto__所指向的prototype上寻找；直到顶级构造函数Object的prototype；如果依然没有，就返回null。
 
 意义：为对象成员的查找机制提供一个方向或者说路线。
 
@@ -506,7 +507,8 @@ console.log(Array instanceof Object) // true
 
 > 要求使用面向对象的思路完成
 
-核心：封装一个模态框Modal（公共类），存入属性（一个DOM元素，也就是弹窗）；为modal的prototype添加方法：open()和close()。当点击按钮时，添加click事件，回调函数中执行new Moal().open()即可。
+核心：封装一个模态框Modal（公共类），存入属性（一个DOM元素，也就是弹窗）；为modal的prototype添加方法：open()和close()
+。当点击按钮时，添加click事件，回调函数中执行new Moal().open()即可。
 
 **公共类**（构造函数），参数包括title和message（默认空），创建属性modalBox，赋值一个DOM元素；随后，为其添加类名和innerHTML，完成初步内容写入。
 
@@ -514,7 +516,8 @@ console.log(Array instanceof Object) // true
 this.modalBox = document.createElement('div') // 为modalBox属性 赋值 一个DOM元素
 ```
 
-**open()方法**：向页面（body）添加该DOM元素即可；但要留意一个小bug，频繁点击按钮，页面会反复叠加该盒子；所以，在open()方法中，在添加DOM元素之前，要先检测是否已经有该元素了，如有，就要移除后才添加；本案例采用逻辑中断的方式完成：
+**open()方法**：向页面（body）添加该DOM元素即可；但要留意一个小bug，频繁点击按钮，页面会反复叠加该盒子；所以，在open()
+方法中，在添加DOM元素之前，要先检测是否已经有该元素了，如有，就要移除后才添加；本案例采用逻辑中断的方式完成：
 
 ```javascript
 const existedBox = document.querySelector('.modal')
@@ -523,12 +526,8 @@ existedBox && existedBox.remove() // 如果没有，则不执行remove，往下�
 document.body.append(this.modalBox)
 ```
 
-**close()方法：**在prototype添加close()方法，使用**remove()方法**移除自身。注意点：因为先打开过才能关闭，所以在open()方法中追加关闭按钮的点击事件，由**里面的回调函数执行close()方法**。
-
-
-
-
-
+**close()方法：**在prototype添加close()方法，使用**remove()方法**移除自身。注意点：因为先打开过才能关闭，所以在open()
+方法中追加关闭按钮的点击事件，由**里面的回调函数执行close()方法**。
 
 ### Apr 23rd, Wed, Day 34
 
@@ -539,14 +538,14 @@ document.body.append(this.modalBox)
 1. 字面量：`cosnt obj = {name: 'rainn'}`
 2. new 关键字：`construction obj = new Object({name: 'rainn'})`
 3. **构造函数：**
-   1. 是一种特殊的函数，用来初始化对象、快速创建多个类似的对象； *类似于Java中的类*；
-   2. 约定：函数命名以大写字母开头；并且只能由new关键字执行；
-   3. 构造函数内部不写return（写了也无效）；其返回值就是新创建的对象。
-   4. 实例化过程中，new关键字执行之后，经过以下四步：
-      1. 立即创造一个新的空对象；
-      2. 构造函数中的this指向这个新对象；
-      3. 执行构造函数的代码，修改this，添加属性；
-      4. 返回对象。
+    1. 是一种特殊的函数，用来初始化对象、快速创建多个类似的对象； *类似于Java中的类*；
+    2. 约定：函数命名以大写字母开头；并且只能由new关键字执行；
+    3. 构造函数内部不写return（写了也无效）；其返回值就是新创建的对象。
+    4. 实例化过程中，new关键字执行之后，经过以下四步：
+        1. 立即创造一个新的空对象；
+        2. 构造函数中的this指向这个新对象；
+        3. 执行构造函数的代码，修改this，添加属性；
+        4. 返回对象。
 
 ```javascript
 function Student(name, age, gender) {
@@ -627,13 +626,17 @@ Object.assign(newObj, {school: 'GDUFS'}) // 追加
 1. **forEach**方法：遍历数组：
 
 ```javascript
-arr.forEach(function (current ) { ... }) 
+arr.forEach(function (current) { ...
+}) 
 ```
+
 2. **filter**方法：遍历并做条件过滤，将符合条件的元素加入到新数组并返回该数组：
 
 ```javascript
-arr.filter(function (current) {...})
+arr.filter(function (current) {...
+})
 ```
+
 3. **map**方法：遍历与迭代处理，返回处理后的新数组：
 
 ```javascript
@@ -643,10 +646,11 @@ arr.map(function (current) {...})
 **新方法：**
 
 4. **reduce**方法：返回累计处理的结果，常用于求和操作等;
-   1. 参数：回调函数，起始值。
-   2. 回调函数中，至少包含prev和current两个值；
-   3. 如果没有起始值，则默认以数组第一个元素作为起始值。 p.s. 注意一个细节：第一个元素未必是个数值，所以建议至少填入起始值0。
-   4. 注意：每次循环（包括首次），**当前元素**的位置都在current上；prev可以理解为**累计值**， 每次循环后，都会把当前return结果作为prev传递给下一次循环。
+    1. 参数：回调函数，起始值。
+    2. 回调函数中，至少包含prev和current两个值；
+    3. 如果没有起始值，则默认以数组第一个元素作为起始值。 p.s. 注意一个细节：第一个元素未必是个数值，所以建议至少填入起始值0。
+    4. 注意：每次循环（包括首次），**当前元素**的位置都在current上；prev可以理解为**累计值**，
+       每次循环后，都会把当前return结果作为prev传递给下一次循环。
 
 ``````javascript
 const total = arr.reduce(function (previousValue, currentValue) {
@@ -765,7 +769,8 @@ document.querySelector('.list').innerHTML = goodsList.map((item) => {
 ...`<p class="spec">${Object.values(spec).join('/')}</p>`...
 ```
 
-2. `gift`也比较特殊，不是每个数组元素（对象）都有；通过条件判断来确定是否获取，否则，将其置为**空字符串**（解构时，如果没获取到，就是undefined）
+2. `gift`也比较特殊，不是每个数组元素（对象）都有；通过条件判断来确定是否获取，否则，将其置为**空字符串**
+   （解构时，如果没获取到，就是undefined）
 
 ```javascript
 const str = gift ? gift.split(',').map(current => `<span class="tag">【赠品】${current}</span>`).join('') : ''
@@ -778,14 +783,7 @@ const str = gift ? gift.split(',').map(current => `<span class="tag">【赠品�
 const total = goodsList.reduce((prev, current) => ((prev + current.price * current.count) * 100) / 100, 0)
 ```
 
-
-
-
-
-
-
 ### Apr 22nd, Tue, Day 33
-
 
 > 那些年没敢追的女孩，那些年没能敲下的代码……回想起来也有遗憾；但不必遗憾，现在，就努力去追赶，用自己的双手与智慧去成就梦想，遇见更好的自己！
 
@@ -849,7 +847,8 @@ const ff = count()
 
 #### 变量提升和函数提升
 
-1. var声明的变量，会存在函数提升现象（先使用再声明）。原理是：代码在执行之前，预解析，把所有var声明的变量提升到「当前」作用域的最前面。p.s. 提升的是声明，但赋值不会提升。
+1. var声明的变量，会存在函数提升现象（先使用再声明）。原理是：代码在执行之前，预解析，把所有var声明的变量提升到「当前」作用域的最前面。p.s.
+   提升的是声明，但赋值不会提升。
 2. let / const 声明的变量不存在函数提升
 
 ```javascript
@@ -1051,7 +1050,8 @@ const {name: username} = obj
 console.log(username) // rainn
 ```
 
-对于一些嵌套关系，如对象数组，对象嵌套对象，甚至嵌套对象数组，只需记住：**解构体的结构要和被解构体相同**，例如数组被解构，那就`const [...] = [...]`；对象被解构，就是`const {...} = {...}`；内部的结构（按需求）保持一致即可。一些例子:
+对于一些嵌套关系，如对象数组，对象嵌套对象，甚至嵌套对象数组，只需记住：**解构体的结构要和被解构体相同**，例如数组被解构，那就
+`const [...] = [...]`；对象被解构，就是`const {...} = {...}`；内部的结构（按需求）保持一致即可。一些例子:
 
 ```javascript
 // 2.解构对象数组
@@ -1141,42 +1141,43 @@ let arr = goodsList // 默认
 render(arr)
 ``````
 
-
-
-
-
 ### Apr 21st, Mon, Day 32
 
 > 我想，变得更强！去成为一个出色的 **「工程师」**！
 
 今日主要是做**两个综合案例**：
+
 #### APIs6-综合案例：表单验证相关知识：
 
 - **发送短信验证码**：
 
-    `click`事件，`间歇函数`与`innerHTML`修改内容。重点：**节流阀**，通过一个`flag`信号量来避免反复点击与触发间歇函数；
+  `click`事件，`间歇函数`与`innerHTML`修改内容。重点：**节流阀**，通过一个`flag`信号量来避免反复点击与触发间歇函数；
 
 - **表单验证**：
-  
-    各控件添加`change`事件；使用正则表达式`reg.test(ev.value)`验证输入内容；封装验证函数`verify`，使各个控件可以复用；函数返回`true/false`，方便最后`submit`时再次统一验证；
-    
-    最后的二次密码验证，与`pwd.value`匹配即可；
-    
+
+  各控件添加`change`事件；使用正则表达式`reg.test(ev.value)`验证输入内容；封装验证函数`verify`，使各个控件可以复用；函数返回
+  `true/false`，方便最后`submit`时再次统一验证；
+
+  最后的二次密码验证，与`pwd.value`匹配即可；
+
 - **同意协议**：`classList.toggle`添加类名即可；
 
 - **提交**：针对表单各个控件再次调用验证函数（取得布尔值），以及验证同意小按钮有没有新增的类名（代表已经选中）即可；
 
 - **登录页之tab栏切换效果**：
-  
-  添加`click`事件与**事件委托**；**排他思想**添加`active`类；对于tabPane中的内容，采用**先全部获取并隐藏**的方式，再根据**自定义属性data-id**显示对应盒子；
-  
+
+  添加`click`事件与**事件委托**；**排他思想**添加`active`类；对于tabPane中的内容，采用**先全部获取并隐藏**的方式，再根据*
+  *自定义属性data-id**显示对应盒子；
+
 - **登录页之点击登录**：
-  
-  用户协议使用`checked`属性确认；点击登录后，使用`localStorage.setItem()`将用户名存入到**本地存储**（**简单字符串不需要JSON化**）；使用`location.href`跳转到主页；
-  
+
+  用户协议使用`checked`属性确认；点击登录后，使用`localStorage.setItem()`将用户名存入到**本地存储**（**简单字符串不需要JSON化
+  **）；使用`location.href`跳转到主页；
+
   *p.s. 这里不重复做表单验证相关功能了*
-  
-- **主页之显示用户名**：封装为`render`函数；检查**本地存储**相应字段，如有就用`innerHTML`填入相关字段，并设置退出登录（`click事件`，`confirm`确认，`localStorage.removeItem()`删除数据，来模拟退出）；若无，则分别设置登录和注册链接即可；
+
+- **主页之显示用户名**：封装为`render`函数；检查**本地存储**相应字段，如有就用`innerHTML`填入相关字段，并设置退出登录（
+  `click事件`，`confirm`确认，`localStorage.removeItem()`删除数据，来模拟退出）；若无，则分别设置登录和注册链接即可；
 
 #### APIs7-综合案例：图片的放大镜效果：
 
@@ -1222,9 +1223,11 @@ render(arr)
 
            ev中，有`PageX`和`PageY`两个属性，就是鼠标在页面的横纵坐标（相当于left值和top值）；
 
-           而中等盒子的坐标，采用`getBoundingClientRect()`，其中的`x`和`y`就是我们需要的、**该盒子基于视口的坐标**；而不用`offsetLeft / offsetTop`，是因为担心受父级盒子的**定位**影响。
+           而中等盒子的坐标，采用`getBoundingClientRect()`，其中的`x`和`y`就是我们需要的、**该盒子基于视口的坐标**；而不用
+           `offsetLeft / offsetTop`，是因为担心受父级盒子的**定位**影响。
 
-        3. 如此，通过`distance = Page - getBoundingClientRect()`，就能初步计算layer需要在middle中移动的距离；再令`layer.style.top(left) = distanceY(distanceX) + 'px'`，就实现了在mousemove事件中，layer随鼠标变化而移动的效果。
+        3. 如此，通过`distance = Page - getBoundingClientRect()`，就能初步计算layer需要在middle中移动的距离；再令
+           `layer.style.top(left) = distanceY(distanceX) + 'px'`，就实现了在mousemove事件中，layer随鼠标变化而移动的效果。
 
         4. 但存在一个问题，当页面向上滚动，y值会变小，导致distanceY偏大；看起来就是layer跑到了鼠标下方。
 
@@ -1233,9 +1236,9 @@ render(arr)
         ```javascript
         const distanceY = ev.pageY - middle.getBoundingClientRect().y -document.documentElement.scrollTop
         ```
-        
+
         6. **重点难点**：需要更精确地控制移动范围，采用条件判断，以分段函数理解就可以
-        
+
         ```javascript
         // 定义move表示遮罩的实际移动坐标
         // 在Distance小于遮罩宽度一半时，遮罩不移动；move保持为0；
@@ -1257,18 +1260,13 @@ render(arr)
          }
         layer.style.left = moveX + 'px' // top同理
         ```
-        
+
         7. 最后，修改large盒子中的背景图片，鉴于large中的图片恰好是middle缩放的2倍，通过更新bg-position，同步移动2倍的moveX或moveY，即可实现效果：
-        
+
         ```javascript
         large.style.backgroundPositionX = -2 * moveX + 'px'
         large.style.backgroundPositionY = -2 * moveY + 'px'
         ```
-        
-           
-        
-        
-
 
 ### Apr 20th, Sun, Day 31
 
@@ -1288,7 +1286,8 @@ render(arr)
 - 「暂缓」
 - 本周末依然是被各种事物拆碎的状态，上午写了社区的每日总结，下午学习了2个小时不到的JS视频课，主要是**正则表达式**
   相关的内容，就不在这里写了，学完了视频课的那一个Day再一起写。
-- 晚上参加了社区的实践活动-生死99秒，第一次竞选了队长。虽然最后没有胜利，但也算出了一把风头，要自信，要有气势；**要纯粹，要相信。**
+- 晚上参加了社区的实践活动-生死99秒，第一次竞选了队长。虽然最后没有胜利，但也算出了一把风头，要自信，要有气势；**要纯粹，要相信。
+  **
 
 ### Apr 18th, Fri, Day 29
 
