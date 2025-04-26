@@ -9,6 +9,19 @@
 
 <details><summary> 点击展开 / 关闭 </summary> 
 
+
+### Apr 26th, Sat, Day 37
+
+> 进入框架前置课程，期望1周完成
+
+今天早上收尾了一下JavaScript，补写了StudyDiary，JavaScript的视频课学习完结撒花！（当然，复习是不能少的）。
+
+剩下没多少时间，简单看了一下框架前置课程，对AJAX和axios有初步了解，但内容不多，明日学习完成后，再统一把知识点写到明天的SD中吧。
+
+今晚又是社区的实践活动，好好表现吧！
+
+
+
 ### Apr 25th, Fri, Day 36
 
 > 里程碑2。Milestone 2.

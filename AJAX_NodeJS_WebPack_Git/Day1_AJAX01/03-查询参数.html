@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p></p>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  // 查询参数：浏览器提供给服务器的「额外信息」，让服务器返回浏览器想要的数据
+  // 语法：url?参数名1=值1&参数名2=值2
+
+  // 在axios中，提供了params对象来传递查询参数
+  axios({
+    url: 'http://hmajax.itheima.net/api/city',
+
+    // 查询参数
+    params: {
+      pname: '广西壮族自治区'
+    }
+  }).then(re => {
+    console.log(re.data.list)
+    document.querySelector('p').innerHTML = re.data.list.join(' ')
+  })
+</script>
+</body>
+</html>
