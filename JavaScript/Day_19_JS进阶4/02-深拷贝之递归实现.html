@@ -44,7 +44,7 @@
 
   const charlotte = {}
 
-  const deepCopy = function (target, source) {
+  function deepCopy(target, source) {
     for (let key in source) { // 对象遍历，key是属性名（变量），source[key]是属性值（相当于source.key的值，详见基础day7）
       if (source[key] instanceof Array) { // 判断是否是数组（复杂数据类型）
         target[key] = []

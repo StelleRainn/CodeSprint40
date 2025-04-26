@@ -40,7 +40,273 @@ console.log(obj.age, o2.age) // 18 20 对o2的修改也不会影响到obj
 
 #### 深拷贝
 
+包括递归函数实现、lodash库实现和JSON字符串三种实现方式。
 
+**递归函数实现：**
+
+自定义函数deepCopy(target, source)，接受新对象、源对象作为参数，将源对象拷贝给新对象，同时两个对象之间各自的属性/修改互不影响。
+
+核心要点：遍历，条件判断与递归。使用**forin**循环遍历对象中的每一个属性，对每个属性作**if判断**，根据属性**instanceof**的不同类型将其**递归处理**：
+
+```javascript
+const charlotte = {} // 新对象
+function deepCopy(target, source) {
+  for (let key in source) { // 对象遍历，key是属性名（变量），source[key]是属性值（详见基础day7）
+    if (source[key] instanceof Array) { // 判断是否是数组（复杂数据类型）
+      target[key] = [] // 让自己作为同样的数组类型，去递归获取源对象中的这个数组属性
+      deepCopy(target[key], source[key]) // 递归调用
+    } else if (source[key] instanceof Object) { // 判断是否为对象，但Array先行，因为数组也是对象
+      target[key] = {}
+      deepCopy(target[key], source[key])
+    } else {
+      target[key] = source[key]
+    }
+  }
+}
+
+deepCopy(charlotte, rainn)
+```
+
+**lodash库实现：**
+
+```javascript
+<!--引用lodash库-->
+<script src="lodash.min.js"></script>
+...
+const charlotte = _.cloneDeep(rainn)
+console.log(charlotte)
+...
+```
+
+**JSON化实现：**最直观也最简单，将源对象转化为完全的字符串，将字符串赋值给新变量，再将其反JSON化，就得到了一致但地址不同的两个对象。
+
+```javascript
+const charlotte = JSON.parse(JSON.stringify(rainn))
+```
+
+#### 异常处理
+
+**throw new Error('message')**：抛出可定义的错误信息，同时会**终止**程序！
+
+```javascript
+function fn1(x, y) {
+  if (!x || !y) {
+    throw new Error('参数不完整') // 会终止程序
+  }
+  return x + y
+}
+
+fn1()
+```
+
+**try-catch-finally 捕获异常**：拦截错误，提示浏览器提供的错误信息，但不中断执行（除非加入return或throw）。finally则是无论是否有错误，都必然会执行的语句。
+
+```javascript
+function fn2() {
+  try {
+    document.querySelector('span').style.color = 'red'
+  } catch (e) { // 参数e中的message是错误消息
+    console.log(e.message)
+    // throw new Error(e.message)
+  } finally {
+    alert('finally 语句中的代码一定会执行')
+  }
+  console.log('后续代码正常运行')
+}
+
+fn2()
+```
+
+**debugger**：运行到该代码，在浏览器中打开debugger调试程序，相当于打断点。
+
+#### 处理 this
+
+1. 普通函数中的this：**谁调用，this的值就指向谁**。
+
+```javascript
+// 普通函数没有明确调用者时，this的值为window
+// 严格模式下没有调用者时，this的值为undefined
+// 严格模式 'use strict'
+console.log(this) // Window
+function f() {
+  console.log(this) // Window
+}
+setTimeout(function () {
+  console.log(this) // Window
+}, 1)
+document.querySelector('button').addEventListener('click', function () {
+  console.log(this) // button
+})
+const obj = {
+  sayHi: function () {
+    console.log(this) // 指向obj对象
+  }
+}
+```
+
+2. **箭头函数**：**本身没有this**，箭头函数的this引用的就是最近一级作用域的this。适用于需要**用到上层this**的地方。
+
+#### 改变 this 指向：call，apply与bind方法
+
+```javascript
+const obj = {
+  name: 'rainn',
+}
+function fn(x, y) {
+  console.log(this) // 一般调用时，指向window
+  console.log(x + y)
+}
+```
+
+**call()方法：**会**立即调用函数**。
+
+```javascript
+// function.call(this语句, 参数1, 参数2...)
+// 调用函数的同时，指定this的指向
+fn.call(obj, 1, 2) // {name: 'rainn'} 3
+```
+
+**apply()方法：**也会**立即调用函数**，但参数形式和call()方法不同，必须以**数组形式**传入。
+
+```javascript
+// function.call(thisArg, [参数1, ..., 参数n])
+// 必须以数组的方式传递其他参数
+// 也可以改变this的指向，其他参数以数组的形式传入
+  fn.apply(obj, [1, 2])
+
+// 使用场景：求数组最大值
+const arr = [1, 2, 3]
+const max = Math.max.apply(Math, arr) // max方法本身只接受(1,2,3)这样的数据
+```
+
+**bind()方法：**不会立即调用函数。返回一个新函数（对原函数的拷贝，同时改变了this的指向）。
+
+```javascript
+const fun = fn.bind(obj) // 返回一个改变了this指向的新函数
+fun()
+```
+
+```javascript
+btn.addEventListener('click', function () {
+  this.disabled = true
+  setTimeout(function () {
+    this.disabled = false
+  }.bind(this), 2000) // 这里的this指向的是btn
+})
+```
+
+#### 防抖 debounce
+
+单位时间内频繁触发某事件，但**只执行最后一次**；**前面的频繁触发都不作数**。（类比回城技能）
+
+使用场景包括：搜索框搜索输入，只需用户最后一次输入完，再发送请求；手机号，邮箱验证输入检测……
+
+e.g. 鼠标划过（mousemove）div块后，内部数字增加1。如果不防抖，那么哪怕移动一像素，数字也会增加。通过防抖，使多次划动都只算1次（就是最后一次停止了才算），并在最后一次划动停止200ms后才计数。
+
+**lodash库实现debounce：**
+
+```javascript
+function mouseMove() {
+  box.innerHTML = String(++i)
+}
+```
+
+```javascript
+ box.addEventListener('mousemove', _.debounce(mouseMove, 200)) //_.debonuce(fn, waitTime)
+```
+
+**手写节流：**setTimeout与闭包。
+
+核心思路：检测是否有正在运行的定时器，如有，就要**销毁**，重新开启一个定时器，在wait秒后执行fn。
+
+```javascript
+function debounce(fn, wait) {
+  let timer
+  // 闭包变量，内部函数引用了外部函数作用域中的变量，这个变量就会“被保留下来”，不会被销毁。
+  // 不能写在return function的作用域中，否则每次事件都会重新声明一个timer
+  
+  return function () {
+    // 关键：每次执行前，检测是否有定时器，如有，则清除上一个定时器；
+    // 然后在新的定时器中调用函数
+    if (timer) clearTimeout(timer)
+    timer = setTimeout(function () {
+      fn()
+    }, wait)
+  }
+}
+
+box.addEventListener('mousemove', debounce(mouseMove, 200))
+// 理解：addEventListener我们正常绑定的是函数名，或者用匿名函数，但这里填入了函数调用
+// 这就意味着，box在绑定时就已经执行了这个函数，并将其返回值作为事件处理函数
+// 所以，在自定的debounce函数中，我们返回一个函数（不是函数调用）；在mousemove事件后，执行的就是这个返回的函数
+```
+
+#### 节流 throttle
+
+单位时间内，频繁触发事件，但**只执行最开始那一次**；**执行期间，任何触发都不会生效，直到该执行完毕**（类比：技能冷却，换子弹等）
+
+使用场景： 鼠标移动mousemove， 页面缩放resize，滚动条scroll等。
+
+e.g. 鼠标经过div块，3s后计数器加一，期间不论怎么移动都不影响。
+
+**lodash库实现throttle**
+
+```javascript
+box.addEventListener('mousemove', _.throttle(mouseMove, 3000))
+```
+
+**手写节流：** 和防抖结构类似，但**核心正好相反**：如果有正在运行的定时器，那就放任执行，什么也不做；如果没有定时器了，才开启定时器并在wait秒执行代码fn，并在最后**清空**定时器。
+
+p.s. 注意这里的用词***清空***，因为我们是无法在定时器内部***销毁***一个定时器的，也就是clearTimer不生效，所以，只能*清空*：
+
+```javascript
+function throttle(fn, wait) {
+  let timer // 闭包变量
+  return function () {
+    if (!timer) {
+      timer = setTimeout(function () {
+        fn()
+        // 注意：清空定时器不能用clearTimeout！
+        // 不能在定时器里面清除定时器，因为定时器还在运作
+        // clearTimeout(timer)
+        timer = null
+      }, wait)
+    }
+  }
+}
+box.addEventListener('mousemove', throttle(mouseMove, 3000))
+```
+
+#### 综合案例：视频播放位置记忆，节流优化性能
+
+- 学习两个媒体事件：`timeupdate` & `loadeddata`  
+
+​	*p.s. 如果是L0写法，前面都要加`on`，如`video.ontimeupdate = function () {...} `*
+
+​	`timeupdate`: 当视频/音频（进度条等）发生变化，执行函数；
+
+​	`loadeddata`: 事件在媒体当前播放位置的视频帧（通常是第一帧）加载完成后触发。
+
+- video属性：`video.currentTime`可读可写，代表当前媒体的进度
+- 节流的要点：
+  - 我们需要timeupdate事件获得当前视频的currentTime属性值，并存入到本地存储，刷新页面时，在loadeddata事件中，从本地存储取出这个值，重新赋值给currentTime；
+  - 然而，timeupdate的频次较高，我们只需要1s执行一次进度记录就可以了，所以，采用节流效果防止重复触发。
+
+```javascript
+const video = document.querySelector('video')
+
+// 使用lodash进行节流（只需要1s记录一次就可以了）
+function recordVideoTime() {
+  // 存入本地存储
+  localStorage.setItem('currentTime', String(video.currentTime))
+}
+
+video.addEventListener('timeupdate', _.throttle(recordVideoTime, 1000))
+
+video.addEventListener('loadeddata', () => {
+  video.currentTime = Number(localStorage.getItem('currentTime'))
+})
+```
 
 
 
