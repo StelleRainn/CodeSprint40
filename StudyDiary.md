@@ -9,6 +9,10 @@
 
 <details><summary> 点击展开 / 关闭 </summary> 
 
+### Apr 27th, Sun, Day 38
+
+> THE RESUME
+
 
 ### Apr 26th, Sat, Day 37
 
