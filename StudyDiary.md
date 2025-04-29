@@ -9,9 +9,17 @@
 
 <details><summary> 点击展开 / 关闭 </summary> 
 
+### Apr 28th, Mon, Day 39
+> THE INTERVIEW
+
+审核通过，收到了面试邀请。花了一天的时间准备面试，正装。晚上8点半开始面试。第二天才出结果。
+
+
 ### Apr 27th, Sun, Day 38
 
 > THE RESUME
+
+今天得到了师兄的橄榄枝，将时间都花在了准备申请书和简历制作上。
 
 
 ### Apr 26th, Sat, Day 37
