@@ -12,13 +12,14 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <!--或者-->
 <!--<script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+
 <script>
   // 使用axios函数：基础三步走：
   // 引入js；传入配置「对象」；再用.then回调函数接受结果，并作后续处理
   axios({
     url: 'http://hmajax.itheima.net/api/province' // 告诉axios服务器地址
   }).then(result => {
-    console.log(result) // 看输出中的data{}
+    console.log(result) // 看输出中的data{}，包括list和message
     console.log(result.data.list) // 数组
     document.querySelector('p').innerHTML = result.data.list.join(' ')
   })

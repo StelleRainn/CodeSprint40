@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button class="btn">register</button>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  // 在then方法后面，可以加入catch方法，传入回调函数并定义行参
+  document.querySelector('.btn').addEventListener('click', () => {
+    axios({
+      url: 'http://hmajax.itheima.net/api/register',
+      method: 'POST', // 指定请求的方法
+      data: {
+        username: 'StelleRainn3',
+        password: '512451',
+      }
+    }).then(result => {
+      console.log(result.data.message) // confirm weather it's succeed
+    }).catch(error => {
+      console.log(error)
+      console.log(error.response.data.message) // error message
+      alert(error.response.data.message) // 弹窗处理
+    })
+  })
+</script>
+</body>
+</html>

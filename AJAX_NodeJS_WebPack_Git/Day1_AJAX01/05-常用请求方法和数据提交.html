@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button class="btn">register</button>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  // 请求方法：对服务器资源，要执行的操作
+  // GET（获取数据），POST（提交数据），PUT，DELETE，PATCH
+
+  // axios请求配置
+  // url：请求的url网址
+  // method：请求的方法.GET可以省略（不区分大小写）
+  // data：提交数据
+
+  document.querySelector('.btn').addEventListener('click', () => {
+    axios({
+      url: 'http://hmajax.itheima.net/api/register',
+      method: 'POST', // 指定请求的方法
+      data: {
+        username: 'StelleRainn3',
+        password: '512451',
+      }
+    }).then(result => {
+      console.log(result.data.message) // confirm weather it's succeed
+    })
+  })
+</script>
+
+</body>
+</html>
