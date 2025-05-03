@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button class="btn">login</button>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  // 接口文档：描述接口的文档（由后端工程师完成）
+  // 接口：使用AJAX和服务器通讯时，使用的URL，请求方法，以及参数等
+  const btn = document.querySelector('.btn')
+  btn.addEventListener('click', () => {
+    axios({
+      url: 'http://hmajax.itheima.net/api/login',
+      method: 'post',
+      data: {
+        username: 'Rainn0311',
+        password: '512451',
+      }
+    })
+  })
+
+</script>
+</body>
+</html>
