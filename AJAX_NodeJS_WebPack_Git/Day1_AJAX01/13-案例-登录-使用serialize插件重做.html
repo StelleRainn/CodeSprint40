@@ -64,39 +64,44 @@
     </div>
     <!-- 表单 -->
     <div class="form_wrap">
-        <form>
+        <form class="myForm">
             <div class="mb-3">
                 <label for="username" class="form-label">账号名</label>
-                <input type="text" class="form-control username">
+                <input type="text" class="form-control username" name="username">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">密码</label>
-                <input type="password" class="form-control password">
+                <input type="password" class="form-control password" name="password">
             </div>
             <button type="button" class="btn btn-primary btn-login"> 登 录</button>
         </form>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="lib/form-serialize.js"></script>
 <script>
   // 目标1：点击登录时，用户名和密码长度判断，并提交数据和服务器通信
 
-  const username = document.querySelector('.username')
-  const password = document.querySelector('.password')
   const loginButton = document.querySelector('.btn-login')
+  const form = document.querySelector('.myForm')
 
   loginButton.addEventListener('click', () => {
+    // 修改点：
+    const formData = serialize(form, {hash: true, empty: true})
+    // console.log(formData)
+    // 数组解构
+    const {username: username, password: password} = formData
+      console.log(username, password)
+
     const unameRegExp = /^[a-zA-Z0-9]{8,}$/ig
     const pwdRgeExp = /^[a-zA-Z0-9]{6,}$/ig
-    // console.log(unameRegExp.test(username.value))
-    // console.log(pwdRgeExp.test(password.value))
 
-    if (!unameRegExp.test(username.value)) {
+    if (!unameRegExp.test(username)) {
       myAlert('用户名格式不正确', false)
       return
     }
 
-    if (!pwdRgeExp.test(password.value)) {
+    if (!pwdRgeExp.test(password)) {
       myAlert('密码格式有误', false)
       return
     }
@@ -105,8 +110,8 @@
       url: 'http://hmajax.itheima.net/api/login',
       method: 'POST',
       data: {
-        username: `${username.value}`,
-        password: `${password.value}`,
+        username: `${username}`,
+        password: `${password}`,
       }
     }).then(result => {
       console.log(result)

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<form class="example-form">
+  <label>
+    <input type="text" name="username" id="name">
+    <input type="password" name="password" id="pwd">
+    <input type="button" value="提交" id="btn">
+  </label>
+</form>
+
+
+<script src="lib/form-serialize.js"></script>
+<script>
+  const form = document.querySelector('.example-form')
+  /**
+   * serialize函数，一次性获取某个表单全部控件的值（value）
+   * @param {form} 要获取哪个表单的值
+   * @param {Object} 配置对象，包括hash和empty
+   *  hash 设置数据结构
+   *    - true：JS对象
+   *    - false：查询字符串
+   *  empty 是否获取空值
+   *    - true：取空值
+   *    - false：不获取空值
+   * @return {Object}
+   */
+  document.querySelector('#btn').addEventListener('click', () => {
+    const data = serialize(form, {hash: true, empty: true})
+    console.log(data)
+    console.log(document.querySelector('#name').value)
+  })
+
+</script>
+</body>
+</html>

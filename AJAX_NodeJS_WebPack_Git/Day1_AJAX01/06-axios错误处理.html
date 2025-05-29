@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
 <body>
 <button class="btn">register</button>
@@ -15,11 +15,11 @@
       url: 'http://hmajax.itheima.net/api/register',
       method: 'POST', // 指定请求的方法
       data: {
-        username: 'StelleRainn3',
+        username: 'StelleRainn',
         password: '512451',
       }
     }).then(result => {
-      console.log(result.data.message) // confirm weather it's succeed
+      console.log(result.data.message) // confirm whether it's succeed
     }).catch(error => {
       console.log(error)
       console.log(error.response.data.message) // error message

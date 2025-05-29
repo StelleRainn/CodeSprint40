@@ -10,11 +10,243 @@
 
 <details><summary>点击展开 / 关闭</summary>
 
+### May 29, Thu, Day 70
+>好久不见。带着全新的热爱，一往无前吧。
+
+**心里所想**
+
+我还记得四月初之时我如何描绘那场相遇为“不一样的波澜”。我没有辜负自己，只是到如今也发现自己的确不适合。无法改变已经发生的事情，伤春悲秋或计较得失皆为徒劳；至少我现在明白一点：**我的确还是热爱着开发与创造的**，我又一次选择了计算机，一如三年前高考结束填报志愿那般高兴。
+
+**今日学习**：主要是AJAX入门，讲解axios的使用；上次刚学到这里就遇上各种各样的事情，继续拾起曾经的知识，拼接起来吧。
+
+#### AXIOS的基本使用
+
+基础三步走：引入js；传入**配置对象**；用then接受结果并作后续处理
+
+```javascript
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+  axios({
+    url: 'http://hmajax.itheima.net/api/province' // 告诉axios服务器地址
+  }).then(result => {
+    console.log(result) // 看输出中的data{}，包括list和message
+    console.log(result.data.list) // 数组
+  })
+</script>
+```
+
+#### URL的基本了解
+
+URL，即统一资源定位符，主要构成：**协议，域名，资源路径**。
+
+协议：http:// & https:// 。规定数据传输的格式 。
+域名：必须要写的。标记服务器在互联网中的方位。
+资源路径：标记资源在服务器下的具体位置。
+
+#### 查询参数
+
+浏览器提供给服务器的**额外参数**，让服务器返回浏览器想要的信息。
+
+语法 `url?params1=value1&params2=value2`
+
+axios中，可以在配置对象中加入 **params对象**以使用查询参数：
+
+```javascript
+axios({
+  url: 'http://hmajax.itheima.net/api/city',
+
+  params: {
+    pname: '广西壮族自治区'
+  }
+}).then(re => {
+  console.log(re.data.list)
+})
+```
+
+#### 常用请求方法：method
+
+指axios配置对象中的method，参数包括：**GET（获取数据，可以省略），POST（提交数据），PUT，DELETE，PATCH**。
+
+通常一起出现的，还有**data**对象，也就是要处理的数据对象。
+
+```javascript
+axios({
+    url: 'http://hmajax.itheima.net/api/register',
+    method: 'POST', // 指定请求的方法
+    data: {
+      username: 'Rainn0311',
+      password: '512451',
+    }
+  }).then(result => {
+    console.log(result.data.message) // confirm whether it's succeed
+  })
+})
+```
+
+#### axios错误处理：catch方法
+
+在利用then方法接受结果后，可以用catch方法处理可能出现的错误。
+
+```javascript
+axios({
+    url: 'http://hmajax.itheima.net/api/register',
+    method: 'POST', // 指定请求的方法
+    data: {
+      username: 'StelleRainn',
+      password: '512451',
+    }
+  }).then(result => {
+    console.log(result.data.message) // confirm whether it's succeed
+  }).catch(error => {
+    console.log(error)
+    console.log(error.response.data.message) // error message
+    alert(error.response.data.message) // 弹窗处理
+  })
+})
+```
+
+#### HTTP协议之请求报文与响应报文
+
+指基于HTTP协议，发给服务器（即：请求）或返回给浏览器（即：响应）的内容
+
+请求报文包括请求头、请求行、请求体，在浏览器中，通过“网络”-“Fetch/XHR”可以查看，包括标头（Headers），载荷（Payload）
+
+响应报文基本一致。关注HTTP响应状态码：用来表明请求是否成功完成：
+**2xx：成功 4xx：客户端错误 5xx：服务端错误 （404：找不到资源）**
+
+#### 接口文档
+
+由后端工程师完成的，描述接口的文档，包括与服务器通信时使用的URL，请求方法，参数类型等。
+
+#### form-serialize插件：快速获取表单控件的value
+
+一个js脚本，引入后可通过serialize()函数快速获取指定表单中所有控件的value值。
+
+```javascript
+<script src="lib/form-serialize.js"></script>
+<script>
+  const form = document.querySelector('.example-form')
+  /**
+   * serialize函数，一次性获取某个表单全部控件的值（value）
+   * @param {form} 要获取哪个表单的值
+   * @param {Object} 配置对象，主要包括hash和empty
+   *  hash 设置数据结构，这决定了返回值类型
+   *    - true：JS对象
+   *    - false：查询字符串
+   *  empty 是否获取空值
+   *    - true：取空值
+   *    - false：不获取空值
+   */
+  document.querySelector('#btn').addEventListener('click', () => {
+    const data = serialize(form, {hash: true, empty: true})
+    console.log(data)
+    console.log(document.querySelector('#name').value)
+  })
+</script>
+```
+
+#### 案例一：地区查询
+
+主要考察对GET方法和查询参数params的使用；注意一个小细节：**在ES6+中，变量名和参数名一致时，可以简写**
+
+```javascript
+btn.addEventListener('click', () => {
+  let pname = document.querySelector('[name=province]').value
+  let cname = document.querySelector('[name=city]').value
+
+  // 获取数据
+  axios({
+    url: 'http://hmajax.itheima.net/api/area',
+    method: 'GET',
+    params: {
+      // ES6写法：变量名和值相同，可以一起写
+      pname,
+      cname,
+    }
+  }).then(result => {
+    // console.log(result.data.list)
+    let content = result.data.list.map(current => `<li class="list-group-item">${current}</li>`)
+    // console.log(content)
+    document.querySelector('.list-group').innerHTML = content.join(' ')
+  })
+})
+```
+
+#### 案例二：登录
+
+考察POST方法，catch错误处理以及serialize方法的综合运用。
+
+*顺便简单复习了一下正则表达式与数组解构*
+
+核心代码：
+
+```javascript
+const formData = serialize(form, {hash: true, empty: true})
+```
+
+```javascript
+const {username: username, password: password} = formData // 如需要，可以使用ES6简写
+```
+
+```javascript
+const unameRegExp = /^[a-zA-Z0-9]{8,}$/ig
+if (!unameRegExp.test(username)) {
+      myAlert('用户名格式不正确', false)
+      return
+    }
+```
+
+```javascript
+axios({
+    url: 'http://hmajax.itheima.net/api/login',
+    method: 'POST',
+    data: {
+      username: `${username}`,
+      password: `${password}`,
+    }
+  }).then(result => {
+    console.log(result)
+    console.log(result.data.message)
+    myAlert(result.data.message, true)
+  }).catch(error => {
+    console.log(error)
+    console.log(error.response.data.message)
+    myAlert(error.response.data.message, false)
+  })
+  /*小技巧：可以在控制台右击对应属性，快速复制其路径，例如上面的response.data.message就是复制下来的*/
+})
+```
+
+```javascript
+// 目标2:使用提示框反馈登录消息
+const alertMsg = document.querySelector('.alert')
+
+function myAlert(msg, isSuccess) {
+  // 显示提示框
+  alertMsg.classList.add('show')
+
+  // 显示不同的提示文字（参数），并根据isSuccess决定背景色（添加不同的类）
+  alertMsg.innerText = msg
+  const currentBg = isSuccess ? 'alert-success' : 'alert-danger'
+  alertMsg.classList.add(currentBg)
+
+  // 自动消失，并去除背景色，避免重叠与层叠
+  let timer = setTimeout(() => {
+    alertMsg.classList.remove('show',currentBg)
+  }, 2000)
+}
+```
+
+#### 总结
+
+这一部分内容主要是axios入门，不难，恰好同时可以复习之前的知识，例如箭头函数、计时器、正则表达式、数组解构等；一个月没有敲过代码，手感确实很生疏了，所以这段时间多多敲代码，也可以好好复习一下之前的javascript的内容，多多找回感觉吧！
+
 ### May 3, Sat, Day 44
+
 >The First Job
 
 Gey things done. 把事做好。
-
 
 </details>
 
