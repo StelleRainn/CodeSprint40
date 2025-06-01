@@ -2,20 +2,57 @@
 
 *此MarkDown用于记录自己的学习进度，也方便自己复习。*
 
-*Apr 22nd留：从今天开始，调整日志风格：总标题使用h1，月份使用h2，每日使用h3，每日板块标题用h4；每日主题或简单心里话使用引用；代码块标注代码语言；不强制设置缩进；全部以冒号、分号或句号结尾。*
+*Apr
+22nd留：从今天开始，调整日志风格：总标题使用h1，月份使用h2，每日使用h3，每日板块标题用h4；每日主题或简单心里话使用引用；代码块标注代码语言；不强制设置缩进；全部以冒号、分号或句号结尾。*
+
+## June 2025
+
+<details><summary>点击展开 / 关闭<summary>
+
+### June 1st, Sun, Day 73
+
+> 六一快乐
+
+**今日总结**
+
+重新开始敲代码的感觉，还真不错。今天没有跟视频课，主要是思考了一下未来职业道路的事宜，比如再回深圳。目前有这个念头，但都不是很要紧；再经过过去一个月的是是非非后，现在，我知道自己所追求的目标究竟是什么。
+
+下午直到晚上在刷LeetCode题目。哪怕不是要成为算法大神，但基本的算法素养还是要有！目前做了4题，包括：
+
+- (1) Two Sum 用哈希表和“补数思维”来提升性能
+- (2) Add Two Numbers 以单链表的形式加和，思维不难，主要考虑逐位相加、进位处理、指针迭代即可；在具体实现上，由于涉及C++以及指针，以及数据结构的
+  **单链表**知识，会比较陌生，需要反复修正
+- (1768) Merge Strings Alternately 交替拼接字符串，比较简单，顺便复习了JS中`string.slice()`方法
+- (1071) Greatest Common Divisor of Strings 数组的最大公约数。最初是用**正则表达式**
+  与末尾逐位删除匹配进行，可以通过，但效率比较低。高效的办法：1）结构对称性（剪枝）2）**欧几里德算法求最大公约数**（gcd(), 又称*
+  *辗转相除法**）。顺带复习箭头函数，正则表达式。
+
+独立开了一个新项目，也开了个新仓库，和CodeSprint40一样去推送和更新。并非突发奇想，现实要求也确实如此，在这方面下点功夫总是没错的。所以，以后除了
+**视频课主线**，每周也要花点时间在LeetCode做上那么**几道算法题**，复习一下**《数据结构》**；以及**《计算机网络》**
+也该提上日程了，毕竟是Web前端，面试时必问的。
+
+现在手感不错了。明天，可以继续推进视频课这个大主线；之后可以复盘一下今天做的几道算法题；最后要留点时间准备一下这周的安卓开发课程的测试，以及计算机英语的朗读翻译测试。
+
+**无需担心，多学多做。没有人生来就会，脚踏实地，发挥我的长处，并尽力补齐我的短板，提高解决问题的效率，而非空想与自怨自艾，这就够了。
+**
 
 
+
+
+</details>
 
 ## May 2025
 
 <details><summary>点击展开 / 关闭</summary>
 
 ### May 29, Thu, Day 70
->好久不见。带着全新的热爱，一往无前吧。
+
+> 好久不见。带着全新的热爱，一往无前吧。
 
 **心里所想**
 
-我还记得四月初之时我如何描绘那场相遇为“不一样的波澜”。我没有辜负自己，只是到如今也发现自己的确不适合。无法改变已经发生的事情，伤春悲秋或计较得失皆为徒劳；至少我现在明白一点：**我的确还是热爱着开发与创造的**，我又一次选择了计算机，一如三年前高考结束填报志愿那般高兴。
+我还记得四月初之时我如何描绘那场相遇为“不一样的波澜”。我没有辜负自己，只是到如今也发现自己的确不适合。无法改变已经发生的事情，伤春悲秋或计较得失皆为徒劳；至少我现在明白一点：
+**我的确还是热爱着开发与创造的**，我又一次选择了计算机，一如三年前高考结束填报志愿那般高兴。
 
 **今日学习**：主要是AJAX入门，讲解axios的使用；上次刚学到这里就遇上各种各样的事情，继续拾起曾经的知识，拼接起来吧。
 
@@ -192,29 +229,29 @@ const {username: username, password: password} = formData // 如需要，可以�
 ```javascript
 const unameRegExp = /^[a-zA-Z0-9]{8,}$/ig
 if (!unameRegExp.test(username)) {
-      myAlert('用户名格式不正确', false)
-      return
-    }
+  myAlert('用户名格式不正确', false)
+  return
+}
 ```
 
 ```javascript
 axios({
-    url: 'http://hmajax.itheima.net/api/login',
-    method: 'POST',
-    data: {
-      username: `${username}`,
-      password: `${password}`,
-    }
-  }).then(result => {
-    console.log(result)
-    console.log(result.data.message)
-    myAlert(result.data.message, true)
-  }).catch(error => {
-    console.log(error)
-    console.log(error.response.data.message)
-    myAlert(error.response.data.message, false)
-  })
-  /*小技巧：可以在控制台右击对应属性，快速复制其路径，例如上面的response.data.message就是复制下来的*/
+  url: 'http://hmajax.itheima.net/api/login',
+  method: 'POST',
+  data: {
+    username: `${username}`,
+    password: `${password}`,
+  }
+}).then(result => {
+  console.log(result)
+  console.log(result.data.message)
+  myAlert(result.data.message, true)
+}).catch(error => {
+  console.log(error)
+  console.log(error.response.data.message)
+  myAlert(error.response.data.message, false)
+})
+/*小技巧：可以在控制台右击对应属性，快速复制其路径，例如上面的response.data.message就是复制下来的*/
 })
 ```
 
@@ -244,7 +281,7 @@ function myAlert(msg, isSuccess) {
 
 ### May 3, Sat, Day 44
 
->The First Job
+> The First Job
 
 Gey things done. 把事做好。
 
@@ -255,17 +292,16 @@ Gey things done. 把事做好。
 <details><summary> 点击展开 / 关闭 </summary> 
 
 ### Apr 28th, Mon, Day 39
+
 > THE INTERVIEW
 
 审核通过，收到了面试邀请。花了一天的时间准备面试，正装。晚上8点半开始面试。第二天才出结果。
-
 
 ### Apr 27th, Sun, Day 38
 
 > THE RESUME
 
 今天得到了师兄的橄榄枝，将时间都花在了准备申请书和简历制作上。
-
 
 ### Apr 26th, Sat, Day 37
 
@@ -276,8 +312,6 @@ Gey things done. 把事做好。
 剩下没多少时间，简单看了一下框架前置课程，对AJAX和axios有初步了解，但内容不多，明日学习完成后，再统一把知识点写到明天的SD中吧。
 
 今晚又是社区的实践活动，好好表现吧！
-
-
 
 ### Apr 25th, Fri, Day 36
 
