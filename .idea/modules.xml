@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/CodeSprint40.iml" filepath="$PROJECT_DIR$/.idea/CodeSprint40.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/front-end-learning.iml" filepath="$PROJECT_DIR$/.idea/front-end-learning.iml" />
     </modules>
   </component>
 </project>
