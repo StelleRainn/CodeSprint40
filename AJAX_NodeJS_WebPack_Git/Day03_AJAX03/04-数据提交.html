@@ -21,10 +21,12 @@
       console.log(xhr.response)
     })
 
+    // 准备要提交的数据
     xhr.setRequestHeader('Content-Type', 'application/json')
     const user = {username: 'StelleRainn', password: '512451'}
     const userStr = JSON.stringify(user)
 
+    // 提交数据
     xhr.send(userStr)
   })
 
