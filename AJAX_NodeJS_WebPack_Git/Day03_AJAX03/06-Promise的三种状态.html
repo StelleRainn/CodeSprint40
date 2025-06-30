@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  /**
+   * 1.pending - 待定，在new Promise()时的状态
+   * 2.fulfilled - 已兑现
+   * 3.rejected - 已拒绝
+   * NOTE：一旦由pending敲定为fulfilled / rejected后，状态就不能再切换
+   */
+
+  const p = new Promise((resolve, reject) => {
+    console.log('pending状态中的函数会立即执行')
+
+    setTimeout(() => {
+      // resolve('模拟执行成功')
+      reject(new Error('模拟失败结果'))
+    }, 2000)
+  })
+
+  console.log(p)
+  // 在页面刷新后的2s内展开，可以看见 PromiseState: "pending"。2s后展开则为fulfilled或rejected
+
+  p.then(result => {
+    console.log(result)
+  }).catch(error => {
+    console.log(error)
+  })
+</script>
+
+</body>
+</html>
