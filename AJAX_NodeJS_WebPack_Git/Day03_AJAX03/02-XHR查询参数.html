@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<p class="city"></p>
+
+<script>
+  const xhr = new XMLHttpRequest()
+  xhr.open('GET', 'https://hmajax.itheima.net/api/city?pname=广西壮族自治区')
+  xhr.addEventListener('loadend', () => {
+    // console.log(xhr.response)
+    document.querySelector('.city').innerHTML = JSON.parse(xhr.response).list.join('<br>')
+  })
+  xhr.send()
+</script>
+</body>
+</html>
