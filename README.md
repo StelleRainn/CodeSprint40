@@ -6,7 +6,7 @@
 ## 规划
 - 开始日期：2025年3月21日
 - 目标：掌握**HTML5/CSS3 + JS + AJAX/Node.js/Webpack/Git + Vue2/3**。
-- 点击[这里](StudyDiary.md)查看[学习日志](StudyDiary.md)，持续追踪每天的学习内容与进度
+- 点击[这里](Diary.md)查看[学习日志](Diary.md)，持续追踪每天的学习内容与进度
 - 点击[这里](https://stellerainn.github.io/CodeSprint40/)查看[个人主页](https://stellerainn.github.io/CodeSprint40/)，借助 Github Pages 而托管，可以访问我的更多作品集
 
 ## 一些鼓励自己的话
