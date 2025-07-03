@@ -32,6 +32,8 @@
 
 </details>
 
+---
+
 <details>
 <summary>HTML</summary>
 
@@ -230,13 +232,6 @@ P.S. flex布局中，子元素会变成弹性盒子，因此对于`a`，不用�
 
 2. `top`、`right`、`bottom`、`left`: 定位偏移量，取数字px或百分比值，配合`position`使用。（必需）
 3. `z-index`: 层叠顺序，数值越大，元素越靠上层。**注意**: 只有定位元素（`position`非`static`）才会生效。
-4. `transform`: 变形属性，常用于平移、旋转、缩放等效果。
-   - `transform: translateX(50px);`：水平平移50px；以及`transform: translate(x, y);`（x和y可以是百分比或px）；都填入`50%`时，位移就各是宽高的一半；
-   - `transform: rotate(45deg);`：旋转45度。
-   - `transform: scale(1.5);`：放大1.5倍。
-   - `transform: skew(20deg, 10deg);`：倾斜20度和10度。
-   - `transform-origin`: 设置变形的原点，默认是元素的中心点，可以设置为`left`、`right`、`top`、`bottom`或具体的像素值。
-   - **多重转换**：即：将`transform`用作复合属性。**注意：第一个改变会影响盒子的轴向，从而影响第二个改变。**
 
 ### 垂直对齐方式
 
@@ -247,6 +242,27 @@ P.S. flex布局中，子元素会变成弹性盒子，因此对于`a`，不用�
    - `top`: 元素顶部对齐。
    - `middle`: 元素中部对齐。
    - `bottom`: 元素底部对齐。
+
+### 平面与空间转换-transform
+
+1. `transform`: 变形属性，常用于平移、旋转、缩放等效果。
+   - `transform: translateX(50px);`：水平平移50px；以及`transform: translate(x, y);`（x和y可以是百分比或px）；都填入`50%`时，位移就各是宽高的一半；
+   - `transform: rotate(45deg);`：旋转45度。
+   - `transform: scale(1.5);`：放大1.5倍。
+   - `transform: skew(20deg, 10deg);`：倾斜20度和10度。
+   - `transform-origin`: 设置变形的原点，默认是元素的中心点，可以设置为`left`、`right`、`top`、`bottom`或具体的像素值。
+   - **多重转换**：即：将`transform`用作复合属性。**注意：第一个改变会影响盒子的轴向，从而影响第二个改变。**
+
+2. 空间变换
+   - `transform3d(x, y, z)`: 3D变形，常用于创建立体效果。**必需写3个值**，如`transform: translate3d(50px, 0, 0);`，否则不生效。
+   - `transform: translateZ(50px);`：沿Z轴平移50px。
+   - `transform: rotateX(45deg);`：绕X轴旋转45度。又如`rotateY(45deg)`、`rotateZ(45deg)`。 
+     - 从各个轴的正方向看去：正值顺时针，负值逆时针 。
+     - 亦即**左手法则**：大拇指与各个轴的正方向相同，四个手指弯曲方向即为旋转的正方向。
+   - `transform: scale3d(1.5, 1.5, 1.5);`：沿X、Y、Z轴放大1.5倍。
+
+3. `perspective`: 视距或透视属性，用于设置3D变形的透视效果。值越小，透视效果越明显。 
+   - 添加给父级。从而更好观察子级的动效果。常用值800-1200px。
 
 ### 过渡效果
 
@@ -286,8 +302,186 @@ P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则
    - `:nth-child(n)`: 选择第n个子元素（n可以是数字、公式或关键字）。
    - `:not(selector)`: 选择不匹配指定选择器的元素。 e.g. `E:not(:hover)`, 可以实现与hover互斥的效果，在非hover状态下呈现某种样式。:hover的优先级高于:not(:hover)。
 
+### CSS精灵图（sprite）
+1. **CSS精灵图**: 将多个小图像合并为一张大图，通过调整背景位置来显示不同的部分。 通俗理解，就是“想像”成所有小图合成在一张大图（精灵图的背景），设定盒子宽高（所谓展示窗口），然后通过背景定位来显示不同的小图
+   - 使用`background-image`设置大图，使用`background-position`调整显示区域。
+   - 例如：
+   ```css
+   .sprite {
+       background-image: url('sprite.png');
+       width: 100px; /* 单帧宽度 */
+       height: 100px; /* 单帧高度 */
+       background-position: -50px -50px; /* 显示第2行第3列的图像 */
+   }
+   ```
+
+
+### 渐变
+
+1. **线性渐变**: 使用`linear-gradient`函数创建线性渐变背景。
+   ```css
+   background: linear-gradient(
+    direction, 
+    color-stop1, 
+    color-stop2, 
+    ...);
+   ```
+   - `direction`: 渐变方向（如`to right`、`to bottom`、`to top left`等，或**角度值**；默认由上到下）。
+   - `color-stop`: 渐变颜色和位置。如`red 0%, blue 100%`表示从红色到蓝色的渐变。最后的`color-stop`不需要逗号。
+
+2. **径向渐变**: 使用`radial-gradient`函数创建径向渐变背景。
+   ```css
+    background: radial-gradient(
+     shape size at position, 
+     color-stop1, 
+     color-stop2, 
+     ...);
+    ```
+    - `shape`: 渐变形状（如`circle`、`ellipse`）。
+    - `size`: 渐变大小（如`closest-side`、`farthest-corner`）。
+      - 上述两点也可以使用**半径**，单独写一个值，表示半径；或两个值，分别表示水平和垂直方向的半径。
+    - `position`: 渐变中心位置（如`center`、`top left`）。
+
+### 动画
+
+1. `animation`属性用于创建动画效果，复合属性，常用属性包括：
+   - `animation-name`: 动画名称，对应@keyframes定义的动画。(必需)
+   - `animation-duration`: 动画持续时间（如`2s`）。（必需）
+   - `animation-timing-function`: 动画速度曲线（如`ease`、`linear`、`ease-in`、`ease-out`等）。
+   - `animation-delay`: 动画延迟时间。
+   - `animation-iteration-count`: 动画循环次数（如`infinite`表示无限循环）。
+   - `animation-direction`: 动画方向（如`normal`、`reverse`、`alternate`）。
+   - `animation-fill-mode`: 动画填充模式，或结束时状态（如`forwards`、`backwards`）。
+   - `animation-play-state`: 动画播放状态（如`running`、`paused`）。**常与hover结合使用**。
+
+2. 使用动画，分两步
+   2.1 定义动画：使用`@keyframes`定义动画的关键帧。
+   ```css
+   @keyframes animation-name {
+       from { /* 初始状态css */ }
+       to { /* 结束状态css */ }
+   }
    
+   /* 或者使用百分比 */
+    @keyframes animation-name {
+         0% { /* css */ }
+         50% { /* css */ }
+         ...
+         100% { /* css */ }
+    }
+   ```
+   p.s. 注意分号与逗号。   
+
+   2.2 应用动画：在元素上使用`animation`属性应用定义的动画。 e.g.
+   ```css
+    .element {
+         animation: animation-name 2s ease-in-out infinite;
+    }
+    ```
+   
+3. 逐帧动画，使用**速度曲线**，配合**CSS精灵图**实现精灵动画。 e.g. 
+   ```css
+   .sprite {
+       background-image: url('sprite.png');
+       width: 100px; /* 单帧宽度 */
+       height: 100px; /* 单帧高度（即：定义显示区域，所谓精灵图展示窗口） */
+       animation: play 1s steps(10) infinite; /* 10帧动画，数字n与精灵图个数相同 */
+   }
+
+   @keyframes play {
+       from { background-position: 0 0; }
+       to { background-position: -1000px 0; } /* 假设总宽度为1000px，移动距离x等于精灵图宽度 */
+   }
+   ```
+   
+### 移动端适配
+
+1. 屏幕分辨率、视口与二倍图
+   - 屏幕分辨率：设备的物理像素数量。即物理分辨率。
+   - 缩放调节的分辨率：逻辑分辨率（由软件/驱动/操作系统等设置）。
+   - PC端网页分辨率与逻辑分辨率保持一致。
+   - iPhone 6/7/8 -- 逻辑分辨率375px；plus -- 414px。
+   - 视口：移动端网页分辨率并非逻辑分辨率。视口是，显示HTML网页的区域，使用视口约束HTML尺寸。使用HTML5自动骨架中就可以生成。 e.g. 
+   ```html
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ```
+   - 二倍图（Retina图像）：高分辨率设备上使用的图像，通常是标准图像的两倍大小。
+
+2. 适配方案
+   - **响应式设计**: 使用媒体查询（`@media`）根据设备特性（如屏幕宽度）应用不同的样式。
+   - **流式布局**: 使用百分比宽度和弹性盒子布局，使元素根据屏幕大小自动调整。适用于PC端。
+   - **视口单位**: 使用`vw`（视口宽度）和`vh`（视口高度）单位来设置元素的尺寸。
+   - **REM单位**: 使用`rem`单位来设置字体大小和元素尺寸，基于根元素的字体大小进行计算。`rem`: 相对单位，相对「HTML标签字号」的结果。即：**最终像素值 = rem值 * HTML标签字号**
+
+3. 媒体查询
+   - 可以用于检测视口宽度，编写差异化的CSS样式 -- 当某个条件成立，执行对应的CSS样式.
+   - 使用`@media`规则根据设备特性应用不同的样式。
+   ```css
+    @media (width: 375px) {
+        html {
+            font-size: 37.5px;
+        }
+    }
+   ```
+   - 常用特性包括`width`、`height`、`orientation`（横屏或竖屏）等。
+   - 使用**flexible布局**实现多视口自适应:
+   ```html
+   <script src = "flexible.js"></script>
+   ```
+   - 于是，就有**rem单位值 = 实际px值(来自设计稿) / 根字号(常设置成变量，如`@rootSize: 37.5px`)**
+   - 目前rem布局方案中，将网页等分成10份，HTML标签的字号视为视口宽度的 1/10（flexible布局会计算好）
+
+
+### CSS预处理器-less
+1. **注释**: 使用`//`进行单行注释，使用`/* */`进行多行注释。less中的注释不会被编译到CSS中。
+2. **变量**: 使用`@`符号定义变量，便于复用和维护。**不要忘记分号**。
+   ```less
+   @primary-color: #3498db;
+   body {
+       background-color: @primary-color;
+   }
+   ```
+3. **嵌套**: 支持嵌套规则，便于组织样式。
+   ```less
+   .container {
+       .header {
+           color: red;
+       }
+       .footer {
+           color: blue;
+       }
+   }
+   ```
+   在嵌套中使用`&`符号引用父选择器（即：选择自己）。
+   ```less
+   a {
+      text-decoration: none;
+      &:hover {
+        color: #00BE9A;
+     } 
+   }
+   ```
+4. **运算**: 支持数学运算，如加减乘除。
+   ```less
+   @base-font-size: 16px;
+   @large-font-size: @base-font-size * 1.5;
+   body {
+       font-size: @large-font-size;
+       margin: (68 / 37.5)rem;
+   }
+   ```
+   除法必须带括号。**注意：**如果两个数字都带单位或更多单位，以「第一个」单位为准。
+5. **导入**: 使用`@import`导入其他Less文件，便于模块化管理样式。
+   ```less
+   @import "variables.less";
+   @import "mixins.less";
+   ```
+6. **导出**：在less文件的**第一行：**`// out: ./index.css ` -- 没有分号；或**禁止导出：**`// out: false`
+
+
 </details>
+
+---
 
 <details>
 <summary>JavaScript</summary>
