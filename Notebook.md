@@ -4,31 +4,75 @@
 <summary>细碎的小技巧</summary>
 
 ## 细碎的小技巧
-1. 使用“标签名.类名”可快速补全一个包含类名的标签。(Emmet)
-2. 快捷键：cmd + D：快速向下复制。
-3. **CSS注释**: 使用`/* 注释内容 */`格式。
-4. **CSS单位**: 常用单位包括`px`（像素）、`em`（相对于父元素字体大小）、`rem`（相对于根元素字体大小）、`%`（百分比）、`vh`（视口高度的百分比）、`vw`（视口宽度的百分比）。
-5. `vertical-align`: 用于行内元素或表格单元格的垂直对齐方式（如`top`、`middle`、`bottom`）。
-6. `outline`: 描边属性，类似于`border`，但不会占用空间。e.g. `outline: 1px solid red;`。
-   -`outline: none;`：去除元素的轮廓线，常用于去除表单的焦点控制样式。
-7. `input::placeholder`: 用于设置输入框的占位符样式。
+
+### Emmet
+
+- 使用“标签名.类名”可快速补全一个包含类名的标签。(Emmet)
+
+### 快捷键类
+
+- cmd + D：快速向下复制。
+- option + shift + 光标：同步编辑多行。
+
+### 注释类
+
+#### HTML注释
+
+- 使用`<!-- 注释内容 -->`格式。
+- **注意**: HTML注释不能嵌套。
+
+#### CSS注释
+
+- **CSS注释**: 使用`/* 注释内容 */`格式。
+- **less注释**: 使用`//`进行单行注释，使用`/* */`进行多行注释。less中的注释不会被编译到CSS中。
+
+#### JavaScript注释
+
+- **单行注释**: 使用`// 注释内容`格式。
+- **多行注释**: 使用`/* 注释内容 */`格式。
+
+### 技巧类
+
+#### HTML技巧
+
+-  SEO：搜索引擎优化，使用语义化标签（如`header`、`nav`、`article`、`section`、`footer`等）有助于提升网站的可读性和搜索引擎排名。
+   - `title`标签：每个页面都应该有唯一的标题，使用`<title>`标签定义。
+   - `description`标签：网页描述标签，使用`<meta name="description" content="页面描述">`提供页面的简要描述，有助于搜索引擎理解页面内容。
+   - `keywords`标签：网页关键词标签，使用`<meta name="keywords" content="关键词1, 关键词2">`定义页面的关键词，有助于搜索引擎优化。
+
+-  SEO：对网站logo使用SEO优化时，采用h1嵌套a，例如：
+   ```html
+   <div class="logo">
+      <h1><a href="#">小兔鲜儿</a></h1>
+   </div>
+   ```
+   ```css
+      .logo a {
+          font-size: 0; 
+          background-image: url(...)}
+   ```   
+
+-  `Favicon`：网站图标，使用`<link rel="icon" href="favicon.ico">`定义网站的图标。ico文件放在网站的根目录即可。
+
+
+#### CSS小技巧
+
+- `vertical-align`: 用于行内元素或表格单元格的垂直对齐方式（如`top`、`middle`、`bottom`）。
+- `outline`: 描边属性，类似于`border`，但不会占用空间。e.g. `outline: 1px solid red;`。
+-  -`outline: none;`：去除元素的轮廓线，常用于去除表单的焦点控制样式。
+- `input::placeholder`: 用于设置输入框的占位符样式。
    ```css
    input::placeholder {
        color: gray;
        font-style: italic;
    }
    ```
-8. 注意`background-color: rgba(0, 0, 0, .4);`和`opacity: 0.4;`的不同,
+-  注意`background-color: rgba(0, 0, 0, .4);`和`opacity: 0.4;`的不同,
    - `rgba`是颜色的透明度设置，影响背景颜色；
    - `opacity`是元素整体透明度，影响所有内容（包括文本和子元素）, 让整个元素及其子元素的可见度都变化.
 
-9. 将`a`标签字体隐藏，可以使用`font-size: 0;`; 
-10. SEO：搜索引擎优化，使用语义化标签（如`header`、`nav`、`article`、`section`、`footer`等）有助于提升网站的可读性和搜索引擎排名。
-    - `title`标签：每个页面都应该有唯一的标题，使用`<title>`标签定义。
-    - `description`标签：网页描述标签，使用`<meta name="description" content="页面描述">`提供页面的简要描述，有助于搜索引擎理解页面内容。
-    - `keywords`标签：网页关键词标签，使用`<meta name="keywords" content="关键词1, 关键词2">`定义页面的关键词，有助于搜索引擎优化。
-
-11. `Favicon`：网站图标，使用`<link rel="icon" href="favicon.ico">`定义网站的图标。ico文件放在网站的根目录即可。
+-  将`a`标签字体隐藏，可以使用`font-size: 0;`;
+- `obeject-fit: cover;` :和bg-size一个道理，取值也相同。不过`object-fit`适用于对`img`标签的调整，`bg-size`则专注于`background`系列
 
 </details>
 
@@ -119,7 +163,7 @@ P.S. 如遇复合选择器，则需计算优先级。
 
 P.S. 使用`display`属性来控制或转换元素的显示模式。
 
-### 文字控制属性
+### 文字控制属性 font & text
 
 1. `font`系列: 
    - `font-family`: 字体系列
@@ -143,7 +187,7 @@ P.S. 使用`display`属性来控制或转换元素的显示模式。
    - `letter-spacing`: 字符间距
    - `word-spacing`: 单词间距
 
-### 背景属性
+### 背景属性 background
 
 1. `background-color`: 背景颜色
 2. `background-image`: 背景图像, e.g. `background-image: url('image.jpg');`
@@ -193,7 +237,7 @@ P.S. 使用`display`属性来控制或转换元素的显示模式。
    - `为父级添加border-top`；
 7. 行内元素的内外边距问题：默认情况下，垂直方向不会受到影响； 
 
-### 浮动
+### 浮动 float
 
 1. `float: left | right | none`: 浮动元素会脱离文档流，后续元素会环绕在其旁边;
 2. 清除浮动的方法：
@@ -220,30 +264,30 @@ P.S. 使用`display`属性来控制或转换元素的显示模式。
 P.S. flex布局中，子元素会变成弹性盒子，因此对于`a`，不用刻意转变为块元素，宽高也可以生效；
 
 
-### 定位
+### 定位 position
 
-1. `position`，定位类型:
+1. `position`，使用口诀：**子绝父相**, 定位类型:
    - `static`: 默认定位，元素按照文档流正常排列。
    - `relative`: 相对定位，元素相对于其原始位置进行偏移。（不脱标且占位）
    - `absolute`: 绝对定位，元素相对于最近的已定位祖先元素进行定位。（脱标且不占位，具备行内块元素特点）
    - `fixed`: 固定定位，元素相对于浏览器窗口进行定位，不随滚动条移动。（脱标且不占位，具备行内块元素特点）
    - `sticky`: 粘性定位，元素在特定条件下表现为相对定位和固定定位的结合。
-   - 使用口诀：**子绝父相**
+   - `fixed`和`sticky`的区别：
+     - `fixed`
+        - 基于浏览器视口
+        - 完全脱标，后续元素会顶上来，可能需要为其他元素添加margin或使用空白盒子占位
+        - 转变为行内块，需要手动处理「宽度变窄」（设置width:100%）
+     - `sticky`
+        - 基于最近的滚动父容器
+        - 半脱离文档流，仍然占位
+        - 保留块级特性，不一定需要设置宽度
+        - 必须指定 top、bottom、left 或 right 中的一个，不然不起作用。
+        - 父容器要有滚动（overflow: auto 或 scroll），而且父容器高度要大于 sticky 元素本身。
 
 2. `top`、`right`、`bottom`、`left`: 定位偏移量，取数字px或百分比值，配合`position`使用。（必需）
 3. `z-index`: 层叠顺序，数值越大，元素越靠上层。**注意**: 只有定位元素（`position`非`static`）才会生效。
 
-### 垂直对齐方式
-
-可以通过这个方式去除行内块、图片底部留白（非baseline）
-
-1. `vertical-align`属性用于行内元素或表格单元格的垂直对齐方式。常用值包括：
-   - `baseline`: 默认值，元素基线对齐。
-   - `top`: 元素顶部对齐。
-   - `middle`: 元素中部对齐。
-   - `bottom`: 元素底部对齐。
-
-### 平面与空间转换-transform
+### 平面与空间转换 transform
 
 1. `transform`: 变形属性，常用于平移、旋转、缩放等效果。
    - `transform: translateX(50px);`：水平平移50px；以及`transform: translate(x, y);`（x和y可以是百分比或px）；都填入`50%`时，位移就各是宽高的一半；
@@ -264,7 +308,7 @@ P.S. flex布局中，子元素会变成弹性盒子，因此对于`a`，不用�
 3. `perspective`: 视距或透视属性，用于设置3D变形的透视效果。值越小，透视效果越明显。 
    - 添加给父级。从而更好观察子级的动效果。常用值800-1200px。
 
-### 过渡效果
+### 过渡效果 transition
 
 1. `transition`属性用于设置过渡效果，常用属性包括：
    - `transition-property`: 过渡的属性（如`color`、`background-color`等）。
@@ -275,13 +319,13 @@ P.S. flex布局中，子元素会变成弹性盒子，因此对于`a`，不用�
 
 P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则退出`hover`的时候没效果）
 
-### 透明度
+### 透明度 opacity
 
 1. `opacity`属性用于设置元素的透明度，取值范围为`0`（完全透明）到`1`（完全不透明）。
    - 例如：`opacity: 0.5;`表示50%透明度。
    - 注意：`opacity`会影响元素及其子元素的可见度。
 
-### 鼠标样式
+### 鼠标样式 cursor
 
 1. `cursor`属性用于设置鼠标悬停时的样式，常用值包括：
    - `default`: 默认箭头。
@@ -410,8 +454,12 @@ P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则
 2. 适配方案
    - **响应式设计**: 使用媒体查询（`@media`）根据设备特性（如屏幕宽度）应用不同的样式。
    - **流式布局**: 使用百分比宽度和弹性盒子布局，使元素根据屏幕大小自动调整。适用于PC端。
-   - **视口单位**: 使用`vw`（视口宽度）和`vh`（视口高度）单位来设置元素的尺寸。
    - **REM单位**: 使用`rem`单位来设置字体大小和元素尺寸，基于根元素的字体大小进行计算。`rem`: 相对单位，相对「HTML标签字号」的结果。即：**最终像素值 = rem值 * HTML标签字号**
+   - **视口单位**: 使用`vw`（视口宽度）和`vh`（视口高度）单位来设置元素的尺寸。
+     - 都是相对于「视口」的单位，1vw = 1/100 视口宽度，1vh = 1/100 视口高度;
+     - 与rem一样，对于设计稿中的px单位，需要转换成vw/vh单位; 
+     - e.g. **vw = 设计稿呈现的px / （设计稿参考设备的视口宽度/100）**, 定义变量`@vw: 3.75vw`；使用： `width: (50 / @vw);`
+     - 注意：在开发中，`vh`不建议与`vw`混用，因为「全面屏」等设备的视口高度会有所不同，混用可能导致盒子变形
 
 3. 媒体查询
    - 可以用于检测视口宽度，编写差异化的CSS样式 -- 当某个条件成立，执行对应的CSS样式.
@@ -423,7 +471,11 @@ P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则
         }
     }
    ```
-   - 常用特性包括`width`、`height`、`orientation`（横屏或竖屏）等。
+   - 常用特性包括`width`、`height`、`orientation`（横屏或竖屏）等。以及`min-width`和`max-width`：
+     - `max-width`: 网页最大宽度值，意义是：在**视口小于等于**`max-width`时，（或者理解为“**在不大于最大值`max-width前`**”）媒体查询的CSS生效
+     - `min-width`: 网页最小宽度值，意义是：在**视口大于等于**`min-width`时，媒体查询的CSS生效
+     - 在一份css中，若要检测多视口，对于顺序是有要求的（CSS的层叠性）
+       - 对于`min-width`：由小到大；对于`max-width`：由大到小
    - 使用**flexible布局**实现多视口自适应:
    ```html
    <script src = "flexible.js"></script>
@@ -431,17 +483,44 @@ P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则
    - 于是，就有**rem单位值 = 实际px值(来自设计稿) / 根字号(常设置成变量，如`@rootSize: 37.5px`)**
    - 目前rem布局方案中，将网页等分成10份，HTML标签的字号视为视口宽度的 1/10（flexible布局会计算好）
 
+### Bootstrap
+
+1. **Bootstrap**: 前端框架，提供了响应式布局、预定义样式和组件。
+   - 使用CDN或手动下载引入Bootstrap CSS、字体和JS文件。在需要的标签调用类名即可。注意link的层叠性，让自己的css在最后。
+   - 使用网格（栅格）系统（Grid System）创建响应式布局。将整个网页等分12份，每个盒子占一定份数。如：一行4个盒子，则每个占3份。
+   - 使用预定义的类（如`btn`、`alert`、`card`等）快速构建UI组件。
+   - **响应断点**（断点之间形成区间）与**类前缀**：在不同的区间内，你想分几个盒子，类名的选择是有要求的：
+   ```
+   xs：<567px .col-
+   sm：>=576px .col-sm-
+   md：>=768px .col-md-
+   ld：>=992px .col-lg-
+   xl：>=1200px .col-xl-
+   xxl：>=1400px .col-xxl-
+   ```
+   - 格式：`container -> row(实现flex) -> col-*-*(在什么区间，占多少份)`
+   - 例如：`<div class="col-xl-3 col-md-6 col-sm-12">1</div>`（4个div），依次实现：
+     - 在大于等于1200px，一行排4个盒子（每个3份 -- col-xl-3）
+     - 大于等于768px，一行排2个（每个六份 -- col-md-6）
+     - 大于等于576px，一行排1个（独占12份 -- col-sm-12）
+   - **Button样式**：先给btn添加默认样式，再加入需要进一步实现的样式。例如：
+         `<button class="btn btn-success btn-sm">小success</button>`
+   - **表格类样式**：与Button类一样，需要优先为table标签添加一个`table`类的默认效果，在依次给不同表格类标签（包括table，tr，th，td等）添加想要的效果
+   - **Bootstrap组件**：从官网上可以复制各种组件。如需修改，只要观察结构（html也好，网页检查器也好），修改结构或css即可
+     - 注意：部分CSS含`!important`最高优先级，所以修改时，自己也要加，确保层叠有效
+   - **字体图标**：如前面所言，下载后引入css文件，写类名即可，和iconfont相似。
+      - p.s.官方文档中，需要写两个类名，但其实写一个也可以;例如：`<span class="bi-apple"></span>`
 
 ### CSS预处理器-less
-1. **注释**: 使用`//`进行单行注释，使用`/* */`进行多行注释。less中的注释不会被编译到CSS中。
-2. **变量**: 使用`@`符号定义变量，便于复用和维护。**不要忘记分号**。
+
+1. **变量**: 使用`@`符号定义变量，便于复用和维护。**不要忘记分号**。
    ```less
    @primary-color: #3498db;
    body {
        background-color: @primary-color;
    }
    ```
-3. **嵌套**: 支持嵌套规则，便于组织样式。
+2. **嵌套**: 支持嵌套规则，便于组织样式。
    ```less
    .container {
        .header {
@@ -461,7 +540,7 @@ P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则
      } 
    }
    ```
-4. **运算**: 支持数学运算，如加减乘除。
+3. **运算**: 支持数学运算，如加减乘除。
    ```less
    @base-font-size: 16px;
    @large-font-size: @base-font-size * 1.5;
@@ -471,12 +550,12 @@ P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则
    }
    ```
    除法必须带括号。**注意：**如果两个数字都带单位或更多单位，以「第一个」单位为准。
-5. **导入**: 使用`@import`导入其他Less文件，便于模块化管理样式。
+4. **导入**: 使用`@import`导入其他Less文件，便于模块化管理样式。
    ```less
    @import "variables.less";
    @import "mixins.less";
    ```
-6. **导出**：在less文件的**第一行：**`// out: ./index.css ` -- 没有分号；或**禁止导出：**`// out: false`
+5. **导出**：在less文件的**第一行：**`// out: ./index.css ` -- 没有分号；或**禁止导出：**`// out: false`
 
 
 </details>
