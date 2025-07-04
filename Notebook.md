@@ -99,6 +99,8 @@
 
 </details>
 
+---
+
 <details>
 <summary>CSS</summary>
 
@@ -565,7 +567,332 @@ P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则
 <details>
 <summary>JavaScript</summary>
 
+## JavaScript
+
+### JavaScript基础
+
+- **JS的书写位置**：和css一样，包括内联（行内），内部（在</body>标签上），外部（<script src='...'>）；写在底部的目的是，让页面按顺序从上往下加载，避免HTML元素加载不完全
+- **JS的注释**：单行注释`//`，多行注释`/*...*/`。
+- **JS结束符号**：可写可不写，但要统一；立即执行函数（IIFE）除外。
+- **输入语法**：`prompt('enter content here')`
+- **输出语法**: `document.write('...')`, `console.log('...')`, `alert('...')`
+
+
+### 变量
+
+- **变量**：`let 变量名 = 值` 
+- **命名规则**：仅`字母`，`数字`，`下划线`与`$`符号，数字不能开头；严格区分大小写；建议使用`小驼峰命名法`
+- 变量初始化与输入输出的结合：e.g. `let name = prompt('Please enter your name')`  `document.write(name)`
+- **常量**：`const 常量名 = 值`，在声明时必须赋值，常量一旦赋值后不能再修改。
+
+### 数据类型
+
+#### 基本数据类型
+  - `Number`：数字类型，包括整数和浮点数，正数、负数统一为`Number`类型。
+    - `NaN`：也是数字类型，表示非数字（Not a Number），通常是计算错误的结果。具有粘性，即任何与`NaN`进行的运算结果都是`NaN`。
+    - 搭配算数运算符运算，包括加（`+`）、减（`-`）、乘（`*`）、除（`/`）、取余（`%`）等； `n**x`：表示n的x次方。
+  - `String`：字符串类型，用单引号、双引号、**反引号**以及转义字符括起来的文本。单双引号可以相互嵌套；使用`+`号可以连接字符串。
+    - **反引号**：ES6新增的字符串语法，支持多行字符串和模板字符串（变量插值）。使用`${变量名}`来插入变量。e.g. 
+    ```javascript
+    let name = 'Alice';
+    document.write(`Hello, ${name}!`); // 输出：Hello, Alice!
+    ```
+    可以利用`document.write('HTML 代码')`来输出`html`标签，配合模板字符串修改一些内容。
+    - 字符串方法：
+      - `.length()`获取长度
+      - `.toUpperCase()`转换为大写
+      - `.toLowerCase()`转换为小写
+      - `.trim()`去除首尾空格
+    - **转义字符**：使用反斜杠`\`来转义特殊字符，如`\'`、`\"`、`\n`（换行）、`\t`（制表符）等。
+  - `Boolean`：布尔类型，只有两个值：`true`和`false`。
+  - `Null`：空值，表示变量没有值。（将null作为尚未创建的对象）
+  - `Undefined`：未定义，表示变量已声明但未赋值。
+  - *`undefined`与`null`不同， 例如同样 `+1` 操作，前者返回`NaN`，后者返回`1`*
+  - `Symbol`：ES6新增的唯一值类型，用于创建唯一标识符。
+
+#### 数据类型检测
+  - 使用`typeof`操作符检测数据类型。
+  ```javascript
+  console.log(typeof 123); // "number"
+  console.log(typeof 'Hello'); // "string"
+  console.log(typeof true); // "boolean"
+  console.log(typeof null); // "object"（这是一个历史遗留问题）
+  console.log(typeof undefined); // "undefined"
+  console.log(typeof Symbol('id')); // "symbol"
+  ```
+  
+#### 类型转换
+
+分为**显式转换**和**隐式转换**。
+
+**显式转换**：使用函数进行转换。
+  - `String(值)`：将值转换为字符串。
+  - `Number(值)`：将值转换为数字。**若字符串包含非数字字符，则转换结果为`NaN`**。
+  - `Boolean(值)`：将值转换为布尔值。以下转换为布尔值时为`false`：`0`、`NaN`、`null`、`undefined`、空字符串（`''`）。其他值转换为`true`。
+  - `parseInt(字符串, 基数)` & `parseFloat(字符串, 基数)` ：将字符串转换为整数或小数，基数可选（如10进制）。前提条件：字符串开头不能是非数字。e.g. 
+  ```javascript
+  console.log(Number('123')); // 123
+  console.log(parseInt('12px123')); // 12
+  console.log(parseInt('123abc', 10)); // 123
+  console.log(parseFloat('123.45abc')); // 123.45
+  console.log(parseFloat(abc123abc)); // NaN
+  ```
+**隐式转换**：JavaScript会自动进行类型转换，如在运算中自动将字符串转换为数字。
+   - 对于+号，若两边存在一个字符串，则自动将另外一个转换为字符串；所以**任何数据和字符串相加的结果都是字符串**
+   - 除+号之外的运算符，只要有数字，都换转换成数字
+   - **单独使用+号**：可以转换成数字类型；e.g. 
+  ```javascript
+  console.log(typeof '123') // string
+  console.log(typeof +'123') // number
+  ```
+   - 在减法运算，`''`和`null`的值会化为`0`；`undefined`的值化为`NaN`；
+   - 特殊情况：`undefined == null` 为`true`，但`undefined === null` 依然是`false`
+
+### 运算符
+
+- **赋值运算符**：`=` `+=` `-=` `*=` `/=` `%=`
+- **自增运算符**：`++i` `i++` `--i` `i--`
+   - 存在自增和运算并行的情况，需留意 e.g. `let i = 1 console.log(i++ + ++i + i) // 1 + 3 + 3 = 7`
+- **比较运算符**：和之前学过的C++大部分都一样，额外留意：
+   - `==`：值相等；`===`：值和类型相等（全相等），**推荐使用**，对应`!==`: 不全等
+   - `undefined == null // true `
+   - `NaN === NaN // false`
+   - 本质：比较的是ASCII码值：`console.log('aa' < 'aac') // true`
+- **逻辑运算符：与或非**：记住优先级：**小括号 > 一元运算符(含!) > 算术运算符 > 逻辑运算符(先 && 后 ||)**
+   - `&&`：与运算，只有当两个操作数都为真时结果才为真。
+   - `||`：或运算，只要有一个操作数为真结果就为真。
+   - `!`：非运算，取反操作数的布尔值。
+   - **短路求值(逻辑中断)**：在逻辑运算中，如果第一个操作数已经决定了结果，则不会计算第二个操作数。
+     - e.g. `console.log(false || 'Hello') // Hello`
+     - e.g. `console.log(true && 'Hello') // Hello`
+   - **逻辑运算符的返回值**：`&&`返回第一个假值或最后一个真值；`||`返回第一个真值或最后一个假值。判断的是真假（布尔），但返回的是这个值本身.
+     - e.g. `console.log(0 && 'Hello') // 0`
+     - e.g. `console.log('Hello' || 0) // Hello`
+```javascript
+function f(x, y) {
+x = x || 0
+y = y || 0
+return x + y
+}
+console.log(f(1,2)) // 3
+console.log(f()) // 0 避免了undefined的NaN情况出现
+```
+- **三元运算符**：`条件 ? 满足条件所执行代码 : 否则执行不满足条件代码`，用于简化`if-else`语句。
+- **位运算符**：对整数的二进制位进行操作。
+  - `&`：按位与
+  - `|`：按位或
+  - `^`：按位异或
+  - `~`：按位取反
+  - `<<`：左移
+  - `>>`：右移
+  - `>>>`：无符号右移
+
+### 条件语句
+
+####  if语句
+
+用于根据条件执行代码块。
+
+```javascript
+if (条件) {
+    // 条件为真时执行的代码
+} else if (其他条件) {
+    // 其他条件为真时执行的代码
+} else {
+    // 所有条件都不满足时执行的代码
+}
+```
+#### switch语句
+
+用于根据表达式的值执行不同的代码块。
+
+```javascript
+switch (表达式) {
+    case 值1:
+        // 当表达式等于值1时执行的代码
+        break;
+    case 值2:
+        // 当表达式等于值2时执行的代码
+        break;
+    default:
+        // 当没有匹配的值时执行的代码
+}
+```
+- *p.s. 可以写`case (value): { expressions }`，也可以`case value: expressions`*
+- 记得加`break`防止穿透
+- 记得加`default`
+
+### 循环语句
+
+#### for循环
+
+用于重复执行代码块，直到条件不满足。
+
+```javascript
+for (初始化; 条件; 更新) {
+    // 循环体
+}
+```
+e.g. 冒泡排序
+```javascript
+for (let i = 0; i < array.length - 1; i++) {
+for (let j = 0; j < array.length - 1 - i; j++) {
+  if (array[j] > array[j + 1]) {
+    swap
+    }
+  }
+}
+```
+
+*冒泡排序拓展: 核心思想/两个关键点：*
+
+- 双重循环，每一趟循环都让`arr[0]`与其它数据元素(arr.length - 1个)比较，根据大小进行交换(
+  升序或降序，自行调整if判断中arr[j]和arr[j+1]的比较方式)
+- 一趟排序完成后，产生本趟**最值**，「冒泡」到数组末尾。下一趟arr[0]无需与最值比较。所以内层循环的终止条件是
+  `j < arr.length -1 -i`
+
+```javascript
+for (let i = 0; i < array.length - 1; i++) {
+for (let j = 0; j < array.length - 1 - i; j++) {
+  if (array[j] > array[j+1]) {
+     swap...
+```
+
+- 可以用一个布尔标志，当没有发生交换时，可以直接结束循环（外层）
+- JS也有sort()函数 `e.g. array.sort() ` 默认升序
+- sort()函数如需降序，可以填入函数 `array.sort( function (a, b) { return b - a } )`
+- 关于 return b-a 的理解
+   - **sort函数通过return expression判断，当expression的结果大于0，交换参数a、b的位置；结果小于等于0，不交换参数a、b的位置**
+   - 假设锚定规则「大于0则交换位置」：
+      - 若使用 return a-b ：当发生交换，说明「前者」（指参数的位置）a更大，同时被排到后面，完成升序
+      - 若使用 return b-a ：当发生交换，说明「后者」b更大，同时被排到前面，完成降序
+
+#### while循环
+
+当条件为真时重复执行代码块。
+
+```javascript
+while (条件) {
+    // 循环体
+}
+```
+- `continue`语句：跳过当前循环的剩余部分，直接进入下一次循环。(回到while起点)
+- `break`语句：终止循环，跳出循环体。(跳出while)
+
+### 数组
+
+- **数组**：使用方括号`[]`定义的有序数据集合。
+```javascript
+let array = [data1, data2, 'data3', 4, true]; // 数组可以包含不同类型的数据，甚至嵌套数组。
+let array2 = new Array(1, 2, 3); // 另一种创建数组的方式
+
+// 数组的索引从0开始，访问元素使用方括号。(数组的“查”)
+console.log(array[0]); // 输出第一个元素
+
+// 数组的长度
+console.log(array.length); // 输出数组长度
+```
+
+- **数组的增删改方法**：
+  - 增：
+    - `push(元素)`：在数组末尾添加一个或多个元素。返回新数组的长度。
+    - `unshift(元素)`：在数组开头添加一个或多个元素。同样返回新数组的长度。
+    - `splice(位置, 0, 元素)`：在指定位置添加一个或多个元素。
+  - 删：
+    - `pop()`：删除数组末尾的元素，返回被删除的元素。
+    - `shift()`：删除数组开头的元素，返回被删除的元素。
+    - `splice(位置, 数量)`：从指定位置删除指定数量的元素。`数量`无参时，删除到末尾。
+  - 改：即修改数组元素的值，直接使用索引访问并赋值。
+    - `array[index] = newValue;`：将指定索引的元素修改为新值。
+
+
+### 函数
+
+#### 函数定义声明与调用
+
+使用`function`关键字定义函数。使用函数名和括号调用函数。
+```javascript
+function 函数名(参数1, 参数2) {
+    // 函数体
+    return 返回值; // 可选
+}
+// 调用函数
+函数名(参数1, 参数2);
+```
+e.g. 
+```javascript
+function getMax(a, b) {
+    return a > b ? a : b
+  }
+  let max = getMax(201, 200)
+console.log(max)
+```
+- **return多个值**：
+  - 可以使用数组或对象返回多个值。
+  - 例如：`return [value1, value2];` 或 `return {key1: value1, key2: value2};`
+  - 可以用数组承接结果，
+```javascript
+return [max, min]
+
+let max = f(x)[0]
+let min = f(x)[1]
+```
+
+- **出现相同函数名时**：后面的函数会覆盖前面的函数。不管在哪儿调用函数，都会以后面的为准。
+
+- **实参和形参数目不匹配**：
+  - 若实参多于形参，则多余的实参被舍弃，不参与运算。函数可以输出前面参数的运算结果
+  - 若实参少于形参，则形参出现`undefined`，导致出现`NaN`结果
+
+- **作用域**：分为全局作用域与局部作用域，由此引申出全局变量与局部(函数)变量
+  - 特殊情况1: 在**函数内部未声明变量而赋值**，该变量会成为全局变量。*强烈不建议此情况的出现*
+  - 特殊情况2: 形参可以看作是一种局部变量
+  - 不同作用域中同名变量的访问原则：就近——从当前作用域开始寻找；若无，则向上查找父作用域，直到全局作用域。 e.g. 
+```javascript
+let x =10
+function f3() {
+  let x = 20
+  function f4() {
+    let x = 30
+    console.log(x)
+  }
+  f4()
+}
+f3() 
+console.log(x) // 30
+```
+
+#### 匿名函数
+
+分为**函数表达式**和**立即执行函数**。
+
+- **函数表达式**：将函数赋值给变量，而后这个变量名就是函数名，并利用该名调用函数。函数名可以省略。
+
+*和具名函数的不同点在于，函数表达式必须先声明再调用*
+
+```javascript
+let fn = function (a, b) {
+  return a + b
+}
+// 调用
+let re = fn(10, 20)
+console.log(re) // 30
+```
+
+- **立即执行函数**（IIFE）：定义后立即执行的函数，通常用于创建局部作用域，避免变量污染全局作用域。
+
+*需要配合结束分号，若该函数前有代码，前面也要加分号。*
+
+```javascript
+;(function (x ,y) {
+  console.log(x + y)
+}(1, 2)); // 调用函数的括号写在里外都可以
+```
+
+
 </details>
+
+---
 
 <details>
 <summary>AJAX</summary>
