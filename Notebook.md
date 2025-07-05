@@ -74,9 +74,23 @@
 -  将`a`标签字体隐藏，可以使用`font-size: 0;`;
 - `obeject-fit: cover;` :和bg-size一个道理，取值也相同。不过`object-fit`适用于对`img`标签的调整，`bg-size`则专注于`background`系列
 
+
+#### JavaScript小技巧
+
+##### 排他思想
+- 排他思想：在处理多个元素的状态时，确保只有一个元素处于激活状态。可以通过遍历所有相关元素，先清除其他元素的状态，再设置当前元素的状态。
+- 例如，处理多个按钮的选中状态时，可以先移除所有按钮的选中样式，再为当前按钮添加选中样式。
+```javascript
+// 删除前一个圆点
+// li[i - 1].classList.remove('active')
+// 用排他思想做会更好！避免了数组下标的计算问题
+document.querySelector('.slider-indicator .active').classList.remove('active')
+...
+li[i].classList.add('active')
+ ```
+
 </details>
 
----
 
 <details>
 <summary>HTML</summary>
@@ -99,7 +113,6 @@
 
 </details>
 
----
 
 <details>
 <summary>CSS</summary>
@@ -551,7 +564,7 @@ P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则
        margin: (68 / 37.5)rem;
    }
    ```
-   除法必须带括号。**注意：**如果两个数字都带单位或更多单位，以「第一个」单位为准。
+   除法必须带括号。注意：**如果两个数字都带单位或更多单位，以「第一个」单位为准。**
 4. **导入**: 使用`@import`导入其他Less文件，便于模块化管理样式。
    ```less
    @import "variables.less";
@@ -562,14 +575,14 @@ P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则
 
 </details>
 
----
-
 <details>
 <summary>JavaScript</summary>
 
 ## JavaScript
 
-### JavaScript基础
+### JavaScript基础语法
+
+#### 基础规则
 
 - **JS的书写位置**：和css一样，包括内联（行内），内部（在</body>标签上），外部（<script src='...'>）；写在底部的目的是，让页面按顺序从上往下加载，避免HTML元素加载不完全
 - **JS的注释**：单行注释`//`，多行注释`/*...*/`。
@@ -578,16 +591,17 @@ P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则
 - **输出语法**: `document.write('...')`, `console.log('...')`, `alert('...')`
 
 
-### 变量
+#### 变量
 
 - **变量**：`let 变量名 = 值` 
 - **命名规则**：仅`字母`，`数字`，`下划线`与`$`符号，数字不能开头；严格区分大小写；建议使用`小驼峰命名法`
 - 变量初始化与输入输出的结合：e.g. `let name = prompt('Please enter your name')`  `document.write(name)`
 - **常量**：`const 常量名 = 值`，在声明时必须赋值，常量一旦赋值后不能再修改。
 
-### 数据类型
+#### 数据类型
 
-#### 基本数据类型
+##### 基本数据类型
+
   - `Number`：数字类型，包括整数和浮点数，正数、负数统一为`Number`类型。
     - `NaN`：也是数字类型，表示非数字（Not a Number），通常是计算错误的结果。具有粘性，即任何与`NaN`进行的运算结果都是`NaN`。
     - 搭配算数运算符运算，包括加（`+`）、减（`-`）、乘（`*`）、除（`/`）、取余（`%`）等； `n**x`：表示n的x次方。
@@ -610,7 +624,7 @@ P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则
   - *`undefined`与`null`不同， 例如同样 `+1` 操作，前者返回`NaN`，后者返回`1`*
   - `Symbol`：ES6新增的唯一值类型，用于创建唯一标识符。
 
-#### 数据类型检测
+##### 数据类型检测
   - 使用`typeof`操作符检测数据类型。
   ```javascript
   console.log(typeof 123); // "number"
@@ -621,7 +635,7 @@ P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则
   console.log(typeof Symbol('id')); // "symbol"
   ```
   
-#### 类型转换
+##### 类型转换
 
 分为**显式转换**和**隐式转换**。
 
@@ -648,7 +662,26 @@ P.S. `transition`过渡效果加在原元素，不要加在伪元素上（否则
    - 在减法运算，`''`和`null`的值会化为`0`；`undefined`的值化为`NaN`；
    - 特殊情况：`undefined == null` 为`true`，但`undefined === null` 依然是`false`
 
-### 运算符
+##### 引用数据类型
+
+- **简单数据类型**：变量本身存储这个值，存储于栈空间。
+
+- **引用数据类型**：变量存储的是对对象的引用，该引用地址指向存储于堆空间的实际数据。包括：
+  - `Object`：对象类型，键值对集合。
+  - `Array`：数组类型，有序列表。
+  - `Function`：函数类型，可调用的代码块。
+  - `Date`：日期类型，用于处理日期和时间。
+  - `RegExp`：正则表达式类型，用于模式匹配。
+
+```javascript
+let obj1= { age: 30 };
+let obj2 = obj1; // obj2引用了obj1的地址
+obj2.age = 31; // 修改obj2的age属性
+console.log(obj1.age); // 31，obj1也被修改了
+```
+
+
+#### 运算符
 
 - **赋值运算符**：`=` `+=` `-=` `*=` `/=` `%=`
 - **自增运算符**：`++i` `i++` `--i` `i--`
@@ -687,9 +720,9 @@ console.log(f()) // 0 避免了undefined的NaN情况出现
   - `>>`：右移
   - `>>>`：无符号右移
 
-### 条件语句
+#### 条件语句
 
-####  if语句
+#####  if语句
 
 用于根据条件执行代码块。
 
@@ -702,7 +735,7 @@ if (条件) {
     // 所有条件都不满足时执行的代码
 }
 ```
-#### switch语句
+##### switch语句
 
 用于根据表达式的值执行不同的代码块。
 
@@ -722,9 +755,9 @@ switch (表达式) {
 - 记得加`break`防止穿透
 - 记得加`default`
 
-### 循环语句
+#### 循环语句
 
-#### for循环
+##### for循环
 
 用于重复执行代码块，直到条件不满足。
 
@@ -767,7 +800,7 @@ for (let j = 0; j < array.length - 1 - i; j++) {
       - 若使用 return a-b ：当发生交换，说明「前者」（指参数的位置）a更大，同时被排到后面，完成升序
       - 若使用 return b-a ：当发生交换，说明「后者」b更大，同时被排到前面，完成降序
 
-#### while循环
+##### while循环
 
 当条件为真时重复执行代码块。
 
@@ -779,7 +812,7 @@ while (条件) {
 - `continue`语句：跳过当前循环的剩余部分，直接进入下一次循环。(回到while起点)
 - `break`语句：终止循环，跳出循环体。(跳出while)
 
-### 数组
+#### 数组
 
 - **数组**：使用方括号`[]`定义的有序数据集合。
 ```javascript
@@ -806,9 +839,9 @@ console.log(array.length); // 输出数组长度
     - `array[index] = newValue;`：将指定索引的元素修改为新值。
 
 
-### 函数
+#### 函数
 
-#### 函数定义声明与调用
+##### 函数定义声明与调用
 
 使用`function`关键字定义函数。使用函数名和括号调用函数。
 ```javascript
@@ -862,7 +895,7 @@ f3()
 console.log(x) // 30
 ```
 
-#### 匿名函数
+##### 匿名函数
 
 分为**函数表达式**和**立即执行函数**。
 
@@ -889,10 +922,224 @@ console.log(re) // 30
 }(1, 2)); // 调用函数的括号写在里外都可以
 ```
 
+#### 对象
+
+- **对象**：使用花括号`{}`定义的无序数据集合，包含键值对（属性和方法）。
+
+- **对象的声明**：
+```javascript
+let obj = {
+    属性1: 值1,
+    属性2: 值2,
+    方法1: function() {
+        // 方法体
+    },
+    方法2() { // ES6简写
+        // 方法体
+    }
+};
+
+let obj2 = new Object(); // 另一种创建对象的方式
+```
+
+- **对象的构成**：
+  - **属性**：键值对中的键，表示对象的特征或状态。**属性名：属性值**
+  - **方法**：键值对中的值为函数，表示对象的行为或操作。**方法名：函数体**
+  - 各属性、方法之间用逗号分隔，最后一个属性后面不需要逗号。 e.g. 
+```javascript
+let person = {
+    name: 'Alice',
+    age: 30,
+    greet() {
+        console.log(`Hello, my name is ${this.name}`);
+    }
+};
+```
+
+- **增删改查与方法的调用**：
+  - **访问属性**：使用点语法`obj.属性名`或方括号语法`obj['属性名']`。其中方括号方法的引号是必须的；另外方括号语法可以使用变量名来访问属性。
+  ```javascript
+  - **修改属性**：直接赋值`obj.属性名 = 新值;`。
+  - **添加属性**：直接赋值新属性`obj.新属性名 = 值;`。
+  - **删除属性**：使用`delete obj.属性名;`。
+  - **调用方法**：使用点语法调用方法`obj.方法名();`。
+
+- ** 遍历对象**：使用`for...in`循环遍历对象的属性。
+
+*p.s. 虽然也可以用于遍历数组，但由于变化量输出的是字符/串，不推荐这么用*
+
+```javascript
+for (let key in obj) {
+    console.log(key + ': ' + obj[key]); // 输出属性名和属性值，属性名带引号，如'name'
+}
+```
+
+- ** 内置数学对象**：JavaScript提供了内置的`Math`对象，包含常用的数学常量和函数。
+  - 常用属性：`Math.PI`（圆周率），`Math.E`（自然对数的底数）。
+  - 常用方法：`Math.abs(x)`（绝对值），`Math.max(a, b, ...)`（返回最大值），`Math.min(a, b, ...)`（返回最小值），`Math.round(x)`（四舍五入），`Math.random()`（生成[0,1)之间的随机小数）。
+    - Math.random()生成的随机数是[0,1)之间的浮点数，若需要生成[min, max]范围内的随机整数，可以使用`Math.floor(Math.random() * (max - min + 1)) + min`。
+
+- ** 对象常用方法**：
+  - `Object.keys(obj)`：返回对象的所有属性名组成的数组。
+  - `Object.values(obj)`：返回对象的所有属性值组成的数组。
+  - `Object.entries(obj)`：返回对象的所有键值对组成的二维数组。
+  - `Object.assign(target, ...sources)`：将源对象的属性复制到目标对象，返回目标对象。
+
+- **JSON对象**：JavaScript对象表示法（JSON）是一种轻量级的数据交换格式。
+  - `JSON.stringify(obj)`：将JavaScript对象转换为JSON字符串。
+  - `JSON.parse(jsonString)`：将JSON字符串转换为JavaScript对象。
+
+### Web API
+
+#### 声明变量const优先
+
+- `const`的语义化更好；
+- 建议数组和对象使用const声明，因为数组/对象名本身存储的是地址；
+- 使用数组方法或对象属性赋值时，本身没有影响 数组/对象名 中的地址值；
+- 注意，如果将 数组/对象名 用于声明新的 数组/对象，那就等同于修改了地址，就会引发常量报错
+
+#### DOM树和DOM对象
+
+- DOM树是HTML文档的结构化表示，DOM对象是JavaScript对DOM树的抽象表示。可以通过`document`对象访问和操作DOM树。
+*p.s. DOM树的根节点是`document`对象（最大的DOM对象），所有其他节点都是其子节点。*
+
+#### 选择器
+
+由HTML树获取DOM元素，使用`document.querySelector(选择器)`和`document.querySelectorAll(选择器)`选择元素。
+
+- `querySelector()`返回第一个匹配的元素（HTMLElement对象），没有则返回空；
+- `querySelectorAll()`返回所有匹配的元素集合（NodeList对象集合）；伪数组，哪怕只有一个元素；有长度和索引号，但没有数组方法。
+- 选择器语法与CSS选择器相同，可以是一个或多个css选择器。
+- 其它选择器方法：
+  - `getElementById(id)`：通过ID选择元素。
+  - `getElementsByClassName(className)`：通过类名选择元素，返回HTMLCollection对象（实时更新）。
+  - `getElementsByTagName(tagName)`：通过标签名选择元素，返回HTMLCollection对象（实时更新）。
+
+#### 修改元素
+
+- **修改元素内容**：使用`innerHTML`、`textContent`或`innerText`属性。常用于双标签。
+  - `innerHTML`：获取或设置元素的HTML内容，**支持HTML标签**。
+  - `textContent`：获取或设置元素的文本内容，不支持HTML标签。
+  - `innerText`：获取或设置元素的可见文本内容，考虑CSS样式。
+
+- **修改元素常用属性**：修改如`src`，`href`等html标签的属性，像**修改对象属性**一样修改。 e.g. 
+```javascript 
+img.src = 'images/01.jpg'
+```
+
+- **修改元素样式**：包括`style`, `className`和`classList`属性。
+
+`style`属性：直接修改元素的内联样式。e.g. 
+
+```javascript
+element.style.color = 'red';
+element.style.backgroundColor = 'blue'; // CSS中用了短横向的，JS中用小驼峰式命名
+```
+`className`属性：覆盖一个新的类名。
+
+```javascript
+div.className = 'nav box' // 若想保留原类名，就两个一起写
+```
+`classList`属性：提供对元素类名的操作方法，如`add()`、`remove()`、`toggle()`等。
+
+```javascript
+// 「追加」类名
+box.classList.add('active') // 类名一样不加点，并且是字符串
+// 「移除」类名
+box.classList.remove('box')
+// 「切换」类名：有就删掉，没有就加上
+box.classList.toggle('box')
+```
+
+- **修改表单元素属性**: 本质还是修改对象属性、重新赋值
+
+`value`属性：获取或设置表单元素的值。
+```javascript
+input.value = '新值'; // 设置输入框的值
+let inputValue = input.value; // 获取输入框的值
+```
+
+`type`属性：获取或设置表单元素的类型（如`text`、`password`、`checkbox`等）。
+```javascript
+input.type = 'password'; // 设置输入框类型为密码
+```
+`placeholder`属性：获取或设置输入框的占位符文本。
+```javascript
+input.placeholder = '请输入内容'; // 设置输入框的占位符
+```
+
+`selectedIndex`属性：获取或设置下拉列表的选中项索引。
+```javascript
+select.selectedIndex = 1; // 设置下拉列表选中第二项
+let selectedIndex = select.selectedIndex; // 获取下拉列表选中项的索引
+```
+
+`button`：获取或设置按钮的文本内容。相对特殊，因为是双标签，所以还是使用`innerHTML`或`textContent`修改文本。
+```javascript
+button.innerHTML = '提交'; // 设置按钮文本内容
+button.textContent = '提交'; // 设置按钮文本内容
+```
+
+*修改表单中的添加/移除效果，一律用**布尔值**。*
+*p.s. 虽然有时填`true`字符串也生效，但本质上他们发生了隐式转换，以下属性只接受布尔值。生效是因为非空字符串在转换时成为了`true`*
+
+`checked`属性：获取或设置复选框或单选按钮的选中状态。
+```javascript
+checkbox.checked = true; // 设置复选框为选中状态
+let isChecked = checkbox.checked; // 获取复选框的选中状态
+```
+
+`disabled`属性：获取或设置表单元素是否禁用。
+```javascript
+input.disabled = true; // 设置输入框为禁用状态
+```
+
+#### 自定义属性
+
+**自定义属性**：在HTML中使用`data-*`前缀定义自定义属性，便于存储额外信息。
+```html
+<div id="myElement" data-custom="value" data-id="1">内容</div>
+```
+然后在JavaScript中使用`dataset`属性访问自定义属性。
+```javascript
+let element = document.getElementById('myElement');
+let customValue = element.dataset.custom; // 获取自定义属性值
+let idValue = element.dataset.id; // 获取自定义ID值
+```
+
+
+#### 定时器
+
+##### 间歇函数
+
+**setInterval(f(), interval time)**：设置一个间隔时间重复执行的函数。返回值：定时器ID。e.g. 
+```javascript   
+let timer = setInterval(() => {
+    console.log('每隔1秒执行一次');
+}, 1000); // 每1000毫秒（1秒）执行一次
+```
+*p.s. 使用**外部具名函数**，不需要加括号，直接传入函数名即可。 如：*
+```javascript
+function myFunction() {
+    console.log('每隔1秒执行一次');
+}
+let timer = setInterval(myFunction, 1000); // 每1000毫秒（1秒）执行一次
+```
+
+**清除间歇函数**：使用`clearInterval(timer)`停止间隔函数的执行。参数`timer`是`setInterval`返回的定时器ID。
+```javascript
+clearInterval(timer); // 停止间隔函数
+```
+
+
+
+
+
+
+
 
 </details>
 
----
 
 <details>
 <summary>AJAX</summary>
